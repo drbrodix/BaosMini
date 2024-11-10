@@ -62,7 +62,44 @@ int main(int argc, char* argv[])
         std::cerr << "Error while setting timeout properties." << '\n';
     }
 
-    // Write to above configured COM port
+    // Build a "Set new DP value and send on bus" BAOS request telegram
+
+    const int BAOS_MAIN_ROUTINE =               0xF0;
+    const int BAOS_SET_DATAPOINT_VALUE_REQ =    0x06;
+    const int START_DP[2] =                    {0x00, 0x01};
+    const int NR_OF_DP[2] =                    {0x00, 0x01};
+    const int FIRST_DP_ID[2] =                 {0x00, 0x01};
+    const int FIRST_DP_CMD =                    0x03; // 0011 -> Set new value and send on bus
+    const int FIRST_DP_LENGTH =                 0x01;
+    const int FIRST_DP_VALUE =                  0x01;
+
+
+    int set_bool_dp_value[] = {
+        BAOS_MAIN_ROUTINE,
+        BAOS_SET_DATAPOINT_VALUE_REQ,
+        START_DP[0],
+        START_DP[1],
+        NR_OF_DP[0],
+        NR_OF_DP[1],
+        FIRST_DP_ID[0],
+        FIRST_DP_ID[1],
+        FIRST_DP_CMD,
+        FIRST_DP_LENGTH,
+        FIRST_DP_VALUE
+    };
+
+    // Write data
+    DWORD dwBytesWritten = 0;
+    if(!WriteFile(
+        serial_handle
+        set_bool_dp_value,
+        sizeof(set_bool_dp_value),
+        &dwBytesWritten,
+        NULL
+    )) { std::cerr << "Error while writing to COM port." << '\n'; }
+
+    // Close port
+    CloseHandle(serial_handle);
 
     return EXIT_SUCCESS;
 }
