@@ -39,10 +39,10 @@ int main(int argc, char* argv[])
         std::cerr << "Error while fetching COM properties." << '\n';
     }
 
-    dcb_serial_param.BaudRate = CBR_19200;
-    dcb_serial_param.ByteSize = 8;
-    dcb_serial_param.StopBits = ONESTOPBIT;
-    dcb_serial_param.Parity = EVENPARITY;
+    dcb_serial_param.BaudRate   = CBR_19200;
+    dcb_serial_param.ByteSize   = 8;
+    dcb_serial_param.StopBits   = ONESTOPBIT;
+    dcb_serial_param.Parity     = EVENPARITY;
 
     if (!SetCommState(serial_handle, &dcb_serial_param))
     {
@@ -50,31 +50,50 @@ int main(int argc, char* argv[])
     }
 
     // Setting timeout
-    COMMTIMEOUTS timeout = {0};
-    timeout.ReadIntervalTimeout = 60; // specifies the time that must pass between receiving characters before timing out (in milliseconds).
-    timeout.ReadTotalTimeoutConstant = 60; // provides the amount of time to wait before returning (in milliseconds).
-    timeout.ReadTotalTimeoutMultiplier = 15; // specifies the length of time to wait before responding for each byte requested in the read operation (in milliseconds).
-    timeout.WriteTotalTimeoutConstant = 60; // same as in case of reading, but for writing
-    timeout.WriteTotalTimeoutMultiplier = 8; // same as in case of reading, but for writing
+
+    //COMMTIMEOUTS cto;
+	//cto.ReadIntervalTimeout         = CHARACTER_TIMEOUT;
+	//cto.ReadTotalTimeoutConstant    = MAXDWORD;
+	//cto.ReadTotalTimeoutMultiplier  = 0;
+	//cto.WriteTotalTimeoutConstant   = MAXDWORD;
+	//cto.WriteTotalTimeoutMultiplier = 0;
+
+    COMMTIMEOUTS timeout                = {0};
+    timeout.ReadIntervalTimeout         = 100; // specifies the time that must pass between receiving characters before timing out (in milliseconds).
+    timeout.ReadTotalTimeoutConstant    = MAXDWORD; // provides the amount of time to wait before returning (in milliseconds).
+    timeout.ReadTotalTimeoutMultiplier  = 0; // specifies the length of time to wait before responding for each byte requested in the read operation (in milliseconds).
+    timeout.WriteTotalTimeoutConstant   = MAXDWORD; // same as in case of reading, but for writing
+    timeout.WriteTotalTimeoutMultiplier = 0; // same as in case of reading, but for writing
 
     if(!SetCommTimeouts(serial_handle, &timeout))
     {
         std::cerr << "Error while setting timeout properties." << '\n';
     }
 
+    // FT1.2 frame configuration
+    const unsigned char DATA_LENGTH     = 0x0C;
+    const unsigned char CONTROL_BYTE    = 0x73;
+    const unsigned char CHECKSUM        = 0x71;
+
     // Build a "Set new DP value and send on bus" BAOS request telegram
+    const unsigned char BAOS_MAIN_ROUTINE               = 0xF0;
+    const unsigned char BAOS_SET_DATAPOINT_VALUE_REQ    = 0x06;
+    const unsigned char START_DP[2]                     = { 0x00, 0x01 };
+    const unsigned char NR_OF_DP[2]                     = { 0x00, 0x01 };
+    const unsigned char FIRST_DP_ID[2]                  = { 0x00, 0x01 };
+    const unsigned char FIRST_DP_CMD                    = 0x03; // 0011 -> Set new value and send on bus
+    const unsigned char FIRST_DP_LENGTH                 = 0x01;
+    const unsigned char FIRST_DP_VALUE                  = 0x01;
 
-    const int BAOS_MAIN_ROUTINE =               0xF0;
-    const int BAOS_SET_DATAPOINT_VALUE_REQ =    0x06;
-    const int START_DP[2] =                    {0x00, 0x01};
-    const int NR_OF_DP[2] =                    {0x00, 0x01};
-    const int FIRST_DP_ID[2] =                 {0x00, 0x01};
-    const int FIRST_DP_CMD =                    0x03; // 0011 -> Set new value and send on bus
-    const int FIRST_DP_LENGTH =                 0x01;
-    const int FIRST_DP_VALUE =                  0x01;
-
-
-    int set_bool_dp_value[] = {
+    // Complete frame with BAOS payload
+    const unsigned char SET_BOOL_DP_VALUE[] = {
+        // START FT1.2 HEADER
+        0x68,
+        DATA_LENGTH,
+        DATA_LENGTH,
+        0x68,
+        CONTROL_BYTE,
+        // START  BAOS TELEGRAM
         BAOS_MAIN_ROUTINE,
         BAOS_SET_DATAPOINT_VALUE_REQ,
         START_DP[0],
@@ -85,21 +104,47 @@ int main(int argc, char* argv[])
         FIRST_DP_ID[1],
         FIRST_DP_CMD,
         FIRST_DP_LENGTH,
-        FIRST_DP_VALUE
+        FIRST_DP_VALUE,
+        // START FT1.2 FOOTER
+        CHECKSUM,
+        0x16
     };
+
+    // Reset request frame
+    const unsigned char RESET_REQUEST[] = {
+        0x10,
+        0x40,
+        0x40,
+        0x16
+    };
+
+    // Write reset request
+    DWORD dwBytesWrittenRR = 0;
+    if (!WriteFile(
+        serial_handle,
+        RESET_REQUEST,
+        sizeof(RESET_REQUEST),
+        &dwBytesWrittenRR,
+        nullptr
+    )) {
+        std::cerr << "Error while writing to COM port." << '\n';
+    }
 
     // Write data
     DWORD dwBytesWritten = 0;
     if(!WriteFile(
-        serial_handle
-        set_bool_dp_value,
-        sizeof(set_bool_dp_value),
+        serial_handle,
+        SET_BOOL_DP_VALUE,
+        sizeof(SET_BOOL_DP_VALUE),
         &dwBytesWritten,
-        NULL
+        nullptr
     )) { std::cerr << "Error while writing to COM port." << '\n'; }
 
     // Close port
-    CloseHandle(serial_handle);
+    if (!CloseHandle(serial_handle))
+    {
+        std::cerr << "Error while closing COM port." << '\n';
+    }
 
     return EXIT_SUCCESS;
 }

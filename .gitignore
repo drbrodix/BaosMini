@@ -1,5 +1,10 @@
-bin/
-obj/
+/bin/
+/obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+/.vscode/
+/.x64/
+/.vs
+/BaosMini/x64/Debug
+/x64/Debug
