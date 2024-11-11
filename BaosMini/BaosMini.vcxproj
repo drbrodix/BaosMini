@@ -155,8 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FrameFormatter.cpp" />
-    <ClCompile Include="FrameFormatter.hpp" />
     <ClCompile Include="src\BaosMini.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -231,9 +229,20 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\ChecksumCalculator.cpp" />
+    <ClCompile Include="src\FrameFormatter.cpp" />
+    <ClCompile Include="src\Ft12Frame.cpp" />
+    <ClCompile Include="src\telegram\BaosTelegram.cpp" />
+    <ClCompile Include="src\telegram\SetDatapointValueReq.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
+    <ClInclude Include="include\ChecksumCalculator.hpp" />
+    <ClInclude Include="include\FrameFormatter.hpp" />
+    <ClInclude Include="include\Ft12Frame.hpp" />
+    <ClInclude Include="include\Headers.hpp" />
+    <ClInclude Include="include\telegram\BaosTelegram.hpp" />
+    <ClInclude Include="include\telegram\SetDatapointValueReq.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="weinzierl-knx-baos-binaryprotocol-v2.pdf" />

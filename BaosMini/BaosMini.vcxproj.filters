@@ -13,20 +13,53 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\telegram">
+      <UniqueIdentifier>{45e14c01-2266-4938-b101-aed4fc737924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\telegram">
+      <UniqueIdentifier>{0eb5ff30-e2e4-462d-a8a7-9e0cc49b2229}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaosMini.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FrameFormatter.cpp">
+    <ClCompile Include="src\Ft12Frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FrameFormatter.hpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="src\ChecksumCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FrameFormatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\telegram\BaosTelegram.cpp">
+      <Filter>Source Files\telegram</Filter>
+    </ClCompile>
+    <ClCompile Include="src\telegram\SetDatapointValueReq.cpp">
+      <Filter>Source Files\telegram</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Ft12Frame.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChecksumCalculator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FrameFormatter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\telegram\BaosTelegram.hpp">
+      <Filter>Header Files\telegram</Filter>
+    </ClInclude>
+    <ClInclude Include="include\telegram\SetDatapointValueReq.hpp">
+      <Filter>Header Files\telegram</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Headers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

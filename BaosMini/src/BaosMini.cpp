@@ -1,4 +1,4 @@
-#include "BaosMini.hpp"
+#include "Headers.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -76,14 +76,16 @@ int main(int argc, char* argv[])
     const unsigned char CHECKSUM        = 0x71;
 
     // Build a "Set new DP value and send on bus" BAOS request telegram
-    const unsigned char BAOS_MAIN_ROUTINE               = 0xF0;
-    const unsigned char BAOS_SET_DATAPOINT_VALUE_REQ    = 0x06;
-    const unsigned char START_DP[2]                     = { 0x00, 0x01 };
-    const unsigned char NR_OF_DP[2]                     = { 0x00, 0x01 };
-    const unsigned char FIRST_DP_ID[2]                  = { 0x00, 0x01 };
-    const unsigned char FIRST_DP_CMD                    = 0x03; // 0011 -> Set new value and send on bus
-    const unsigned char FIRST_DP_LENGTH                 = 0x01;
-    const unsigned char FIRST_DP_VALUE                  = 0x01;
+    //const unsigned char BAOS_MAIN_ROUTINE               = 0xF0;
+    //const unsigned char BAOS_SET_DATAPOINT_VALUE_REQ    = 0x06;
+    //const unsigned char START_DP[2]                     = { 0x00, 0x01 };
+    //const unsigned char NR_OF_DP[2]                     = { 0x00, 0x01 };
+    //const unsigned char FIRST_DP_ID[2]                  = { 0x00, 0x01 };
+    //const unsigned char FIRST_DP_CMD                    = 0x03; // 0011 -> Set new value and send on bus
+    //const unsigned char FIRST_DP_LENGTH                 = 0x01;
+    //const unsigned char FIRST_DP_VALUE                  = 0x01;
+
+    SetDatapointValue myTelegram(1, true);
 
     // Complete frame with BAOS payload
     const unsigned char SET_BOOL_DP_VALUE[] = {
@@ -94,17 +96,18 @@ int main(int argc, char* argv[])
         0x68,
         CONTROL_BYTE,
         // START  BAOS TELEGRAM
-        BAOS_MAIN_ROUTINE,
-        BAOS_SET_DATAPOINT_VALUE_REQ,
-        START_DP[0],
-        START_DP[1],
-        NR_OF_DP[0],
-        NR_OF_DP[1],
-        FIRST_DP_ID[0],
-        FIRST_DP_ID[1],
-        FIRST_DP_CMD,
-        FIRST_DP_LENGTH,
-        FIRST_DP_VALUE,
+        *myTelegram.getTelegram(),
+        //BAOS_MAIN_ROUTINE,
+        //BAOS_SET_DATAPOINT_VALUE_REQ,
+        //START_DP[0],
+        //START_DP[1],
+        //NR_OF_DP[0],
+        //NR_OF_DP[1],
+        //FIRST_DP_ID[0],
+        //FIRST_DP_ID[1],
+        //FIRST_DP_CMD,
+        //FIRST_DP_LENGTH,
+        //FIRST_DP_VALUE,
         // START FT1.2 FOOTER
         CHECKSUM,
         0x16
