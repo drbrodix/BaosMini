@@ -1,0 +1,3 @@
+# About BaosMini
+
+Start typing here...
