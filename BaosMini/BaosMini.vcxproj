@@ -233,7 +233,7 @@
     <ClCompile Include="src\FrameFormatter.cpp" />
     <ClCompile Include="src\SerialConnection.cpp" />
     <ClCompile Include="src\telegram\BaosTelegram.cpp" />
-    <ClCompile Include="src\telegram\SetDatapointValueReq.cpp" />
+    <ClCompile Include="src\telegram\SetDatapointValue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
@@ -242,7 +242,7 @@
     <ClInclude Include="include\SerialConnection.hpp" />
     <ClInclude Include="include\Headers.hpp" />
     <ClInclude Include="include\telegram\BaosTelegram.hpp" />
-    <ClInclude Include="include\telegram\SetDatapointValueReq.hpp" />
+    <ClInclude Include="include\telegram\SetDatapointValue.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="weinzierl-knx-baos-binaryprotocol-v2.pdf" />

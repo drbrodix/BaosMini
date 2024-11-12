@@ -3,6 +3,6 @@
 
 #include "BaosMini.hpp"
 #include "SerialConnection.hpp"
-#include "telegram/SetDatapointValueReq.hpp"
+#include "telegram/SetDatapointValue.hpp"
 
 #endif // HEADERS_HPP

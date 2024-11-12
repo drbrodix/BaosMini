@@ -5,8 +5,21 @@ SerialConnection::SerialConnection(std::string connectString)
 	, serialHandle(nullptr)
     , dcbSerialParam{0}
     , timeout{0}
+    , isOddFrame(true)
 {
 	serialHandle = createSerialHandle();
+    if (serialHandle == INVALID_HANDLE_VALUE)
+    {
+        if (GetLastError() == ERROR_FILE_NOT_FOUND)
+        {
+            std::cerr << "COM3 not found" << '\n';
+        }
+        else
+        {
+            std::cerr << "Error opening serial port." << '\n';
+        }
+    }
+
     configureConnect();
     configureTimeout();
 }
@@ -23,25 +36,16 @@ SerialConnection::~SerialConnection()
 HANDLE SerialConnection::createSerialHandle() const
 {
 	return CreateFile(
+        // std::string -> LPCWSTR conversion needs to be done locally,
+        // so that we won't end up with a dangling pointer
         (std::wstring(connectionName.begin(), connectionName.end()).c_str()),
         GENERIC_READ | GENERIC_WRITE,
         0,
         nullptr,
         OPEN_EXISTING,
         FILE_ATTRIBUTE_NORMAL,
-        nullptr);
-
-    if (serialHandle == INVALID_HANDLE_VALUE)
-    {
-        if (GetLastError() == ERROR_FILE_NOT_FOUND)
-        {
-            std::cerr << "COM3 not found" << '\n';
-        }
-        else
-        {
-            std::cerr << "Error opening serial port." << '\n';
-        }
-    }
+        nullptr
+    );
 }
 
 bool SerialConnection::configureConnect()
@@ -80,7 +84,18 @@ bool SerialConnection::configureTimeout()
     return true;
 }
 
-HANDLE SerialConnection::getHandle()
+HANDLE SerialConnection::getHandle() const
 {
     return serialHandle;
+}
+
+bool SerialConnection::switchControlByteState()
+{
+    isOddFrame = !isOddFrame;
+    return isOddFrame;
+}
+
+unsigned char SerialConnection::getControlByte() const
+{
+    return CONTROL_BYTE[isOddFrame];
 }
