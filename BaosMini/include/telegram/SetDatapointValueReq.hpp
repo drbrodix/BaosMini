@@ -6,19 +6,20 @@
 class SetDatapointValue : public BaosTelegram
 {
 public:
-	SetDatapointValue(int datapointId, bool datapointValue);
+	SetDatapointValue(int datapointId, bool datapointValue, HANDLE handle);
 	~SetDatapointValue();
-    
-    unsigned char* getTelegram() override;
+
+    bool sendTelegram() const;
 
 private:
-    unsigned char baosTelegram[11];
-    //unsigned char startDp[2];
-    //unsigned char nrOfDp[2];
-    //unsigned char firstDpId[2];
-    //unsigned char firstDpCmd;
-    //unsigned char firstDpLength;
-    //unsigned char firstDpValue;
+    HANDLE handle;
+    unsigned char baosMainService;
+    unsigned char startDp[2];
+    unsigned char nrOfDp[2];
+    unsigned char firstDpId[2];
+    unsigned char firstDpCmd;
+    unsigned char firstDpLength;
+    unsigned char firstDpValue;
 };
 
 #endif // SET_DATAPOINT_VALUE_REQ_HPP

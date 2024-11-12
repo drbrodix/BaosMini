@@ -231,7 +231,7 @@
     </ClCompile>
     <ClCompile Include="src\ChecksumCalculator.cpp" />
     <ClCompile Include="src\FrameFormatter.cpp" />
-    <ClCompile Include="src\Ft12Frame.cpp" />
+    <ClCompile Include="src\SerialConnection.cpp" />
     <ClCompile Include="src\telegram\BaosTelegram.cpp" />
     <ClCompile Include="src\telegram\SetDatapointValueReq.cpp" />
   </ItemGroup>
@@ -239,7 +239,7 @@
     <ClInclude Include="include\BaosMini.hpp" />
     <ClInclude Include="include\ChecksumCalculator.hpp" />
     <ClInclude Include="include\FrameFormatter.hpp" />
-    <ClInclude Include="include\Ft12Frame.hpp" />
+    <ClInclude Include="include\SerialConnection.hpp" />
     <ClInclude Include="include\Headers.hpp" />
     <ClInclude Include="include\telegram\BaosTelegram.hpp" />
     <ClInclude Include="include\telegram\SetDatapointValueReq.hpp" />

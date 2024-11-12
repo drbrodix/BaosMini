@@ -1,6 +1,14 @@
 #ifndef BAOS_TELEGRAM_HPP
 #define BAOS_TELEGRAM_HPP
 
+#include <windows.h>
+#include <iostream>
+
+#define CONTROL_BYTE(isOdd) {isOdd ? 0x73 : 0x53}
+//        0x73,	// ODD	<- ARRAY INDEX 0
+//        0x53	// EVEN <- ARRAY INDEX 1
+//};
+
 enum BaosSubServices
 {
     GetServerItemReq            = 0x01,
@@ -29,10 +37,22 @@ public:
     BaosTelegram();
     ~BaosTelegram();
 
-    virtual unsigned char* getTelegram();
 protected:
+    // Constructor for internal usage
+    BaosTelegram(
+        unsigned char subServiceCode,
+        unsigned char dataLength,
+        unsigned char controlByte,
+        unsigned char checksum);
+
+    // BAOS telegram data members
     static const unsigned char BAOS_MAIN_SERVICE = 0xF0;
     unsigned char subServiceCode;
+    
+    // Frame data members
+    unsigned char dataLength;
+    unsigned char controlByte;
+    unsigned char checksum;
 };
 
 #endif // BAOS_TELEGRAM_HPP

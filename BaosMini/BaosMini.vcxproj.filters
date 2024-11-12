@@ -24,7 +24,7 @@
     <ClCompile Include="src\BaosMini.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ft12Frame.cpp">
+    <ClCompile Include="src\SerialConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ChecksumCalculator.cpp">
@@ -44,7 +44,7 @@
     <ClInclude Include="include\BaosMini.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Ft12Frame.hpp">
+    <ClInclude Include="include\SerialConnection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ChecksumCalculator.hpp">
