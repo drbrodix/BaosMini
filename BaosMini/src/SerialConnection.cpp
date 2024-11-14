@@ -84,18 +84,126 @@ bool SerialConnection::configureTimeout()
     return true;
 }
 
-HANDLE SerialConnection::getHandle() const
+unsigned char SerialConnection::getControlByte()
 {
-    return serialHandle;
-}
-
-bool SerialConnection::switchControlByteState()
-{
+    const unsigned char currentControlByte = CONTROL_BYTE[isOddFrame];
     isOddFrame = !isOddFrame;
-    return isOddFrame;
+    return currentControlByte;
 }
 
-unsigned char SerialConnection::getControlByte() const
+bool SerialConnection::sendTelegram(std::vector<unsigned char>* telegramData)
 {
-    return CONTROL_BYTE[isOddFrame];
+    std::vector<unsigned char> ft12Frame;
+    const unsigned char controlByte = getControlByte();
+    const unsigned char checksum = ChecksumCalculator::calculateChecksum(telegramData, controlByte);
+
+    sendResetRequest();
+    FrameFormatter::formatFt12Frame(
+        &ft12Frame,
+        telegramData,
+        controlByte,
+        checksum
+    );
+
+    size_t buffSize = ft12Frame.size();
+    unsigned char* pBuff = new unsigned char[buffSize];
+    std::copy(ft12Frame.begin(), ft12Frame.end(), pBuff);
+
+    // Write data
+    DWORD dwBytesWritten = 0;
+    if (!WriteFile(
+        serialHandle,
+        pBuff,
+        buffSize,
+        &dwBytesWritten,
+        nullptr
+    )) {
+        std::cerr << "Error while writing to COM port." << '\n';
+    }
+
+    delete[] pBuff;
+
+    recieveTelegram();
+
+    return true;
+}
+
+bool SerialConnection::recieveTelegram() const
+{
+    const unsigned short BUFFER_SIZE = 250;
+    unsigned char readBuffer[BUFFER_SIZE + 1] = { 0 };
+
+    // Write data
+    DWORD drBytesRead = 0;
+    if (!ReadFile(
+        serialHandle,
+        readBuffer,
+        250,
+        &drBytesRead,
+        nullptr
+    )) {
+        std::cerr << "Error while writing to COM port." << '\n';
+        return false;
+    }
+    else {
+        sendAck();
+    }
+
+    std::ostringstream oss;
+
+    for (DWORD i = 0; i < drBytesRead; i++)
+    {
+        std::cout << std::hex << (unsigned int)readBuffer[i] << " ";
+    }
+
+    std::cout << '\n';
+
+    return true;
+}
+
+bool SerialConnection::sendAck() const
+{
+    const unsigned char ACK_BYTE[] = { 0xe5 }; // Acknowledgement byte
+
+    // Write data
+    DWORD dwBytesWritten = 0;
+    if (!WriteFile(
+        serialHandle,
+        ACK_BYTE,
+        sizeof(ACK_BYTE),
+        &dwBytesWritten,
+        nullptr
+    )) {
+        std::cerr << "Error while writing to COM port." << '\n';
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool SerialConnection::sendResetRequest() const
+{
+    // Reset request frame
+    const unsigned char RESET_REQUEST[] = {
+        0x10,
+        0x40,
+        0x40,
+        0x16
+    };
+
+    // Write reset request
+    DWORD dwBytesWrittenRR = 0;
+    if (!WriteFile(
+        serialHandle,
+        RESET_REQUEST,
+        sizeof(RESET_REQUEST),
+        &dwBytesWrittenRR,
+        nullptr
+    )) {
+        std::cerr << "Error while writing to COM port." << '\n';
+    }
+
+    return true;
 }

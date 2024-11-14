@@ -1,6 +1,0 @@
-#ifndef FRAME_FORMATTER_HPP
-#define FRAME_FORMATTER_HPP
-
-
-
-#endif // FRAME_FORMATTER_HPP

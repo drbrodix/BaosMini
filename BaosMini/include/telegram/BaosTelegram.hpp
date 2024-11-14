@@ -1,15 +1,7 @@
 #ifndef BAOS_TELEGRAM_HPP
 #define BAOS_TELEGRAM_HPP
 
-#include <numeric>
-#include <windows.h>
-#include <iostream>
-#include "SerialConnection.hpp"
-
-#define CONTROL_BYTE(isOdd) {isOdd ? 0x73 : 0x53}
-//        0x73,	// ODD	<- ARRAY INDEX 0
-//        0x53	// EVEN <- ARRAY INDEX 1
-//};
+#include <vector>
 
 enum BaosSubServices
 {
@@ -36,13 +28,15 @@ enum BaosSubServices
 class BaosTelegram
 {
 public:
-    BaosTelegram();
-    ~BaosTelegram();
+    std::vector<unsigned char>* getTelegramData()
+    {
+        return &baosTelegram;
+    }
 
 protected:
-
     // BAOS telegram data members
     static const unsigned char BAOS_MAIN_SERVICE = 0xF0;
+    std::vector<unsigned char> baosTelegram;
 };
 
 #endif // BAOS_TELEGRAM_HPP

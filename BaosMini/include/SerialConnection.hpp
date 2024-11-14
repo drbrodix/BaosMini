@@ -2,7 +2,10 @@
 #define SERIAL_CONNECTION_HPP
 
 #include <iostream>
-#include <windows.h>
+#include <Windows.h>
+#include <vector>
+#include <sstream>
+#include "utility/Headers.hpp"
 
 class SerialConnection
 {
@@ -10,15 +13,7 @@ public:
 	SerialConnection(std::string connectionName);
 	~SerialConnection();
 
-	HANDLE getHandle() const;
-
-	// Switches isOddFrame data member
-	// and returns its new state
-	bool switchControlByteState();
-	
-	// Returns control byte depending on the
-	// current state of the isOddFrame data member
-	unsigned char getControlByte() const;
+	bool sendTelegram(std::vector<unsigned char>* telegramData);
 	
 private:
 	// Value to keep track of control byte state
@@ -37,9 +32,19 @@ private:
 	DCB dcbSerialParam;
 	COMMTIMEOUTS timeout;
 
+	std::vector<unsigned char> ft12Frame;
+
 	HANDLE createSerialHandle() const;
 	bool configureConnect();
 	bool configureTimeout();
+
+	bool recieveTelegram() const;
+	bool sendAck() const;
+	bool sendResetRequest() const;
+
+	// Returns control byte depending on the
+	// current state of the isOddFrame data member
+	unsigned char getControlByte();
 };
 
 #endif // SERIAL_CONNECTION_HPP

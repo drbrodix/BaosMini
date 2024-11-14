@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="773e7647-4773-4b94-92fb-3a44f5c99733" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../BaosMini/include/telegram/BaosTelegram.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/include/telegram/BaosTelegram.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BaosMini/include/telegram/SetDatapointValue.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/include/telegram/SetDatapointValue.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/BaosMini.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/BaosMini.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/SerialConnection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/SerialConnection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/telegram/BaosTelegram.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/telegram/BaosTelegram.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/telegram/SetDatapointValue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/telegram/SetDatapointValue.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BM.tree" beforeDir="false" afterPath="$PROJECT_DIR$/BM.tree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics/ClassDiagramm.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics/baosmini.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="InstanceColorv3">
+    <option name="map">
+      <map>
+        <entry key="$PROJECT_DIR$/bm.tree">
+          <value>
+            <ColorState>
+              <option name="customOrder" value="1" />
+              <option name="first">
+                <RgbState>
+                  <option name="blue" value="60" />
+                  <option name="darkBlue" value="60" />
+                  <option name="darkGreen" value="68" />
+                  <option name="darkRed" value="206" />
+                  <option name="green" value="61" />
+                  <option name="red" value="219" />
+                </RgbState>
+              </option>
+              <option name="second">
+                <RgbState>
+                  <option name="blue" value="66" />
+                  <option name="darkBlue" value="65" />
+                  <option name="darkGreen" value="126" />
+                  <option name="darkRed" value="231" />
+                  <option name="green" value="142" />
+                  <option name="red" value="255" />
+                </RgbState>
+              </option>
+            </ColorState>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2opqAyovqGcuuQV5D98bFkTP9Tq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: [
+      &quot;C:/Users/regely/source/repos/BaosMini/Documentation/Writerside/topics/topics/ClassDiagramm.md&quot;
+    ]
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>

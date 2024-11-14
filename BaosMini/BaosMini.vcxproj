@@ -229,20 +229,23 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="src\ChecksumCalculator.cpp" />
-    <ClCompile Include="src\FrameFormatter.cpp" />
     <ClCompile Include="src\SerialConnection.cpp" />
-    <ClCompile Include="src\telegram\BaosTelegram.cpp" />
+    <ClCompile Include="src\telegram\GetDatapointValue.cpp" />
     <ClCompile Include="src\telegram\SetDatapointValue.cpp" />
+    <ClCompile Include="src\utility\ChecksumCalculator.cpp" />
+    <ClCompile Include="src\utility\FrameFormatter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
-    <ClInclude Include="include\ChecksumCalculator.hpp" />
-    <ClInclude Include="include\FrameFormatter.hpp" />
     <ClInclude Include="include\SerialConnection.hpp" />
     <ClInclude Include="include\Headers.hpp" />
     <ClInclude Include="include\telegram\BaosTelegram.hpp" />
+    <ClInclude Include="include\telegram\GetDatapointValue.hpp" />
+    <ClInclude Include="include\telegram\Headers.hpp" />
     <ClInclude Include="include\telegram\SetDatapointValue.hpp" />
+    <ClInclude Include="include\utility\ChecksumCalculator.hpp" />
+    <ClInclude Include="include\utility\FrameFormatter.hpp" />
+    <ClInclude Include="include\utility\Headers.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="weinzierl-knx-baos-binaryprotocol-v2.pdf" />

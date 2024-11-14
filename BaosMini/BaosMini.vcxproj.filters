@@ -19,6 +19,12 @@
     <Filter Include="Source Files\telegram">
       <UniqueIdentifier>{0eb5ff30-e2e4-462d-a8a7-9e0cc49b2229}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utility">
+      <UniqueIdentifier>{dde66908-6aac-4da6-9ec0-77ccb63abe3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utility">
+      <UniqueIdentifier>{1960ca2c-37fa-4ad2-8b3f-08ba5db04149}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaosMini.cpp">
@@ -27,17 +33,17 @@
     <ClCompile Include="src\SerialConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ChecksumCalculator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FrameFormatter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\telegram\BaosTelegram.cpp">
-      <Filter>Source Files\telegram</Filter>
-    </ClCompile>
     <ClCompile Include="src\telegram\SetDatapointValue.cpp">
       <Filter>Source Files\telegram</Filter>
+    </ClCompile>
+    <ClCompile Include="src\telegram\GetDatapointValue.cpp">
+      <Filter>Source Files\telegram</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\ChecksumCalculator.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\FrameFormatter.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,12 +51,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\SerialConnection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ChecksumCalculator.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\FrameFormatter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\telegram\BaosTelegram.hpp">
@@ -61,6 +61,21 @@
     </ClInclude>
     <ClInclude Include="include\telegram\SetDatapointValue.hpp">
       <Filter>Header Files\telegram</Filter>
+    </ClInclude>
+    <ClInclude Include="include\telegram\Headers.hpp">
+      <Filter>Header Files\telegram</Filter>
+    </ClInclude>
+    <ClInclude Include="include\telegram\GetDatapointValue.hpp">
+      <Filter>Header Files\telegram</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\ChecksumCalculator.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\FrameFormatter.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\Headers.hpp">
+      <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
