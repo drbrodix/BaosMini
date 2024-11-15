@@ -48,6 +48,9 @@
     <ClCompile Include="src\utility\DataReader.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\telegram\GetServerItem.cpp">
+      <Filter>Source Files\telegram</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="include\utility\DataReader.hpp">
       <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\telegram\GetServerItem.hpp">
+      <Filter>Header Files\telegram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
