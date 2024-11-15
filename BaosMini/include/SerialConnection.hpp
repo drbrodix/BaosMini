@@ -18,6 +18,7 @@ public:
 private:
 	// Value to keep track of control byte state
 	bool isOddFrame;
+	bool isFirstTelegram;
 
 	// Const to avoid magic numbers
 	const unsigned char CONTROL_BYTE[2] =
@@ -32,19 +33,18 @@ private:
 	DCB dcbSerialParam;
 	COMMTIMEOUTS timeout;
 
-	std::vector<unsigned char> ft12Frame;
-
 	HANDLE createSerialHandle() const;
 	bool configureConnect();
 	bool configureTimeout();
 
-	bool recieveTelegram() const;
 	bool sendAck() const;
 	bool sendResetRequest() const;
 
 	// Returns control byte depending on the
 	// current state of the isOddFrame data member
 	unsigned char getControlByte();
+	
+	bool checkIsReadAnswerReq(unsigned char subServiceCode) const;
 };
 
 #endif // SERIAL_CONNECTION_HPP

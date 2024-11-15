@@ -6,6 +6,7 @@ SerialConnection::SerialConnection(std::string connectString)
     , dcbSerialParam{0}
     , timeout{0}
     , isOddFrame(true)
+    , isFirstTelegram(true)
 {
 	serialHandle = createSerialHandle();
     if (serialHandle == INVALID_HANDLE_VALUE)
@@ -22,6 +23,7 @@ SerialConnection::SerialConnection(std::string connectString)
 
     configureConnect();
     configureTimeout();
+    sendResetRequest();
 }
 
 SerialConnection::~SerialConnection()
@@ -94,10 +96,17 @@ unsigned char SerialConnection::getControlByte()
 bool SerialConnection::sendTelegram(std::vector<unsigned char>* telegramData)
 {
     std::vector<unsigned char> ft12Frame;
+    
+    // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
     const unsigned char checksum = ChecksumCalculator::calculateChecksum(telegramData, controlByte);
+    const unsigned char subServiceCode = telegramData->at(1);
+    const bool isReadAnswerReq = checkIsReadAnswerReq(subServiceCode);
 
-    sendResetRequest();
+    // Serial communication needs a reset request before the actual BAOS telegram
+    //sendResetRequest();
+
+    // Format the final FT1.2 frame
     FrameFormatter::formatFt12Frame(
         &ft12Frame,
         telegramData,
@@ -105,6 +114,8 @@ bool SerialConnection::sendTelegram(std::vector<unsigned char>* telegramData)
         checksum
     );
 
+    // Windows serial API function requires an array, so
+    // thanks Microsoft for these ugly 3 lines of code...
     size_t buffSize = ft12Frame.size();
     unsigned char* pBuff = new unsigned char[buffSize];
     std::copy(ft12Frame.begin(), ft12Frame.end(), pBuff);
@@ -123,47 +134,37 @@ bool SerialConnection::sendTelegram(std::vector<unsigned char>* telegramData)
 
     delete[] pBuff;
 
-    recieveTelegram();
+    const unsigned short READ_TELEGRAM_BUFF_SIZE = 200;
+    unsigned char *pReadTelegram = new unsigned char[READ_TELEGRAM_BUFF_SIZE];
 
-    return true;
-}
+    const size_t READ_TELEGRAM_LENGTH = DataReader::recieveTelegram(serialHandle, pReadTelegram);
 
-bool SerialConnection::recieveTelegram() const
-{
-    const unsigned short BUFFER_SIZE = 250;
-    unsigned char readBuffer[BUFFER_SIZE + 1] = { 0 };
-
-    // Write data
-    DWORD drBytesRead = 0;
-    if (!ReadFile(
-        serialHandle,
-        readBuffer,
-        250,
-        &drBytesRead,
-        nullptr
-    )) {
-        std::cerr << "Error while writing to COM port." << '\n';
-        return false;
-    }
-    else {
-        sendAck();
-    }
-
-    std::ostringstream oss;
-
-    for (DWORD i = 0; i < drBytesRead; i++)
+    if (READ_TELEGRAM_LENGTH > 0)
     {
-        std::cout << std::hex << (unsigned int)readBuffer[i] << " ";
+        sendAck();
+
+        std::ostringstream oss;
+
+        for (int i = 0; i < READ_TELEGRAM_LENGTH; i++)
+        {
+            std::cout << std::hex << (unsigned int)pReadTelegram[i] << " ";
+        }
+
+        std::cout << '\n';
+    }
+    else
+    {
+        std::cerr << "Error while reading from COM port." << '\n';
     }
 
-    std::cout << '\n';
+    delete[] pReadTelegram;
 
     return true;
 }
 
 bool SerialConnection::sendAck() const
 {
-    const unsigned char ACK_BYTE[] = { 0xe5 }; // Acknowledgement byte
+    const unsigned char ACK_BYTE[1] = { 0xe5 }; // Acknowledgement byte
 
     // Write data
     DWORD dwBytesWritten = 0;
@@ -206,4 +207,21 @@ bool SerialConnection::sendResetRequest() const
     }
 
     return true;
+}
+
+bool SerialConnection::checkIsReadAnswerReq(unsigned char subServiceCode) const
+{
+    switch (subServiceCode)
+    {
+    case 0x01:
+    case 0x03:
+    case 0x04:
+    case 0x05:
+    case 0x07:
+        return true;
+        break;
+    default:
+        return false;
+        break;
+    }
 }

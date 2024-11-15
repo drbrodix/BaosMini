@@ -45,6 +45,9 @@
     <ClCompile Include="src\utility\FrameFormatter.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\utility\DataReader.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -75,6 +78,9 @@
       <Filter>Header Files\utility</Filter>
     </ClInclude>
     <ClInclude Include="include\utility\Headers.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\DataReader.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>
