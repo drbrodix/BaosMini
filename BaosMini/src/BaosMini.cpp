@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
 
-    BaosTelegram *myTelegram1 = new GetServerItem(1, 5);
+    BaosTelegram *myTelegram1 = new SetDatapointValue(2, true);
     serialConnection->sendTelegram(myTelegram1->getTelegramData());
 
     //BaosTelegram *myTelegram1 = new GetDatapointValue(3, 1);

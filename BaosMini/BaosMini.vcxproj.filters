@@ -51,6 +51,12 @@
     <ClCompile Include="src\telegram\GetServerItem.cpp">
       <Filter>Source Files\telegram</Filter>
     </ClCompile>
+    <ClCompile Include="src\Datapoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\FormatterFunctions.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -88,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="include\telegram\GetServerItem.hpp">
       <Filter>Header Files\telegram</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Datapoint.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\FormatterFunctions.hpp">
+      <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

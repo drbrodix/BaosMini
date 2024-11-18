@@ -229,16 +229,19 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\Datapoint.cpp" />
     <ClCompile Include="src\SerialConnection.cpp" />
     <ClCompile Include="src\telegram\GetDatapointValue.cpp" />
     <ClCompile Include="src\telegram\GetServerItem.cpp" />
     <ClCompile Include="src\telegram\SetDatapointValue.cpp" />
     <ClCompile Include="src\utility\ChecksumCalculator.cpp" />
     <ClCompile Include="src\utility\DataReader.cpp" />
+    <ClCompile Include="src\Utility\FormatterFunctions.cpp" />
     <ClCompile Include="src\utility\FrameFormatter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
+    <ClInclude Include="include\Datapoint.hpp" />
     <ClInclude Include="include\SerialConnection.hpp" />
     <ClInclude Include="include\Headers.hpp" />
     <ClInclude Include="include\telegram\BaosTelegram.hpp" />
@@ -248,6 +251,7 @@
     <ClInclude Include="include\telegram\SetDatapointValue.hpp" />
     <ClInclude Include="include\utility\ChecksumCalculator.hpp" />
     <ClInclude Include="include\utility\DataReader.hpp" />
+    <ClInclude Include="include\Utility\FormatterFunctions.hpp" />
     <ClInclude Include="include\utility\FrameFormatter.hpp" />
     <ClInclude Include="include\utility\Headers.hpp" />
   </ItemGroup>

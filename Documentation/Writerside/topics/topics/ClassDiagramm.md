@@ -4,48 +4,53 @@
 
 classDiagram
 
-SerialConnection <.. SetDatapointValue
+SerialConnection -- BaosTelegram
 BaosTelegram <|-- SetDatapointValue
-
+BaosTelegram <|-- GetDatapointValue
+BaosTelegram <|-- GetServerItem
 class SerialConnection{
     - bool isOddFrame
-    - const unsigned char CONTROL_BYTE[2]
-    - std::string connectionName
+	- bool isFirstTelegram
+	- const unsigned char CONTROL_BYTE[2]
+	- std::string connectionName
 	- HANDLE serialHandle
 	- DCB dcbSerialParam
 	- COMMTIMEOUTS timeout
 	
 	+ SerialConnection(std::string connectionName)
 	+ ~SerialConnection()
-	+ HANDLE getHandle() const
-	+ bool switchControlByteState()
-	+ unsigned char getControlByte() const
-	- HANDLE createSerialHandle() const
+    + bool sendTelegram(std::vector<unsigned char>* telegramData)
+    - HANDLE createSerialHandle() const
 	- bool configureConnect()
 	- bool configureTimeout()
+	- bool sendAck() const
+	- bool sendResetRequest() const
+	- unsigned char getControlByte()
+	- bool checkIsReadAnswerReq(unsigned char subServiceCode) const
 }
 
 class BaosTelegram{
     <<abstract>>
     + enum BaosSubServices
     # static const unsigned char BAOS_MAIN_SERVICE
+    # std::vector<unsigned char> baosTelegram
+    
+    + std::vector<unsigned char>* getTelegramData()
 }
 
 class SetDatapointValue{
-    - SerialConnection* pSerialConnection
-    - HANDLE handle
-    - unsigned char setDatapointValueTelegram[11]
-    - unsigned char controlByte
-    - unsigned char checksum
-    - int dataLength
-
-	+ SetDatapointValue(int datapointId, bool datapointValue, SerialConnection *pSerialConnection)
+	+ SetDatapointValue(int datapointId, bool datapointValue)
 	+ ~SetDatapointValue()
-	+ bool sendTelegram() const
-	- unsigned char calculateChecksum()
-    - bool recieveTelegram() const
-    - bool sendAck() const
-    - bool sendResetRequest() const
+}
+
+class GetDatapointValue{
+	+ GetDatapointValue(int datapointId, int nrOfDatapoints)
+	+ ~GetDatapointValue()
+}
+
+class GetServerItem{
+	+ GetServerItem(int firstItemId, int nrOfItems)
+	+ ~GetServerItem()
 }
 
 ```
