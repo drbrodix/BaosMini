@@ -3,11 +3,6 @@
 Datapoint::Datapoint(int dpId)
 	: dpId(dpId)
 {
-	unsigned char dpIdB1;
-	unsigned char dpIdB2;
-	FormatterFunctions::formatValueInTwoBytes(dpId, &dpIdB1, &dpIdB2);
-	dpData.push_back(dpIdB1);
-	dpData.push_back(dpIdB2);
 }
 
 Datapoint::~Datapoint()
@@ -62,14 +57,43 @@ unsigned char Datapoint::getDatapointSize(DatapointTypes dpt)
 
 bool Datapoint::setBoolean(bool dpValue, CommandByte commandByte)
 {
-	dpData.push_back(commandByte);
-	dpData.push_back(
-		getDatapointSize(DatapointTypes::Boolean)
-	);
-	dpData.push_back(dpValue);
+	try
+	{
+		dpData.clear();
+		setDpId();
+		dpData.push_back(commandByte);
+		dpData.push_back(
+			getDatapointSize(DatapointTypes::Boolean)
+		);
+		dpData.push_back(dpValue);
+		
+		return true;
+	}
+	catch (const std::exception& e)
+	{
+		return false;
+	}
 }
 
 const std::vector<unsigned char>* const Datapoint::getDpData()
 {
 	return &dpData;
+}
+
+bool Datapoint::setDpId()
+{
+	try
+	{
+		unsigned char dpIdB1;
+		unsigned char dpIdB2;
+		FormatterFunctions::formatValueInTwoBytes(dpId, &dpIdB1, &dpIdB2);
+		dpData.push_back(dpIdB1);
+		dpData.push_back(dpIdB2);
+		
+		return true;
+	}
+	catch (const std::exception&)
+	{
+		return false;
+	}
 }

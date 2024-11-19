@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <vector>
 #include <sstream>
+#include <Telegram/BaosTelegram.hpp>
 #include "utility/Headers.hpp"
 
 class SerialConnection
@@ -13,7 +14,7 @@ public:
 	SerialConnection(std::string connectionName);
 	~SerialConnection();
 
-	bool sendTelegram(std::vector<unsigned char>* telegramData);
+	bool sendTelegram(BaosTelegram* baosTelegram);
 	
 private:
 	// Value to keep track of control byte state

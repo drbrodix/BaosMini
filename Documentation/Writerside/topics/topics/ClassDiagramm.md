@@ -8,6 +8,8 @@ SerialConnection -- BaosTelegram
 BaosTelegram <|-- SetDatapointValue
 BaosTelegram <|-- GetDatapointValue
 BaosTelegram <|-- GetServerItem
+SetDatapointValue -- Datapoint
+
 class SerialConnection{
     - bool isOddFrame
 	- bool isFirstTelegram
@@ -19,7 +21,7 @@ class SerialConnection{
 	
 	+ SerialConnection(std::string connectionName)
 	+ ~SerialConnection()
-    + bool sendTelegram(std::vector<unsigned char>* telegramData)
+    + bool sendTelegram(BaosTelegram* baosTelegram)
     - HANDLE createSerialHandle() const
 	- bool configureConnect()
 	- bool configureTimeout()
@@ -51,6 +53,18 @@ class GetDatapointValue{
 class GetServerItem{
 	+ GetServerItem(int firstItemId, int nrOfItems)
 	+ ~GetServerItem()
+}
+
+class Datapoint{
+    - unsigned char dpId
+    - std::vector<unsigned char> dpData
+    
+    + Datapoint(int dpId)
+    + ~Datapoint()
+    + bool setBoolean(bool dpValue, CommandByte commandByte)
+    + static unsigned char getDatapointSize(DatapointTypes dpt)
+    + const std::vector<unsigned char>* const getDpData()
+    - bool setDpId()
 }
 
 ```

@@ -45,7 +45,6 @@ enum CommandByte
 class Datapoint
 {
 public:
-    
     Datapoint(int dpId);
     ~Datapoint();
 
@@ -61,8 +60,10 @@ public:
     const std::vector<unsigned char>* const getDpData();
 
 private:
-    int dpId;
+    unsigned char dpId;
     std::vector<unsigned char> dpData;
+    
+    bool setDpId();
 };
 
 #endif // DATAPOINT_HPP

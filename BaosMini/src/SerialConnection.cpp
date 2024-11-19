@@ -93,8 +93,9 @@ unsigned char SerialConnection::getControlByte()
     return currentControlByte;
 }
 
-bool SerialConnection::sendTelegram(std::vector<unsigned char>* telegramData)
+bool SerialConnection::sendTelegram(BaosTelegram* baosTelegram)
 {
+    std::vector<unsigned char>* telegramData = baosTelegram->getTelegramData();
     std::vector<unsigned char> ft12Frame;
     
     // Initialize some variables for readability
