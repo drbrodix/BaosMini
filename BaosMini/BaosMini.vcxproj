@@ -231,6 +231,7 @@
     </ClCompile>
     <ClCompile Include="src\Datapoint.cpp" />
     <ClCompile Include="src\SerialConnection.cpp" />
+    <ClCompile Include="src\Telegram\BaosTelegram.cpp" />
     <ClCompile Include="src\telegram\GetDatapointValue.cpp" />
     <ClCompile Include="src\telegram\GetServerItem.cpp" />
     <ClCompile Include="src\telegram\SetDatapointValue.cpp" />

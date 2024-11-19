@@ -57,6 +57,9 @@
     <ClCompile Include="src\Utility\FormatterFunctions.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\Telegram\BaosTelegram.cpp">
+      <Filter>Source Files\telegram</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">

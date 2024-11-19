@@ -1,7 +1,9 @@
 #ifndef BAOS_TELEGRAM_HPP
 #define BAOS_TELEGRAM_HPP
 
-#include <vector>
+#include <cstring>
+#include <cstdio>
+#include <exception>
 
 enum BaosSubServices
 {
@@ -28,15 +30,24 @@ enum BaosSubServices
 class BaosTelegram
 {
 public:
-    std::vector<unsigned char>* getTelegramData()
+    BaosTelegram();
+    ~BaosTelegram();
+    unsigned char* getTelegramData() const
     {
-        return &baosTelegram;
+        return baosTelegram;
     }
+
+	unsigned char getTelegramLength() const
+	{
+		return telegramObjectSize;
+	}
 
 protected:
     // BAOS telegram data members
     static const unsigned char BAOS_MAIN_SERVICE = 0xF0;
-    std::vector<unsigned char> baosTelegram;
+    const unsigned char TELEGRAM_SIZE = 20;
+    unsigned char telegramObjectSize;
+    unsigned char *baosTelegram;
 };
 
 #endif // BAOS_TELEGRAM_HPP

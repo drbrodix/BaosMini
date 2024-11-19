@@ -3,36 +3,38 @@
 namespace FrameFormatter
 {
 	bool FrameFormatter::formatFt12Frame(
-		std::vector<unsigned char>* ft12Frame,
-		std::vector<unsigned char>* setDatapointValueTelegram,
+		unsigned char* ft12Frame,
+		unsigned char* baosTelegram,
+		unsigned char telegramLength,
 		unsigned char controlByte,
 		unsigned char checksum
-		)
+	)
 	{
 		try
 		{
 			const unsigned char START_BYTE = 0x68;
 			const unsigned char END_BYTE = 0x16;
-			const unsigned char DATA_LENGTH = setDatapointValueTelegram->size();
 		
 			// Complete frame with BAOS payload
 
 			// START FT1.2 HEADER
-			ft12Frame->push_back(START_BYTE);
-			for (int i = 0; i < 2; i++)
+			ft12Frame[0] = START_BYTE;
+			for (unsigned char i = 1; i < 3; i++)
 			{
-				ft12Frame->push_back(DATA_LENGTH + 1);
+				ft12Frame[i] = (telegramLength + 1);
 			}
-			ft12Frame->push_back(START_BYTE);
-			ft12Frame->push_back(controlByte);
+			ft12Frame[3] = START_BYTE;
+			ft12Frame[4] = controlByte;
+
 			// START  BAOS TELEGRAM
-			for (unsigned char c : *setDatapointValueTelegram)
+			for (unsigned char i = 0; i < telegramLength; i++)
 			{
-				ft12Frame->push_back(c);
+				ft12Frame[i + 5] = baosTelegram[i];
 			}
+
 			// START FT1.2 FOOTER
-			ft12Frame->push_back(checksum);
-			ft12Frame->push_back(END_BYTE);
+			ft12Frame[telegramLength + 5] = checksum;
+			ft12Frame[telegramLength + 6] = END_BYTE;
 
 			return true;
 		}

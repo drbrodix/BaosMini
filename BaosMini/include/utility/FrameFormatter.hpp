@@ -2,13 +2,13 @@
 #define FRAME_FORMATTER_HPP
 
 #include <iostream>
-#include <vector>
 
 namespace FrameFormatter
 {
 	bool formatFt12Frame(
-		std::vector<unsigned char>* ft12Frame,
-		std::vector<unsigned char>* setDatapointValueTelegram,
+		unsigned char* ft12Frame,
+		unsigned char* baosTelegram,
+		unsigned char telegramLength,
 		unsigned char controlByte,
 		unsigned char checksum
 	);

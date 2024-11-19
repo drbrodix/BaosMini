@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
     dp->setBoolean(false, CommandByte::SetNewValueAndSendOnBus);
     baosTelegram = new SetDatapointValue(dp);
 
+
     serialConnection->sendTelegram(baosTelegram);
 
     delete dp;

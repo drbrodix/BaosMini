@@ -1,12 +1,16 @@
 #include "Datapoint.hpp"
 
-Datapoint::Datapoint(int dpId)
+Datapoint::Datapoint(unsigned short dpId)
 	: dpId(dpId)
+	, dpObjectSize(0)
 {
+	dpData = new unsigned char[DP_BUFF_BASE_SIZE];
+	memset(dpData, 0, sizeof(*dpData));
 }
 
 Datapoint::~Datapoint()
 {
+	delete[] dpData;
 }
 
 unsigned char Datapoint::getDatapointSize(DatapointTypes dpt)
@@ -59,25 +63,20 @@ bool Datapoint::setBoolean(bool dpValue, CommandByte commandByte)
 {
 	try
 	{
-		dpData.clear();
-		setDpId();
-		dpData.push_back(commandByte);
-		dpData.push_back(
-			getDatapointSize(DatapointTypes::Boolean)
-		);
-		dpData.push_back(dpValue);
-		
+		memset(dpData, 0, sizeof(*dpData));
+		setDpId(); // 1st and 2nd byte are set to datapoint ID
+		dpData[2] = commandByte; // 3rd byte set to command byte
+		dpData[3] = getDatapointSize(DatapointTypes::Boolean); // 4th byte set to datapoint value size
+		dpData[4] = dpValue; // 5th byte set to actual value to set the datapoint to
+
+		dpObjectSize = 5; // Data member set to currently used range of datapoint buffer
 		return true;
 	}
 	catch (const std::exception& e)
 	{
+		printf("Error while setting datapoint to boolean: %s\n", e.what());
 		return false;
 	}
-}
-
-const std::vector<unsigned char>* const Datapoint::getDpData()
-{
-	return &dpData;
 }
 
 bool Datapoint::setDpId()
@@ -87,13 +86,24 @@ bool Datapoint::setDpId()
 		unsigned char dpIdB1;
 		unsigned char dpIdB2;
 		FormatterFunctions::formatValueInTwoBytes(dpId, &dpIdB1, &dpIdB2);
-		dpData.push_back(dpIdB1);
-		dpData.push_back(dpIdB2);
+		dpData[0] = dpIdB1;
+		dpData[1] = dpIdB2;
 		
 		return true;
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
+		printf("Error while setting datapoint ID: %s\n", e.what());
 		return false;
 	}
+}
+
+const unsigned char* const Datapoint::getDpData() const
+{
+	return dpData;
+}
+
+const unsigned char Datapoint::getDpObjectSize() const
+{
+	return dpObjectSize;
 }

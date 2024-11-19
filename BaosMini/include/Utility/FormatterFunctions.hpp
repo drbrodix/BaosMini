@@ -7,7 +7,7 @@
 namespace FormatterFunctions
 {
 	bool formatValueInTwoBytes(
-		int value,
+		unsigned short value,
 		unsigned char* firstByteVar,
 		unsigned char* secondByteVar
 	);

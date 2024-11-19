@@ -95,47 +95,39 @@ unsigned char SerialConnection::getControlByte()
 
 bool SerialConnection::sendTelegram(BaosTelegram* baosTelegram)
 {
-    std::vector<unsigned char>* telegramData = baosTelegram->getTelegramData();
-    std::vector<unsigned char> ft12Frame;
+    unsigned char* telegramData = baosTelegram->getTelegramData();
+    unsigned char telegramLength = baosTelegram->getTelegramLength();
+    const unsigned char BUFF_SIZE = 30; // It shouldn't be possible for the FT1.2 frame to exceed 30 bytes (overhead included).
+    unsigned char ft12Frame[BUFF_SIZE] = { 0 };
     
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
-    const unsigned char checksum = ChecksumCalculator::calculateChecksum(telegramData, controlByte);
-    const unsigned char subServiceCode = telegramData->at(1);
-    const bool isReadAnswerReq = checkIsReadAnswerReq(subServiceCode);
-
-    // Serial communication needs a reset request before the actual BAOS telegram
-    //sendResetRequest();
+    const unsigned char checksum = ChecksumCalculator::calculateChecksum(telegramData, telegramLength, controlByte);
+    const unsigned char subServiceCode = telegramData[1];
+    // const bool isReadAnswerReq = checkIsReadAnswerReq(subServiceCode);
 
     // Format the final FT1.2 frame
     FrameFormatter::formatFt12Frame(
-        &ft12Frame,
+        ft12Frame,
         telegramData,
+		telegramLength,
         controlByte,
         checksum
     );
-
-    // Windows serial API function requires an array, so
-    // thanks Microsoft for these ugly 3 lines of code...
-    size_t buffSize = ft12Frame.size();
-    unsigned char* pBuff = new unsigned char[buffSize];
-    std::copy(ft12Frame.begin(), ft12Frame.end(), pBuff);
 
     // Write data
     DWORD dwBytesWritten = 0;
     if (!WriteFile(
         serialHandle,
-        pBuff,
-        buffSize,
+        ft12Frame,
+        BUFF_SIZE,
         &dwBytesWritten,
         nullptr
     )) {
         std::cerr << "Error while writing to COM port." << '\n';
     }
 
-    delete[] pBuff;
-
-    const unsigned short READ_TELEGRAM_BUFF_SIZE = 200;
+    const unsigned char READ_TELEGRAM_BUFF_SIZE = 200;
     unsigned char *pReadTelegram = new unsigned char[READ_TELEGRAM_BUFF_SIZE];
 
     const size_t READ_TELEGRAM_LENGTH = DataReader::recieveTelegram(serialHandle, pReadTelegram);

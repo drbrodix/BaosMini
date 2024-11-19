@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <Windows.h>
-#include <vector>
 #include <sstream>
 #include <Telegram/BaosTelegram.hpp>
 #include "utility/Headers.hpp"

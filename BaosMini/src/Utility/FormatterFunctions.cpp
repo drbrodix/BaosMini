@@ -3,7 +3,7 @@
 namespace FormatterFunctions
 {
 	bool FormatterFunctions::formatValueInTwoBytes(
-		int value,
+		unsigned short value,
 		unsigned char *firstByteVar,
 		unsigned char *secondByteVar
 	)

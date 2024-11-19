@@ -2,6 +2,7 @@
 #define GET_DATAPOINT_VALUE_HPP
 
 #include "telegram/BaosTelegram.hpp"
+#include "Utility/FormatterFunctions.hpp"
 
 enum FILTER_CODES
 {
@@ -14,8 +15,8 @@ class GetDatapointValue : public BaosTelegram
 {
 public:
 	GetDatapointValue(
-       int datapointId,
-       int nrOfDatapoints);
+       unsigned short datapointId,
+       unsigned short nrOfDatapoints);
 	~GetDatapointValue();
 
 private:

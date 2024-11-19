@@ -3,15 +3,16 @@
 namespace ChecksumCalculator
 {
     unsigned char ChecksumCalculator::calculateChecksum(
-        std::vector<unsigned char> *pTelegramDataVector,
-        unsigned char controlByte)
+        unsigned char* telegramData,
+        unsigned char telegramLength,
+        unsigned char controlByte
+    )
     {
-        unsigned int sum =
-            std::accumulate(
-                pTelegramDataVector->begin(),
-                pTelegramDataVector->end(),
-                controlByte
-            );
+        unsigned int sum = controlByte;
+        for (unsigned char i = 0; i < telegramLength; i++)
+        {
+			sum += telegramData[i];
+        }
         return unsigned char(sum % 256);
     }
 }

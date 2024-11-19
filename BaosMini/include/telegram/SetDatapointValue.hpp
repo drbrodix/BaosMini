@@ -12,8 +12,6 @@ public:
 	~SetDatapointValue();
 
 	bool addDatapoint(Datapoint *datapoint);
-private:
-	unsigned short nrOfDps;
 };
 
 #endif // SET_DATAPOINT_VALUE_HPP
