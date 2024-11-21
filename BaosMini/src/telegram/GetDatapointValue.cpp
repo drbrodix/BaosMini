@@ -3,6 +3,7 @@
 GetDatapointValue::GetDatapointValue(
 	unsigned short datapointId,
 	unsigned short nrOfDatapoints)
+	: BaosTelegram()
 {
 	unsigned char DP_ID_BYTEONE = 0;
 	unsigned char DP_ID_BYTETWO = 0;
@@ -13,7 +14,6 @@ GetDatapointValue::GetDatapointValue(
 	FormatterFunctions::formatValueInTwoBytes(datapointId, &DP_ID_BYTEONE, &DP_ID_BYTETWO);
 	FormatterFunctions::formatValueInTwoBytes(nrOfDatapoints, &DP_NR_BYTEONE, &DP_NR_BYTETWO);
 
-	baosTelegram[0] = BaosTelegram::BAOS_MAIN_SERVICE;
 	baosTelegram[1] = BaosSubServices::GetDatapointValueReq;
 	baosTelegram[2] = DP_ID_BYTEONE;
 	baosTelegram[3] = DP_ID_BYTETWO; // ID of first datapoint to set

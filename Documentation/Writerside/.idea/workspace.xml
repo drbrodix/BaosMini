@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="773e7647-4773-4b94-92fb-3a44f5c99733" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../BaosMini/include/Datapoint.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/include/Datapoint.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BaosMini/include/SerialConnection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/include/SerialConnection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/BaosMini.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/BaosMini.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/Datapoint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/Datapoint.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/SerialConnection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/SerialConnection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BaosMini/src/telegram/SetDatapointValue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../BaosMini/src/telegram/SetDatapointValue.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topics/topics/ClassDiagramm.md" beforeDir="false" afterPath="$PROJECT_DIR$/topics/topics/ClassDiagramm.md" afterDir="false" />
-    </list>
+    <list default="true" id="773e7647-4773-4b94-92fb-3a44f5c99733" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

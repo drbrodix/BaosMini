@@ -29,10 +29,10 @@ namespace DataReader
             }
             ++readTries;
             if (c == 0x68)  // If reader recognizes FT1.2 Start Byte,
-                // it should read the rest of the fixed sized header
+                            // it should read the rest of the fixed sized header
             {
                 for (int i = 1; i < HEADER_SIZE; i++)   // Loop start index at 1, because
-                    // index 0 will be set manually to 0x68
+                                                        // index 0 will be set manually to 0x68
                 {
                     DWORD headerBytesRead = 0;
                     if (!ReadFile(

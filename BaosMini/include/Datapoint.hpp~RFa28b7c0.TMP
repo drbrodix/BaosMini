@@ -57,9 +57,6 @@ public:
 
 	// Functions to setup Datapoint
 	bool setBoolean(bool dpValue, CommandByte commandByte);
-	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte);
-	bool setSignedValue1Byte(char dpValue, CommandByte commandByte);
-
 	static unsigned char getDatapointSize(DatapointTypes dpt);
 	const unsigned char* const getDpData() const;
 	const unsigned char getDpObjectSize() const;

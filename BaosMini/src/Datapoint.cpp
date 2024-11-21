@@ -79,6 +79,46 @@ bool Datapoint::setBoolean(bool dpValue, CommandByte commandByte)
 	}
 }
 
+bool Datapoint::setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte)
+{
+	try
+	{
+		memset(dpData, 0, sizeof(*dpData));
+		setDpId(); // 1st and 2nd byte are set to datapoint ID
+		dpData[2] = commandByte; // 3rd byte set to command byte
+		dpData[3] = getDatapointSize(DatapointTypes::UnsignedValue1Byte); // 4th byte set to datapoint value size
+		dpData[4] = dpValue; // 5th byte set to actual value to set the datapoint to
+
+		dpObjectSize = 5; // Data member set to currently used range of datapoint buffer
+		return true;
+	}
+	catch (const std::exception& e)
+	{
+		printf("Error while setting datapoint to boolean: %s\n", e.what());
+		return false;
+	}
+}
+
+bool Datapoint::setSignedValue1Byte(char dpValue, CommandByte commandByte)
+{
+	try
+	{
+		memset(dpData, 0, sizeof(*dpData));
+		setDpId(); // 1st and 2nd byte are set to datapoint ID
+		dpData[2] = commandByte; // 3rd byte set to command byte
+		dpData[3] = getDatapointSize(DatapointTypes::SignedValue1Byte); // 4th byte set to datapoint value size
+		*(char*)(dpData + 4) = dpValue; // 5th byte set to actual value to set the datapoint to
+
+		dpObjectSize = 5; // Data member set to currently used range of datapoint buffer
+		return true;
+	}
+	catch (const std::exception& e)
+	{
+		printf("Error while setting datapoint to boolean: %s\n", e.what());
+		return false;
+	}
+}
+
 bool Datapoint::setDpId()
 {
 	try
