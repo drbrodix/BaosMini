@@ -9,9 +9,9 @@ namespace ChecksumCalculator
     )
     {
         unsigned int sum = controlByte;
-        for (unsigned char i = 0; i < telegramLength; i++)
+        for (unsigned char i = BAOS_HEADER_FIRST_INDEX; i < BAOS_HEADER_FIRST_INDEX + telegramLength; i++)
         {
-			sum += telegramData[i];
+			sum += *(telegramData + i);
         }
         return unsigned char(sum % 256);
     }

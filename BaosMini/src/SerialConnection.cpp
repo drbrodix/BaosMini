@@ -93,24 +93,17 @@ unsigned char SerialConnection::getControlByte()
     return currentControlByte;
 }
 
-bool SerialConnection::sendTelegram(BaosTelegram* baosTelegram)
+bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength)
 {
-    unsigned char* telegramData = baosTelegram->getTelegramData();
-    unsigned char telegramLength = baosTelegram->getTelegramLength();
-    const unsigned char BUFF_SIZE = 30; // It shouldn't be possible for the FT1.2 frame to exceed 30 bytes (overhead included).
-    unsigned char ft12Frame[BUFF_SIZE] = { 0 };
-    
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
-    const unsigned char checksum = ChecksumCalculator::calculateChecksum(telegramData, telegramLength, controlByte);
-    const unsigned char subServiceCode = telegramData[1];
+    const unsigned char checksum = ChecksumCalculator::calculateChecksum(baosTelegram, telegramLength, controlByte);
     // const bool isReadAnswerReq = checkIsReadAnswerReq(subServiceCode);
 
     // Format the final FT1.2 frame
-    FrameFormatter::formatFt12Frame(
-        ft12Frame,
-        telegramData,
-		telegramLength,
+    unsigned short bytesToWrite = FrameFormatter::formatFt12Frame(
+        baosTelegram,
+        telegramLength,
         controlByte,
         checksum
     );
@@ -119,8 +112,8 @@ bool SerialConnection::sendTelegram(BaosTelegram* baosTelegram)
     DWORD dwBytesWritten = 0;
     if (!WriteFile(
         serialHandle,
-        ft12Frame,
-        BUFF_SIZE,
+        baosTelegram,
+        bytesToWrite,
         &dwBytesWritten,
         nullptr
     )) {

@@ -21,7 +21,7 @@ GetDatapointValue::GetDatapointValue(
 	baosTelegram[5] = DP_NR_BYTETWO; // Maximum number of datapoints to get
 	baosTelegram[6] = FILTER_CODES::GetAllDatapointValues; // Filter, which datapoints should be retrieved
 
-	telegramObjectSize = 7;
+	telegramLength = 7;
 }
 
 GetDatapointValue::~GetDatapointValue()

@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <thread>
 #include <chrono>
-#include "SerialConnection.hpp"
+#include "Datapoint.hpp"
 #include "telegram/Headers.hpp"
 
 #endif //BAOS_MINI_HPP

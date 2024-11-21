@@ -235,6 +235,7 @@
     <ClCompile Include="src\telegram\GetDatapointValue.cpp" />
     <ClCompile Include="src\telegram\GetServerItem.cpp" />
     <ClCompile Include="src\telegram\SetDatapointValue.cpp" />
+    <ClCompile Include="src\Utility\BaseFrameFormatter.cpp" />
     <ClCompile Include="src\utility\ChecksumCalculator.cpp" />
     <ClCompile Include="src\utility\DataReader.cpp" />
     <ClCompile Include="src\Utility\FormatterFunctions.cpp" />
@@ -250,6 +251,7 @@
     <ClInclude Include="include\telegram\GetServerItem.hpp" />
     <ClInclude Include="include\telegram\Headers.hpp" />
     <ClInclude Include="include\telegram\SetDatapointValue.hpp" />
+    <ClInclude Include="include\Utility\BaseFrameFormatter.hpp" />
     <ClInclude Include="include\utility\ChecksumCalculator.hpp" />
     <ClInclude Include="include\utility\DataReader.hpp" />
     <ClInclude Include="include\Utility\FormatterFunctions.hpp" />

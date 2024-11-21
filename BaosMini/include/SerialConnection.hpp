@@ -4,7 +4,6 @@
 #include <iostream>
 #include <Windows.h>
 #include <sstream>
-#include <Telegram/BaosTelegram.hpp>
 #include "utility/Headers.hpp"
 
 class SerialConnection
@@ -13,7 +12,7 @@ public:
 	SerialConnection(std::string connectionName);
 	~SerialConnection();
 
-	bool sendTelegram(BaosTelegram* baosTelegram);
+	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength);
 	
 private:
 	// Value to keep track of control byte state

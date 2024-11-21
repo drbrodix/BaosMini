@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <cstdio>
+#include "Telegram/BaosTelegram.hpp"
 #include "Utility/FormatterFunctions.hpp"
 
 enum DatapointTypes
@@ -43,10 +44,13 @@ enum CommandByte
 	ClearDatapointTransmissionState = 0x05  // Clear datapoint transmission state
 };
 
-class Datapoint
+class Datapoint : BaosTelegram
 {
 public:
-	Datapoint(unsigned short dpId);
+	Datapoint(
+		unsigned short dpId,
+		SerialConnection* serialConnection
+	);
 	~Datapoint();
 
 	//                         Generic structure of BAOS Datapoint
@@ -59,18 +63,16 @@ public:
 	bool setBoolean(bool dpValue, CommandByte commandByte);
 	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte);
 	bool setSignedValue1Byte(char dpValue, CommandByte commandByte);
+	bool setSignedValue2Byte(short dpValue, CommandByte commandByte);
 
 	static unsigned char getDatapointSize(DatapointTypes dpt);
-	const unsigned char* const getDpData() const;
-	const unsigned char getDpObjectSize() const;
 
 private:
 	unsigned short dpId;
-	const unsigned char DP_BUFF_BASE_SIZE = 15;
-	unsigned char dpObjectSize;
-	unsigned char *dpData;
 	
-	bool setDpId();
+	bool setOneByteDp(unsigned char dpValue, CommandByte commandByte);
+	bool setDpIdAndNr();
+	bool clearTelegram();
 };
 
 #endif // DATAPOINT_HPP

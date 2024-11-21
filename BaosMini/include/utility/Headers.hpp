@@ -3,6 +3,6 @@
 
 #include "ChecksumCalculator.hpp"
 #include "DataReader.hpp"
-#include "FrameFormatter.hpp"
+#include "BaseFrameFormatter.hpp"
 
 #endif // UTILITY_HEADERS_HPP

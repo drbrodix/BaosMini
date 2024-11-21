@@ -1,17 +1,19 @@
 #include "Telegram/BaosTelegram.hpp"
 
-BaosTelegram::BaosTelegram()
-    : baosTelegram(nullptr)
-    , telegramObjectSize(0)
+BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
+	: serialConnection(serialConnection)
+    , baosTelegram(nullptr)
+    , telegramLength(0)
 {
-    // Set size of BAOS telegram array to TELEGRAM_SIZE (20)
-    // and set the value of all the elements to 0
-    baosTelegram = new unsigned char[TELEGRAM_SIZE];
+    // Allocate TELEGRAM_ARR_SIZE (30 bytes) for the BAOS telegram,
+    // set the value of all the elements to 0,
+    // and set the first element to the BAOS main service.
+    baosTelegram = new unsigned char[TELEGRAM_ARR_SIZE];
     if (baosTelegram != nullptr)
     {
         try {
-            memset(baosTelegram, 0, TELEGRAM_SIZE);
-            baosTelegram[0] = BaosTelegram::BAOS_MAIN_SERVICE;
+            memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
+            baosTelegram[BAOS_HEADER_FIRST_INDEX] = BaosTelegram::BAOS_MAIN_SERVICE;
         }
         catch (const std::exception& e) {
             printf("Exception while initializing BAOS telegram array:\n %s", e.what());
@@ -21,6 +23,13 @@ BaosTelegram::BaosTelegram()
     {
         printf("Error: BAOS telegram array is null.");
     }
+}
+
+BaosTelegram::BaosTelegram()
+    : serialConnection(nullptr)
+    , baosTelegram(nullptr)
+    , telegramLength(0)
+{
 }
 
 BaosTelegram::~BaosTelegram()

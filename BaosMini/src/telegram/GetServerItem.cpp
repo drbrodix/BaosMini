@@ -20,7 +20,7 @@ GetServerItem::GetServerItem(
 	baosTelegram[4] = NR_OF_ITEMS_BYTEONE;
 	baosTelegram[5] = NR_OF_ITEMS_BYTETWO; // Maximum number of datapoints to get
 
-	telegramObjectSize = 6;
+	telegramLength = 6;
 }
 
 GetServerItem::~GetServerItem()

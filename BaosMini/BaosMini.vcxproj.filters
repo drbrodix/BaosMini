@@ -60,6 +60,9 @@
     <ClCompile Include="src\Telegram\BaosTelegram.cpp">
       <Filter>Source Files\telegram</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utility\BaseFrameFormatter.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\FormatterFunctions.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\BaseFrameFormatter.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>
