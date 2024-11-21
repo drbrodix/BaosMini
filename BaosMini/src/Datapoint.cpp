@@ -132,14 +132,19 @@ bool Datapoint::setSignedValue1Byte(char dpValue, CommandByte commandByte)
 
 bool Datapoint::setSignedValue2Byte(short dpValue, CommandByte commandByte)
 {
+
+	// 2 Byte float
+	// M = Mantissa	E = Exponent
+	// M E E E E M M M		M M M M M M M M M
 	try
 	{
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 3rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SignedValue2Byte); // 4th byte set to datapoint value size
-		*(char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = 0b10000000; // 5th byte set to actual value to set the datapoint to
-		*(char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 9)) = 0b00001011; // 5th byte set to actual value to set the datapoint to
+		*(short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue; // 5th byte set to actual value to set the datapoint to
+		//*(char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = 0b10000000; // 5th byte set to actual value to set the datapoint to
+		//*(char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 9)) = 0b10001011; // 5th byte set to actual value to set the datapoint to
 
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
 
