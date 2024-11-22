@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
     //Datapoint* dp2 = new Datapoint(1, serialConnection);
     //Datapoint* dp3 = new Datapoint(3, serialConnection);
     //Datapoint* dp4 = new Datapoint(4, serialConnection);
-    dp1->setSignedValue2Byte(121, CommandByte::SetNewValueAndSendOnBus);
+    dp1->setFloatValue4Byte(-10.78, CommandByte::SetNewValueAndSendOnBus);
     //dp2->setBoolean(1, CommandByte::SetNewValueAndSendOnBus);
 
  //   std::this_thread::sleep_for(1000ms);

@@ -63,7 +63,10 @@ public:
 	bool setBoolean(bool dpValue, CommandByte commandByte);
 	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte);
 	bool setSignedValue1Byte(char dpValue, CommandByte commandByte);
+	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte);
 	bool setSignedValue2Byte(short dpValue, CommandByte commandByte);
+	bool setFloatValue2Byte(float dpValue, CommandByte commandByte);
+	bool setFloatValue4Byte(float dpValue, CommandByte commandByte);
 
 	static unsigned char getDatapointSize(DatapointTypes dpt);
 
