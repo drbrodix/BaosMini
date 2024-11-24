@@ -1,4 +1,4 @@
-#include "Datapoint.hpp"
+#include "../include/Datapoint.hpp"
 
 Datapoint::Datapoint(
 	unsigned short dpId,

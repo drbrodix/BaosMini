@@ -1,4 +1,4 @@
-#include "utility/ChecksumCalculator.hpp"
+#include "../../include/utility/ChecksumCalculator.hpp"
 
 namespace ChecksumCalculator
 {

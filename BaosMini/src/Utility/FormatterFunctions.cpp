@@ -1,4 +1,4 @@
-#include "utility/FormatterFunctions.hpp"
+#include "../../include/utility/FormatterFunctions.hpp"
 
 namespace FormatterFunctions
 {

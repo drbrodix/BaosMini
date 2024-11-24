@@ -1,8 +1,8 @@
 #ifndef GET_DATAPOINT_VALUE_HPP
 #define GET_DATAPOINT_VALUE_HPP
 
-#include "telegram/BaosTelegram.hpp"
-#include "Utility/FormatterFunctions.hpp"
+#include "BaosTelegram.hpp"
+#include "../Utility/FormatterFunctions.hpp"
 
 enum FILTER_CODES
 {

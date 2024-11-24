@@ -1,4 +1,4 @@
-#include "Telegram/BaosTelegram.hpp"
+#include "../../include/Telegram/BaosTelegram.hpp"
 
 BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
 	: serialConnection(serialConnection)

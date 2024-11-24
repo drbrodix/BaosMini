@@ -1,8 +1,8 @@
 #ifndef GET_SERVER_ITEM_HPP
 #define GET_SERVER_ITEM_HPP
 
-#include "telegram/BaosTelegram.hpp"
-#include "Utility/FormatterFunctions.hpp"
+#include "BaosTelegram.hpp"
+#include "../Utility/FormatterFunctions.hpp"
 
 class GetServerItem : public BaosTelegram
 {

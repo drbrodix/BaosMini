@@ -1,4 +1,4 @@
-#include "BaosMini.hpp"
+#include "../include/BaosMini.hpp"
 
 
 int main(int argc, char* argv[])

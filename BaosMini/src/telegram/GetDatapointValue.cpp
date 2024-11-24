@@ -1,4 +1,4 @@
-#include "telegram/GetDatapointValue.hpp"
+#include "../../include/telegram/GetDatapointValue.hpp"
 
 GetDatapointValue::GetDatapointValue(
 	unsigned short datapointId,

@@ -1,4 +1,4 @@
-#include "telegram/GetServerItem.hpp"
+#include "../../include/telegram/GetServerItem.hpp"
 
 GetServerItem::GetServerItem(
 	unsigned short firstItemId,
