@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -239,7 +239,7 @@
     <ClCompile Include="src\utility\DataReader.cpp" />
     <ClCompile Include="src\Utility\FloatConverter.cpp" />
     <ClCompile Include="src\Utility\FormatterFunctions.cpp" />
-    <ClCompile Include="src\Utility\FrameFormatter.cpp" />
+    <ClCompile Include="src\utility\FrameFormatter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
@@ -255,7 +255,7 @@
     <ClInclude Include="include\utility\DataReader.hpp" />
     <ClInclude Include="include\Utility\FloatConverter.hpp" />
     <ClInclude Include="include\Utility\FormatterFunctions.hpp" />
-    <ClInclude Include="include\Utility\FrameFormatter.hpp" />
+    <ClInclude Include="include\utility\FrameFormatter.hpp" />
     <ClInclude Include="include\utility\Headers.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-#include "SerialConnection.hpp"
+#include "../include/SerialConnection.hpp"
 
 SerialConnection::SerialConnection(std::string connectString)
 	: connectionName(connectString)

@@ -1,0 +1,146 @@
+#include "../include/Utility/FloatConverter.hpp"
+#ifndef LOBYTE
+#define LOBYTE(w)   ((unsigned char)(w))
+#endif
+#ifndef HIBYTE
+#define HIBYTE(w)   ((unsigned char)((unsigned short)(w) >> 8 & 255))
+#endif
+namespace
+{
+    enum
+    {
+        OneLeftShiftZero=(1 << 0), 
+        OneLeftShiftSeven=(1 << 7)
+    };
+
+    inline unsigned short LeftShift8ThenBinOr(unsigned char ToLeftShift, unsigned char OrBy)
+    {
+        return(ToLeftShift << 8) | OrBy;
+    }
+
+    inline unsigned int LeftShiftByParam(unsigned int ToLeftShift, unsigned int LeftShiftBy)
+    {
+        return(ToLeftShift << LeftShiftBy);
+    }
+
+    inline unsigned int RightShiftByParam(unsigned int ToRightShift, unsigned int RightShiftBy)
+    {
+        return(ToRightShift >> RightShiftBy);
+    }
+
+    bool combineBytes(const unsigned char* arrayOfFloatBytes, int* buffer)
+    {
+        unsigned short z3fbf55ec47;
+        unsigned short z6a3d60feee;
+        int zc776ffe020;
+        if((arrayOfFloatBytes[0] == 127) && (arrayOfFloatBytes[1] == 255))
+        {
+            return false;
+        }
+        z3fbf55ec47 = LeftShift8ThenBinOr(arrayOfFloatBytes[0], arrayOfFloatBytes[1]);
+        zc776ffe020 = z3fbf55ec47 & 2047;
+        z6a3d60feee = LeftShiftByParam(OneLeftShiftZero,(RightShiftByParam(arrayOfFloatBytes[0], 3) & 15));
+        if(arrayOfFloatBytes[0] & 128)
+        {
+            zc776ffe020 -= 2048;
+        }
+        *buffer = (int)zc776ffe020 * z6a3d60feee;
+        return true;
+    }
+
+    // formatFloat(buffer, resultArray)
+    bool formatFloat(int numToFloat, unsigned char* resultArray)
+    {
+        unsigned int buffer;
+        unsigned short plusMinusSign;
+        unsigned char mantissa;
+        unsigned char exponent;
+
+        // Set plus / minus sign
+        if(numToFloat >= 0)
+        {
+            buffer = (unsigned int)numToFloat;
+            plusMinusSign = 2047;
+        }
+        else
+        {
+            buffer = (unsigned int)-numToFloat;
+            plusMinusSign = 2048;
+        }
+        mantissa = 0;
+        exponent = 0;
+        while((buffer + mantissa) > plusMinusSign)
+        {
+            mantissa = (unsigned char)(buffer & 1);
+            buffer >>= 1;
+            exponent++;
+        }
+        buffer += mantissa;
+        if(exponent > 15)
+        {
+            resultArray[0] = 127;
+            resultArray[1] = 255;
+            return false;
+        }
+        if(numToFloat >= 0)
+        {
+            resultArray[0] = 0;
+        }
+        else
+        {
+            buffer = 2048 - buffer;
+            resultArray[0] = OneLeftShiftSeven;
+        }
+        resultArray[0] |= (exponent << 3) & 120;
+        resultArray[0] |= HIBYTE(buffer);
+        resultArray[1] = LOBYTE(buffer);
+        return true;
+    }
+
+    bool convertBytesToFloat(const unsigned char* arrayOfFloatBytes, float* resultFloat)
+    {
+        int buffer;
+        if(combineBytes(arrayOfFloatBytes, &buffer))
+        {
+            *resultFloat = static_cast<float>(buffer/100.0);
+            return true;
+        }
+        return false;
+    }
+
+    bool roundFloat(float floatToConvert /* Float to convert */, unsigned char* resultArray /* UChar array for two bytes of 2-byte float */) // Second point
+    {
+        int buffer;
+        floatToConvert *= 100.0;
+        if(floatToConvert > 0)
+        {
+            buffer = (int)(floatToConvert +0.5); // Round up float if it has hundredth decimal place or bigger
+        }
+        else
+        {
+            buffer = (int)(floatToConvert -0.5); // Round down float if it has no hundredth decimal place or bigger
+        }
+        return formatFloat(buffer, resultArray);
+    }
+}
+
+std::tuple<unsigned char,unsigned char>floatConverter::encode2byteFloat(float f) // Start point
+{
+    unsigned char resultArray[2] = {0};
+    if(!roundFloat(f, resultArray))
+    {
+        return std::make_tuple(0, 0);
+    }
+    return std::make_tuple(resultArray[0], resultArray[1]);
+}
+
+float floatConverter::decode2byteFloat(unsigned char firstByte,unsigned char secondByte)
+{
+    const unsigned char arrayOfFloatBytes[2] = {firstByte, secondByte};
+    float resultFloat = 0;
+    if(!convertBytesToFloat(arrayOfFloatBytes, &resultFloat))
+    {
+        return 0;
+    }
+    return resultFloat;
+}

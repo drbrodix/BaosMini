@@ -7,9 +7,9 @@ namespace DataReader
     size_t DataReader::recieveTelegram(HANDLE serialHandle, unsigned char* telegramCharArray)
     {
         const unsigned short MAX_TRIES_COUNT    = 100;      // Caps number of tries looking for FT1.2 start byte
+        const unsigned short HEADER_SIZE        = 5;        // Fixed size of FT1.2 header; unless the protocol changes, this constant shouldn't be touched
         unsigned int readTries                  = 0;        // Keeps count of number of tries looking for FT1.2 start byte
         unsigned int telegramLength             = 0;        // Variable to save BAOS telegram length after reading FT1.2 header
-        const unsigned short HEADER_SIZE        = 5;        // Fixed size of FT1.2 header; unless the protocol changes, this constant shouldn't be touched
         unsigned char ft12Header[HEADER_SIZE]   = { 0 };    // { (0) 0x68 , (1) Length, (2) Length, (3) 0x68, (4) ControlByte }
 
         while (MAX_TRIES_COUNT >= readTries)
@@ -45,11 +45,10 @@ namespace DataReader
                         return 0;
                     }
                 }
-                telegramLength = ft12Header[1] - 1;
+                telegramLength = ft12Header[1] - 1; // (Data length plus control byte) minus control byte
                 ft12Header[0] = c; // Index 0 of FT1.2 header set to start byte 0x68
 
                 for (int i = 0; i < telegramLength; i++) // Now read the actual BAOS telegram
-
                 {
                     DWORD telegramBytesRead = 0;
                     if (!ReadFile(
@@ -78,6 +77,12 @@ namespace DataReader
             }
             if (telegramLength > 0)
             {
+                if (ft12Header[4] !=
+                    ChecksumCalculator::calculateChecksum(telegramCharArray, telegramLength, ft12Header[4]))
+                {
+                    printf("Checksum error\n");
+                    return 0;
+                }
                 return telegramLength;
             }
         }

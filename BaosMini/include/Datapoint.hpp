@@ -1,10 +1,14 @@
 #ifndef DATAPOINT_HPP
 #define DATAPOINT_HPP
 
+#define swap2(x) (((x << 8) & 0xFF00) | ((x >> 8) & 0x00FF))
+#define swap4(x) (((x << 24) & 0xFF000000) | ((x << 8) & 0x00FF0000) | ((x >> 8) & 0x0000FF00) | ((x >> 24) & 0x000000FF))
+
 #include <cstring>
 #include <cstdio>
 #include "Telegram/BaosTelegram.hpp"
 #include "Utility/FormatterFunctions.hpp"
+#include "Utility/FloatConverter.hpp"
 
 enum DatapointTypes
 {
@@ -66,6 +70,8 @@ public:
 	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte);
 	bool setSignedValue2Byte(short dpValue, CommandByte commandByte);
 	bool setFloatValue2Byte(float dpValue, CommandByte commandByte);
+	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte);
+	bool setSignedValue4Byte(int dpValue, CommandByte commandByte);
 	bool setFloatValue4Byte(float dpValue, CommandByte commandByte);
 
 	static unsigned char getDatapointSize(DatapointTypes dpt);

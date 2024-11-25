@@ -42,9 +42,6 @@
     <ClCompile Include="src\utility\ChecksumCalculator.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\FrameFormatter.cpp">
-      <Filter>Source Files\utility</Filter>
-    </ClCompile>
     <ClCompile Include="src\utility\DataReader.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
@@ -60,7 +57,10 @@
     <ClCompile Include="src\Telegram\BaosTelegram.cpp">
       <Filter>Source Files\telegram</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utility\BaseFrameFormatter.cpp">
+    <ClCompile Include="src\Utility\FloatConverter.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\FrameFormatter.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,9 +89,6 @@
     <ClInclude Include="include\utility\ChecksumCalculator.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
-    <ClInclude Include="include\utility\FrameFormatter.hpp">
-      <Filter>Header Files\utility</Filter>
-    </ClInclude>
     <ClInclude Include="include\utility\Headers.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
@@ -107,7 +104,10 @@
     <ClInclude Include="include\Utility\FormatterFunctions.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
-    <ClInclude Include="include\Utility\BaseFrameFormatter.hpp">
+    <ClInclude Include="include\Utility\FloatConverter.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\FrameFormatter.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>

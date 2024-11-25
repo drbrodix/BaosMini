@@ -2,6 +2,7 @@
 #define DATA_READER_HPP
 
 #include <Windows.h>
+#include "ChecksumCalculator.hpp"
 
 namespace DataReader
 {

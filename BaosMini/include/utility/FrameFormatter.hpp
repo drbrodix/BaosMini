@@ -1,12 +1,14 @@
-#ifndef FRAME_FORMATTER_HPP
-#define FRAME_FORMATTER_HPP
+#ifndef BASE_FRAME_FORMATTER_HPP
+#define BASE_FRAME_FORMATTER_HPP
+
+#define START_BYTE 0x68
+#define END_BYTE 0x16
 
 #include <iostream>
 
 namespace FrameFormatter
 {
-	bool formatFt12Frame(
-		unsigned char* ft12Frame,
+	unsigned short formatFt12Frame(
 		unsigned char* baosTelegram,
 		unsigned char telegramLength,
 		unsigned char controlByte,
@@ -14,4 +16,4 @@ namespace FrameFormatter
 	);
 }
 
-#endif // FRAME_FORMATTER_HPP
+#endif // BASE_FRAME_FORMATTER_HPP

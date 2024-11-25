@@ -1,0 +1,149 @@
+
+#include "../include/Utility/FloatConverter.hpp"
+#ifndef LOBYTE
+#define LOBYTE(w)           ((unsigned char)(w))
+#endif
+#ifndef HIBYTE
+#define HIBYTE(w)           ((unsigned char)(((unsigned short)(w) >> 8 & 255
+#endif
+namespace
+{
+    enum
+    {
+        OneLeftShiftZero=(1 << 0), 
+        OneLeftShiftSeven=(1 << 7)
+    };
+
+    inline unsigned short LeftShift8ThenBinOr(unsigned char ToLeftShift, unsigned char OrBy)
+    {
+        return(ToLeftShift << 8) | OrBy;
+    }
+
+    inline unsigned int LeftShiftByParam(unsigned int ToLeftShift, unsigned int LeftShiftBy)
+    {
+        return(ToLeftShift << LeftShiftBy);
+    }
+
+    inline unsigned int RightShiftByParam(unsigned int ToRightShift, unsigned int RightShiftBy)
+    {
+        return(ToRightShift >> RightShiftBy);
+    }
+
+    bool z96835402e2(const unsigned char* zf1b4948a61, int* z4a168aa0ed)
+    {
+        unsigned short z3fbf55ec47;
+        unsigned short z6a3d60feee;
+        int zc776ffe020;
+        if((zf1b4948a61[0] == 127) && (zf1b4948a61[1] == 255))
+        {
+            return false;
+        }
+        z3fbf55ec47 = LeftShift8ThenBinOr(zf1b4948a61[0], zf1b4948a61[1]);
+        zc776ffe020 = z3fbf55ec47 & 2047;
+        z6a3d60feee = LeftShiftByParam(OneLeftShiftZero,(RightShiftByParam(zf1b4948a61[0], 3) & 15));
+        if(zf1b4948a61[0] & 128)
+        {
+            zc776ffe020 -= 2048;
+        }
+        *z4a168aa0ed = (int)zc776ffe020 * z6a3d60feee;
+        return true;
+    }
+
+    bool zc614577611(int za5d37097ad, unsigned char*zf1b4948a61)
+    {
+        unsigned int zc776ffe020;
+        unsigned short z71c19641b2;
+        unsigned char z1d09706214;
+        unsigned char z54c29ce3a2;
+        if(za5d37097ad >= 0)
+        {
+            zc776ffe020 = (unsigned int)za5d37097ad;
+            z71c19641b2 = 2047;
+        }
+        else
+        {
+            zc776ffe020 = (unsigned int)-za5d37097ad;
+            z71c19641b2 = 2048;
+        }
+        z54c29ce3a2 = 0;
+        z1d09706214 = 0;
+        while((zc776ffe020+z54c29ce3a2) > z71c19641b2)
+        {
+            z54c29ce3a2 = (unsigned char)(zc776ffe020 & 1);
+            zc776ffe020 >>= 1;
+            z1d09706214++;
+        }
+        zc776ffe020 += z54c29ce3a2;
+        if(z1d09706214 > 15)
+        {
+            zf1b4948a61[0] = 127;
+            zf1b4948a61[1] = 255;
+            return false;
+        }
+        if(za5d37097ad >= 0)
+        {
+            zf1b4948a61[0] = 0;
+        }
+        else
+        {
+            zc776ffe020 = 2048 - zc776ffe020;
+            zf1b4948a61[0] = OneLeftShiftSeven;
+        }
+        zf1b4948a61[0] |= (z1d09706214 << 3) & 120;
+        zf1b4948a61[0] |= HIBYTE(zc776ffe020);
+        zf1b4948a61[1] = LOBYTE(zc776ffe020);
+        return true;
+    }
+
+    bool zdef5f59c85(const unsigned char*zf1b4948a61, float*z9cc9e2d328)
+    {
+        int z0ebbf53421;
+        if(z96835402e2(zf1b4948a61,&z0ebbf53421))
+        {
+            *z9cc9e2d328 = static_cast<float>(z0ebbf53421/100.0);
+            return true;
+        }
+        return false;
+    }
+
+    bool z0c13fe1e16(float z7478171ae5 /* Float to convert */, unsigned char* zf1b4948a61 /* UChar array for two bytes of 2-byte float */) // Second point
+    {
+        int za5d37097ad;
+        z7478171ae5*=100.0;
+        if(z7478171ae5 > 0)
+        {
+            za5d37097ad=(int)(z7478171ae5+0.5); // Round up float if it has hundredth decimal place or higher
+        }
+        else
+        {
+            za5d37097ad=(int)(z7478171ae5-0.5); // Round down float if it has no hundredth decimal place or higher
+        }
+        return zc614577611(za5d37097ad,zf1b4948a61);
+    }
+}
+
+float zac29c93fda::z03088b6602(unsigned char zba1cbc76ee,unsigned char z68419f84d9)
+{
+    return zdfe51b7ee0(zba1cbc76ee,z68419f84d9);
+}
+
+std::tuple<unsigned char,unsigned char>zac29c93fda::zb219ab2908(float f) // Start point
+{
+    unsigned char z97f999352c[2] = {0};
+    if(!z0c13fe1e16(f,z97f999352c))
+    {
+        throw Exception("\x56\x61\x6c\x75\x65\x20\x6f\x75\x74\x20\x6f\x66\x20\x4b\x4e\x58\x20\x66\x6c\x6f\x61\x74\x31\x36\x20\x72\x61\x6e\x67\x65");
+    }
+    return std::make_tuple(z97f999352c[0], z97f999352c[1]);
+}
+
+float zac29c93fda::zdfe51b7ee0(unsigned char zba1cbc76ee,unsigned char z68419f84d9)
+{
+    const unsigned char z97f999352c[2] = {zba1cbc76ee,z68419f84d9};
+    float zb41d1f2878 = 0;
+    if(!zdef5f59c85(z97f999352c,&zb41d1f2878))
+    {
+        throw Exception("\x49\x6e\x76\x61\x6c\x69\x64\x20\x4b\x4e\x58\x20\x66\x6c\x6f\x61\x74\x20\x76\x61\x6c\x75\x65");
+    }
+    return zb41d1f2878;
+}
