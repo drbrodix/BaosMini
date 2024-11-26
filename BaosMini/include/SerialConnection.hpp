@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <Windows.h>
-#include <sstream>
-#include "utility/Headers.hpp"
+#include "Utility/ChecksumCalculator.hpp"
+#include "Utility/DataReader.hpp"
+#include "Encryption/Decode/TelegramDecoder.hpp"
+#include "Utility/FrameFormatter.hpp"
 
 class SerialConnection
 {

@@ -1,18 +1,50 @@
 #include "../../include/utility/ChecksumCalculator.hpp"
 
-namespace ChecksumCalculator
+namespace
 {
-    unsigned char ChecksumCalculator::calculateChecksum(
+    unsigned char calculateChecksum(
         unsigned char* telegramData,
         unsigned char telegramLength,
-        unsigned char controlByte
+        unsigned char controlByte,
+        unsigned char index,
+		unsigned char loopEnd
     )
     {
         unsigned int sum = controlByte;
-        for (unsigned char i = BAOS_HEADER_FIRST_INDEX; i < BAOS_HEADER_FIRST_INDEX + telegramLength; i++)
+        for (index; index < loopEnd; index++)
         {
-			sum += *(telegramData + i);
+            sum += *(telegramData + index);
         }
         return unsigned char(sum % 256);
     }
+}
+
+unsigned char ChecksumCalculator::calculateChecksumSent(
+    unsigned char* telegramData,
+    unsigned char telegramLength,
+    unsigned char controlByte
+)
+{
+    return calculateChecksum(
+        telegramData,
+        telegramLength,
+        controlByte,
+        BAOS_HEADER_FIRST_INDEX,
+        BAOS_HEADER_FIRST_INDEX + telegramLength
+    );
+}
+
+unsigned char ChecksumCalculator::calculateChecksumRecieved(
+    unsigned char* telegramData,
+    unsigned char telegramLength,
+    unsigned char controlByte
+)
+{
+    return calculateChecksum(
+        telegramData,
+        telegramLength,
+        controlByte,
+        0,
+        telegramLength
+    );
 }

@@ -13,17 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\telegram">
-      <UniqueIdentifier>{45e14c01-2266-4938-b101-aed4fc737924}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\telegram">
-      <UniqueIdentifier>{0eb5ff30-e2e4-462d-a8a7-9e0cc49b2229}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\utility">
+    <Filter Include="Header Files\Utility">
       <UniqueIdentifier>{dde66908-6aac-4da6-9ec0-77ccb63abe3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\utility">
+    <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{1960ca2c-37fa-4ad2-8b3f-08ba5db04149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Services">
+      <UniqueIdentifier>{0eb5ff30-e2e4-462d-a8a7-9e0cc49b2229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Services">
+      <UniqueIdentifier>{45e14c01-2266-4938-b101-aed4fc737924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Encryption">
+      <UniqueIdentifier>{3137d884-6e1b-4226-acee-ed442ae2bd3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Encryption">
+      <UniqueIdentifier>{edfbd237-3d18-4793-bb75-b447de4392fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Encryption\Decode">
+      <UniqueIdentifier>{b5133c7b-e9e0-47d1-b0ee-c73a77bbbd16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Encryption\Encode">
+      <UniqueIdentifier>{832311d5-647a-45ea-b7d8-8bb127e62e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Encryption\Decode">
+      <UniqueIdentifier>{505a93c7-dfff-410b-ae67-dabfad64e01f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Encryption\Encode">
+      <UniqueIdentifier>{cd1a86ab-ee62-4aa1-a3a9-8818efe04671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Encryption\Utility">
+      <UniqueIdentifier>{0ea41464-fad0-48f6-974e-168ec04d4ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Encryption\Utility">
+      <UniqueIdentifier>{01909f1f-1b85-49df-aa5b-1537566b4a4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,35 +57,59 @@
     <ClCompile Include="src\SerialConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\telegram\SetDatapointValue.cpp">
-      <Filter>Source Files\telegram</Filter>
-    </ClCompile>
-    <ClCompile Include="src\telegram\GetDatapointValue.cpp">
-      <Filter>Source Files\telegram</Filter>
-    </ClCompile>
     <ClCompile Include="src\utility\ChecksumCalculator.cpp">
-      <Filter>Source Files\utility</Filter>
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\DataReader.cpp">
-      <Filter>Source Files\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\telegram\GetServerItem.cpp">
-      <Filter>Source Files\telegram</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Datapoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utility\FormatterFunctions.cpp">
-      <Filter>Source Files\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Telegram\BaosTelegram.cpp">
-      <Filter>Source Files\telegram</Filter>
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\Utility\FloatConverter.cpp">
-      <Filter>Source Files\utility</Filter>
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\Utility\FrameFormatter.cpp">
-      <Filter>Source Files\utility</Filter>
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\SetDatapointValue.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\GetDatapointValue.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\GetServerItem.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\BaosTelegram.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\TelegramDecoder.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Utility\GetErrorDescription.cpp">
+      <Filter>Source Files\Encryption\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\GetDatapointDescriptionRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\GetDatapointValueRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\GetDescriptionStringRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\GetParameterByteRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\GetServerItemRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\SetDatapointValueRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\SetParameterByteRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encryption\Decode\SetServerItemRes.cpp">
+      <Filter>Source Files\Encryption\Decode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,44 +119,59 @@
     <ClInclude Include="include\SerialConnection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\telegram\BaosTelegram.hpp">
-      <Filter>Header Files\telegram</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Headers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\telegram\SetDatapointValue.hpp">
-      <Filter>Header Files\telegram</Filter>
-    </ClInclude>
-    <ClInclude Include="include\telegram\Headers.hpp">
-      <Filter>Header Files\telegram</Filter>
-    </ClInclude>
-    <ClInclude Include="include\telegram\GetDatapointValue.hpp">
-      <Filter>Header Files\telegram</Filter>
-    </ClInclude>
     <ClInclude Include="include\utility\ChecksumCalculator.hpp">
-      <Filter>Header Files\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utility\Headers.hpp">
-      <Filter>Header Files\utility</Filter>
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="include\utility\DataReader.hpp">
-      <Filter>Header Files\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\telegram\GetServerItem.hpp">
-      <Filter>Header Files\telegram</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Datapoint.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Utility\FormatterFunctions.hpp">
-      <Filter>Header Files\utility</Filter>
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\FloatConverter.hpp">
-      <Filter>Header Files\utility</Filter>
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\FrameFormatter.hpp">
-      <Filter>Header Files\utility</Filter>
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\SetDatapointValue.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\GetDatapointValue.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\GetServerItem.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\BaosTelegram.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\TelegramDecoder.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Utility\GetErrorDescription.hpp">
+      <Filter>Header Files\Encryption\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\GetServerItemRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\SetServerItemRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\GetDatapointDescriptionRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\GetDescriptionStringRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\GetDatapointValueRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\SetDatapointValueRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\GetParameterByteRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp">
+      <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

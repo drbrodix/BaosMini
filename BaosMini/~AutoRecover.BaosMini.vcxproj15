@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -230,16 +230,8 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="src\Encryption\Decode\GetDatapointDescriptionRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\GetDatapointValueRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\GetDescriptionStringRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\GetParameterByteRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\GetServerItemRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\SetDatapointValueRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\SetParameterByteRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\SetServerItemRes.cpp" />
     <ClCompile Include="src\Encryption\Decode\TelegramDecoder.cpp" />
-    <ClCompile Include="src\Encryption\Utility\GetErrorDescription.cpp" />
+    <ClCompile Include="src\Encryption\Utility\GetErrorMessageDescription.cpp" />
     <ClCompile Include="src\SerialConnection.cpp" />
     <ClCompile Include="src\Services\BaosTelegram.cpp" />
     <ClCompile Include="src\Services\GetDatapointValue.cpp" />
@@ -252,16 +244,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
-    <ClInclude Include="include\Encryption\Decode\GetDatapointDescriptionRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\GetDatapointValueRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\GetDescriptionStringRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\GetParameterByteRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\GetServerItemRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\SetDatapointValueRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\SetServerItemRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\TelegramDecoder.hpp" />
-    <ClInclude Include="include\Encryption\Utility\GetErrorDescription.hpp" />
+    <ClInclude Include="include\Encryption\Utility\GetErrorMessageDescription.hpp" />
     <ClInclude Include="include\SerialConnection.hpp" />
     <ClInclude Include="include\Services\BaosTelegram.hpp" />
     <ClInclude Include="include\Services\GetDatapointValue.hpp" />

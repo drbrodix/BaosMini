@@ -97,7 +97,7 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
 {
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
-    const unsigned char checksum = ChecksumCalculator::calculateChecksum(baosTelegram, telegramLength, controlByte);
+    const unsigned char checksum = ChecksumCalculator::calculateChecksumSent(baosTelegram, telegramLength, controlByte);
     // const bool isReadAnswerReq = checkIsReadAnswerReq(subServiceCode);
 
     // Format the final FT1.2 frame
@@ -123,20 +123,13 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
     const unsigned char READ_TELEGRAM_BUFF_SIZE = 200;
     unsigned char *pReadTelegram = new unsigned char[READ_TELEGRAM_BUFF_SIZE];
 
-    const size_t READ_TELEGRAM_LENGTH = DataReader::recieveTelegram(serialHandle, pReadTelegram);
+    const unsigned int READ_TELEGRAM_LENGTH = DataReader::recieveTelegram(serialHandle, pReadTelegram);
 
     if (READ_TELEGRAM_LENGTH > 0)
     {
         sendAck();
 
-        std::ostringstream oss;
-
-        for (int i = 0; i < READ_TELEGRAM_LENGTH; i++)
-        {
-            std::cout << std::hex << (unsigned int)pReadTelegram[i] << " ";
-        }
-
-        std::cout << '\n';
+        Encryption::decodeTelegram(pReadTelegram, READ_TELEGRAM_LENGTH);
     }
     else
     {

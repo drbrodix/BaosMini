@@ -2,14 +2,14 @@
 #define GET_SERVER_ITEM_HPP
 
 #include "BaosTelegram.hpp"
-#include "../Utility/FormatterFunctions.hpp"
 
 class GetServerItem : public BaosTelegram
 {
 public:
 	GetServerItem(
 		unsigned short firstItemId,
-		unsigned short nrOfItems);
+		unsigned short nrOfItems,
+		SerialConnection* serialConnection);
 	~GetServerItem();
 
 private:

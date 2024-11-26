@@ -1,4 +1,4 @@
-#include "../include/Datapoint.hpp"
+#include "../include/Services/SetDatapointValue.hpp"
 
 Datapoint::Datapoint(
 	unsigned short dpId,
@@ -7,7 +7,7 @@ Datapoint::Datapoint(
 	: BaosTelegram(serialConnection)
 	, dpId(dpId)
 {
-	baosTelegram[BAOS_HEADER_FIRST_INDEX + 1] = BaosSubServices::SetDatapointValueReq;
+	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = BaosSubServices::SetDatapointValueReq;
 }
 
 Datapoint::~Datapoint()
@@ -285,18 +285,11 @@ bool Datapoint::setDpIdAndNr()
 {
 	try
 	{
-		unsigned char dpIdB1;
-		unsigned char dpIdB2;
-		unsigned char nrOfDpsB1;
-		unsigned char nrOfDpsB2;
-		FormatterFunctions::formatValueInTwoBytes(0x01, &nrOfDpsB1, &nrOfDpsB2);
-		FormatterFunctions::formatValueInTwoBytes(dpId, &dpIdB1, &dpIdB2);
-		baosTelegram[BAOS_DATA_FIRST_INDEX]		= dpIdB1;
-		baosTelegram[BAOS_DATA_FIRST_INDEX + 1] = dpIdB2;
-		baosTelegram[BAOS_DATA_FIRST_INDEX + 2] = nrOfDpsB1;
-		baosTelegram[BAOS_DATA_FIRST_INDEX + 3] = nrOfDpsB2;
-		baosTelegram[BAOS_DATA_FIRST_INDEX + 4] = dpIdB1;
-		baosTelegram[BAOS_DATA_FIRST_INDEX + 5] = dpIdB2;
+		*((unsigned short*)(baosTelegram + BAOS_DATA_FIRST_INDEX))	= swap2(dpId);
+
+		*((unsigned short*)(baosTelegram + BAOS_DATA_FIRST_INDEX + 2)) = swap2(0x00'01);
+
+		*((unsigned short*)(baosTelegram + BAOS_DATA_FIRST_INDEX + 4)) = swap2(dpId);
 		
 		return true;
 	}
