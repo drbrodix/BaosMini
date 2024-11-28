@@ -4,35 +4,8 @@
 #include <cstring>
 #include <cstdio>
 #include "BaosTelegram.hpp"
-#include "Utility/FloatConverter.hpp"
-
-enum DatapointTypes
-{
-	// Datapoint Type (DPT)     // DPT Code, DPT Size
-
-	Boolean             = 0x01, // DPT 1, 1 Bits        RELEVANT
-	Control             = 0x02, // DPT 2, 2 Bits
-	Dimming_Blinds      = 0x03, // DPT 3, 4 Bits
-	CharacterSet        = 0x04, // DPT 4, 8 Bits
-	UnsignedValue1Byte  = 0x05, // DPT 5, 8 Bits        RELEVANT
-	SignedValue1Byte    = 0x06, // DPT 6, 8 Bits        RELEVANT
-	UnsignedValue2Byte  = 0x07, // DPT 7, 2 Bytes       RELEVANT
-	SignedValue2Byte    = 0x08, // DPT 8, 2 Bytes       RELEVANT
-	FloatValue2Byte     = 0x09, // DPT 9, 2 Bytes       RELEVANT
-	Time                = 0x0A, // DPT 10, 3 Bytes
-	Date                = 0x0B, // DPT 11, 3 Bytes
-	UnsignedValue4Byte  = 0x0C, // DPT 12, 4 Bytes      RELEVANT
-	SignedValue4Byte    = 0x0D, // DPT 13, 4 Bytes      RELEVANT
-	FloatValue4Byte     = 0x0E, // DPT 14, 4 Bytes      RELEVANT
-	Access              = 0x0F, // DPT 15, 4 Bytes
-	String              = 0x10, // DPT 16, 14 Bytes
-	SceneNumber         = 0x11, // DPT 17, 1 Byte
-	SceneControl        = 0x12, // DPT 18, 1 Byte
-	DateTime            = 0x13, // DPT 19, 8 Bytes
-	HVACMode            = 0x14, // DPT 20, 1 Byte
-	ColorRGB            = 0xE8, // DPT 232, 3 Bytes
-	ColorRGBW           = 0xFB  // DPT 251, 6 Bytes
-};
+#include "../Utility/FloatConverter.hpp"
+#include "../Enums/DatapointTypesEnum.hpp"
 
 enum CommandByte
 {
@@ -70,7 +43,7 @@ public:
 	bool setSignedValue4Byte(int dpValue, CommandByte commandByte);
 	bool setFloatValue4Byte(float dpValue, CommandByte commandByte);
 
-	static unsigned char getDatapointSize(DatapointTypes dpt);
+	static unsigned char getDatapointSize(DATAPOINT_TYPES dpt);
 
 private:
 	unsigned short dpId;

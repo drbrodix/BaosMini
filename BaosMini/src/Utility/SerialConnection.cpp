@@ -1,4 +1,4 @@
-#include "../include/SerialConnection.hpp"
+#include "../../include/Utility/SerialConnection.hpp"
 
 SerialConnection::SerialConnection(std::string connectString)
 	: connectionName(connectString)
@@ -93,7 +93,7 @@ unsigned char SerialConnection::getControlByte()
     return currentControlByte;
 }
 
-bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength)
+bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DATAPOINT_TYPES dpt)
 {
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
@@ -129,7 +129,7 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
     {
         sendAck();
 
-        Encryption::decodeTelegram(pReadTelegram, READ_TELEGRAM_LENGTH);
+        Encryption::decodeTelegram(pReadTelegram, READ_TELEGRAM_LENGTH, dpt);
     }
     else
     {

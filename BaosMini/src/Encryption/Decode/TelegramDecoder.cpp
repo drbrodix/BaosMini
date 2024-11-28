@@ -1,6 +1,6 @@
 #include "../../../include/Encryption/Decode/TelegramDecoder.hpp"
 
-bool Encryption::decodeTelegram(unsigned char* telegramCharArray, unsigned int telegramLength)
+bool Encryption::decodeTelegram(unsigned char* telegramCharArray, unsigned int telegramLength, DATAPOINT_TYPES dpt)
 {
     /*
     GetServerItemRes = 0x81,

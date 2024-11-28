@@ -6,7 +6,7 @@ GetDatapointValue::GetDatapointValue(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = BaosSubServices::GetDatapointValueReq;
+	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = GetDatapointValueReq;
 	
 	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX))		= swap2(datapointId);
 	

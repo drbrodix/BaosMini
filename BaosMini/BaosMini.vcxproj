@@ -240,7 +240,6 @@
     <ClCompile Include="src\Encryption\Decode\SetServerItemRes.cpp" />
     <ClCompile Include="src\Encryption\Decode\TelegramDecoder.cpp" />
     <ClCompile Include="src\Encryption\Utility\GetErrorDescription.cpp" />
-    <ClCompile Include="src\SerialConnection.cpp" />
     <ClCompile Include="src\Services\BaosTelegram.cpp" />
     <ClCompile Include="src\Services\GetDatapointValue.cpp" />
     <ClCompile Include="src\Services\GetServerItem.cpp" />
@@ -249,6 +248,7 @@
     <ClCompile Include="src\utility\DataReader.cpp" />
     <ClCompile Include="src\Utility\FloatConverter.cpp" />
     <ClCompile Include="src\Utility\FrameFormatter.cpp" />
+    <ClCompile Include="src\Utility\SerialConnection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp" />
@@ -262,7 +262,9 @@
     <ClInclude Include="include\Encryption\Decode\SetServerItemRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\TelegramDecoder.hpp" />
     <ClInclude Include="include\Encryption\Utility\GetErrorDescription.hpp" />
-    <ClInclude Include="include\SerialConnection.hpp" />
+    <ClInclude Include="include\Enums\DatapointTypesEnum.hpp" />
+    <ClInclude Include="include\Enums\ServerItemEnum.hpp" />
+    <ClInclude Include="include\Enums\SubservicesEnum.hpp" />
     <ClInclude Include="include\Services\BaosTelegram.hpp" />
     <ClInclude Include="include\Services\GetDatapointValue.hpp" />
     <ClInclude Include="include\Services\GetServerItem.hpp" />
@@ -271,7 +273,7 @@
     <ClInclude Include="include\utility\DataReader.hpp" />
     <ClInclude Include="include\Utility\FloatConverter.hpp" />
     <ClInclude Include="include\Utility\FrameFormatter.hpp" />
-    <ClInclude Include="include\Utility\ServerItemEnum.hpp" />
+    <ClInclude Include="include\Utility\SerialConnection.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="weinzierl-knx-baos-binaryprotocol-v2.pdf" />

@@ -1,4 +1,4 @@
-#include "../include/Services/SetDatapointValue.hpp"
+#include "../../include/Services/SetDatapointValue.hpp"
 
 Datapoint::Datapoint(
 	unsigned short dpId,
@@ -7,7 +7,7 @@ Datapoint::Datapoint(
 	: BaosTelegram(serialConnection)
 	, dpId(dpId)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = BaosSubServices::SetDatapointValueReq;
+	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = SetDatapointValueReq;
 }
 
 Datapoint::~Datapoint()
@@ -15,19 +15,19 @@ Datapoint::~Datapoint()
 	
 }
 
-unsigned char Datapoint::getDatapointSize(DatapointTypes dpt)
+unsigned char Datapoint::getDatapointSize(DATAPOINT_TYPES dpt)
 {
 	switch (dpt)
 	{
 	case Boolean:
-	case Control:
-	case Dimming_Blinds:
-	case CharacterSet:
+	//case Control:
+	//case Dimming_Blinds:
+	//case CharacterSet:
 	case UnsignedValue1Byte:
 	case SignedValue1Byte:
-	case SceneNumber:
-	case SceneControl:
-	case HVACMode:
+	//case SceneNumber:
+	//case SceneControl:
+	//case HVACMode:
 		return 0x01;
 		break;
 	case UnsignedValue2Byte:
@@ -35,26 +35,26 @@ unsigned char Datapoint::getDatapointSize(DatapointTypes dpt)
 	case FloatValue2Byte:
 		return 0x02;
 		break;
-	case Time:
-	case Date:
-	case ColorRGB:
-		return 0x03;
-		break;
+	//case Time:
+	//case Date:
+	//case ColorRGB:
+		//return 0x03;
+		//break;
 	case UnsignedValue4Byte:
 	case SignedValue4Byte:
 	case FloatValue4Byte:
-	case Access:
+	//case Access:
 		return 0x04;
 		break;
-	case ColorRGBW:
-		return 0x06;
-		break;
-	case DateTime:
-		return 0x08;
-		break;
-	case String:
-		return 0x0E;
-		break;
+	//case ColorRGBW:
+		//return 0x06;
+		//break;
+	//case DateTime:
+		//return 0x08;
+		//break;
+	//case String:
+		//return 0x0E;
+		//break;
 	default:
 		return 0x00;
 		break;
@@ -114,7 +114,7 @@ bool Datapoint::setSignedValue1Byte(char dpValue, CommandByte commandByte)
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SignedValue1Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(SignedValue1Byte); // 8th byte set to datapoint value size
 		*(char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue; // 9th byte set to actual value to set the datapoint to
 
 		telegramLength = 11; // Member variable set to BAOS telegram length (header + data)
@@ -138,7 +138,7 @@ bool Datapoint::setUnsignedValue2Byte(unsigned short dpValue, CommandByte comman
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::UnsignedValue2Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(UnsignedValue2Byte); // 8th byte set to datapoint value size
 		*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th and 10th byte set to actual value to set the datapoint to
 		
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
@@ -162,7 +162,7 @@ bool Datapoint::setSignedValue2Byte(short dpValue, CommandByte commandByte)
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SignedValue2Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(SignedValue2Byte); // 8th byte set to datapoint value size
 		*(short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th and 10th byte set to actual value to set the datapoint to
 
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
@@ -187,7 +187,7 @@ bool Datapoint::setFloatValue2Byte(float dpValue, CommandByte commandByte)
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::FloatValue2Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(FloatValue2Byte); // 8th byte set to datapoint value size
 		*(unsigned char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = floatBytesArr[0]; // 9th byte set to actual value to set the datapoint to
 		*(unsigned char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 9)) = floatBytesArr[1]; // 10th byte set to actual value to set the datapoint to
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
@@ -211,7 +211,7 @@ bool Datapoint::setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandB
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::UnsignedValue4Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(UnsignedValue4Byte); // 8th byte set to datapoint value size
 		*(unsigned int*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th till 12th bytes set to actual value to set the datapoint to
 
 		telegramLength = 14; // Member variable set to BAOS telegram length (header + data)
@@ -235,7 +235,7 @@ bool Datapoint::setSignedValue4Byte(int dpValue, CommandByte commandByte)
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SignedValue4Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(SignedValue4Byte); // 8th byte set to datapoint value size
 		*(int*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th till 12th bytes set to actual value to set the datapoint to
 
 		telegramLength = 14; // Member variable set to BAOS telegram length (header + data)
@@ -254,8 +254,8 @@ bool Datapoint::setSignedValue4Byte(int dpValue, CommandByte commandByte)
 bool Datapoint::setFloatValue4Byte(float dpValue, CommandByte commandByte)
 {
 	try
-	{
-		// Byte swapper macro doesn't work for floats,
+	{	
+		// Byte swapper macro doesn't work with floats,
 		// hence we have to swap the bytes manually
 		float dpValueSwapped = 0.0f;
 		*((char*)&dpValueSwapped + 0) = *((char*)&dpValue + 3);
@@ -265,7 +265,7 @@ bool Datapoint::setFloatValue4Byte(float dpValue, CommandByte commandByte)
 		clearTelegram();
 		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
-		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::FloatValue4Byte); // 8th byte set to datapoint value size
+		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(FloatValue4Byte); // 8th byte set to datapoint value size
 		*(float*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValueSwapped; // 9th till 12th bytes set to actual value to set the datapoint to
 
 		telegramLength = 14; // Member variable set to BAOS telegram length (header + data)

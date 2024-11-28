@@ -6,7 +6,9 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
 
-    GetServerItem* gsi = new GetServerItem(INDIVIDUAL_ADDRESS, 1, serialConnection);
+    /*Datapoint* dp1 = new Datapoint(1, serialConnection);
+    dp1->setFloatValue4Byte(73.49, SetNewValueAndSendOnBus);*/
+    GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
     delete gsi;
 
     //Datapoint* dp1 = new Datapoint(1, serialConnection);

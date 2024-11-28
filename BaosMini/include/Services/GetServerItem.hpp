@@ -2,7 +2,7 @@
 #define GET_SERVER_ITEM_HPP
 
 #include "BaosTelegram.hpp"
-#include "../Utility/ServerItemEnum.hpp"
+#include "../Enums/ServerItemEnum.hpp"
 
 class GetServerItem : public BaosTelegram
 {

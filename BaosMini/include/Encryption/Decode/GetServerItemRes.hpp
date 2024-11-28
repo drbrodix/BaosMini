@@ -15,7 +15,7 @@
 #endif // !swap4
 
 #include "../Utility/GetErrorDescription.hpp"
-#include "../../Utility/ServerItemEnum.hpp"
+#include "../../Enums/ServerItemEnum.hpp"
 
 bool decodeGetServerItemRes(unsigned char* telegramCharArray, unsigned int telegramLength);
 unsigned short decodeServerItem(unsigned char* telegramCharArray, unsigned short currentIndex, unsigned short itemId);

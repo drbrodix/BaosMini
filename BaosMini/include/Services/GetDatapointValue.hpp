@@ -2,6 +2,7 @@
 #define GET_DATAPOINT_VALUE_HPP
 
 #include "BaosTelegram.hpp"
+#include "../Enums/DatapointTypesEnum.hpp"
 
 enum FILTER_CODES
 {

@@ -1,4 +1,3 @@
-
 #ifndef SERVER_ITEM_ENUM_HPP
 #define SERVER_ITEM_ENUM_HPP
 

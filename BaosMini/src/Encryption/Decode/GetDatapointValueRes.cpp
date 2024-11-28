@@ -2,5 +2,6 @@
 
 bool decodeGetDatapointValueRes(unsigned char* telegramCharArray, unsigned int telegramLength)
 {
+
 	return false;
 }

@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <Windows.h>
-#include "Utility/ChecksumCalculator.hpp"
-#include "Utility/DataReader.hpp"
-#include "Encryption/Decode/TelegramDecoder.hpp"
-#include "Utility/FrameFormatter.hpp"
+#include "../Utility/ChecksumCalculator.hpp"
+#include "../Utility/DataReader.hpp"
+#include "../Encryption/Decode/TelegramDecoder.hpp"
+#include "../Utility/FrameFormatter.hpp"
+#include "../Enums/DatapointTypesEnum.hpp"
 
 class SerialConnection
 {
@@ -14,7 +15,7 @@ public:
 	SerialConnection(std::string connectionName);
 	~SerialConnection();
 
-	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength);
+	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DATAPOINT_TYPES dpt = NO_DATAPOINT_TYPE);
 	
 private:
 	// Value to keep track of control byte state

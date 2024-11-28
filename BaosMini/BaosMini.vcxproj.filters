@@ -49,12 +49,12 @@
     <Filter Include="Source Files\Encryption\Utility">
       <UniqueIdentifier>{01909f1f-1b85-49df-aa5b-1537566b4a4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{21668baa-813a-4690-bc90-b5927441f5cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaosMini.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SerialConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\ChecksumCalculator.cpp">
@@ -111,12 +111,12 @@
     <ClCompile Include="src\Encryption\Decode\SetServerItemRes.cpp">
       <Filter>Source Files\Encryption\Decode</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utility\SerialConnection.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SerialConnection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\utility\ChecksumCalculator.hpp">
@@ -173,7 +173,16 @@
     <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp">
       <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
-    <ClInclude Include="include\Utility\ServerItemEnum.hpp">
+    <ClInclude Include="include\Enums\DatapointTypesEnum.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Enums\ServerItemEnum.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Enums\SubservicesEnum.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\SerialConnection.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>

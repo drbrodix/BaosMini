@@ -6,7 +6,7 @@ GetServerItem::GetServerItem(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = BaosSubServices::GetServerItemReq;
+	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = GetServerItemReq;
 
 	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX)) = swap2((unsigned short)firstItemId);
 
