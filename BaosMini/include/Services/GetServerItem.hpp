@@ -2,12 +2,13 @@
 #define GET_SERVER_ITEM_HPP
 
 #include "BaosTelegram.hpp"
+#include "../Utility/ServerItemEnum.hpp"
 
 class GetServerItem : public BaosTelegram
 {
 public:
 	GetServerItem(
-		unsigned short firstItemId,
+		SERVER_ITEMS firstItemId,
 		unsigned short nrOfItems,
 		SerialConnection* serialConnection);
 	~GetServerItem();

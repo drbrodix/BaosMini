@@ -173,5 +173,8 @@
     <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp">
       <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
+    <ClInclude Include="include\Utility\ServerItemEnum.hpp">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

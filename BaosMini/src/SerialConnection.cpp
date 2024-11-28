@@ -120,7 +120,7 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
         std::cerr << "Error while writing to COM port." << '\n';
     }
 
-    const unsigned char READ_TELEGRAM_BUFF_SIZE = 200;
+    const unsigned char READ_TELEGRAM_BUFF_SIZE = 250;
     unsigned char *pReadTelegram = new unsigned char[READ_TELEGRAM_BUFF_SIZE];
 
     const unsigned int READ_TELEGRAM_LENGTH = DataReader::recieveTelegram(serialHandle, pReadTelegram);

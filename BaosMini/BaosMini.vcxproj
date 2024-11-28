@@ -271,6 +271,7 @@
     <ClInclude Include="include\utility\DataReader.hpp" />
     <ClInclude Include="include\Utility\FloatConverter.hpp" />
     <ClInclude Include="include\Utility\FrameFormatter.hpp" />
+    <ClInclude Include="include\Utility\ServerItemEnum.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="weinzierl-knx-baos-binaryprotocol-v2.pdf" />
