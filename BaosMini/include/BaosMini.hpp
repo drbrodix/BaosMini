@@ -7,5 +7,6 @@
 #include "Services/GetDatapointValue.hpp"
 #include "Services/GetServerItem.hpp"
 #include "Services/SetServerItem.hpp"
+#include "Services/GetDatapointDescription.hpp"
 
 #endif //BAOS_MINI_HPP

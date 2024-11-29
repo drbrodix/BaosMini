@@ -9,6 +9,7 @@
 #include "SetDatapointValueRes.hpp"
 #include "SetParameterByteRes.hpp"
 #include "SetServerItemRes.hpp"
+#include "../../Enums/SubservicesEnum.hpp"
 #include "../../Utility/DatapointTypes.hpp"
 #include "../Utility/GetErrorDescription.hpp"
 

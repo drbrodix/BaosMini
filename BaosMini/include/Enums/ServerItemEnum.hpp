@@ -1,6 +1,7 @@
 #ifndef SERVER_ITEM_ENUM_HPP
 #define SERVER_ITEM_ENUM_HPP
 
+// Appendix A in BAOS Doc
 enum SERVER_ITEMS
 {
 	HARDWARE_TYPE				= 1,

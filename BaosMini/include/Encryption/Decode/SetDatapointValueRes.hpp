@@ -2,6 +2,7 @@
 #define SET_DATAPOINT_VALUE_RES_HPP
 
 #include "../Utility/GetErrorDescription.hpp"
+#include "../../Utility/Macros.hpp"
 
 bool decodeSetDatapointValueRes(unsigned char* telegramCharArray, unsigned int telegramLength);
 

@@ -6,6 +6,17 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
 
+    GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
+    delete gsi;
+
+    GetDatapointDescription* gdd = new GetDatapointDescription(1, serialConnection);
+    gdd = new GetDatapointDescription(2, serialConnection);
+    gdd = new GetDatapointDescription(3, serialConnection);
+    gdd = new GetDatapointDescription(4, serialConnection);
+    gdd = new GetDatapointDescription(5, serialConnection);
+    gdd = new GetDatapointDescription(9, serialConnection);
+    delete gdd;
+
     //SetServerItem* ssi = new SetServerItem(serialConnection);
     //ssi->SetProgrammingMode(true);
     //delete ssi;
@@ -21,9 +32,6 @@ int main(int argc, char* argv[])
     //dpv = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
     //dpv = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
     //delete dpv;
-
-    GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
-    delete gsi;
 
     //Datapoint* dp = new Datapoint(1, serialConnection);
     //dp->setBoolean(false, SetNewValueAndSendOnBus);

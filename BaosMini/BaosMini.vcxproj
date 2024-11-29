@@ -241,6 +241,7 @@
     <ClCompile Include="src\Encryption\Decode\TelegramDecoder.cpp" />
     <ClCompile Include="src\Encryption\Utility\GetErrorDescription.cpp" />
     <ClCompile Include="src\Services\BaosTelegram.cpp" />
+    <ClCompile Include="src\Services\GetDatapointDescription.cpp" />
     <ClCompile Include="src\Services\GetDatapointValue.cpp" />
     <ClCompile Include="src\Services\GetServerItem.cpp" />
     <ClCompile Include="src\Services\SetDatapointValue.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="include\Enums\ServerItemEnum.hpp" />
     <ClInclude Include="include\Enums\SubservicesEnum.hpp" />
     <ClInclude Include="include\Services\BaosTelegram.hpp" />
+    <ClInclude Include="include\Services\GetDatapointDescription.hpp" />
     <ClInclude Include="include\Services\GetDatapointValue.hpp" />
     <ClInclude Include="include\Services\GetServerItem.hpp" />
     <ClInclude Include="include\Services\SetDatapointValue.hpp" />

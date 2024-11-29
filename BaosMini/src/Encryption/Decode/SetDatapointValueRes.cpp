@@ -6,10 +6,7 @@ bool decodeSetDatapointValueRes(unsigned char* telegramCharArray, unsigned int t
 
     if(ERROR_CODE == 0x00)
 	{
-        unsigned short datapointID = 0;
-        // Bytes are swapped to convert from big endian to little endian
-        *((char*)&datapointID)      = telegramCharArray[3];
-        *((char*)&datapointID + 1)  = telegramCharArray[2];
+        unsigned short datapointID = swap2(*(unsigned short*)(telegramCharArray + 2));
 
         printf("Datapoint %hu has been successfully set\n", datapointID);
 		return true;

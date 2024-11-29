@@ -129,7 +129,10 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
     {
         sendAck();
 
-        Encryption::decodeTelegram(pReadTelegram, READ_TELEGRAM_LENGTH, dpt);
+        if (!Encryption::decodeTelegram(pReadTelegram, READ_TELEGRAM_LENGTH, dpt))
+        {
+            std::cerr << "Error while decoding ObjectServer response." << '\n';
+        }
     }
     else
     {

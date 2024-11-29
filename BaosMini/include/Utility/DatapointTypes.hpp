@@ -3,6 +3,7 @@
 
 namespace DatapointTypes
 {
+	// Appendix D in BAOS Doc
 	enum DATAPOINT_TYPES
 	{
 		// Datapoint Type (DPT)			// DPT Code, DPT Size
@@ -30,6 +31,29 @@ namespace DatapointTypes
 		//HVAC_MODE				= 0x14, // DPT 20,	1 Byte
 		//COLOR_RGB				= 0xE8, // DPT 232, 3 Bytes
 		//COLOR_RGBW			= 0xFB  // DPT 251, 6 Bytes
+	};
+
+	// Appendix C in BAOS Doc
+	enum DATAPOINT_VALUE_TYPES
+	{
+		// Value size	Type code
+
+		SIZE_1_BIT		= 0x00,
+		SIZE_2_BIT		= 0x01,
+		SIZE_3_BIT		= 0x02,
+		SIZE_4_BIT		= 0x03,
+		SIZE_5_BIT		= 0x04,
+		SIZE_6_BIT		= 0x05,
+		SIZE_7_BIT		= 0x06,
+		SIZE_1_BYTE		= 0x07,
+		SIZE_2_BYTE		= 0x08,
+		SIZE_3_BYTE		= 0x09,
+		SIZE_4_BYTE		= 0x0A,
+		SIZE_6_BYTE		= 0x0B,
+		SIZE_8_BYTE		= 0x0C,
+		SIZE_10_BYTE	= 0x0D,
+		SIZE_14_BYTE	= 0x0E,
+
 	};
 
 	unsigned char getDatapointSize(DATAPOINT_TYPES dpt);
