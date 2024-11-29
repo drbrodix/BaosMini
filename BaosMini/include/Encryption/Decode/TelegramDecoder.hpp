@@ -9,12 +9,12 @@
 #include "SetDatapointValueRes.hpp"
 #include "SetParameterByteRes.hpp"
 #include "SetServerItemRes.hpp"
-#include "../../Enums/DatapointTypesEnum.hpp"
+#include "../../Utility/DatapointTypes.hpp"
 #include "../Utility/GetErrorDescription.hpp"
 
 namespace Encryption
 {
-	bool decodeTelegram(unsigned char* telegramCharArray, unsigned int telegramLength, DATAPOINT_TYPES dpt);
+	bool decodeTelegram(unsigned char* telegramCharArray, unsigned int telegramLength, DatapointTypes::DATAPOINT_TYPES dpt);
 }
 
 #endif // TELEGRAM_DECODER_HPP

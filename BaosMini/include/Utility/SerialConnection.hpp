@@ -7,7 +7,7 @@
 #include "../Utility/DataReader.hpp"
 #include "../Encryption/Decode/TelegramDecoder.hpp"
 #include "../Utility/FrameFormatter.hpp"
-#include "../Enums/DatapointTypesEnum.hpp"
+#include "../Utility/DatapointTypes.hpp"
 
 class SerialConnection
 {
@@ -15,7 +15,7 @@ public:
 	SerialConnection(std::string connectionName);
 	~SerialConnection();
 
-	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DATAPOINT_TYPES dpt = NO_DATAPOINT_TYPE);
+	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt = DatapointTypes::NO_DATAPOINT_TYPE);
 	
 private:
 	// Value to keep track of control byte state

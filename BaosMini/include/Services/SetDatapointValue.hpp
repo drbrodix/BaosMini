@@ -5,7 +5,7 @@
 #include <cstdio>
 #include "BaosTelegram.hpp"
 #include "../Utility/FloatConverter.hpp"
-#include "../Enums/DatapointTypesEnum.hpp"
+#include "../Utility/DatapointTypes.hpp"
 
 enum CommandByte
 {
@@ -42,8 +42,6 @@ public:
 	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte);
 	bool setSignedValue4Byte(int dpValue, CommandByte commandByte);
 	bool setFloatValue4Byte(float dpValue, CommandByte commandByte);
-
-	static unsigned char getDatapointSize(DATAPOINT_TYPES dpt);
 
 private:
 	unsigned short dpId;

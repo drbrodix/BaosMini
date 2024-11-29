@@ -114,6 +114,12 @@
     <ClCompile Include="src\Utility\SerialConnection.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utility\DatapointTypes.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\SetServerItem.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -173,9 +179,6 @@
     <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp">
       <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
-    <ClInclude Include="include\Enums\DatapointTypesEnum.hpp">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="include\Enums\ServerItemEnum.hpp">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -183,6 +186,15 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\SerialConnection.hpp">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\DatapointTypes.hpp">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\SetServerItem.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\Macros.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>

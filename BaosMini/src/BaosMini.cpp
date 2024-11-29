@@ -6,15 +6,41 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
 
-    /*Datapoint* dp1 = new Datapoint(1, serialConnection);
-    dp1->setFloatValue4Byte(73.49, SetNewValueAndSendOnBus);*/
+    //SetServerItem* ssi = new SetServerItem(serialConnection);
+    //ssi->SetProgrammingMode(true);
+    //delete ssi;
+
+    //Datapoint* dp9 = new Datapoint(9, serialConnection);
+    //dp9->setFloatValue2Byte(27.9, SetNewValueAndSendOnBus);
+    //delete dp9;
+
+    //GetDatapointValue* dpv = new GetDatapointValue(9, DatapointTypes::FLOAT_VALUE_2BYTE, serialConnection);
+
+    //GetDatapointValue* dpv = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
+    //dpv = new GetDatapointValue(1300, DatapointTypes::BOOLEAN, serialConnection);
+    //dpv = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
+    //dpv = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
+    //delete dpv;
+
     GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
     delete gsi;
 
-    //Datapoint* dp1 = new Datapoint(1, serialConnection);
-    //Datapoint* dp2 = new Datapoint(2, serialConnection);
-    //Datapoint* dp3 = new Datapoint(3, serialConnection);
-    //Datapoint* dp4 = new Datapoint(4, serialConnection);
+    //Datapoint* dp = new Datapoint(1, serialConnection);
+    //dp->setBoolean(false, SetNewValueAndSendOnBus);
+    //dp = new Datapoint(2, serialConnection);
+    //dp->setBoolean(false, SetNewValueAndSendOnBus);
+    //dp = new Datapoint(3, serialConnection);
+    //dp->setBoolean(false, SetNewValueAndSendOnBus);
+    //dp = new Datapoint(4, serialConnection);
+    //dp->setBoolean(false, SetNewValueAndSendOnBus);
+    //delete dp;
+
+    //GetDatapointValue* dpv2 = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
+    //dpv2 = new GetDatapointValue(2, DatapointTypes::BOOLEAN, serialConnection);
+    //dpv2 = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
+    //dpv2 = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
+    //delete dpv2;
+
     //dp1->setSignedValue1Byte(true, CommandByte::SetNewValueAndSendOnBus);
     //std::this_thread::sleep_for(1000ms);
     //dp1->setSignedValue1Byte(false, CommandByte::SetNewValueAndSendOnBus);

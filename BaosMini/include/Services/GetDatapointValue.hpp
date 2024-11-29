@@ -2,7 +2,7 @@
 #define GET_DATAPOINT_VALUE_HPP
 
 #include "BaosTelegram.hpp"
-#include "../Enums/DatapointTypesEnum.hpp"
+#include "../Utility/DatapointTypes.hpp"
 
 enum FILTER_CODES
 {
@@ -16,7 +16,7 @@ class GetDatapointValue : public BaosTelegram
 public:
 	GetDatapointValue(
         unsigned short datapointId,
-        unsigned short nrOfDatapoints,
+        DatapointTypes::DATAPOINT_TYPES dpt,
         SerialConnection* serialConnection);
 	~GetDatapointValue();
 

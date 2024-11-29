@@ -244,7 +244,9 @@
     <ClCompile Include="src\Services\GetDatapointValue.cpp" />
     <ClCompile Include="src\Services\GetServerItem.cpp" />
     <ClCompile Include="src\Services\SetDatapointValue.cpp" />
+    <ClCompile Include="src\Services\SetServerItem.cpp" />
     <ClCompile Include="src\utility\ChecksumCalculator.cpp" />
+    <ClCompile Include="src\Utility\DatapointTypes.cpp" />
     <ClCompile Include="src\utility\DataReader.cpp" />
     <ClCompile Include="src\Utility\FloatConverter.cpp" />
     <ClCompile Include="src\Utility\FrameFormatter.cpp" />
@@ -262,17 +264,19 @@
     <ClInclude Include="include\Encryption\Decode\SetServerItemRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\TelegramDecoder.hpp" />
     <ClInclude Include="include\Encryption\Utility\GetErrorDescription.hpp" />
-    <ClInclude Include="include\Enums\DatapointTypesEnum.hpp" />
     <ClInclude Include="include\Enums\ServerItemEnum.hpp" />
     <ClInclude Include="include\Enums\SubservicesEnum.hpp" />
     <ClInclude Include="include\Services\BaosTelegram.hpp" />
     <ClInclude Include="include\Services\GetDatapointValue.hpp" />
     <ClInclude Include="include\Services\GetServerItem.hpp" />
     <ClInclude Include="include\Services\SetDatapointValue.hpp" />
+    <ClInclude Include="include\Services\SetServerItem.hpp" />
     <ClInclude Include="include\utility\ChecksumCalculator.hpp" />
+    <ClInclude Include="include\Utility\DatapointTypes.hpp" />
     <ClInclude Include="include\utility\DataReader.hpp" />
     <ClInclude Include="include\Utility\FloatConverter.hpp" />
     <ClInclude Include="include\Utility\FrameFormatter.hpp" />
+    <ClInclude Include="include\Utility\Macros.hpp" />
     <ClInclude Include="include\Utility\SerialConnection.hpp" />
   </ItemGroup>
   <ItemGroup>

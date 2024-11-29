@@ -93,7 +93,7 @@ unsigned char SerialConnection::getControlByte()
     return currentControlByte;
 }
 
-bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DATAPOINT_TYPES dpt)
+bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt)
 {
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
