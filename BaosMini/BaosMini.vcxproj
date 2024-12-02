@@ -236,14 +236,16 @@
     <ClCompile Include="src\Encryption\Decode\GetParameterByteRes.cpp" />
     <ClCompile Include="src\Encryption\Decode\GetServerItemRes.cpp" />
     <ClCompile Include="src\Encryption\Decode\SetDatapointValueRes.cpp" />
-    <ClCompile Include="src\Encryption\Decode\SetParameterByteRes.cpp" />
     <ClCompile Include="src\Encryption\Decode\SetServerItemRes.cpp" />
     <ClCompile Include="src\Encryption\Decode\TelegramDecoder.cpp" />
     <ClCompile Include="src\Encryption\Utility\GetErrorDescription.cpp" />
     <ClCompile Include="src\Services\BaosTelegram.cpp" />
     <ClCompile Include="src\Services\GetDatapointDescription.cpp" />
     <ClCompile Include="src\Services\GetDatapointValue.cpp" />
+    <ClCompile Include="src\Services\GetDescriptionString.cpp" />
+    <ClCompile Include="src\Services\GetParameterByte.cpp" />
     <ClCompile Include="src\Services\GetServerItem.cpp" />
+    <ClCompile Include="src\Services\IndicationListener.cpp" />
     <ClCompile Include="src\Services\SetDatapointValue.cpp" />
     <ClCompile Include="src\Services\SetServerItem.cpp" />
     <ClCompile Include="src\utility\ChecksumCalculator.cpp" />
@@ -261,7 +263,6 @@
     <ClInclude Include="include\Encryption\Decode\GetParameterByteRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\GetServerItemRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\SetDatapointValueRes.hpp" />
-    <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\SetServerItemRes.hpp" />
     <ClInclude Include="include\Encryption\Decode\TelegramDecoder.hpp" />
     <ClInclude Include="include\Encryption\Utility\GetErrorDescription.hpp" />
@@ -270,7 +271,10 @@
     <ClInclude Include="include\Services\BaosTelegram.hpp" />
     <ClInclude Include="include\Services\GetDatapointDescription.hpp" />
     <ClInclude Include="include\Services\GetDatapointValue.hpp" />
+    <ClInclude Include="include\Services\GetDescriptionString.hpp" />
+    <ClInclude Include="include\Services\GetParameterByte.hpp" />
     <ClInclude Include="include\Services\GetServerItem.hpp" />
+    <ClInclude Include="include\Services\IndicationListener.hpp" />
     <ClInclude Include="include\Services\SetDatapointValue.hpp" />
     <ClInclude Include="include\Services\SetServerItem.hpp" />
     <ClInclude Include="include\utility\ChecksumCalculator.hpp" />

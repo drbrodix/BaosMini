@@ -60,14 +60,6 @@ bool Encryption::decodeTelegram(unsigned char* telegramCharArray, unsigned int t
         }
         return false;
         break;
-    case SetParameterByteRes:
-        if (decodeSetParameterByteRes(telegramCharArray, telegramLength))
-        {
-            return true;
-            break;
-        }
-        return false;
-        break;
     default:
         return false;
         break;

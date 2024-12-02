@@ -1,21 +1,29 @@
 #include "../include/BaosMini.hpp"
 
-
 int main(int argc, char* argv[])
 {
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
+    
+    //IndicationListener* il = new IndicationListener(serialConnection);
+    //delete il;
+    
+    //GetDescriptionString* gds = new GetDescriptionString(1, serialConnection);
+    //delete gds;
+
+    //GetParameterByte* gpb = new GetParameterByte(1, 10, serialConnection);
+    //delete gpb;
 
     GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
     delete gsi;
 
-    GetDatapointDescription* gdd = new GetDatapointDescription(1, serialConnection);
-    gdd = new GetDatapointDescription(2, serialConnection);
-    gdd = new GetDatapointDescription(3, serialConnection);
-    gdd = new GetDatapointDescription(4, serialConnection);
-    gdd = new GetDatapointDescription(5, serialConnection);
-    gdd = new GetDatapointDescription(9, serialConnection);
-    delete gdd;
+    //GetDatapointDescription* gdd = new GetDatapointDescription(1, serialConnection);
+    //gdd = new GetDatapointDescription(2, serialConnection);
+    //gdd = new GetDatapointDescription(3, serialConnection);
+    //gdd = new GetDatapointDescription(4, serialConnection);
+    //gdd = new GetDatapointDescription(5, serialConnection);
+    //gdd = new GetDatapointDescription(9, serialConnection);
+    //delete gdd;
 
     //SetServerItem* ssi = new SetServerItem(serialConnection);
     //ssi->SetProgrammingMode(true);
@@ -48,6 +56,11 @@ int main(int argc, char* argv[])
     //dpv2 = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
     //dpv2 = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
     //delete dpv2;
+
+    //Datapoint* dp1 = new Datapoint(1, serialConnection);
+    //Datapoint* dp2 = new Datapoint(2, serialConnection);
+    //Datapoint* dp3 = new Datapoint(3, serialConnection);
+    //Datapoint* dp4 = new Datapoint(4, serialConnection);
 
     //dp1->setSignedValue1Byte(true, CommandByte::SetNewValueAndSendOnBus);
     //std::this_thread::sleep_for(1000ms);

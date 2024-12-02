@@ -16,6 +16,11 @@ public:
 	~SerialConnection();
 
 	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt = DatapointTypes::NO_DATAPOINT_TYPE);
+	HANDLE getHandle() const
+	{
+		return serialHandle;
+	}
+	bool sendAck() const;
 	
 private:
 	// Value to keep track of control byte state
@@ -39,7 +44,6 @@ private:
 	bool configureConnect();
 	bool configureTimeout();
 
-	bool sendAck() const;
 	bool sendResetRequest() const;
 
 	// Returns control byte depending on the

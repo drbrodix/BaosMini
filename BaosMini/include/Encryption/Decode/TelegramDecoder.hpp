@@ -7,7 +7,6 @@
 #include "GetParameterByteRes.hpp"
 #include "GetServerItemRes.hpp"
 #include "SetDatapointValueRes.hpp"
-#include "SetParameterByteRes.hpp"
 #include "SetServerItemRes.hpp"
 #include "../../Enums/SubservicesEnum.hpp"
 #include "../../Utility/DatapointTypes.hpp"

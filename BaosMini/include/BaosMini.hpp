@@ -8,5 +8,8 @@
 #include "Services/GetServerItem.hpp"
 #include "Services/SetServerItem.hpp"
 #include "Services/GetDatapointDescription.hpp"
+#include "Services/GetParameterByte.hpp"
+#include "Services/GetDescriptionString.hpp"
+
 
 #endif //BAOS_MINI_HPP

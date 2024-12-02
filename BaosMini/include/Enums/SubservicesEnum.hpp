@@ -10,7 +10,7 @@ enum SUBSERVICES
     GetDatapointValueReq = 0x05,
     SetDatapointValueReq = 0x06,
     GetParameterByteReq = 0x07,
-    SetParameterByteReq = 0x08,
+    //SetParameterByteReq = 0x08, // Protocol version 2.2 and above
     GetServerItemRes = 0x81,
     SetServerItemRes = 0x82,
     GetDatapointDescriptionRes = 0x83,
@@ -18,7 +18,7 @@ enum SUBSERVICES
     GetDatapointValueRes = 0x85,
     SetDatapointValueRes = 0x86,
     GetParameterByteRes = 0x87,
-    SetParameterByteRes = 0x88,
+    //SetParameterByteRes = 0x88, // Protocol version 2.2 and above
     DatapointValueind = 0xC1,
     ServerItemInd = 0xC2
 };

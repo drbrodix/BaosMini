@@ -105,9 +105,6 @@
     <ClCompile Include="src\Encryption\Decode\SetDatapointValueRes.cpp">
       <Filter>Source Files\Encryption\Decode</Filter>
     </ClCompile>
-    <ClCompile Include="src\Encryption\Decode\SetParameterByteRes.cpp">
-      <Filter>Source Files\Encryption\Decode</Filter>
-    </ClCompile>
     <ClCompile Include="src\Encryption\Decode\SetServerItemRes.cpp">
       <Filter>Source Files\Encryption\Decode</Filter>
     </ClCompile>
@@ -121,6 +118,15 @@
       <Filter>Source Files\Services</Filter>
     </ClCompile>
     <ClCompile Include="src\Services\GetDatapointDescription.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\GetParameterByte.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\GetDescriptionString.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Services\IndicationListener.cpp">
       <Filter>Source Files\Services</Filter>
     </ClCompile>
   </ItemGroup>
@@ -179,9 +185,6 @@
     <ClInclude Include="include\Encryption\Decode\GetParameterByteRes.hpp">
       <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
-    <ClInclude Include="include\Encryption\Decode\SetParameterByteRes.hpp">
-      <Filter>Header Files\Encryption\Decode</Filter>
-    </ClInclude>
     <ClInclude Include="include\Enums\ServerItemEnum.hpp">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -201,6 +204,15 @@
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="include\Services\GetDatapointDescription.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\GetParameterByte.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\GetDescriptionString.hpp">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\IndicationListener.hpp">
       <Filter>Header Files\Services</Filter>
     </ClInclude>
   </ItemGroup>

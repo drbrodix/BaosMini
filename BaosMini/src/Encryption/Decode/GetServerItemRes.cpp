@@ -42,7 +42,7 @@ void formatServerItemHex(unsigned char* pDataStartAddress, unsigned char itemLen
 {
     for (unsigned char i = 0; i < itemLength; i++)
     {
-        printf("%x ", *(pDataStartAddress + i));
+        printf("%02X ", *(pDataStartAddress + i));
     }
     printf("\n");
 }
@@ -203,7 +203,7 @@ bool decodeGetServerItemRes(unsigned char* telegramCharArray, unsigned int teleg
     // Error route
     if (numberOfItems == 0)
     {
-        getErrorDescription(telegramCharArray[6]); // telegramCharArray[6] == Error code
+        getErrorDescription(*(telegramCharArray + 6)); // telegramCharArray[6] == Error code
 
         return false;
     }
