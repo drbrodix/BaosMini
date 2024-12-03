@@ -9,7 +9,6 @@
 #include "Services/SetServerItem.hpp"
 #include "Services/GetDatapointDescription.hpp"
 #include "Services/GetParameterByte.hpp"
-#include "Services/GetDescriptionString.hpp"
-
+#include "Services/IndicationListener.hpp"
 
 #endif //BAOS_MINI_HPP

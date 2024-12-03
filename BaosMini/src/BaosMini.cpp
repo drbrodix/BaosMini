@@ -5,8 +5,9 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
     
-    //IndicationListener* il = new IndicationListener(serialConnection);
-    //delete il;
+    IndicationListener* il = new IndicationListener(serialConnection);
+    il->startListening();
+    delete il;
     
     //GetDescriptionString* gds = new GetDescriptionString(1, serialConnection);
     //delete gds;
@@ -14,15 +15,20 @@ int main(int argc, char* argv[])
     //GetParameterByte* gpb = new GetParameterByte(1, 10, serialConnection);
     //delete gpb;
 
-    GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
-    delete gsi;
+    //GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
+    //delete gsi;
 
     //GetDatapointDescription* gdd = new GetDatapointDescription(1, serialConnection);
     //gdd = new GetDatapointDescription(2, serialConnection);
+    //printf("%hhu\n", gdd->getDpDpt());
     //gdd = new GetDatapointDescription(3, serialConnection);
+    //printf("%hhu\n", gdd->getDpDpt());
     //gdd = new GetDatapointDescription(4, serialConnection);
+    //printf("%hhu\n", gdd->getDpDpt());
     //gdd = new GetDatapointDescription(5, serialConnection);
+    //printf("%hhu\n", gdd->getDpDpt());
     //gdd = new GetDatapointDescription(9, serialConnection);
+    //printf("%hhu\n", gdd->getDpDpt());
     //delete gdd;
 
     //SetServerItem* ssi = new SetServerItem(serialConnection);
@@ -35,11 +41,11 @@ int main(int argc, char* argv[])
 
     //GetDatapointValue* dpv = new GetDatapointValue(9, DatapointTypes::FLOAT_VALUE_2BYTE, serialConnection);
 
-    //GetDatapointValue* dpv = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
-    //dpv = new GetDatapointValue(1300, DatapointTypes::BOOLEAN, serialConnection);
-    //dpv = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
-    //dpv = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
-    //delete dpv;
+    /*GetDatapointValue* dpv = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
+    dpv = new GetDatapointValue(1300, DatapointTypes::BOOLEAN, serialConnection);
+    dpv = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
+    dpv = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
+    delete dpv;*/
 
     //Datapoint* dp = new Datapoint(1, serialConnection);
     //dp->setBoolean(false, SetNewValueAndSendOnBus);

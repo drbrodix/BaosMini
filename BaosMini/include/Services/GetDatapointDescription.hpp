@@ -10,6 +10,8 @@ public:
         unsigned short datapointId,
         SerialConnection* serialConnection);
 	~GetDatapointDescription();
+    void printDpDescription();
+    unsigned char getDpDpt();
 
 private:
 

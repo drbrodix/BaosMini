@@ -3,7 +3,6 @@
 
 #include "GetDatapointDescriptionRes.hpp"
 #include "GetDatapointValueRes.hpp"
-#include "GetDescriptionStringRes.hpp"
 #include "GetParameterByteRes.hpp"
 #include "GetServerItemRes.hpp"
 #include "SetDatapointValueRes.hpp"
@@ -14,7 +13,7 @@
 
 namespace Encryption
 {
-	bool decodeTelegram(unsigned char* telegramCharArray, unsigned int telegramLength, DatapointTypes::DATAPOINT_TYPES dpt);
+	bool decodeTelegram(unsigned char* telegramCharArray, unsigned int telegramLength, DatapointTypes::DATAPOINT_TYPES dpt = DatapointTypes::NO_DATAPOINT_TYPE);
 }
 
 #endif // TELEGRAM_DECODER_HPP

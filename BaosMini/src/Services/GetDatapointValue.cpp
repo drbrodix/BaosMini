@@ -17,6 +17,7 @@ GetDatapointValue::GetDatapointValue(
 	telegramLength = 7;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength, dpt);
+	getAnswer();
 }
 
 GetDatapointValue::~GetDatapointValue()

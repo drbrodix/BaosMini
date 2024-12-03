@@ -9,6 +9,7 @@ SetServerItem::SetServerItem(
 	// Number of items hard set to 1, since the concurrent
 	// setting of multiple server items will not be supported
 	*(unsigned short*)(baosTelegram + (NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE)) = swap2((unsigned short)0x01);
+	
 }
 
 SetServerItem::~SetServerItem()
@@ -33,6 +34,7 @@ void SetServerItem::SetCurrentBufferSize(unsigned short bufferSize)
 	*(unsigned short*)(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))	= swap2(bufferSize);
 	telegramLength = 11;
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
 }
 
 void SetServerItem::SetProgrammingMode(bool enable)
@@ -43,6 +45,8 @@ void SetServerItem::SetProgrammingMode(bool enable)
 	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))					= enable;
 	telegramLength = 10;
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
+	Encryption::decodeTelegram(responseTelegram, responseLength);
 }
 
 void SetServerItem::SetIndicationSending(bool enable)
@@ -53,4 +57,5 @@ void SetServerItem::SetIndicationSending(bool enable)
 	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))					= enable;
 	telegramLength = 10;
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
 }

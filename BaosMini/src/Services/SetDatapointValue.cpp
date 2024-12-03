@@ -12,7 +12,6 @@ Datapoint::Datapoint(
 
 Datapoint::~Datapoint()
 {
-	
 }
 
 bool Datapoint::setBoolean(bool dpValue, CommandByte commandByte)

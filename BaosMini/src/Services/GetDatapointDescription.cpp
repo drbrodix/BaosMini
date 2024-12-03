@@ -14,8 +14,19 @@ GetDatapointDescription::GetDatapointDescription(
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
 }
 
 GetDatapointDescription::~GetDatapointDescription()
 {
+}
+
+void GetDatapointDescription::printDpDescription()
+{
+	Encryption::decodeTelegram(responseTelegram, responseLength);
+}
+
+unsigned char GetDatapointDescription::getDpDpt()
+{
+	return *(responseTelegram + 10);
 }

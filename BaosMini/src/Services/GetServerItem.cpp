@@ -15,6 +15,8 @@ GetServerItem::GetServerItem(
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
+	Encryption::decodeTelegram(responseTelegram, responseLength);
 }
 
 GetServerItem::~GetServerItem()

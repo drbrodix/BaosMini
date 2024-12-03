@@ -15,6 +15,7 @@ GetParameterByte::GetParameterByte(
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
 }
 
 GetParameterByte::~GetParameterByte()

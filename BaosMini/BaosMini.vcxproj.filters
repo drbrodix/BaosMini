@@ -60,9 +60,6 @@
     <ClCompile Include="src\utility\ChecksumCalculator.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\DataReader.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="src\Utility\FloatConverter.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
@@ -93,9 +90,6 @@
     <ClCompile Include="src\Encryption\Decode\GetDatapointValueRes.cpp">
       <Filter>Source Files\Encryption\Decode</Filter>
     </ClCompile>
-    <ClCompile Include="src\Encryption\Decode\GetDescriptionStringRes.cpp">
-      <Filter>Source Files\Encryption\Decode</Filter>
-    </ClCompile>
     <ClCompile Include="src\Encryption\Decode\GetParameterByteRes.cpp">
       <Filter>Source Files\Encryption\Decode</Filter>
     </ClCompile>
@@ -123,9 +117,6 @@
     <ClCompile Include="src\Services\GetParameterByte.cpp">
       <Filter>Source Files\Services</Filter>
     </ClCompile>
-    <ClCompile Include="src\Services\GetDescriptionString.cpp">
-      <Filter>Source Files\Services</Filter>
-    </ClCompile>
     <ClCompile Include="src\Services\IndicationListener.cpp">
       <Filter>Source Files\Services</Filter>
     </ClCompile>
@@ -135,9 +126,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\utility\ChecksumCalculator.hpp">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utility\DataReader.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\FloatConverter.hpp">
@@ -173,9 +161,6 @@
     <ClInclude Include="include\Encryption\Decode\GetDatapointDescriptionRes.hpp">
       <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
-    <ClInclude Include="include\Encryption\Decode\GetDescriptionStringRes.hpp">
-      <Filter>Header Files\Encryption\Decode</Filter>
-    </ClInclude>
     <ClInclude Include="include\Encryption\Decode\GetDatapointValueRes.hpp">
       <Filter>Header Files\Encryption\Decode</Filter>
     </ClInclude>
@@ -207,9 +192,6 @@
       <Filter>Header Files\Services</Filter>
     </ClInclude>
     <ClInclude Include="include\Services\GetParameterByte.hpp">
-      <Filter>Header Files\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Services\GetDescriptionString.hpp">
       <Filter>Header Files\Services</Filter>
     </ClInclude>
     <ClInclude Include="include\Services\IndicationListener.hpp">

@@ -5,6 +5,7 @@ bool Encryption::decodeTelegram(unsigned char* telegramCharArray, unsigned int t
     switch ((SUBSERVICES)telegramCharArray[1])
     {
     case GetServerItemRes:
+    case ServerItemInd:
         if (decodeGetServerItemRes(telegramCharArray, telegramLength))
         {
 			return true;
@@ -28,15 +29,8 @@ bool Encryption::decodeTelegram(unsigned char* telegramCharArray, unsigned int t
         }
         return false;
         break;
-    case GetDescriptionStringRes:
-        if (decodeGetDescriptionStringRes(telegramCharArray, telegramLength))
-        {
-            return true;
-            break;
-        }
-        return false;
-        break;
     case GetDatapointValueRes:
+    case DatapointValueind:
         if (decodeGetDatapointValueRes(telegramCharArray, telegramLength, dpt))
         {
             return true;
