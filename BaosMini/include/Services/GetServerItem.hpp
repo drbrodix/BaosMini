@@ -14,7 +14,8 @@ public:
 	~GetServerItem();
 
 private:
-
+	// Returns true if errors have been encountered while fetching datapoint value
+	bool checkForError();
 };
 
 #endif // GET_SERVER_ITEM_HPP

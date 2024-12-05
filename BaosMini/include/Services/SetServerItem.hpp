@@ -38,13 +38,13 @@ public:
 		SerialConnection* serialConnection);
 	~SetServerItem();
 
-	void SetBaudrate(BAUDRATE baudrate);
-	void SetCurrentBufferSize(unsigned short bufferSize);
-	void SetProgrammingMode(bool enable);
-	void SetIndicationSending(bool enable);
+	void setBaudrate(BAUDRATE baudrate, bool decode = false);
+	void setCurrentBufferSize(unsigned short bufferSize, bool decode = false);
+	void setProgrammingMode(bool enable, bool decode = false);
+	void setIndicationSending(bool enable, bool decode = false);
 
 private:
-
+	void setBool(bool enable, bool decode, SERVER_ITEMS serverItem);
 };
 
 #endif // SET_SERVER_ITEM_HPP

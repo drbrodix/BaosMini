@@ -16,7 +16,8 @@ SetServerItem::~SetServerItem()
 {
 }
 
-void SetServerItem::SetBaudrate(BAUDRATE baudrate)
+// Set decode to "true" to print ObjectServer answer in terminal
+void SetServerItem::setBaudrate(BAUDRATE baudrate, bool decode)
 {
 	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::BAUDRATE);
 	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))	= swap2((unsigned short)SERVER_ITEMS::BAUDRATE);
@@ -24,9 +25,15 @@ void SetServerItem::SetBaudrate(BAUDRATE baudrate)
 	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))					= baudrate;
 	telegramLength = 10;
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
+	if (decode)
+	{
+		Encryption::decodeTelegram(responseTelegram, responseLength);
+	}
 }
 
-void SetServerItem::SetCurrentBufferSize(unsigned short bufferSize)
+// Set decode to "true" to print ObjectServer answer in terminal
+void SetServerItem::setCurrentBufferSize(unsigned short bufferSize, bool decode)
 {
 	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))			= swap2((unsigned short)SERVER_ITEMS::CURRENT_BUFFER_SIZE);
 	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::CURRENT_BUFFER_SIZE);
@@ -35,27 +42,35 @@ void SetServerItem::SetCurrentBufferSize(unsigned short bufferSize)
 	telegramLength = 11;
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	getAnswer();
+	if (decode)
+	{
+		Encryption::decodeTelegram(responseTelegram, responseLength);
+	}
 }
 
-void SetServerItem::SetProgrammingMode(bool enable)
+void SetServerItem::setBool(bool enable, bool decode, SERVER_ITEMS serverItem)
 {
-	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::PROGRAMMING_MODE);
-	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))	= swap2((unsigned short)SERVER_ITEMS::PROGRAMMING_MODE);
-	*(baosTelegram + (FIRST_ITEM_LENGTH_OFFSET_FROM_MAINSERVICE))				= 0x01;
-	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))					= enable;
+	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE)) = swap2((unsigned short)serverItem);
+	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE)) = swap2((unsigned short)serverItem);
+	*(baosTelegram + (FIRST_ITEM_LENGTH_OFFSET_FROM_MAINSERVICE)) = 0x01;
+	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE)) = enable;
 	telegramLength = 10;
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	getAnswer();
-	Encryption::decodeTelegram(responseTelegram, responseLength);
+	if (decode)
+	{
+		Encryption::decodeTelegram(responseTelegram, responseLength);
+	}
 }
 
-void SetServerItem::SetIndicationSending(bool enable)
+// Set decode to "true" to print ObjectServer answer in terminal
+void SetServerItem::setProgrammingMode(bool enable, bool decode)
 {
-	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::INDICATION_SENDING);
-	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))	= swap2((unsigned short)SERVER_ITEMS::INDICATION_SENDING);
-	*(baosTelegram + (FIRST_ITEM_LENGTH_OFFSET_FROM_MAINSERVICE))				= 0x01;
-	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))					= enable;
-	telegramLength = 10;
-	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	getAnswer();
+	setBool(enable, decode, SERVER_ITEMS::PROGRAMMING_MODE);
+}
+
+// Set decode to "true" to print ObjectServer answer in terminal
+void SetServerItem::setIndicationSending(bool enable, bool decode)
+{
+	setBool(enable, decode, SERVER_ITEMS::INDICATION_SENDING);
 }

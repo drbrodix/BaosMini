@@ -47,9 +47,9 @@ private:
 	bool configureConnect();
 	bool configureTimeout();
 
-	bool charFound(unsigned char charToFind);
-	unsigned int readHeader(unsigned char* ft12Header);
-	bool readData(unsigned char* buffer);
+	bool isCharFound(unsigned char charToFind) const;
+	unsigned int readHeader(unsigned char* ft12Header) const;
+	bool readData(unsigned char* buffer) const;
 
 	bool sendResetRequest() const;
 

@@ -170,8 +170,12 @@ bool SerialConnection::sendResetRequest() const
     return true;
 }
 
+//                                  //
+//  Reader Functions Section Below  //
+//                                  //
+
 // Return true if parameter char is found
-bool SerialConnection::charFound(unsigned char charToFind)
+bool SerialConnection::isCharFound(unsigned char charToFind) const
 {
     unsigned char c = 0;
 
@@ -192,7 +196,7 @@ bool SerialConnection::charFound(unsigned char charToFind)
 }
 
 // Return telegram length, or 0 if reading failed
-unsigned int SerialConnection::readHeader(unsigned char* ft12Header)
+unsigned int SerialConnection::readHeader(unsigned char* ft12Header) const
 {
     // Reading FT1.2 header
     for (int i = 1; i < FT12_HEADER_SIZE; i++)  // Loop start index at 1, because
@@ -222,7 +226,7 @@ unsigned int SerialConnection::readHeader(unsigned char* ft12Header)
     }
 }
 
-bool SerialConnection::readData(unsigned char* buffer)
+bool SerialConnection::readData(unsigned char* buffer) const
 {
     DWORD bytesRead = 0;
     if (!ReadFile(
@@ -249,7 +253,7 @@ unsigned int SerialConnection::recieveTelegram(unsigned char* telegramCharArray)
     unsigned char checksum = 0;
     unsigned char endByte = 0;
 
-    while (!charFound(FT12_START_BYTE));
+    while (!isCharFound(FT12_START_BYTE));
 
     telegramLength = readHeader(ft12Header);
 

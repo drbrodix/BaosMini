@@ -99,7 +99,8 @@ void decodeDpConfigFlags(unsigned char* startAddress)
 		"Enabled" : "Disabled");
 
 	printf("\tTransmit to bus: %s\n",
-		(*startAddress & 0b0100'0100) == 0b0100'0000 ? "Enabled" : "Disabled");
+		(*startAddress & 0b0100'0000) == 0b0100'0000 ?
+		"Enabled" : "Disabled");
 
 	printf("\tUpdate on response: %s\n",
 		(*startAddress & 0b1000'0000) == 0b1000'0000 ?
@@ -162,9 +163,5 @@ bool decodeGetDatapointDescriptionRes(unsigned char* telegramCharArray, unsigned
 		decodeDpDpt((telegramCharArray + DP_DPT_OFFSET_FROM_MAINSERVICE));
 		decodeDpValueType((telegramCharArray + DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE));
 		decodeDpConfigFlags((telegramCharArray + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE));
-
-		/*unsigned char dpValueSize = *(telegramCharArray + DP_LENGTH_OFFSET_FROM_MAINSERVICE);
-		unsigned short dpId = swap2(*(unsigned short*)(telegramCharArray + DP_ID_OFFSET_FROM_MAINSERVICE));
-		unsigned char* pValueStartAddress = (telegramCharArray + DP_VALUE_OFFSET_FROM_MAINSERVICE);*/
 	}
 }

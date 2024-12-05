@@ -1,5 +1,5 @@
-#ifndef DATAPOINT_HPP
-#define DATAPOINT_HPP
+#ifndef SET_DATAPOINT_VALUE_HPP
+#define SET_DATAPOINT_VALUE_HPP
 
 #include <cstring>
 #include <cstdio>
@@ -17,14 +17,14 @@ enum CommandByte
 	ClearDatapointTransmissionState = 0x05  // Clear datapoint transmission state
 };
 
-class Datapoint : BaosTelegram
+class SetDatapointValue : BaosTelegram
 {
 public:
-	Datapoint(
+	SetDatapointValue(
 		unsigned short dpId,
 		SerialConnection* serialConnection
 	);
-	~Datapoint();
+	~SetDatapointValue();
 
 	//                         Generic structure of BAOS Datapoint
 	// 
@@ -33,22 +33,22 @@ public:
 	//         0x00 0x00        |        0x00        |        0x00        |         0x00 ...
 
 	// Functions to setup Datapoint
-	bool setBoolean(bool dpValue, CommandByte commandByte);
-	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte);
-	bool setSignedValue1Byte(char dpValue, CommandByte commandByte);
-	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte);
-	bool setSignedValue2Byte(short dpValue, CommandByte commandByte);
-	bool setFloatValue2Byte(float dpValue, CommandByte commandByte);
-	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte);
-	bool setSignedValue4Byte(int dpValue, CommandByte commandByte);
-	bool setFloatValue4Byte(float dpValue, CommandByte commandByte);
+	bool setBoolean(bool dpValue, CommandByte commandByte, bool decode = false);
+	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte, bool decode = false);
+	bool setSignedValue1Byte(char dpValue, CommandByte commandByte, bool decode = false);
+	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte, bool decode = false);
+	bool setSignedValue2Byte(short dpValue, CommandByte commandByte, bool decode = false);
+	bool setFloatValue2Byte(float dpValue, CommandByte commandByte, bool decode = false);
+	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte, bool decode = false);
+	bool setSignedValue4Byte(int dpValue, CommandByte commandByte, bool decode = false);
+	bool setFloatValue4Byte(float dpValue, CommandByte commandByte, bool decode = false);
 
 private:
 	unsigned short dpId;
 	
-	bool setOneByteDp(unsigned char dpValue, CommandByte commandByte);
+	bool setOneByteDp(unsigned char dpValue, CommandByte commandByte, bool decode);
 	bool setDpIdAndNr();
 	bool clearTelegram();
 };
 
-#endif // DATAPOINT_HPP
+#endif // SET_DATAPOINT_VALUE_HPP

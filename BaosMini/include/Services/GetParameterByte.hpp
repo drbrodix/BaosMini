@@ -8,12 +8,12 @@ class GetParameterByte : public BaosTelegram
 public:
     GetParameterByte(
         unsigned short indexOfFirstByte,
-        unsigned short numberOfBytes,
         SerialConnection* serialConnection);
 	~GetParameterByte();
+    unsigned char getByte();
 
 private:
-
+    bool checkForError();
 };
 
 #endif // GET_PARAMETER_BYTE_HPP

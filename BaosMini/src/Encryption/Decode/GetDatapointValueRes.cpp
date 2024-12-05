@@ -3,10 +3,10 @@
 float decode4ByteFloat(unsigned char* pValueStartAddress)
 {
 	float dpValueSwapped = 0.0f;
-	*((char*)&dpValueSwapped + 0) = *((char*)&pValueStartAddress + 3);
-	*((char*)&dpValueSwapped + 1) = *((char*)&pValueStartAddress + 2);
-	*((char*)&dpValueSwapped + 2) = *((char*)&pValueStartAddress + 1);
-	*((char*)&dpValueSwapped + 3) = *((char*)&pValueStartAddress + 0);
+	*((char*)&dpValueSwapped)		= *((char*)pValueStartAddress + 3);
+	*((char*)&dpValueSwapped + 1)	= *((char*)pValueStartAddress + 2);
+	*((char*)&dpValueSwapped + 2)	= *((char*)pValueStartAddress + 1);
+	*((char*)&dpValueSwapped + 3)	= *((char*)pValueStartAddress);
 	return dpValueSwapped;
 }
 
@@ -69,7 +69,7 @@ bool decodeGetDatapointValueRes(unsigned char* telegramCharArray, unsigned int t
 				printf("Datapoint %hu of DPT%hu: %.2hf\n",
 					dpId, dpt,
 					floatConverter::decode2byteFloat(
-						*pValueStartAddress, *pValueStartAddress + 1));
+						*pValueStartAddress, *(pValueStartAddress + 1)));
 				return true;
 				break;
 			case DatapointTypes::UNSIGNED_VALUE_4BYTE:

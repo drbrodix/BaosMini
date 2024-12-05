@@ -40,6 +40,7 @@ BaosTelegram::BaosTelegram()
     , responseTelegram(nullptr)
     , telegramLength(0)
     , responseLength(0)
+    , hasValidResponse(false)
 {
 }
 

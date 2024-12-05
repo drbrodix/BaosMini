@@ -1,6 +1,6 @@
 #include "../../include/Services/SetDatapointValue.hpp"
 
-Datapoint::Datapoint(
+SetDatapointValue::SetDatapointValue(
 	unsigned short dpId,
 	SerialConnection* serialConnection
 )
@@ -10,13 +10,13 @@ Datapoint::Datapoint(
 	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = SetDatapointValueReq;
 }
 
-Datapoint::~Datapoint()
+SetDatapointValue::~SetDatapointValue()
 {
 }
 
-bool Datapoint::setBoolean(bool dpValue, CommandByte commandByte)
+bool SetDatapointValue::setBoolean(bool dpValue, CommandByte commandByte, bool decode)
 {
-	if (setOneByteDp(dpValue, commandByte))
+	if (setOneByteDp(dpValue, commandByte, decode))
 	{
 		return true;
 	}
@@ -26,9 +26,9 @@ bool Datapoint::setBoolean(bool dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte)
+bool SetDatapointValue::setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte, bool decode)
 {
-	if(setOneByteDp(dpValue, commandByte))
+	if(setOneByteDp(dpValue, commandByte, decode))
 	{
 		return true;
 	}
@@ -38,7 +38,7 @@ bool Datapoint::setUnsignedValue1Byte(unsigned char dpValue, CommandByte command
 	}
 }
 
-bool Datapoint::setOneByteDp(unsigned char dpValue, CommandByte commandByte)
+bool SetDatapointValue::setOneByteDp(unsigned char dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -51,6 +51,11 @@ bool Datapoint::setOneByteDp(unsigned char dpValue, CommandByte commandByte)
 		telegramLength = 11; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -60,7 +65,7 @@ bool Datapoint::setOneByteDp(unsigned char dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setSignedValue1Byte(char dpValue, CommandByte commandByte)
+bool SetDatapointValue::setSignedValue1Byte(char dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -73,7 +78,11 @@ bool Datapoint::setSignedValue1Byte(char dpValue, CommandByte commandByte)
 		telegramLength = 11; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -83,7 +92,7 @@ bool Datapoint::setSignedValue1Byte(char dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte)
+bool SetDatapointValue::setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -97,7 +106,11 @@ bool Datapoint::setUnsignedValue2Byte(unsigned short dpValue, CommandByte comman
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -107,7 +120,7 @@ bool Datapoint::setUnsignedValue2Byte(unsigned short dpValue, CommandByte comman
 	}
 }
 
-bool Datapoint::setSignedValue2Byte(short dpValue, CommandByte commandByte)
+bool SetDatapointValue::setSignedValue2Byte(short dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -121,7 +134,11 @@ bool Datapoint::setSignedValue2Byte(short dpValue, CommandByte commandByte)
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -131,7 +148,7 @@ bool Datapoint::setSignedValue2Byte(short dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setFloatValue2Byte(float dpValue, CommandByte commandByte)
+bool SetDatapointValue::setFloatValue2Byte(float dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -146,7 +163,11 @@ bool Datapoint::setFloatValue2Byte(float dpValue, CommandByte commandByte)
 		telegramLength = 12; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -156,7 +177,7 @@ bool Datapoint::setFloatValue2Byte(float dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte)
+bool SetDatapointValue::setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -170,7 +191,11 @@ bool Datapoint::setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandB
 		telegramLength = 14; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -180,7 +205,7 @@ bool Datapoint::setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandB
 	}
 }
 
-bool Datapoint::setSignedValue4Byte(int dpValue, CommandByte commandByte)
+bool SetDatapointValue::setSignedValue4Byte(int dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{
@@ -194,7 +219,11 @@ bool Datapoint::setSignedValue4Byte(int dpValue, CommandByte commandByte)
 		telegramLength = 14; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -204,7 +233,7 @@ bool Datapoint::setSignedValue4Byte(int dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setFloatValue4Byte(float dpValue, CommandByte commandByte)
+bool SetDatapointValue::setFloatValue4Byte(float dpValue, CommandByte commandByte, bool decode)
 {
 	try
 	{	
@@ -224,7 +253,11 @@ bool Datapoint::setFloatValue4Byte(float dpValue, CommandByte commandByte)
 		telegramLength = 14; // Member variable set to BAOS telegram length (header + data)
 
 		serialConnection->sendTelegram(baosTelegram, telegramLength);
-
+		getAnswer();
+		if (decode)
+		{
+			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+		}
 		return true;
 	}
 	catch (const std::exception& e)
@@ -234,7 +267,7 @@ bool Datapoint::setFloatValue4Byte(float dpValue, CommandByte commandByte)
 	}
 }
 
-bool Datapoint::setDpIdAndNr()
+bool SetDatapointValue::setDpIdAndNr()
 {
 	try
 	{
@@ -253,7 +286,7 @@ bool Datapoint::setDpIdAndNr()
 	}
 }
 
-bool Datapoint::clearTelegram()
+bool SetDatapointValue::clearTelegram()
 {
 	try
 	{

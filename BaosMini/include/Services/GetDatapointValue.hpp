@@ -3,6 +3,7 @@
 
 #include "BaosTelegram.hpp"
 #include "../Utility/DatapointTypes.hpp"
+#include "../Utility/Macros.hpp"
 
 enum FILTER_CODES
 {
@@ -20,8 +21,29 @@ public:
         SerialConnection* serialConnection);
 	~GetDatapointValue();
 
-private:
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    bool getBooleanValue();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    unsigned char getUnsignedValue1Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    char getSignedValue1Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    unsigned short getUnsignedValue2Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    short getSignedValue2Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    float getFloatValue2Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    unsigned int getUnsignedValue4Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    int getSignedValue4Byte();
+    // Returns 0 if no valid value has been fetched from ObjectServer
+    float getFloatValue4Byte();
 
+private:
+    DatapointTypes::DATAPOINT_TYPES dpt;
+    // Returns true if errors have been encountered while fetching datapoint value
+    bool checkForError(unsigned short datapointId);
 };
 
 #endif // GET_DATAPOINT_VALUE_HPP
