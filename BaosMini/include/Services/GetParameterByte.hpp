@@ -13,6 +13,8 @@ public:
     unsigned char getByte();
 
 private:
+    // Returns true if no errors have been encountered
+    // while fetching datapoint value, false otherwise
     bool checkForError();
 };
 

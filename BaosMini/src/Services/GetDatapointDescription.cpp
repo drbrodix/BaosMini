@@ -14,14 +14,10 @@ GetDatapointDescription::GetDatapointDescription(
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	if (getAnswer())
-	{
-		hasValidResponse = true;
-	}
-	if (checkForError())
-	{
-		hasValidResponse = false;
-	}
+
+	hasValidResponse = getAnswer();
+
+	hasValidResponse = checkForError();
 }
 
 GetDatapointDescription::~GetDatapointDescription()
@@ -64,17 +60,17 @@ unsigned char GetDatapointDescription::getDpConfigFlagsByte()
 
 bool GetDatapointDescription::checkForError()
 {
-	bool hasError = false;
+	bool hasNoError = true;
 	unsigned short nrOfDps = swap2(*((unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE)));
 	
 	// Error route
 	if (!nrOfDps)
 	{
 		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
-		hasError = true;
+		hasNoError = false;
 	}
 
-	return hasError;
+	return hasNoError;
 }
 
 void GetDatapointDescription::decodeDpDpt(unsigned char dpt)

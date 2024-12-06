@@ -8,6 +8,7 @@ SetDatapointValue::SetDatapointValue(
 	, dpId(dpId)
 {
 	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = SetDatapointValueReq;
+	setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 }
 
 SetDatapointValue::~SetDatapointValue()
@@ -42,8 +43,6 @@ bool SetDatapointValue::setOneByteDp(unsigned char dpValue, CommandByte commandB
 {
 	try
 	{
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7th byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = 0x01; // 8th byte set to datapoint value size
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue; // 9th byte set to actual value to set the datapoint to
@@ -69,8 +68,6 @@ bool SetDatapointValue::setSignedValue1Byte(char dpValue, CommandByte commandByt
 {
 	try
 	{
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SIGNED_VALUE_1BYTE); // 8th byte set to datapoint value size
 		*(char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue; // 9th byte set to actual value to set the datapoint to
@@ -97,8 +94,6 @@ bool SetDatapointValue::setUnsignedValue2Byte(unsigned short dpValue, CommandByt
 	try
 	{
 		unsigned short swappedDpValue = swap2(dpValue);
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::UNSIGNED_VALUE_2BYTE); // 8th byte set to datapoint value size
 		*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th and 10th byte set to actual value to set the datapoint to
@@ -125,8 +120,6 @@ bool SetDatapointValue::setSignedValue2Byte(short dpValue, CommandByte commandBy
 	try
 	{
 		short swappedDpValue = swap2(dpValue);
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SIGNED_VALUE_2BYTE); // 8th byte set to datapoint value size
 		*(short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th and 10th byte set to actual value to set the datapoint to
@@ -154,8 +147,7 @@ bool SetDatapointValue::setFloatValue2Byte(float dpValue, CommandByte commandByt
 	{
 		unsigned char floatBytesArr[2] = { 0, 0 };
 		floatConverter::encode2byteFloat(dpValue, floatBytesArr);
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
+
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::FLOAT_VALUE_2BYTE); // 8th byte set to datapoint value size
 		*(unsigned char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = floatBytesArr[0]; // 9th byte set to actual value to set the datapoint to
@@ -182,8 +174,7 @@ bool SetDatapointValue::setUnsignedValue4Byte(unsigned int dpValue, CommandByte 
 	try
 	{
 		unsigned int swappedDpValue = swap4(dpValue);
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
+
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::UNSIGNED_VALUE_4BYTE); // 8th byte set to datapoint value size
 		*(unsigned int*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th till 12th bytes set to actual value to set the datapoint to
@@ -210,8 +201,6 @@ bool SetDatapointValue::setSignedValue4Byte(int dpValue, CommandByte commandByte
 	try
 	{
 		int swappedDpValue = swap4(dpValue);
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::SIGNED_VALUE_4BYTE); // 8th byte set to datapoint value size
 		*(int*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = swappedDpValue; // 9th till 12th bytes set to actual value to set the datapoint to
@@ -244,8 +233,7 @@ bool SetDatapointValue::setFloatValue4Byte(float dpValue, CommandByte commandByt
 		*((char*)&dpValueSwapped + 1) = *((char*)&dpValue + 2);
 		*((char*)&dpValueSwapped + 2) = *((char*)&dpValue + 1);
 		*((char*)&dpValueSwapped + 3) = *((char*)&dpValue + 0);
-		clearTelegram();
-		setDpIdAndNr(); // 1st and 2nd, 5th and	6th byte are set to datapoint ID, 3rd and 4th byte are set to number of datapoints
+
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte; // 7rd byte set to command byte
 		*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = getDatapointSize(DatapointTypes::FLOAT_VALUE_4BYTE); // 8th byte set to datapoint value size
 		*(float*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValueSwapped; // 9th till 12th bytes set to actual value to set the datapoint to
@@ -286,19 +274,22 @@ bool SetDatapointValue::setDpIdAndNr()
 	}
 }
 
-bool SetDatapointValue::clearTelegram()
-{
-	try
-	{
-		for (unsigned char i = BAOS_DATA_FIRST_INDEX; i < TELEGRAM_ARR_SIZE; i++)
-		{
-			baosTelegram[i] = 0x00;
-		}
-		return true;
-	}
-	catch (const std::exception& e)
-	{
-		printf("Error while clearing telegram: %s\n", e.what());
-		return false;
-	}
-}
+//bool SetDatapointValue::decodeSetDatapointValueRes(unsigned char* telegramCharArray, unsigned int telegramLength)
+//{
+//	const unsigned char ERROR_CODE = telegramCharArray[6];
+//
+//	if (ERROR_CODE == 0x00)
+//	{
+//		unsigned short datapointID = swap2(*(unsigned short*)(telegramCharArray + 2));
+//
+//		printf("Datapoint %hu has been successfully set\n", datapointID);
+//		return true;
+//	}
+//	// Error route
+//	else
+//	{
+//		getErrorDescription(ERROR_CODE);
+//
+//		return false;
+//	}
+//}

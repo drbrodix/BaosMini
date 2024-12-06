@@ -13,19 +13,16 @@ GetDatapointValue::GetDatapointValue(
 	
 	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 2))	= swap2(0x01);
 
-	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 4))					= FILTER_CODES::GetAllDatapointValues; // Filter, which datapoints should be retrieved
+	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 4))					= FILTER_CODES::GetAllDatapointValues;
 
 	telegramLength = 7;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength, dpt);
-	if (getAnswer())
-	{
-		hasValidResponse = true;
-	}
-	if (checkForError(datapointId))
-	{
-		hasValidResponse = false;
-	}
+
+	hasValidResponse = getAnswer();
+
+	hasValidResponse = checkForError(datapointId);
+
 }
 
 GetDatapointValue::~GetDatapointValue()
@@ -34,7 +31,7 @@ GetDatapointValue::~GetDatapointValue()
 
 bool GetDatapointValue::checkForError(unsigned short datapointId)
 {
-	bool hasError = false;
+	bool hasNoError = true;
 	unsigned short nrOfDps = swap2(*((unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE)));
 	unsigned char dpValueSize = DatapointTypes::getDatapointSize(dpt);
 	unsigned char responseDpValueSize = *(responseTelegram + DP_LENGTH_OFFSET_FROM_MAINSERVICE);
@@ -43,15 +40,15 @@ bool GetDatapointValue::checkForError(unsigned short datapointId)
 	if (!nrOfDps)
 	{
 		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
-		hasError = true;
+		hasNoError = false;
 	}
 	// Datapoint length doesn't match the expected length
 	if (dpValueSize != responseDpValueSize)
 	{
 		printf("Incorrect datapoint length while fetching datapoint %hu\n", datapointId);
-		hasError = true;
+		hasNoError = false;
 	}
-	return hasError;
+	return hasNoError;
 }
 
 bool GetDatapointValue::getBooleanValue()

@@ -47,8 +47,7 @@ private:
 	unsigned short dpId;
 	
 	bool setOneByteDp(unsigned char dpValue, CommandByte commandByte, bool decode);
-	bool setDpIdAndNr();
-	bool clearTelegram();
+	inline bool setDpIdAndNr();
 };
 
 #endif // SET_DATAPOINT_VALUE_HPP

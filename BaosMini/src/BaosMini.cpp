@@ -5,9 +5,9 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
     
-    //IndicationListener* il = new IndicationListener(serialConnection);
-    //il->startListening();
-    //delete il;
+    IndicationListener* il = new IndicationListener(serialConnection);
+    il->startListening();
+    delete il;
 
     //GetParameterByte* gpb = new GetParameterByte(330, serialConnection);
     //printf("Param #9: %hhu", gpb->getByte());
@@ -51,17 +51,17 @@ int main(int argc, char* argv[])
 
     //GetDatapointValue* dpv = new GetDatapointValue(9, DatapointTypes::FLOAT_VALUE_2BYTE, serialConnection);
 
-    GetDatapointValue* dpv = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
-    printf("Datapoint 1: %hhu\n", dpv->getBooleanValue());
-    dpv = new GetDatapointValue(1300, DatapointTypes::BOOLEAN, serialConnection);
-    printf("Datapoint 1300: %hhu\n", dpv->getBooleanValue());
-    dpv = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
-    printf("Datapoint 3: %hhu\n", dpv->getBooleanValue());
-    dpv = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
-    printf("Datapoint 4: %hhu\n", dpv->getBooleanValue());
-    dpv = new GetDatapointValue(9, DatapointTypes::FLOAT_VALUE_2BYTE, serialConnection);
-    printf("Datapoint 9: %.2f\n", dpv->getFloatValue2Byte());
-    delete dpv;
+    //GetDatapointValue* dpv = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
+    //printf("Datapoint 1: %hhu\n", dpv->getBooleanValue());
+    //dpv = new GetDatapointValue(1300, DatapointTypes::BOOLEAN, serialConnection);
+    //printf("Datapoint 1300: %hhu\n", dpv->getBooleanValue());
+    //dpv = new GetDatapointValue(3, DatapointTypes::BOOLEAN, serialConnection);
+    //printf("Datapoint 3: %hhu\n", dpv->getBooleanValue());
+    //dpv = new GetDatapointValue(4, DatapointTypes::BOOLEAN, serialConnection);
+    //printf("Datapoint 4: %hhu\n", dpv->getBooleanValue());
+    //dpv = new GetDatapointValue(9, DatapointTypes::FLOAT_VALUE_2BYTE, serialConnection);
+    //printf("Datapoint 9: %.2f\n", dpv->getFloatValue2Byte());
+    //delete dpv;
 
     //SetDatapointValue* dp1 = new SetDatapointValue(1, serialConnection);
     //dp1->setBoolean(false, SetNewValueAndSendOnBus, true);
@@ -92,7 +92,7 @@ int main(int argc, char* argv[])
     //SetDatapointValue* dp2 = new SetDatapointValue(2, serialConnection);
     //SetDatapointValue* dp3 = new SetDatapointValue(3, serialConnection);
     //SetDatapointValue* dp4 = new SetDatapointValue(4, serialConnection);
-
+    //
     //dp1->setBoolean(true, CommandByte::SetNewValueAndSendOnBus);
     //std::this_thread::sleep_for(RUN_SPEED);
     //dp1->setBoolean(false, CommandByte::SetNewValueAndSendOnBus);

@@ -28,7 +28,8 @@ public:
     unsigned char getDpConfigFlagsByte();
 
 private:
-    // Returns true if errors have been encountered while fetching datapoint value
+    // Returns true if no errors have been encountered
+    // while fetching datapoint value, false otherwise
     bool checkForError();
     void decodeDpDpt(unsigned char dpt);
     void decodeDpConfigFlags(unsigned char configFlagByte);

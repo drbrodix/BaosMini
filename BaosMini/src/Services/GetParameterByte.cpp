@@ -29,15 +29,15 @@ unsigned char GetParameterByte::getByte()
 
 bool GetParameterByte::checkForError()
 {
-	bool hasError = false;
+	bool hasNoError = true;
 	unsigned short nrOfBytes = swap2(*((unsigned short*)(responseTelegram + NR_OF_BYTES_OFFSET_FROM_MAIN_SERVICE)));
 	
 	// Error route
 	if (!nrOfBytes)
 	{
 		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
-		hasError = true;
+		hasNoError = false;
 	}
 
-	return hasError;
+	return hasNoError;
 }

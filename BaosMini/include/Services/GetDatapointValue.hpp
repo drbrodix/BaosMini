@@ -42,7 +42,8 @@ public:
 
 private:
     DatapointTypes::DATAPOINT_TYPES dpt;
-    // Returns true if errors have been encountered while fetching datapoint value
+    // Returns true if no errors have been encountered
+    // while fetching datapoint value, false otherwise
     bool checkForError(unsigned short datapointId);
 };
 
