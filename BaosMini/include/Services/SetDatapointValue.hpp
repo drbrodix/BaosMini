@@ -1,6 +1,10 @@
 #ifndef SET_DATAPOINT_VALUE_HPP
 #define SET_DATAPOINT_VALUE_HPP
 
+#ifndef ERROR_CODE_OFFSET_FROM_MAINSERVICE
+#define ERROR_CODE_OFFSET_FROM_MAINSERVICE 6
+#endif // !ERROR_CODE_OFFSET_FROM_MAINSERVICE
+
 #include <cstring>
 #include <cstdio>
 #include "BaosTelegram.hpp"
@@ -48,6 +52,7 @@ private:
 	
 	bool setOneByteDp(unsigned char dpValue, CommandByte commandByte, bool decode);
 	inline bool setDpIdAndNr();
+	bool decodeSetDatapointValueRes();
 };
 
 #endif // SET_DATAPOINT_VALUE_HPP

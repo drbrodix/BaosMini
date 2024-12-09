@@ -5,16 +5,16 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection *serialConnection = new SerialConnection("COM3");
     
-    IndicationListener* il = new IndicationListener(serialConnection);
-    il->startListening();
-    delete il;
+    //IndicationListener* il = new IndicationListener(serialConnection);
+    //il->startListening();
+    //delete il;
 
-    //GetParameterByte* gpb = new GetParameterByte(330, serialConnection);
+    //GetParameterByte* gpb = new GetParameterByte(9, serialConnection);
     //printf("Param #9: %hhu", gpb->getByte());
     //delete gpb;
 
     //SetServerItem* ssi = new SetServerItem(serialConnection);
-    //ssi->setProgrammingMode(false);
+    //ssi->setProgrammingMode(true, true);
     //delete ssi;
 
     //GetServerItem* gsi = new GetServerItem(HARDWARE_TYPE, 20, serialConnection);
@@ -23,22 +23,16 @@ int main(int argc, char* argv[])
 
     //GetDatapointDescription* gdd = new GetDatapointDescription(1, serialConnection);
     //gdd->printDpDescription(true, false, false);
-
     //gdd = new GetDatapointDescription(19, serialConnection);
     //gdd->printDpDescription(true, true, true);
-
     //gdd = new GetDatapointDescription(3, serialConnection);
     //gdd->printDpDescription(true, true, true);
-
     //gdd = new GetDatapointDescription(4, serialConnection);
     //gdd->printDpDescription(true, true, true);
-
     //gdd = new GetDatapointDescription(5, serialConnection);
     //gdd->printDpDescription(true, true, true);
-
     //gdd = new GetDatapointDescription(9, serialConnection);
     //gdd->printDpDescription(true, true, true);
-
     //delete gdd;
 
     //SetServerItem* ssi = new SetServerItem(serialConnection);
@@ -46,10 +40,8 @@ int main(int argc, char* argv[])
     //delete ssi;
 
     //SetDatapointValue* dp9 = new SetDatapointValue(9, serialConnection);
-    //dp9->setFloatValue2Byte(-37.78, SetNewValueAndSendOnBus);
+    //dp9->setFloatValue2Byte(-37.78, SetNewValueAndSendOnBus, true);
     //delete dp9;
-
-    //GetDatapointValue* dpv = new GetDatapointValue(9, DatapointTypes::FLOAT_VALUE_2BYTE, serialConnection);
 
     //GetDatapointValue* dpv = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);
     //printf("Datapoint 1: %hhu\n", dpv->getBooleanValue());
@@ -64,16 +56,16 @@ int main(int argc, char* argv[])
     //delete dpv;
 
     //SetDatapointValue* dp1 = new SetDatapointValue(1, serialConnection);
-    //dp1->setBoolean(false, SetNewValueAndSendOnBus, true);
+    //dp1->setBoolean(true, SetNewValueAndSendOnBus, true);
     //delete dp1;
     //SetDatapointValue* dp2 = new SetDatapointValue(2, serialConnection);
-    //dp2->setBoolean(false, SetNewValueAndSendOnBus, true);
+    //dp2->setBoolean(true, SetNewValueAndSendOnBus, true);
     //delete dp2;
     //SetDatapointValue* dp3 = new SetDatapointValue(3, serialConnection);
-    //dp3->setBoolean(false, SetNewValueAndSendOnBus, true);
+    //dp3->setBoolean(true, SetNewValueAndSendOnBus, true);
     //delete dp3;
     //SetDatapointValue* dp4 = new SetDatapointValue(4, serialConnection);
-    //dp4->setBoolean(false, SetNewValueAndSendOnBus, true);
+    //dp4->setBoolean(true, SetNewValueAndSendOnBus, true);
     //delete dp4;
 
     //GetDatapointValue* dpv2 = new GetDatapointValue(1, DatapointTypes::BOOLEAN, serialConnection);

@@ -2,6 +2,7 @@
 #define GET_DATAPOINT_VALUE_HPP
 
 #include "BaosTelegram.hpp"
+#include "../Utility/FloatConverter.hpp"
 #include "../Utility/DatapointTypes.hpp"
 #include "../Utility/Macros.hpp"
 

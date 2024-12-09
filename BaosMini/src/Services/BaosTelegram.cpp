@@ -20,13 +20,8 @@ BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
 
     if (baosTelegram != nullptr)
     {
-        try {
-            memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
-            baosTelegram[BAOS_HEADER_FIRST_INDEX] = BaosTelegram::BAOS_MAIN_SERVICE;
-        }
-        catch (const std::exception& e) {
-            printf("Exception while initializing BAOS telegram array:\n %s", e.what());
-        }
+        memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
+        baosTelegram[BAOS_HEADER_FIRST_INDEX] = BaosTelegram::BAOS_MAIN_SERVICE;
     }
     else
     {

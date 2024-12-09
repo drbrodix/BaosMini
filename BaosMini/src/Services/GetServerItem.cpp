@@ -16,7 +16,10 @@ GetServerItem::GetServerItem(
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	getAnswer();
-	checkForError();
+	if (checkForError())
+	{
+		decodeServerItemRes(responseTelegram, responseLength);
+	}
 }
 
 GetServerItem::~GetServerItem()
@@ -25,15 +28,15 @@ GetServerItem::~GetServerItem()
 
 bool GetServerItem::checkForError()
 {
-	bool hasError = false;
+	bool hasNoError = true;
 	unsigned short nrOfItems = swap2(*((unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE)));
 
 	// Error route
 	if (!nrOfItems)
 	{
 		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
-		hasError = true;
+		hasNoError = false;
 	}
 
-	return hasError;
+	return hasNoError;
 }

@@ -2,7 +2,9 @@
 #define INDICATION_LISTENER_HPP
 
 #include "BaosTelegram.hpp"
+#include "../Utility/FloatConverter.hpp"
 #include "../Utility/DatapointTypes.hpp"
+#include "../Utility/DecodeServerItemRes.hpp"
 #include "../Services/GetDatapointDescription.hpp"
 #include <functional>
 #include <thread>
@@ -16,6 +18,8 @@ public:
 	void startListening();
 
 private:
+	float decode4ByteFloat(unsigned char* pValueStartAddress);
+	bool decodeDatapointIndication(DatapointTypes::DATAPOINT_TYPES dpt);
 };
 
 #endif // INDICATION_LISTENER_HPP

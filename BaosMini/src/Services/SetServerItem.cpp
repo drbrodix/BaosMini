@@ -28,7 +28,7 @@ void SetServerItem::setBaudrate(BAUDRATE baudrate, bool decode)
 	getAnswer();
 	if (decode)
 	{
-		Encryption::decodeTelegram(responseTelegram, responseLength);
+		decodeSetServerItemRes();
 	}
 }
 
@@ -44,7 +44,7 @@ void SetServerItem::setCurrentBufferSize(unsigned short bufferSize, bool decode)
 	getAnswer();
 	if (decode)
 	{
-		Encryption::decodeTelegram(responseTelegram, responseLength);
+		decodeSetServerItemRes();
 	}
 }
 
@@ -59,7 +59,7 @@ void SetServerItem::setBool(bool enable, bool decode, SERVER_ITEMS serverItem)
 	getAnswer();
 	if (decode)
 	{
-		Encryption::decodeTelegram(responseTelegram, responseLength);
+		decodeSetServerItemRes();
 	}
 }
 
@@ -73,4 +73,45 @@ void SetServerItem::setProgrammingMode(bool enable, bool decode)
 void SetServerItem::setIndicationSending(bool enable, bool decode)
 {
 	setBool(enable, decode, SERVER_ITEMS::INDICATION_SENDING);
+}
+
+bool SetServerItem::decodeSetServerItemRes()
+{
+	const unsigned char ERROR_CODE = *(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE);
+
+	if (ERROR_CODE == 0x00)
+	{
+		unsigned short serverItemID = swap2(*(unsigned short*)(responseTelegram + 2));
+
+		switch ((SERVER_ITEMS)serverItemID)
+		{
+		case SERVER_ITEMS::BAUDRATE:
+			printf("Baudrate has been successfully set\n");
+			return true;
+			break;
+		case SERVER_ITEMS::CURRENT_BUFFER_SIZE:
+			printf("Current buffer size has been successfully set\n");
+			return true;
+			break;
+		case SERVER_ITEMS::PROGRAMMING_MODE:
+			printf("Programming mode has been successfully set\n");
+			return true;
+			break;
+		case SERVER_ITEMS::INDICATION_SENDING:
+			printf("Indication sending has been successfully set\n");
+			return true;
+			break;
+		default:
+			printf("Unknown server item has been set\n");
+			return false;
+			break;
+		}
+	}
+	// Error route
+	else
+	{
+		getErrorDescription(ERROR_CODE);
+
+		return false;
+	}
 }

@@ -2,6 +2,7 @@
 #define GET_SERVER_ITEM_HPP
 
 #include "BaosTelegram.hpp"
+#include "../Utility/DecodeServerItemRes.hpp"
 #include "../Enums/ServerItemEnum.hpp"
 
 class GetServerItem : public BaosTelegram
@@ -14,7 +15,8 @@ public:
 	~GetServerItem();
 
 private:
-	// Returns true if errors have been encountered while fetching datapoint value
+	// Returns true if no errors have been encountered
+	// while fetching datapoint value, false otherwise
 	bool checkForError();
 };
 

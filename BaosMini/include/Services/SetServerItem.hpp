@@ -45,6 +45,7 @@ public:
 
 private:
 	void setBool(bool enable, bool decode, SERVER_ITEMS serverItem);
+	bool decodeSetServerItemRes();
 };
 
 #endif // SET_SERVER_ITEM_HPP

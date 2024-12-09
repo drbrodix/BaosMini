@@ -7,7 +7,6 @@
 #include <iostream>
 #include <Windows.h>
 #include "../Utility/ChecksumCalculator.hpp"
-#include "../Encryption/Decode/TelegramDecoder.hpp"
 #include "../Utility/FrameFormatter.hpp"
 #include "../Utility/DatapointTypes.hpp"
 

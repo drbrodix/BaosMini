@@ -53,7 +53,7 @@ bool SetDatapointValue::setOneByteDp(unsigned char dpValue, CommandByte commandB
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -78,7 +78,7 @@ bool SetDatapointValue::setSignedValue1Byte(char dpValue, CommandByte commandByt
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -104,7 +104,7 @@ bool SetDatapointValue::setUnsignedValue2Byte(unsigned short dpValue, CommandByt
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -130,7 +130,7 @@ bool SetDatapointValue::setSignedValue2Byte(short dpValue, CommandByte commandBy
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -158,7 +158,7 @@ bool SetDatapointValue::setFloatValue2Byte(float dpValue, CommandByte commandByt
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -185,7 +185,7 @@ bool SetDatapointValue::setUnsignedValue4Byte(unsigned int dpValue, CommandByte 
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -211,7 +211,7 @@ bool SetDatapointValue::setSignedValue4Byte(int dpValue, CommandByte commandByte
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -244,7 +244,7 @@ bool SetDatapointValue::setFloatValue4Byte(float dpValue, CommandByte commandByt
 		getAnswer();
 		if (decode)
 		{
-			Encryption::decodeTelegram(responseTelegram, responseLength, DatapointTypes::BOOLEAN);
+			decodeSetDatapointValueRes();
 		}
 		return true;
 	}
@@ -274,22 +274,22 @@ bool SetDatapointValue::setDpIdAndNr()
 	}
 }
 
-//bool SetDatapointValue::decodeSetDatapointValueRes(unsigned char* telegramCharArray, unsigned int telegramLength)
-//{
-//	const unsigned char ERROR_CODE = telegramCharArray[6];
-//
-//	if (ERROR_CODE == 0x00)
-//	{
-//		unsigned short datapointID = swap2(*(unsigned short*)(telegramCharArray + 2));
-//
-//		printf("Datapoint %hu has been successfully set\n", datapointID);
-//		return true;
-//	}
-//	// Error route
-//	else
-//	{
-//		getErrorDescription(ERROR_CODE);
-//
-//		return false;
-//	}
-//}
+bool SetDatapointValue::decodeSetDatapointValueRes()
+{
+	const unsigned char ERROR_CODE = *(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE);
+	
+	if (ERROR_CODE == 0x00)
+	{
+		unsigned short datapointID = swap2(*(unsigned short*)(responseTelegram + 2));
+
+		printf("Datapoint %hu has been successfully set\n", datapointID);
+		return true;
+	}
+	// Error route
+	else
+	{
+		getErrorDescription(ERROR_CODE);
+
+		return false;
+	}
+}
