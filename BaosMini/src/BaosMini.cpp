@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection serialConnection("COM3");
     
-    IndicationListener il(&serialConnection);
+    //IndicationListener il(&serialConnection);
 
     //GetParameterByte gpb(9, &serialConnection);
     //printf("Param #9: %hhu", gpb.getByte());
@@ -13,7 +13,44 @@ int main(int argc, char* argv[])
     //SetServerItem ssi(&serialConnection);
     //ssi.setProgrammingMode(true, true);
 
-    //GetServerItem gsi(HARDWARE_TYPE, 20, &serialConnection);
+    GetServerItem gsi(&serialConnection);
+    BaosHardwareType baosHardwareType = gsi.getHardwareType();
+    printf("Hardware Type single request: %02X %02X %02X %02X %02X %02X\n",
+        baosHardwareType.byte1,
+        baosHardwareType.byte2,
+        baosHardwareType.byte3,
+        baosHardwareType.byte4,
+        baosHardwareType.byte5,
+        baosHardwareType.byte6);
+
+    printf("Hardware Version single request: %d.%d\n",
+        gsi.getHardwareVersion().mainVersion,
+        gsi.getHardwareVersion().minorVersion);
+    printf("Firmware Version single request: %d.%d\n",
+        gsi.getFirmwareVersion().mainVersion,
+        gsi.getFirmwareVersion().minorVersion);
+    printf("KNX Device Manufacturer Code single request: %04X\n",
+        gsi.getKnxDeviceManufacturerCode());
+    printf("KNX App Manufacturer Code single request: %04X\n",
+        gsi.getKnxAppManufacturerCode());
+    printf("Application ID single request: %04X\n",
+        gsi.getApplicationId());
+    printf("Application Version single request: %d.%d\n",
+        gsi.getApplicationVersion().mainVersion,
+        gsi.getApplicationVersion().minorVersion);
+
+    BaosSerialNumber baosSerialNumber = gsi.getSerialNumber();
+    printf("Serial Number single request: %02X %02X %02X %02X %02X %02X\n",
+        baosSerialNumber.byte1,
+        baosSerialNumber.byte2,
+        baosSerialNumber.byte3,
+        baosSerialNumber.byte4,
+        baosSerialNumber.byte5,
+        baosSerialNumber.byte6);
+
+    printf("\n");
+
+    gsi.printServerItems(HARDWARE_TYPE, 20);
 
     //GetDatapointDescription gdd1(1, &serialConnection);
     //gdd.printDpDescription(true, false, false);

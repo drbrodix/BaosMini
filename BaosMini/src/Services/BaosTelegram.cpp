@@ -21,7 +21,7 @@ BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
     if (baosTelegram != nullptr)
     {
         memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
-        baosTelegram[BAOS_HEADER_FIRST_INDEX] = BaosTelegram::BAOS_MAIN_SERVICE;
+        baosTelegram[BAOS_HEADER_FIRST_INDEX] = BAOS_MAIN_SERVICE;
     }
     else
     {

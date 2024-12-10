@@ -1,6 +1,18 @@
 #ifndef BAOS_TELEGRAM_HPP
 #define BAOS_TELEGRAM_HPP
 
+#ifndef BAOS_HEADER_FIRST_INDEX
+#define BAOS_HEADER_FIRST_INDEX 5
+#endif // !BAOS_HEADER_FIRST_INDEX
+
+#ifndef SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE
+#define SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE 9
+#endif // !SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE
+
+#ifndef BAOS_DATA_FIRST_INDEX
+#define BAOS_DATA_FIRST_INDEX (BAOS_HEADER_FIRST_INDEX + 2)
+#endif // !BAOS_DATA_FIRST_INDEX
+
 #ifndef START_BYTE_INDEX_OFFSET_FROM_MAIN_SERVICE
 #define START_BYTE_INDEX_OFFSET_FROM_MAIN_SERVICE 2
 #endif // !START_BYTE_INDEX_OFFSET_FROM_MAIN_SERVICE
@@ -45,6 +57,29 @@
 #define ERROR_CODE_OFFSET_FROM_MAINSERVICE 6
 #endif // !ERROR_CODE_OFFSET_FROM_MAINSERVICE
 
+// BAOS main service code
+#ifndef BAOS_MAIN_SERVICE
+#define BAOS_MAIN_SERVICE 0xF0
+#endif // !BAOS_MAIN_SERVICE
+
+// Constant for allocation of memory for
+// telegram to be sent to ObjectServer
+#ifndef TELEGRAM_ARR_SIZE
+#define TELEGRAM_ARR_SIZE 30
+#endif // !TELEGRAM_ARR_SIZE
+
+// Constant for allocation of memory for
+// ObjectServer response telegram buffer
+#ifndef RESPONSE_ARR_SIZE
+#define RESPONSE_ARR_SIZE 250
+#endif // !RESPONSE_ARR_SIZE
+
+// Number of bytes reserved for the
+// BAOS telegram in the FT1.2 array
+#ifndef BAOS_BYTES_IN_ARR
+#define BAOS_BYTES_IN_ARR (TELEGRAM_ARR_SIZE - BAOS_DATA_FIRST_INDEX)
+#endif // !BAOS_BYTES_IN_ARR
+
 #include <cstring>
 #include <cstdio>
 #include <exception>
@@ -63,15 +98,6 @@ protected:
     // Returns response telegram length,
     // or 0 if error has occured
     unsigned int getAnswer();
-
-    // BAOS telegram data members
-    static const unsigned char BAOS_MAIN_SERVICE = 0xF0;
-    // Constant for allocation of memory for
-    // telegram to be sent to ObjectServer
-    static const unsigned char TELEGRAM_ARR_SIZE = 30;
-    // Constant for allocation of memory for
-    // ObjectServer response telegram buffer
-    static const unsigned char RESPONSE_ARR_SIZE = 250;
     
     // Length of telegram recieved from ObjectServer
     unsigned int responseLength;
