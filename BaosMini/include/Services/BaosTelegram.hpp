@@ -68,10 +68,10 @@ protected:
     static const unsigned char BAOS_MAIN_SERVICE = 0xF0;
     // Constant for allocation of memory for
     // telegram to be sent to ObjectServer
-    const unsigned char TELEGRAM_ARR_SIZE = 30;
+    static const unsigned char TELEGRAM_ARR_SIZE = 30;
     // Constant for allocation of memory for
     // ObjectServer response telegram buffer
-    const unsigned char RESPONSE_ARR_SIZE = 250;
+    static const unsigned char RESPONSE_ARR_SIZE = 250;
     
     // Length of telegram recieved from ObjectServer
     unsigned int responseLength;

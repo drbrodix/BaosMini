@@ -15,11 +15,11 @@ public:
 	IndicationListener(
         SerialConnection* serialConnection);
 	~IndicationListener();
-	void startListening();
 
 private:
-	float decode4ByteFloat(unsigned char* pValueStartAddress);
-	bool decodeDatapointIndication(DatapointTypes::DATAPOINT_TYPES dpt);
+	static void startListening(unsigned char* responseTelegram, unsigned int* responseLength, SerialConnection* serialConnection);
+	static float decode4ByteFloat(unsigned char* pValueStartAddress);
+	static bool decodeDatapointIndication(unsigned char* responseTelegram, DatapointTypes::DATAPOINT_TYPES dpt);
 };
 
 #endif // INDICATION_LISTENER_HPP
