@@ -27,17 +27,17 @@ public:
     // Returns 0 if no valid value has been fetched from ObjectServer
     unsigned char getUnsignedValue1Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
-    char getSignedValue1Byte();
+    signed char getSignedValue1Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
     unsigned short getUnsignedValue2Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
-    short getSignedValue2Byte();
+    signed short getSignedValue2Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
     float getFloatValue2Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
     unsigned int getUnsignedValue4Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
-    int getSignedValue4Byte();
+    signed int getSignedValue4Byte();
     // Returns 0 if no valid value has been fetched from ObjectServer
     float getFloatValue4Byte();
 
@@ -46,6 +46,7 @@ private:
     // Returns true if no errors have been encountered
     // while fetching datapoint value, false otherwise
     bool checkForError(unsigned short datapointId);
+    template <typename T> T getValue(DatapointTypes::DATAPOINT_TYPES expectedDpt, const char* dptString);
 };
 
 #endif // GET_DATAPOINT_VALUE_HPP

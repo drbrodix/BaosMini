@@ -51,135 +51,81 @@ bool GetDatapointValue::checkForError(unsigned short datapointId)
 	return hasNoError;
 }
 
-bool GetDatapointValue::getBooleanValue()
+template <typename T>
+T GetDatapointValue::getValue(DatapointTypes::DATAPOINT_TYPES expectedDpt, const char* dptString)
 {
 	if (!hasValidResponse)
 	{
 		return 0;
 	}
-	if (dpt != DatapointTypes::BOOLEAN)
+	if (dpt != expectedDpt)
 	{
-		printf("Datapoint type is not boolean\n");
+		printf("Datapoint type is not %s\n", dptString);
 		return 0;
 	}
-	return *(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+
+	float floatValueSwapped = 0.0f;
+	switch (expectedDpt)
+	{
+	case DatapointTypes::FLOAT_VALUE_2BYTE:
+		return floatConverter::decode2byteFloat(
+			*(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE),
+			*(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 1));
+		break;
+	case DatapointTypes::FLOAT_VALUE_4BYTE:
+		*((char*)&floatValueSwapped)		= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 3);
+		*((char*)&floatValueSwapped + 1)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 2);
+		*((char*)&floatValueSwapped + 2)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 1);
+		*((char*)&floatValueSwapped + 3)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+		return floatValueSwapped;
+		break;
+	default:
+		return *(T*)(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+		break;
+	}
+}
+
+bool GetDatapointValue::getBooleanValue()
+{
+	return getValue<bool>(DatapointTypes::BOOLEAN, "boolean");
 }
 
 unsigned char GetDatapointValue::getUnsignedValue1Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::UNSIGNED_VALUE_1BYTE)
-	{
-		printf("Datapoint type is not 1 byte unsigned\n");
-		return 0;
-	}
-	return *(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+	return getValue<unsigned char>(DatapointTypes::UNSIGNED_VALUE_1BYTE, "1 byte unsigned");
 }
 
-char GetDatapointValue::getSignedValue1Byte()
+signed char GetDatapointValue::getSignedValue1Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::SIGNED_VALUE_1BYTE)
-	{
-		printf("Datapoint type is not 1 byte signed\n");
-		return 0;
-	}
-	return *(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+	return getValue<signed char>(DatapointTypes::SIGNED_VALUE_1BYTE, "1 byte signed");
 }
 
 unsigned short GetDatapointValue::getUnsignedValue2Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::UNSIGNED_VALUE_2BYTE)
-	{
-		printf("Datapoint type is not 2 byte unsigned\n");
-		return 0;
-	}
-	return swap2(*(unsigned short*)(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE));
+	return swap2(getValue<unsigned short>(DatapointTypes::UNSIGNED_VALUE_2BYTE, "2 byte unsigned"));
 }
 
-short GetDatapointValue::getSignedValue2Byte()
+signed short GetDatapointValue::getSignedValue2Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::SIGNED_VALUE_2BYTE)
-	{
-		printf("Datapoint type is not 2 byte signed\n");
-		return 0;
-	}
-	return swap2(*(short*)(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE));
-}
-
-float GetDatapointValue::getFloatValue2Byte()
-{
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::FLOAT_VALUE_2BYTE)
-	{
-		printf("Datapoint type is not 2 byte float\n");
-		return 0;
-	}
-	return floatConverter::decode2byteFloat(
-		*(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE),
-		*(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 1));
+	return swap2(getValue<signed short>(DatapointTypes::SIGNED_VALUE_2BYTE, "2 byte signed"));
 }
 
 unsigned int GetDatapointValue::getUnsignedValue4Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::UNSIGNED_VALUE_4BYTE)
-	{
-		printf("Datapoint type is not 4 byte unsigned\n");
-		return 0;
-	}
-	return swap4(*(unsigned int*)(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE));
+	return swap4(getValue<unsigned int>(DatapointTypes::UNSIGNED_VALUE_4BYTE, "4 byte unsigned"));
 }
 
-int GetDatapointValue::getSignedValue4Byte()
+signed int GetDatapointValue::getSignedValue4Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::SIGNED_VALUE_4BYTE)
-	{
-		printf("Datapoint type is not 4 byte signed\n");
-		return 0;
-	}
-	return swap4(*(int*)(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE));
+	return swap4(getValue<signed int>(DatapointTypes::SIGNED_VALUE_4BYTE, "4 byte signed"));
+}
+
+float GetDatapointValue::getFloatValue2Byte()
+{
+	return getValue<float>(DatapointTypes::FLOAT_VALUE_2BYTE, "2 byte float");
 }
 
 float GetDatapointValue::getFloatValue4Byte()
 {
-	if (!hasValidResponse)
-	{
-		return 0;
-	}
-	if (dpt != DatapointTypes::FLOAT_VALUE_4BYTE)
-	{
-		printf("Datapoint type is not 4 byte float\n");
-		return 0;
-	}
-	float dpValueSwapped = 0.0f;
-	*((char*)&dpValueSwapped)		= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 3);
-	*((char*)&dpValueSwapped + 1)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 2);
-	*((char*)&dpValueSwapped + 2)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 1);
-	*((char*)&dpValueSwapped + 3)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
-	return dpValueSwapped;
+	return getValue<float>(DatapointTypes::FLOAT_VALUE_4BYTE, "4 byte float");
 }

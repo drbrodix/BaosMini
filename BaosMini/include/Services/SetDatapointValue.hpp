@@ -39,20 +39,20 @@ public:
 	// Functions to setup Datapoint
 	bool setBoolean(bool dpValue, CommandByte commandByte, bool decode = false);
 	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte, bool decode = false);
-	bool setSignedValue1Byte(char dpValue, CommandByte commandByte, bool decode = false);
+	bool setSignedValue1Byte(signed char dpValue, CommandByte commandByte, bool decode = false);
 	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte, bool decode = false);
-	bool setSignedValue2Byte(short dpValue, CommandByte commandByte, bool decode = false);
+	bool setSignedValue2Byte(signed short dpValue, CommandByte commandByte, bool decode = false);
 	bool setFloatValue2Byte(float dpValue, CommandByte commandByte, bool decode = false);
 	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte, bool decode = false);
-	bool setSignedValue4Byte(int dpValue, CommandByte commandByte, bool decode = false);
+	bool setSignedValue4Byte(signed int dpValue, CommandByte commandByte, bool decode = false);
 	bool setFloatValue4Byte(float dpValue, CommandByte commandByte, bool decode = false);
 
 private:
 	unsigned short dpId;
-	
-	bool setOneByteDp(unsigned char dpValue, CommandByte commandByte, bool decode);
-	inline bool setDpIdAndNr();
+	// Setup basic parts of telegram
+	inline void initTelegram();
 	bool decodeSetDatapointValueRes();
+	template <typename T> bool setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt, CommandByte commandByte, bool decode);
 };
 
 #endif // SET_DATAPOINT_VALUE_HPP

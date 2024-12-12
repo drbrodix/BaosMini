@@ -87,8 +87,8 @@ inline BaosVersion GetServerItem::getVersionItem(SERVER_ITEMS serverItem)
 	unsigned char versionByte = get1ByteItem(serverItem);
 	BaosVersion baosVersion =
 	{
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE) >> 4,
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE) & 0x0F
+		versionByte >> 4,
+		versionByte & 0x0F
 	};
 	return baosVersion;
 }
@@ -97,7 +97,6 @@ template<typename T>
 T GetServerItem::get6BByteItem(SERVER_ITEMS serverItem)
 {
 	getSingleServerItem(serverItem);
-
 	T baosHardwareType =
 	{
 		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE),
@@ -160,7 +159,7 @@ BaosTime GetServerItem::getTimeSinceReset()
 	unsigned char    timeHr = timeSec / 3600;
 	unsigned char    timeMin = (timeSec % 3600) / 60;
 	timeSec = timeSec % 60;
-	return BaosTime({ timeHr, timeMin, timeSec });
+	return BaosTime{ timeHr, timeMin, timeSec };
 }
 
 bool GetServerItem::getBusConnectionState()

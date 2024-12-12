@@ -1,7 +1,7 @@
 #ifndef MACROS_HPP
 #define MACROS_HPP
 
-// Byte swapper macros for endianess
+// Byte swapper macros for endianness
 #ifndef swap2
 #define swap2(x) (((x << 8) & 0xFF00) | ((x >> 8) & 0x00FF))
 #endif // !swap2
