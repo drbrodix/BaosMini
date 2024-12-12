@@ -26,36 +26,44 @@ GetDatapointDescription::~GetDatapointDescription()
 
 // Refer to BAOS Protocol Documentation, Appendix D
 // Returns 0 if fetched telegram values are invalid
-unsigned char GetDatapointDescription::getDpDpt()
+DatapointTypes::DATAPOINT_TYPES GetDatapointDescription::getDpDpt()
 {
 	if (!hasValidResponse)
 	{
-		return 0;
+		return DatapointTypes::NO_DATAPOINT_TYPE;
 	}
-	return *(responseTelegram + DP_DPT_OFFSET_FROM_MAINSERVICE);
+	return (DatapointTypes::DATAPOINT_TYPES)*(responseTelegram + DP_DPT_OFFSET_FROM_MAINSERVICE);
 }
 
 // Refer to BAOS Protocol Documentation, Appendix C
-// Returns 0 if fetched telegram values are invalid
-unsigned char GetDatapointDescription::getDpValueType()
+// Returns 0x0F if fetched telegram values are invalid
+DatapointTypes::DATAPOINT_VALUE_TYPES GetDatapointDescription::getDpValueType()
 {
 	if (!hasValidResponse)
 	{
-		return 0;
+		return DatapointTypes::INVALID_SIZE;
 	}
-	return *(responseTelegram + DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE);
+	return (DatapointTypes::DATAPOINT_VALUE_TYPES)*(responseTelegram + DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE);
 }
 
 // Refer to BAOS Protocol Documentation, Chapter 3.7
-// Returns 0 if fetched telegram values are invalid
-unsigned char GetDatapointDescription::getDpConfigFlagsByte()
+// Returns ConfigFlags object filled with 0,
+// if fetched telegram values are invalid
+ConfigFlags GetDatapointDescription::getDpConfigFlags()
 {
 	if (!hasValidResponse)
 	{
-		return 0;
+		return ConfigFlags{0};
 	}
-	return *(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE);
-
+	ConfigFlags configFlag = { 0 };
+	configFlag.transmitPriority			= *(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0000'0011;
+	configFlag.datapointCommunication	= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0000'0100) >> 2;
+	configFlag.readFromBus				= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0000'1000) >> 3;
+	configFlag.writeFromBus				= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0001'0000) >> 4;
+	configFlag.readOnInit				= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0010'0000) >> 5;
+	configFlag.transmitToBus			= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0100'0000) >> 6;
+	configFlag.updateOnResponse			= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b1000'0000) >> 7;
+	return configFlag;
 }
 
 bool GetDatapointDescription::checkForError()
@@ -73,7 +81,7 @@ bool GetDatapointDescription::checkForError()
 	return hasNoError;
 }
 
-void GetDatapointDescription::decodeDpDpt(unsigned char dpt)
+void GetDatapointDescription::decodeDpDpt(DatapointTypes::DATAPOINT_TYPES dpt)
 {
 	printf("\tDatapoint type: ");
 	switch (dpt)
@@ -114,21 +122,21 @@ void GetDatapointDescription::decodeDpDpt(unsigned char dpt)
 	}
 }
 
-void GetDatapointDescription::decodeDpConfigFlags(unsigned char configFlagByte)
+void GetDatapointDescription::decodeDpConfigFlags(ConfigFlags configFlagByte)
 {
 	printf("\tTransmit priority: ");
-	switch (configFlagByte & 0b0000'0011)
+	switch (configFlagByte.transmitPriority)
 	{
-	case 0x00:
+	case 0b00:
 		printf("System priority\n");
 		break;
-	case 0x01:
+	case 0b01:
 		printf("High priority\n");
 		break;
-	case 0x02:
+	case 0b10:
 		printf("Alarm priority\n");
 		break;
-	case 0x03:
+	case 0b11:
 		printf("Low priority\n");
 		break;
 	default:
@@ -137,34 +145,28 @@ void GetDatapointDescription::decodeDpConfigFlags(unsigned char configFlagByte)
 	}
 
 	printf("\tDatapoint communication: %s\n",
-		(configFlagByte & 0b0000'0100) == 0b0000'0100 ?
-		"Enabled" : "Disabled");
+		configFlagByte.datapointCommunication ? "Enabled" : "Disabled");
 
 	printf("\tRead from bus: %s\n",
-		(configFlagByte & 0b0000'1000) == 0b0000'1000 ?
-		"Enabled" : "Disabled");
+		configFlagByte.readFromBus ? "Enabled" : "Disabled");
 
 	printf("\tWrite from bus: %s\n",
-		(configFlagByte & 0b0001'0000) == 0b0001'0000 ?
-		"Enabled" : "Disabled");
+		configFlagByte.writeFromBus ? "Enabled" : "Disabled");
 
 	printf("\tRead on init: %s\n",
-		(configFlagByte & 0b0010'0000) == 0b0010'0000 ?
-		"Enabled" : "Disabled");
+		configFlagByte.readOnInit ? "Enabled" : "Disabled");
 
 	printf("\tTransmit to bus: %s\n",
-		(configFlagByte & 0b0100'0000) == 0b0100'0000 ?
-		"Enabled" : "Disabled");
+		configFlagByte.transmitToBus ? "Enabled" : "Disabled");
 
 	printf("\tUpdate on response: %s\n",
-		(configFlagByte & 0b1000'0000) == 0b1000'0000 ?
-		"Enabled" : "Disabled");
+		configFlagByte.updateOnResponse ? "Enabled" : "Disabled");
 }
 
-void GetDatapointDescription::decodeDpValueType(unsigned char dpValueType)
+void GetDatapointDescription::decodeDpValueType(DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType)
 {
 	printf("\tValue size: ");
-	switch ((DatapointTypes::DATAPOINT_VALUE_TYPES)dpValueType)
+	switch (dpValueType)
 	{
 	case DatapointTypes::SIZE_1_BIT:
 		printf("1 bit\n");
@@ -240,7 +242,7 @@ bool GetDatapointDescription::printDpDescription(
 	
 	if (datapointConfigFlag)
 	{
-		decodeDpConfigFlags(getDpConfigFlagsByte());
+		decodeDpConfigFlags(getDpConfigFlags());
 	}
 	return true;
 }

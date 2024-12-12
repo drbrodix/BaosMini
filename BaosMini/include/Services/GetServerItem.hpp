@@ -7,8 +7,22 @@
 
 typedef struct
 {
-	unsigned char mainVersion;
-	unsigned char minorVersion;
+	unsigned char area		: 4;
+	unsigned char line		: 4;
+	unsigned char device	: 8;
+} KnxDeviceAddress;
+
+typedef struct
+{
+	unsigned char hours;
+	unsigned char minutes;
+	unsigned char seconds;
+} BaosTime;
+
+typedef struct
+{
+	unsigned char mainVersion	: 4;
+	unsigned char minorVersion	: 4;
 } BaosVersion;
 
 typedef struct
@@ -37,6 +51,18 @@ public:
 	unsigned short getApplicationId();
 	BaosVersion getApplicationVersion();
 	BaosSerialNumber getSerialNumber();
+	BaosTime getTimeSinceReset();
+	bool getBusConnectionState();
+	unsigned short getMaxBufferSize();
+	unsigned short getLengthOfDescString();
+	BAUDRATES getBaudrate();
+	unsigned short getCurrentBufferSize();
+	bool getProgrammingMode();
+	BaosVersion getProtocolVersionBinary();
+	bool getIndicationSending();
+	BaosVersion getProtocolVersionWeb();
+	BaosVersion getProtocolVersionRest();
+	KnxDeviceAddress getKnxIndividualAddress();
 
 private:
 	// Returns true if no errors have been encountered

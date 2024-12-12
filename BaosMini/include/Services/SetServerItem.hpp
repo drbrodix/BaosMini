@@ -28,17 +28,11 @@
 class SetServerItem : public BaosTelegram
 {
 public:
-	enum BAUDRATE
-	{
-		BAUDRATE_19200 = 1,
-		BAUDRATE_115200 = 2,
-	};
-
 	SetServerItem(
 		SerialConnection* serialConnection);
 	~SetServerItem();
 
-	void setBaudrate(BAUDRATE baudrate, bool decode = false);
+	void setBaudrate(BAUDRATES baudrate, bool decode = false);
 	void setCurrentBufferSize(unsigned short bufferSize, bool decode = false);
 	void setProgrammingMode(bool enable, bool decode = false);
 	void setIndicationSending(bool enable, bool decode = false);

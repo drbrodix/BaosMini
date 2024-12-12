@@ -17,7 +17,7 @@ SetServerItem::~SetServerItem()
 }
 
 // Set decode to "true" to print ObjectServer answer in terminal
-void SetServerItem::setBaudrate(BAUDRATE baudrate, bool decode)
+void SetServerItem::setBaudrate(BAUDRATES baudrate, bool decode)
 {
 	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::BAUDRATE);
 	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))	= swap2((unsigned short)SERVER_ITEMS::BAUDRATE);

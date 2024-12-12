@@ -44,7 +44,7 @@ void IndicationListener::startListening(unsigned char* responseTelegram, unsigne
 			//// Fetch info about the datapoint
 			gdd = new GetDatapointDescription(dpId, serialConnection);
 
-			decodeDatapointIndication(responseTelegram, (DatapointTypes::DATAPOINT_TYPES)gdd->getDpDpt());
+			decodeDatapointIndication(responseTelegram, gdd->getDpDpt());
 			break;
 		
 		case SUBSERVICES::ServerItemInd:
