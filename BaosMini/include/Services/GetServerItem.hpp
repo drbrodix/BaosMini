@@ -1,6 +1,14 @@
 #ifndef GET_SERVER_ITEM_HPP
 #define GET_SERVER_ITEM_HPP
 
+#ifndef NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE
+#define NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE 4
+#endif // !NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE
+
+#ifndef SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE
+#define SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE 9
+#endif // !SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE
+
 #include "BaosTelegram.hpp"
 #include "../Utility/DecodeServerItemRes.hpp"
 #include "../Enums/ServerItemEnum.hpp"
@@ -68,7 +76,6 @@ private:
 	// Returns true if no errors have been encountered
 	// while fetching datapoint value, false otherwise
 	bool checkForError();
-	inline void clearTelegram();
 	bool getSingleServerItem(SERVER_ITEMS firstItemId);
 	inline unsigned char get1ByteItem(SERVER_ITEMS serverItem);
 	inline unsigned short get2ByteItem(SERVER_ITEMS serverItem);

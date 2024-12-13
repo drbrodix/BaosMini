@@ -3,14 +3,11 @@
 BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
     : BaosTelegram()
 {
-    BaosTelegram::serialConnection  = serialConnection;
-    // Allocate TELEGRAM_ARR_SIZE (30 bytes) to the BAOS telegram,
-    // set the value of all the elements to 0,
-    // and set the first element to the BAOS main service code (0xF0).
-    baosTelegram                    = new unsigned char[TELEGRAM_ARR_SIZE];
-    // Allocate RESPONSE_ARR_SIZE (250 bytes) to the response telegram,
-    // and set the value of all the elements to 0.
-    responseTelegram                = new unsigned char[RESPONSE_ARR_SIZE];
+    BaosTelegram::serialConnection = serialConnection;
+
+    baosTelegram        = new unsigned char[TELEGRAM_ARR_SIZE];
+    responseTelegram    = new unsigned char[RESPONSE_ARR_SIZE];
+
     if (baosTelegram != nullptr)
     {
         memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
@@ -35,8 +32,8 @@ BaosTelegram::BaosTelegram()
     : serialConnection(nullptr)
     , baosTelegram(nullptr)
     , responseTelegram(nullptr)
-    , telegramLength(0)
-    , responseLength(0)
+    , telegramLength(NULL)
+    , responseLength(NULL)
     , hasValidResponse(false)
 {
 }
@@ -71,4 +68,9 @@ unsigned int BaosTelegram::getAnswer()
         printf("Response telegram buffer has not been initialized\n");
         return 0;
     }
+}
+
+void BaosTelegram::clearTelegram()
+{
+    memset((baosTelegram + BAOS_DATA_FIRST_INDEX), 0, BAOS_BYTES_IN_ARR);
 }

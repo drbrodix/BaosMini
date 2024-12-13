@@ -2,7 +2,6 @@
 
 bool getErrorDescription(unsigned char errorCode)
 {
-    const unsigned char ERROR_STRING_SIZE = 30;
     char* errorString = new char[ERROR_STRING_SIZE];
     bool isErrorKnown = true;
 

@@ -1,10 +1,6 @@
 #ifndef SET_DATAPOINT_VALUE_HPP
 #define SET_DATAPOINT_VALUE_HPP
 
-#ifndef ERROR_CODE_OFFSET_FROM_MAINSERVICE
-#define ERROR_CODE_OFFSET_FROM_MAINSERVICE 6
-#endif // !ERROR_CODE_OFFSET_FROM_MAINSERVICE
-
 #include <cstring>
 #include <cstdio>
 #include "BaosTelegram.hpp"
@@ -36,22 +32,43 @@ public:
 	// 
 	//         0x00 0x00        |        0x00        |        0x00        |         0x00 ...
 
-	// Functions to setup Datapoint
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setBoolean(bool dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setSignedValue1Byte(signed char dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setSignedValue2Byte(signed short dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setFloatValue2Byte(float dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setSignedValue4Byte(signed int dpValue, CommandByte commandByte, bool decode = false);
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	bool setFloatValue4Byte(float dpValue, CommandByte commandByte, bool decode = false);
 
 private:
 	unsigned short dpId;
 	// Setup basic parts of telegram
 	inline void initTelegram();
+	// The ObjectServer's answer will be decoded,
+	// and the result will be printed in the terminal
 	bool decodeSetDatapointValueRes();
+	// Returns true if a response has been recieved
+	// from the object server, false otherwise
 	template <typename T> bool setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt, CommandByte commandByte, bool decode);
 };
 

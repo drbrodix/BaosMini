@@ -43,24 +43,13 @@ bool SetDatapointValue::decodeSetDatapointValueRes()
 template <typename T>
 bool SetDatapointValue::setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt, CommandByte commandByte, bool decode)
 {
+	clearTelegram();
 	const unsigned char dptSize = getDatapointSize(dpt);
 	telegramLength = 10 + dptSize; // Member variable set to BAOS telegram length (header + data)
-	unsigned char floatBytesArr[2] = { 0, 0 };
 	
 	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte;	// 7rd byte set to command byte
 	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = dptSize;		// 8th byte set to datapoint value size
-
-	switch (dpt)
-	{
-	case DatapointTypes::FLOAT_VALUE_2BYTE:
-		floatConverter::encode2byteFloat(dpValue, floatBytesArr);
-		*(unsigned char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = floatBytesArr[0]; // 9th byte set to actual value to set the datapoint to
-		*(unsigned char*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 9)) = floatBytesArr[1]; // 10th byte set to actual value to set the datapoint to
-		break;
-	default:
-		*(T*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue;		// 9th and 10th byte set to actual value to set the datapoint to
-		break;
-	}
+	*(T*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue;	// 9th and 10th byte set to actual value to set the datapoint to
 	
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	const bool serverResponse = getAnswer();
@@ -108,7 +97,13 @@ bool SetDatapointValue::setSignedValue4Byte(signed int dpValue, CommandByte comm
 
 bool SetDatapointValue::setFloatValue2Byte(float dpValue, CommandByte commandByte, bool decode)
 {
-	return setValue<float>(dpValue, DatapointTypes::FLOAT_VALUE_2BYTE, commandByte, decode);
+	unsigned char floatBytesArr[2] = { 0, 0 };
+	float float2Byte = 0.0f;
+	floatConverter::encode2byteFloat(dpValue, floatBytesArr);
+	*((char*)&float2Byte)		= floatBytesArr[0];
+	*((char*)&float2Byte + 1)	= floatBytesArr[1];
+
+	return setValue<float>(float2Byte, DatapointTypes::FLOAT_VALUE_2BYTE, commandByte, decode);
 }
 
 bool SetDatapointValue::setFloatValue4Byte(float dpValue, CommandByte commandByte, bool decode)

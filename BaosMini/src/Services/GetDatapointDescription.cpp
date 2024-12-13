@@ -24,8 +24,6 @@ GetDatapointDescription::~GetDatapointDescription()
 {
 }
 
-// Refer to BAOS Protocol Documentation, Appendix D
-// Returns 0 if fetched telegram values are invalid
 DatapointTypes::DATAPOINT_TYPES GetDatapointDescription::getDpDpt()
 {
 	if (!hasValidResponse)
@@ -35,8 +33,6 @@ DatapointTypes::DATAPOINT_TYPES GetDatapointDescription::getDpDpt()
 	return (DatapointTypes::DATAPOINT_TYPES)*(responseTelegram + DP_DPT_OFFSET_FROM_MAINSERVICE);
 }
 
-// Refer to BAOS Protocol Documentation, Appendix C
-// Returns 0x0F if fetched telegram values are invalid
 DatapointTypes::DATAPOINT_VALUE_TYPES GetDatapointDescription::getDpValueType()
 {
 	if (!hasValidResponse)
@@ -46,9 +42,6 @@ DatapointTypes::DATAPOINT_VALUE_TYPES GetDatapointDescription::getDpValueType()
 	return (DatapointTypes::DATAPOINT_VALUE_TYPES)*(responseTelegram + DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE);
 }
 
-// Refer to BAOS Protocol Documentation, Chapter 3.7
-// Returns ConfigFlags object filled with 0,
-// if fetched telegram values are invalid
 ConfigFlags GetDatapointDescription::getDpConfigFlags()
 {
 	if (!hasValidResponse)

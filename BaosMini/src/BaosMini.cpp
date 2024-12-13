@@ -52,8 +52,8 @@ int main(int argc, char* argv[])
     //GetParameterByte gpb(9, &serialConnection);
     //printf("Param #9: %hhu", gpb.getByte());
 
-    //SetServerItem ssi(&serialConnection);
-    //ssi.setProgrammingMode(true, true);
+    SetServerItem ssi(&serialConnection);
+    ssi.setProgrammingMode(false, true);
 
     //GetServerItem gsi(&serialConnection);
     //BaosHardwareType baosHardwareType = gsi.getHardwareType();
@@ -170,19 +170,19 @@ int main(int argc, char* argv[])
     //SetServerItem ssi(&serialConnection);
     //ssi.setProgrammingMode(true, true);
 
-    SetDatapointValue dp9(9, &serialConnection);
-    dp9.setFloatValue2Byte(-17.32f, SetNewValueAndSendOnBus, true);
-    
-    GetDatapointValue dpv1(1, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 1: %hhu\n", dpv1.getBooleanValue());
-    GetDatapointValue dpv2(1300, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 1300: %hhu\n", dpv2.getBooleanValue());
-    GetDatapointValue dpv3(3, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 3: %hhu\n", dpv3.getBooleanValue());
-    GetDatapointValue dpv4(4, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 4: %hhu\n", dpv4.getBooleanValue());
-    GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
-    printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());
+    //SetDatapointValue dp9(9, &serialConnection);
+    //dp9.setFloatValue2Byte(-49.17f, SetNewValueAndSendOnBus, true);
+    //
+    //GetDatapointValue dpv1(1, DatapointTypes::BOOLEAN, &serialConnection);
+    //printf("Datapoint 1: %hhu\n", dpv1.getBooleanValue());
+    //GetDatapointValue dpv2(1300, DatapointTypes::BOOLEAN, &serialConnection);
+    //printf("Datapoint 1300: %hhu\n", dpv2.getBooleanValue());
+    //GetDatapointValue dpv3(3, DatapointTypes::BOOLEAN, &serialConnection);
+    //printf("Datapoint 3: %hhu\n", dpv3.getBooleanValue());
+    //GetDatapointValue dpv4(4, DatapointTypes::BOOLEAN, &serialConnection);
+    //printf("Datapoint 4: %hhu\n", dpv4.getBooleanValue());
+    //GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
+    //printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());
 
     //SetDatapointValue dp1(1, &serialConnection);
     //dp1.setBoolean(true, SetNewValueAndSendOnBus, true);

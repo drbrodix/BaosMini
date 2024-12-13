@@ -1,84 +1,62 @@
 #ifndef BAOS_TELEGRAM_HPP
 #define BAOS_TELEGRAM_HPP
 
-#ifndef BAOS_HEADER_FIRST_INDEX
-#define BAOS_HEADER_FIRST_INDEX 5
-#endif // !BAOS_HEADER_FIRST_INDEX
-
-#ifndef SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE
-#define SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE 9
-#endif // !SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE
-
-#ifndef BAOS_DATA_FIRST_INDEX
-#define BAOS_DATA_FIRST_INDEX (BAOS_HEADER_FIRST_INDEX + 2)
-#endif // !BAOS_DATA_FIRST_INDEX
-
-#ifndef START_BYTE_INDEX_OFFSET_FROM_MAIN_SERVICE
-#define START_BYTE_INDEX_OFFSET_FROM_MAIN_SERVICE 2
-#endif // !START_BYTE_INDEX_OFFSET_FROM_MAIN_SERVICE
-
-#ifndef NR_OF_BYTES_OFFSET_FROM_MAIN_SERVICE
-#define NR_OF_BYTES_OFFSET_FROM_MAIN_SERVICE 4
-#endif // !NR_OF_BYTES_OFFSET_FROM_MAIN_SERVICE
-
-#ifndef FIRST_BYTE_OFFSET_FROM_MAIN_SERVICE
-#define FIRST_BYTE_OFFSET_FROM_MAIN_SERVICE 6
-#endif // !FIRST_BYTE_OFFSET_FROM_MAIN_SERVICE
-
-#ifndef NR_OF_DPS_OFFSET_FROM_MAINSERVICE
-#define NR_OF_DPS_OFFSET_FROM_MAINSERVICE 4
-#endif // !NR_OF_DPS_OFFSET_FROM_MAINSERVICE
-
-#ifndef DP_ID_OFFSET_FROM_MAINSERVICE
-#define DP_ID_OFFSET_FROM_MAINSERVICE 6
-#endif // !DP_ID_OFFSET_FROM_MAINSERVICE
-
-#ifndef DP_VALUE_OFFSET_FROM_MAINSERVICE
-#define DP_VALUE_OFFSET_FROM_MAINSERVICE 10
-#endif // !DP_VALUE_OFFSET_FROM_MAINSERVICE
-
-#ifndef DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE
-#define DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE 8
-#endif // !DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE
-
-#ifndef DP_LENGTH_OFFSET_FROM_MAINSERVICE
-#define DP_LENGTH_OFFSET_FROM_MAINSERVICE 9
-#endif // !DP_LENGTH_OFFSET_FROM_MAINSERVICE
-
-#ifndef DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE
-#define DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE 9
-#endif // !DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE
-
-#ifndef DP_DPT_OFFSET_FROM_MAINSERVICE
-#define DP_DPT_OFFSET_FROM_MAINSERVICE 10
-#endif // !DP_DPT_OFFSET_FROM_MAINSERVICE
-
-#ifndef ERROR_CODE_OFFSET_FROM_MAINSERVICE
-#define ERROR_CODE_OFFSET_FROM_MAINSERVICE 6
-#endif // !ERROR_CODE_OFFSET_FROM_MAINSERVICE
-
-// BAOS main service code
+/// <summary>
+/// BAOS main service code constant
+/// </summary>
 #ifndef BAOS_MAIN_SERVICE
 #define BAOS_MAIN_SERVICE 0xF0
 #endif // !BAOS_MAIN_SERVICE
 
-// Constant for allocation of memory for
-// telegram to be sent to ObjectServer
+/// <summary>
+/// Constant for allocation of memory for
+/// telegram to be sent to ObjectServer
+/// </summary>
 #ifndef TELEGRAM_ARR_SIZE
 #define TELEGRAM_ARR_SIZE 30
 #endif // !TELEGRAM_ARR_SIZE
 
-// Constant for allocation of memory for
-// ObjectServer response telegram buffer
+/// <summary>
+/// Constant for allocation of memory for
+/// ObjectServer response telegram buffer
+/// </summary>
 #ifndef RESPONSE_ARR_SIZE
 #define RESPONSE_ARR_SIZE 250
 #endif // !RESPONSE_ARR_SIZE
 
-// Number of bytes reserved for the
-// BAOS telegram in the FT1.2 array
+/// <summary>
+/// Number of bytes reserved for the
+/// BAOS telegram in the FT1.2 array
+/// </summary>
 #ifndef BAOS_BYTES_IN_ARR
 #define BAOS_BYTES_IN_ARR (TELEGRAM_ARR_SIZE - BAOS_DATA_FIRST_INDEX)
 #endif // !BAOS_BYTES_IN_ARR
+
+/// <summary>
+/// Index of the first byte in the baosTelegram array
+/// reserved for the BAOS telegram header part.
+/// This stands after the 5 bytes of the FT1.2 header.
+/// </summary>
+#ifndef BAOS_HEADER_FIRST_INDEX
+#define BAOS_HEADER_FIRST_INDEX 5
+#endif // !BAOS_HEADER_FIRST_INDEX
+
+/// <summary>
+/// Index of the first byte in the baosTelegram array
+/// reserved for the BAOS telegram data part.
+/// This stands after the 2 bytes of the BAOS header.
+/// </summary>
+#ifndef BAOS_DATA_FIRST_INDEX
+#define BAOS_DATA_FIRST_INDEX (BAOS_HEADER_FIRST_INDEX + 2)
+#endif // !BAOS_DATA_FIRST_INDEX
+
+/// <summary>
+/// Index of the error code in the baosTelegram array,
+/// in case the ObjectServer responds with an error telegram.
+/// </summary>
+#ifndef ERROR_CODE_OFFSET_FROM_MAINSERVICE
+#define ERROR_CODE_OFFSET_FROM_MAINSERVICE 6
+#endif // !ERROR_CODE_OFFSET_FROM_MAINSERVICE
 
 #include <cstring>
 #include <cstdio>
@@ -89,26 +67,75 @@
 #include "../Enums/SubservicesEnum.hpp"
 #include "../Utility/Macros.hpp"
 
+/// <summary>
+/// A base class for all the BAOS service telegrams.
+/// It provides basic data members, member functions
+/// and various definitions to its children classes.
+/// Cannot be instantiated on its own.
+/// </summary>
 class BaosTelegram
 {
 protected:
+    /// <summary>
+    /// The default constructor initiates all data members
+    /// to NULL and nullptr accordingly.
+    /// </summary>
     BaosTelegram();
+    /// <summary>
+    /// The constructor function allocates TELEGRAM_ARR_SIZE (30 bytes)
+    /// to the BAOS telegram, initializes all the elements to 0,
+    /// and sets the first element to the BAOS main service code (0xF0).
+    /// The constructor function allocates RESPONSE_ARR_SIZE (250 bytes)
+    /// to the response telegram, and initializes all the elements to 0.
+    /// </summary>
     BaosTelegram(SerialConnection *serialConnection);
+    /// <summary>
+    /// The default destructor frees up the dynamically allocated
+    /// memory of the baosTelegram and responseTelegram arrays.
+    /// </summary>
     ~BaosTelegram();
-    // Returns response telegram length,
-    // or 0 if error has occured
+
+    /// <summary>
+    /// Returns response telegram length, or 0 if error has occured.
+    /// </summary>
     unsigned int getAnswer();
+
+    /// <summary>
+    /// Clear the data part of the telegram, that is the bytes
+    /// after the BAOS mainservice and subservice codes,
+    /// so that no conflict occurs in case of differring telegram lengths.
+    /// </summary>
+    void clearTelegram();
     
-    // Length of telegram recieved from ObjectServer
+    /// <summary>
+    /// Length of telegram recieved from ObjectServer.
+    /// </summary>
     unsigned int responseLength;
-    // Length of telegram to be sent to ObjectServer
+
+    /// <summary>
+    /// Length of telegram to be sent to ObjectServer.
+    /// </summary>
     unsigned char telegramLength;
-    // Unsigned char array of telegram to be sent to ObjectServer
+
+    /// <summary>
+    /// Unsigned char array of telegram to be sent to ObjectServer.
+    /// </summary>
     unsigned char *baosTelegram;
-    // Unsigned char array of ObjectServer response telegram 
+
+    /// <summary>
+    /// Unsigned char array of ObjectServer response telegram .
+    /// </summary>
     unsigned char *responseTelegram;
-    // Keeps track if ObjectServer response telegram is valid
+
+    /// <summary>
+    /// Keeps track if ObjectServer response telegram is valid.
+    /// </summary>
     bool hasValidResponse;
+
+    /// <summary>
+    /// The passed pointer to the serial connection object will be
+    /// stored to allow communication with the connected BAOS device.
+    /// </summary>
     SerialConnection *serialConnection;
 };
 

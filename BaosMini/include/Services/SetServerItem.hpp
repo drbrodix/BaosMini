@@ -32,13 +32,13 @@ public:
 		SerialConnection* serialConnection);
 	~SetServerItem();
 
-	void setBaudrate(BAUDRATES baudrate, bool decode = false);
-	void setCurrentBufferSize(unsigned short bufferSize, bool decode = false);
-	void setProgrammingMode(bool enable, bool decode = false);
-	void setIndicationSending(bool enable, bool decode = false);
+	bool setBaudrate(BAUDRATES baudrate, bool decode = false);
+	bool setCurrentBufferSize(unsigned short bufferSize, bool decode = false);
+	bool setProgrammingMode(bool enable, bool decode = false);
+	bool setIndicationSending(bool enable, bool decode = false);
 
 private:
-	void setBool(bool enable, bool decode, SERVER_ITEMS serverItem);
+	template <typename T> bool setValue(T itemValue, SERVER_ITEMS serverItem, unsigned char itemLength, bool decode);
 	bool decodeSetServerItemRes();
 };
 

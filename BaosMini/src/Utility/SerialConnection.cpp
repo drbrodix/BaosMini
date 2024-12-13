@@ -246,10 +246,10 @@ bool SerialConnection::readData(unsigned char* buffer) const
 // I know it's terrible... I'm just an intern, don't judge me...
 unsigned int SerialConnection::recieveTelegram(unsigned char* telegramCharArray)
 {
-    //const unsigned short MAX_TRIES_COUNT        = 30;       // Caps number of tries looking for FT1.2 start byte
-    //unsigned int readTries                      = 0;        // Keeps count of number of tries looking for FT1.2 start byte
-    unsigned int telegramLength = 0;        // Variable to save BAOS telegram length after reading FT1.2 header
-    unsigned char ft12Header[FT12_HEADER_SIZE] = { 0 };    // { (0) 0x68 , (1) Length, (2) Length, (3) 0x68, (4) ControlByte }
+    //const unsigned short MAX_TRIES_COUNT        = 30; // Caps number of tries looking for FT1.2 start byte
+    //unsigned int readTries                      = 0;  // Keeps count of number of tries looking for FT1.2 start byte
+    unsigned int telegramLength = 0;                    // Variable to store BAOS telegram length after reading FT1.2 header
+    unsigned char ft12Header[FT12_HEADER_SIZE] = { 0 }; // { (0) 0x68 , (1) Length, (2) Length, (3) 0x68, (4) ControlByte }
     unsigned char checksum = 0;
     unsigned char endByte = 0;
 

@@ -14,7 +14,7 @@ GetServerItem::~GetServerItem()
 bool GetServerItem::checkForError()
 {
 	bool hasNoError = true;
-	unsigned short nrOfItems = swap2(*((unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE)));
+	unsigned short nrOfItems = swap2(*((unsigned short*)(responseTelegram + NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE)));
 
 	// Error route
 	if (!nrOfItems)
@@ -24,11 +24,6 @@ bool GetServerItem::checkForError()
 	}
 
 	return hasNoError;
-}
-
-inline void GetServerItem::clearTelegram()
-{
-	memset((baosTelegram + BAOS_DATA_FIRST_INDEX), 0, BAOS_BYTES_IN_ARR);
 }
 
 bool GetServerItem::printServerItems(SERVER_ITEMS firstItemId, unsigned short nrOfItems)
@@ -63,11 +58,7 @@ bool GetServerItem::getSingleServerItem(SERVER_ITEMS firstItemId)
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	getAnswer();
-	if (checkForError())
-	{
-		return true;
-	}
-	return false;
+	return checkForError();
 }
 
 inline unsigned char GetServerItem::get1ByteItem(SERVER_ITEMS serverItem)
@@ -97,7 +88,7 @@ template<typename T>
 T GetServerItem::get6BByteItem(SERVER_ITEMS serverItem)
 {
 	getSingleServerItem(serverItem);
-	T baosHardwareType =
+	T itemStruct =
 	{
 		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE),
 		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 1),
@@ -107,7 +98,7 @@ T GetServerItem::get6BByteItem(SERVER_ITEMS serverItem)
 		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 5)
 	};
 
-	return baosHardwareType;
+	return itemStruct;
 }
 
 BaosHardwareType GetServerItem::getHardwareType()
