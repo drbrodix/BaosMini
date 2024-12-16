@@ -2,44 +2,47 @@
 #define GET_DATAPOINT_DESCRIPTION_HPP
 
 /// <summary>
-/// Index of the datapoint value type, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the ID of the datapoint, whose description
+/// should be fetched, offset from the BAOS main service
+/// code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE
-#define DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE 8
-#endif // !DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE
+#define GET_DP_DESC_DP_ID_OFFSET BAOS_DATA_FIRST_INDEX
 
 /// <summary>
 /// Index of the datapoint configuration flags, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE
-#define DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE 9
-#endif // !DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE
+#define GET_DP_DESC_NR_OF_DPS_OFFSET (BAOS_DATA_FIRST_INDEX + 2)
 
 /// <summary>
-/// Index of the datapoint type, offset from the BAOS
+/// Index of the datapoint value type, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef DP_DPT_OFFSET_FROM_MAINSERVICE
-#define DP_DPT_OFFSET_FROM_MAINSERVICE 10
-#endif // !DP_DPT_OFFSET_FROM_MAINSERVICE
+#define GET_DP_DESC_DP_VALUE_TYPE_OFFSET 8
+
+/// <summary>
+/// Index of the datapoint configuration flags, offset from the BAOS
+/// main service code in the ObjectsServer's response telegram array.
+/// </summary>
+#define GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET 9
 
 /// <summary>
 /// Index of the number of datapoints requested, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef NR_OF_DPS_OFFSET_FROM_MAINSERVICE
-#define NR_OF_DPS_OFFSET_FROM_MAINSERVICE 4
-#endif // !NR_OF_DPS_OFFSET_FROM_MAINSERVICE
+#define GET_DP_DESC_RES_NR_OF_DPS_OFFSET 4
 
 /// <summary>
 /// Index of the datapoint ID, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef DP_ID_OFFSET_FROM_MAINSERVICE
-#define DP_ID_OFFSET_FROM_MAINSERVICE 6
-#endif // !DP_ID_OFFSET_FROM_MAINSERVICE
+#define GET_DP_DESC_RES_DP_ID_OFFSET 6
+
+/// <summary>
+/// Index of the datapoint type, offset from the BAOS
+/// main service code in the ObjectsServer's response telegram array.
+/// </summary>
+#define GET_DP_DESC_RES_DP_DPT_OFFSET 10
 
 #include "BaosTelegram.hpp"
 

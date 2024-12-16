@@ -47,13 +47,13 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection serialConnection("COM3");
     
-    //IndicationListener il(&serialConnection);
+    IndicationListener il(&serialConnection);
 
     //GetParameterByte gpb(9, &serialConnection);
     //printf("Param #9: %hhu", gpb.getByte());
 
-    SetServerItem ssi(&serialConnection);
-    ssi.setProgrammingMode(false, true);
+    //SetServerItem ssi(&serialConnection);
+    //ssi.setProgrammingMode(true, true);
 
     //GetServerItem gsi(&serialConnection);
     //BaosHardwareType baosHardwareType = gsi.getHardwareType();
@@ -193,7 +193,7 @@ int main(int argc, char* argv[])
     //SetDatapointValue dp4(4, &serialConnection);
     //dp4.setBoolean(true, SetNewValueAndSendOnBus, true);
 
-    //const auto RUN_SPEED = 200ms;
+    //const auto RUN_SPEED = 500ms;
     //
     //SetDatapointValue dp1(1, &serialConnection);
     //SetDatapointValue dp2(2, &serialConnection);

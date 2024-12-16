@@ -4,59 +4,50 @@
 /// <summary>
 /// BAOS main service code constant
 /// </summary>
-#ifndef BAOS_MAIN_SERVICE
 #define BAOS_MAIN_SERVICE 0xF0
-#endif // !BAOS_MAIN_SERVICE
 
 /// <summary>
 /// Constant for allocation of memory for
 /// telegram to be sent to ObjectServer
 /// </summary>
-#ifndef TELEGRAM_ARR_SIZE
 #define TELEGRAM_ARR_SIZE 30
-#endif // !TELEGRAM_ARR_SIZE
 
 /// <summary>
 /// Constant for allocation of memory for
 /// ObjectServer response telegram buffer
 /// </summary>
-#ifndef RESPONSE_ARR_SIZE
 #define RESPONSE_ARR_SIZE 250
-#endif // !RESPONSE_ARR_SIZE
 
 /// <summary>
 /// Number of bytes reserved for the
 /// BAOS telegram in the FT1.2 array
 /// </summary>
-#ifndef BAOS_BYTES_IN_ARR
 #define BAOS_BYTES_IN_ARR (TELEGRAM_ARR_SIZE - BAOS_DATA_FIRST_INDEX)
-#endif // !BAOS_BYTES_IN_ARR
 
 /// <summary>
 /// Index of the first byte in the baosTelegram array
 /// reserved for the BAOS telegram header part.
 /// This stands after the 5 bytes of the FT1.2 header.
 /// </summary>
-#ifndef BAOS_HEADER_FIRST_INDEX
 #define BAOS_HEADER_FIRST_INDEX 5
-#endif // !BAOS_HEADER_FIRST_INDEX
+
+/// <summary>
+/// Index of the BAOS subservice code in the BAOS header
+/// </summary>
+#define BAOS_SUBSERVICE_CODE_INDEX (BAOS_HEADER_FIRST_INDEX + 1)
 
 /// <summary>
 /// Index of the first byte in the baosTelegram array
 /// reserved for the BAOS telegram data part.
 /// This stands after the 2 bytes of the BAOS header.
 /// </summary>
-#ifndef BAOS_DATA_FIRST_INDEX
 #define BAOS_DATA_FIRST_INDEX (BAOS_HEADER_FIRST_INDEX + 2)
-#endif // !BAOS_DATA_FIRST_INDEX
 
 /// <summary>
 /// Index of the error code in the baosTelegram array,
 /// in case the ObjectServer responds with an error telegram.
 /// </summary>
-#ifndef ERROR_CODE_OFFSET_FROM_MAINSERVICE
-#define ERROR_CODE_OFFSET_FROM_MAINSERVICE 6
-#endif // !ERROR_CODE_OFFSET_FROM_MAINSERVICE
+#define ERROR_CODE_OFFSET 6
 
 #include <cstring>
 #include <cstdio>

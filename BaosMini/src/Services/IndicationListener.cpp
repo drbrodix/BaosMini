@@ -71,11 +71,11 @@ float IndicationListener::decode4ByteFloat(unsigned char* pValueStartAddress)
 
 bool IndicationListener::decodeDatapointIndication(unsigned char* responseTelegram, DatapointTypes::DATAPOINT_TYPES dpt)
 {
-	unsigned short nrOfDps = swap2(*(unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE));
+	unsigned short nrOfDps = swap2(*(unsigned short*)(responseTelegram + GET_DP_DESC_RES_NR_OF_DPS_OFFSET));
 	// Error route
 	if (!nrOfDps)
 	{
-		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
+		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET));
 		return false;
 	}
 	// Successful datapoint value fetch
@@ -83,7 +83,7 @@ bool IndicationListener::decodeDatapointIndication(unsigned char* responseTelegr
 	{
 		unsigned char dpValueLength = DatapointTypes::getDatapointSize(dpt);
 		unsigned char dpValueSize = *(responseTelegram + DP_LENGTH_OFFSET_FROM_MAINSERVICE);
-		unsigned short dpId = swap2(*(unsigned short*)(responseTelegram + DP_ID_OFFSET_FROM_MAINSERVICE));
+		unsigned short dpId = swap2(*(unsigned short*)(responseTelegram + GET_DP_DESC_RES_DP_ID_OFFSET));
 		unsigned char* pValueStartAddress = (responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
 
 		if (dpValueLength != dpValueSize)

@@ -2,28 +2,40 @@
 #define GET_DATAPOINT_VALUE_HPP
 
 /// <summary>
+/// Index of the ID of the datapoint, whose value should be fetched,
+/// offset from the BAOS main service code in the baosTelegram array.
+/// </summary>
+#define GET_DP_VALUE_DP_ID_OFFSET BAOS_DATA_FIRST_INDEX
+
+/// <summary>
+/// Index of the number of datapoints, whose values should be fetched,
+/// offset from the BAOS main service code in the baosTelegram array.
+/// </summary>
+#define GET_DP_VALUE_NR_OF_DPS_OFFSET (BAOS_DATA_FIRST_INDEX + 2)
+
+/// <summary>
+/// Index of the filter code, offset from the BAOS
+/// main service code in the baosTelegram array.
+/// </summary>
+#define GET_DP_VALUE_FILTER_CODE_OFFSET (BAOS_DATA_FIRST_INDEX + 4)
+
+/// <summary>
 /// Index of the number of datapoints requested, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef NR_OF_DPS_OFFSET_FROM_MAINSERVICE
-#define NR_OF_DPS_OFFSET_FROM_MAINSERVICE 4
-#endif // !NR_OF_DPS_OFFSET_FROM_MAINSERVICE
+#define GET_DP_VALUE_RES_NR_OF_DPS_OFFSET 4
 
 /// <summary>
 /// Index of the length of the datapoint value, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef DP_LENGTH_OFFSET_FROM_MAINSERVICE
-#define DP_LENGTH_OFFSET_FROM_MAINSERVICE 9
-#endif // !DP_LENGTH_OFFSET_FROM_MAINSERVICE
+#define GET_DP_VALUE_RES_DP_LENGTH_OFFSET 9
 
 /// <summary>
 /// Index of the datapoint value, offset from the BAOS
 /// main service code in the ObjectsServer's response telegram array.
 /// </summary>
-#ifndef DP_VALUE_OFFSET_FROM_MAINSERVICE
-#define DP_VALUE_OFFSET_FROM_MAINSERVICE 10
-#endif // !DP_VALUE_OFFSET_FROM_MAINSERVICE
+#define GET_DP_VALUE_RES_DP_VALUE_OFFSET 10
 
 #include "BaosTelegram.hpp"
 #include "../Utility/FloatConverter.hpp"
@@ -33,7 +45,6 @@
 /// <summary>
 /// Enumration of filter codes, allowing further configuration
 /// of the way, what datapoint values should be retrieved.
-/// This functionality is not actively used in this SDK.
 /// </summary>
 enum FILTER_CODES
 {
@@ -61,6 +72,12 @@ public:
         unsigned short datapointId,
         DatapointTypes::DATAPOINT_TYPES dpt,
         SerialConnection* serialConnection);
+
+    /// <summary>
+    /// The default destructor calls the parent function,
+    /// which frees up the dynamically allocated
+    /// memory of the baosTelegram and responseTelegram arrays.
+    /// </summary>
 	~GetDatapointValue();
 
     /// <summary>

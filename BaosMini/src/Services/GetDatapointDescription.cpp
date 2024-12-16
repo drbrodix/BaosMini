@@ -5,17 +5,18 @@ GetDatapointDescription::GetDatapointDescription(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1))					= GetDatapointDescriptionReq;
+	*(baosTelegram + BAOS_SUBSERVICE_CODE_INDEX)					= GetDatapointDescriptionReq;
 	
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX))		= swap2(datapointId);
-	
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 2))	= swap2(0x01);
+	*(unsigned short*)(baosTelegram + GET_DP_DESC_DP_ID_OFFSET)		= swap2(datapointId);
+	// Number of datapoints hard set to 1, since the concurrent
+	// fetching of multiple datapoint descriptions will not be supported
+	*(unsigned short*)(baosTelegram + GET_DP_DESC_NR_OF_DPS_OFFSET)	= swap2(0x01);
 
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 
-	hasValidResponse = getAnswer();
+	getAnswer();
 
 	hasValidResponse = checkForError();
 }
@@ -30,7 +31,7 @@ DatapointTypes::DATAPOINT_TYPES GetDatapointDescription::getDpDpt()
 	{
 		return DatapointTypes::NO_DATAPOINT_TYPE;
 	}
-	return (DatapointTypes::DATAPOINT_TYPES)*(responseTelegram + DP_DPT_OFFSET_FROM_MAINSERVICE);
+	return (DatapointTypes::DATAPOINT_TYPES)*(responseTelegram + GET_DP_DESC_RES_DP_DPT_OFFSET);
 }
 
 DatapointTypes::DATAPOINT_VALUE_TYPES GetDatapointDescription::getDpValueType()
@@ -39,7 +40,7 @@ DatapointTypes::DATAPOINT_VALUE_TYPES GetDatapointDescription::getDpValueType()
 	{
 		return DatapointTypes::INVALID_SIZE;
 	}
-	return (DatapointTypes::DATAPOINT_VALUE_TYPES)*(responseTelegram + DP_VALUE_TYPE_OFFSET_FROM_MAINSERVICE);
+	return (DatapointTypes::DATAPOINT_VALUE_TYPES)*(responseTelegram + GET_DP_DESC_DP_VALUE_TYPE_OFFSET);
 }
 
 ConfigFlags GetDatapointDescription::getDpConfigFlags()
@@ -49,25 +50,25 @@ ConfigFlags GetDatapointDescription::getDpConfigFlags()
 		return ConfigFlags{0};
 	}
 	ConfigFlags configFlag = { 0 };
-	configFlag.transmitPriority			= *(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0000'0011;
-	configFlag.datapointCommunication	= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0000'0100) >> 2;
-	configFlag.readFromBus				= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0000'1000) >> 3;
-	configFlag.writeFromBus				= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0001'0000) >> 4;
-	configFlag.readOnInit				= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0010'0000) >> 5;
-	configFlag.transmitToBus			= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b0100'0000) >> 6;
-	configFlag.updateOnResponse			= (*(responseTelegram + DP_CONFIG_FLAGS_OFFSET_FROM_MAINSERVICE) & 0b1000'0000) >> 7;
+	configFlag.transmitPriority			= *(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b0000'0011;
+	configFlag.datapointCommunication	= (*(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b0000'0100) >> 2;
+	configFlag.readFromBus				= (*(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b0000'1000) >> 3;
+	configFlag.writeFromBus				= (*(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b0001'0000) >> 4;
+	configFlag.readOnInit				= (*(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b0010'0000) >> 5;
+	configFlag.transmitToBus			= (*(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b0100'0000) >> 6;
+	configFlag.updateOnResponse			= (*(responseTelegram + GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET) & 0b1000'0000) >> 7;
 	return configFlag;
 }
 
 bool GetDatapointDescription::checkForError()
 {
 	bool hasNoError = true;
-	unsigned short nrOfDps = swap2(*((unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE)));
+	unsigned short nrOfDps = swap2(*((unsigned short*)(responseTelegram + GET_DP_DESC_RES_NR_OF_DPS_OFFSET)));
 	
 	// Error route
 	if (!nrOfDps)
 	{
-		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
+		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET));
 		hasNoError = false;
 	}
 
@@ -222,7 +223,7 @@ bool GetDatapointDescription::printDpDescription(
 		return false;
 	}
 	printf("Datapoint %hu:\n",
-		swap2(*(unsigned short*)(responseTelegram + DP_ID_OFFSET_FROM_MAINSERVICE)));
+		swap2(*(unsigned short*)(responseTelegram + GET_DP_DESC_RES_DP_ID_OFFSET)));
 	if (datapointDpt)
 	{
 		decodeDpDpt(getDpDpt());

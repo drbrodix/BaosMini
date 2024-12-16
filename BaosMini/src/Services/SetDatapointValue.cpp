@@ -16,48 +16,51 @@ SetDatapointValue::~SetDatapointValue()
 
 inline void SetDatapointValue::initTelegram()
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1))					= SetDatapointValueReq;
-	*((unsigned short*)(baosTelegram + BAOS_DATA_FIRST_INDEX))		= swap2(dpId);
-	*((unsigned short*)(baosTelegram + BAOS_DATA_FIRST_INDEX + 2))	= swap2(0x00'01);
-	*((unsigned short*)(baosTelegram + BAOS_DATA_FIRST_INDEX + 4))	= swap2(dpId);
+	*(baosTelegram + BAOS_SUBSERVICE_CODE_INDEX)							= SetDatapointValueReq;
+	*((unsigned short*)(baosTelegram + SET_DP_VALUE_START_DP_ID_OFFSET))	= swap2(dpId);
+	// Number of items hard set to 1, since the concurrent
+	// setting of multiple server items will not be supported
+	*((unsigned short*)(baosTelegram + SET_DP_VALUE_NR_OF_DPS_OFFSET))		= swap2(0x00'01);
+	*((unsigned short*)(baosTelegram + SET_DP_VALUE_FIRST_DP_ID_OFFSET))	= swap2(dpId);
 }
 
-bool SetDatapointValue::decodeSetDatapointValueRes()
+bool SetDatapointValue::checkForError()
 {
-	const unsigned char ERROR_CODE = *(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE);
+	bool hasNoError = true;
+	const unsigned char ERROR_CODE = *(responseTelegram + ERROR_CODE_OFFSET);
 
-	if (!ERROR_CODE)
-	{
-		unsigned short datapointID = swap2(*(unsigned short*)(responseTelegram + 2));
-		printf("Datapoint %hu has been successfully set\n", datapointID);
-		return true;
-	}
 	// Error route
-	else
+	if (ERROR_CODE)
 	{
 		getErrorDescription(ERROR_CODE);
-		return false;
+		hasNoError = false;
 	}
+
+	return hasNoError;
 }
 
 template <typename T>
 bool SetDatapointValue::setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt, CommandByte commandByte, bool decode)
 {
-	clearTelegram();
 	const unsigned char dptSize = getDatapointSize(dpt);
-	telegramLength = 10 + dptSize; // Member variable set to BAOS telegram length (header + data)
+	// Member variable set to BAOS telegram length (header + data).
+	// It is calculated by adding the length of the fixed parts, and the 
+	// dynamic length of the datapoint values together, passed as a parameter.
+	telegramLength = 10 + dptSize;
 	
-	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 6)) = commandByte;	// 7rd byte set to command byte
-	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 7)) = dptSize;		// 8th byte set to datapoint value size
-	*(T*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 8)) = dpValue;	// 9th and 10th byte set to actual value to set the datapoint to
+	*(baosTelegram + SET_DP_VALUE_COMMAND_BYTE_OFFSET)	= commandByte;
+	*(baosTelegram + SET_DP_VALUE_DP_VALUE_SIZE_OFFSET)	= dptSize;
+	*(T*)(baosTelegram + SET_DP_VALUE_DP_VALUE_OFFSET)	= dpValue;
 	
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	const bool serverResponse = getAnswer();
-	if (decode)
+	getAnswer();
+	hasValidResponse = checkForError();
+	if (decode && hasValidResponse)
 	{
-		decodeSetDatapointValueRes();
+		unsigned short datapointID = swap2(*(unsigned short*)(responseTelegram + SET_DP_VALUE_RES_DP_ID_OFFSET));
+		printf("Datapoint %hu has been successfully set\n", datapointID);
 	}
-	return serverResponse;
+	return hasValidResponse;
 }
 
 bool SetDatapointValue::setBoolean(bool dpValue, CommandByte commandByte, bool decode)

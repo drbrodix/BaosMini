@@ -4,7 +4,7 @@ GetServerItem::GetServerItem(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = GetServerItemReq;
+	*(baosTelegram + BAOS_SUBSERVICE_CODE_INDEX) = GetServerItemReq;
 }
 
 GetServerItem::~GetServerItem()
@@ -14,63 +14,84 @@ GetServerItem::~GetServerItem()
 bool GetServerItem::checkForError()
 {
 	bool hasNoError = true;
-	unsigned short nrOfItems = swap2(*((unsigned short*)(responseTelegram + NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE)));
+	unsigned short nrOfItems = swap2(*((unsigned short*)(responseTelegram + GET_SERVER_ITEM_RES_NR_OF_ITEMS_OFFSET)));
 
 	// Error route
 	if (!nrOfItems)
 	{
-		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
+		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET));
 		hasNoError = false;
 	}
 
 	return hasNoError;
 }
 
-bool GetServerItem::printServerItems(SERVER_ITEMS firstItemId, unsigned short nrOfItems)
+bool GetServerItem::getItem(SERVER_ITEMS firstItemId, unsigned short nrOfItems, bool decode)
 {
 	clearTelegram();
 
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX)) = swap2((unsigned short)firstItemId);
+	*(unsigned short*)(baosTelegram + GET_SERVER_ITEM_SERVER_ITEM_ID_OFFSET)	= swap2((unsigned short)firstItemId);
 
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 2)) = swap2(nrOfItems);
+	*(unsigned short*)(baosTelegram + GET_SERVER_ITEM_NR_OF_ITEMS_OFFSET)		= swap2(0x00'01);
 
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	getAnswer();
-	if (checkForError())
+	hasValidResponse = checkForError();
+	if (hasValidResponse && decode)
 	{
 		decodeServerItemRes(responseTelegram, responseLength);
-		return true;
 	}
-	return false;
+	return hasValidResponse;
 }
 
-bool GetServerItem::getSingleServerItem(SERVER_ITEMS firstItemId)
+bool GetServerItem::printServerItems(SERVER_ITEMS firstItemId, unsigned short nrOfItems)
 {
-	clearTelegram();
-
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX)) = swap2((unsigned short)firstItemId);
-
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 2)) = swap2(0x00'01);
-
-	telegramLength = 6;
-
-	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	getAnswer();
-	return checkForError();
+	return getItem(firstItemId, nrOfItems, true);
 }
 
 inline unsigned char GetServerItem::get1ByteItem(SERVER_ITEMS serverItem)
 {
-	getSingleServerItem(serverItem);
-	return *(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE);
+	if (getItem(serverItem))
+	{
+		return *(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET);
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 inline unsigned short GetServerItem::get2ByteItem(SERVER_ITEMS serverItem)
 {
-	getSingleServerItem(serverItem);
-	return swap2(*((unsigned short*)(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE)));
+	if (getItem(serverItem))
+	{
+		return swap2(*((unsigned short*)(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET)));
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+template<typename T>
+T GetServerItem::get6BByteItem(SERVER_ITEMS serverItem)
+{
+	T itemStruct = { 0 };
+	if (getItem(serverItem))
+	{
+		itemStruct =
+		{
+			*(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET),
+			*(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET + 1),
+			*(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET + 2),
+			*(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET + 3),
+			*(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET + 4),
+			*(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET + 5)
+		};
+	}
+	return itemStruct;
 }
 
 inline BaosVersion GetServerItem::getVersionItem(SERVER_ITEMS serverItem)
@@ -82,23 +103,6 @@ inline BaosVersion GetServerItem::getVersionItem(SERVER_ITEMS serverItem)
 		versionByte & 0x0F
 	};
 	return baosVersion;
-}
-
-template<typename T>
-T GetServerItem::get6BByteItem(SERVER_ITEMS serverItem)
-{
-	getSingleServerItem(serverItem);
-	T itemStruct =
-	{
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE),
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 1),
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 2),
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 3),
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 4),
-		*(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 5)
-	};
-
-	return itemStruct;
 }
 
 BaosHardwareType GetServerItem::getHardwareType()
@@ -143,9 +147,9 @@ BaosSerialNumber GetServerItem::getSerialNumber()
 
 BaosTime GetServerItem::getTimeSinceReset()
 {
-	getSingleServerItem(TIME_SINCE_RESET);
+	getItem(TIME_SINCE_RESET);
 
-	unsigned int    timeMs = swap4(*((int*)(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE)));
+	unsigned int    timeMs = swap4(*((int*)(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET)));
 	unsigned char    timeSec = timeMs / 1000;
 	unsigned char    timeHr = timeSec / 3600;
 	unsigned char    timeMin = (timeSec % 3600) / 60;
@@ -207,10 +211,12 @@ KnxDeviceAddress GetServerItem::getKnxIndividualAddress()
 {
 	// A = Area | L = Line | B = Bus Device
 	// AAAA LLLL BBBB BBBB
-	getSingleServerItem(INDIVIDUAL_ADDRESS);
 	KnxDeviceAddress knxDeviceAddress = { 0 };
-	knxDeviceAddress.area	= *(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE) >> 4;
-	knxDeviceAddress.line	= *(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE) & 0x0F;
-	knxDeviceAddress.device = *(responseTelegram + SERVER_ITEM_DATA_OFFSET_FROM_MAIN_SERVICE + 1);
+	if (getItem(INDIVIDUAL_ADDRESS))
+	{
+		knxDeviceAddress.area	= *(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET) >> 4;
+		knxDeviceAddress.line	= *(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET) & 0x0F;
+		knxDeviceAddress.device = *(responseTelegram + GET_SERVER_ITEM_RES_SERVER_ITEM_DATA_OFFSET + 1);
+	}
 	return knxDeviceAddress;
 }

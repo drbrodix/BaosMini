@@ -7,19 +7,20 @@ GetDatapointValue::GetDatapointValue(
 	: BaosTelegram(serialConnection)
 	, dpt(dpt)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = GetDatapointValueReq;
+	*(baosTelegram + BAOS_SUBSERVICE_CODE_INDEX)						= GetDatapointValueReq;
 	
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX))		= swap2(datapointId);
-	
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 2))	= swap2(0x01);
+	*(unsigned short*)(baosTelegram + GET_DP_VALUE_DP_ID_OFFSET)		= swap2(datapointId);
+	// Number of datapoints hard set to 1, since the concurrent
+	// fetching of multiple datapoint values will not be supported
+	*(unsigned short*)(baosTelegram + GET_DP_VALUE_NR_OF_DPS_OFFSET)	= swap2(0x01);
 
-	*(baosTelegram + (BAOS_DATA_FIRST_INDEX + 4))					= FILTER_CODES::GetAllDatapointValues;
+	*(baosTelegram + GET_DP_VALUE_FILTER_CODE_OFFSET)					= FILTER_CODES::GetAllDatapointValues;
 
 	telegramLength = 7;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength, dpt);
 
-	hasValidResponse = getAnswer();
+	getAnswer();
 
 	hasValidResponse = checkForError(datapointId);
 
@@ -32,14 +33,14 @@ GetDatapointValue::~GetDatapointValue()
 bool GetDatapointValue::checkForError(unsigned short datapointId)
 {
 	bool hasNoError = true;
-	unsigned short nrOfDps = swap2(*((unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE)));
+	unsigned short nrOfDps = swap2(*((unsigned short*)(responseTelegram + GET_DP_VALUE_RES_NR_OF_DPS_OFFSET)));
 	unsigned char dpValueSize = DatapointTypes::getDatapointSize(dpt);
-	unsigned char responseDpValueSize = *(responseTelegram + DP_LENGTH_OFFSET_FROM_MAINSERVICE);
+	unsigned char responseDpValueSize = *(responseTelegram + GET_DP_VALUE_RES_DP_LENGTH_OFFSET);
 
 	// Error sent by ObjectServer
 	if (!nrOfDps)
 	{
-		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
+		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET));
 		hasNoError = false;
 	}
 	// Datapoint length doesn't match the expected length
@@ -69,18 +70,18 @@ T GetDatapointValue::getValue(DatapointTypes::DATAPOINT_TYPES expectedDpt, const
 	{
 	case DatapointTypes::FLOAT_VALUE_2BYTE:
 		return floatConverter::decode2byteFloat(
-			*(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE),
-			*(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 1));
+			*(responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET),
+			*(responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET + 1));
 		break;
 	case DatapointTypes::FLOAT_VALUE_4BYTE:
-		*((char*)&floatValueSwapped)		= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 3);
-		*((char*)&floatValueSwapped + 1)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 2);
-		*((char*)&floatValueSwapped + 2)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE + 1);
-		*((char*)&floatValueSwapped + 3)	= *((char*)responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+		*((char*)&floatValueSwapped)		= *((char*)responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET + 3);
+		*((char*)&floatValueSwapped + 1)	= *((char*)responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET + 2);
+		*((char*)&floatValueSwapped + 2)	= *((char*)responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET + 1);
+		*((char*)&floatValueSwapped + 3)	= *((char*)responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET);
 		return floatValueSwapped;
 		break;
 	default:
-		return *(T*)(responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+		return *(T*)(responseTelegram + GET_DP_VALUE_RES_DP_VALUE_OFFSET);
 		break;
 	}
 }
