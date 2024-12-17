@@ -53,8 +53,8 @@ int main(int argc, char* argv[])
     //printf("Param #9: %hhu", gpb.getByte());
 
     SetServerItem ssi(&serialConnection);
-    ssi.setProgrammingMode(true);
-    ssi.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
+    //ssi.setProgrammingMode(true);
+    //ssi.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
 
     //GetServerItem gsi(&serialConnection);
     //BaosHardwareType baosHardwareType = gsi.getHardwareType();
@@ -141,33 +141,33 @@ int main(int argc, char* argv[])
     
     // gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
 
-    GetDatapointDescription gdd1(1, &serialConnection);
-    GetDatapointDescription gdd2(2, &serialConnection);
-    GetDatapointDescription gdd3(3, &serialConnection);
-    GetDatapointDescription gdd4(4, &serialConnection);
-    GetDatapointDescription gdd5(5, &serialConnection);
-    GetDatapointDescription gdd9(9, &serialConnection);
-    
-    DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType = gdd1.getDpValueType();
-    printConfigFlags(1, gdd1.getDpConfigFlags());
-    printConfigFlags(2, gdd2.getDpConfigFlags());
-    printConfigFlags(3, gdd3.getDpConfigFlags());
-    printConfigFlags(4, gdd4.getDpConfigFlags());
-    printConfigFlags(5, gdd5.getDpConfigFlags());
-    printConfigFlags(9, gdd9.getDpConfigFlags());
+    //GetDatapointDescription gdd1(1, &serialConnection);
+    //GetDatapointDescription gdd2(2, &serialConnection);
+    //GetDatapointDescription gdd3(3, &serialConnection);
+    //GetDatapointDescription gdd4(4, &serialConnection);
+    //GetDatapointDescription gdd5(5, &serialConnection);
+    //GetDatapointDescription gdd9(9, &serialConnection);
+    //
+    //DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType = gdd1.getDpValueType();
+    //printConfigFlags(1, gdd1.getDpConfigFlags());
+    //printConfigFlags(2, gdd2.getDpConfigFlags());
+    //printConfigFlags(3, gdd3.getDpConfigFlags());
+    //printConfigFlags(4, gdd4.getDpConfigFlags());
+    //printConfigFlags(5, gdd5.getDpConfigFlags());
+    //printConfigFlags(9, gdd9.getDpConfigFlags());
 
-    GetDatapointDescription gdd1(1, &serialConnection);
-    gdd1.printDpDescription(true, false, true);
-    GetDatapointDescription gdd2(19, &serialConnection);
-    gdd2.printDpDescription(true, true, true);
-    GetDatapointDescription gdd3(3, &serialConnection);
-    gdd3.printDpDescription(true, true, true);
-    GetDatapointDescription gdd4(4, &serialConnection);
-    gdd4.printDpDescription(true, true, true);
-    GetDatapointDescription gdd5(5, &serialConnection);
-    gdd5.printDpDescription(true, true, true);
-    GetDatapointDescription gdd9(9, &serialConnection);
-    gdd9.printDpDescription(true, true, true);
+    //GetDatapointDescription gdd1(1, &serialConnection);
+    //gdd1.printDpDescription(true, false, true);
+    //GetDatapointDescription gdd2(19, &serialConnection);
+    //gdd2.printDpDescription(true, true, true);
+    //GetDatapointDescription gdd3(3, &serialConnection);
+    //gdd3.printDpDescription(true, true, true);
+    //GetDatapointDescription gdd4(4, &serialConnection);
+    //gdd4.printDpDescription(true, true, true);
+    //GetDatapointDescription gdd5(5, &serialConnection);
+    //gdd5.printDpDescription(true, true, true);
+    //GetDatapointDescription gdd9(9, &serialConnection);
+    //gdd9.printDpDescription(true, true, true);
 
     //SetServerItem ssi(&serialConnection);
     //ssi.setProgrammingMode(true, true);
@@ -186,14 +186,14 @@ int main(int argc, char* argv[])
     //GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
     //printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());
 
-    //SetDatapointValue dp1(1, &serialConnection);
-    //dp1.setBoolean(true, SetNewValueAndSendOnBus, true);
-    //SetDatapointValue dp2(2, &serialConnection);
-    //dp2.setBoolean(true, SetNewValueAndSendOnBus, true);
-    //SetDatapointValue dp3(3, &serialConnection);
-    //dp3.setBoolean(true, SetNewValueAndSendOnBus, true);
-    //SetDatapointValue dp4(4, &serialConnection);
-    //dp4.setBoolean(true, SetNewValueAndSendOnBus, true);
+    SetDatapointValue dp1(1, &serialConnection);
+    dp1.setBoolean(true, SetNewValueAndSendOnBus, true);
+    SetDatapointValue dp2(2, &serialConnection);
+    dp2.setBoolean(true, SetNewValueAndSendOnBus, true);
+    SetDatapointValue dp3(3, &serialConnection);
+    dp3.setBoolean(true, SetNewValueAndSendOnBus, true);
+    SetDatapointValue dp4(4, &serialConnection);
+    dp4.setBoolean(true, SetNewValueAndSendOnBus, true);
 
     //const auto RUN_SPEED = 500ms;
     //

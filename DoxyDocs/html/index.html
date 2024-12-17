@@ -87,67 +87,79 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">BaosMini Overview </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
-BaosMini Overview</h1>
-<h2><a class="anchor" id="autotoc_md1"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md0"></a>
 Introduction</h2>
-<h3><a class="anchor" id="autotoc_md2"></a>
+<h3><a class="anchor" id="autotoc_md1"></a>
 Generally about the project</h3>
-<p>This is a minimalistic implementation of the BAOS Protocol, aiming to serve as a stripped down tool allowing easy access for embedded building automation controller devices to a KNX bus. This can be done by the use of a BAOS device, which serves as a middle man between our controller and the target KNX bus, and by the use of this SDK, which provides a communication means with the BAOS device.</p>
-<h3><a class="anchor" id="autotoc_md3"></a>
+<p>This is a minimalistic implementation of the BAOS Protocol created by <a href="http://weinzierl.de/">Weinzierl Engineering GmbH</a>, aiming to serve as a stripped down tool for embedded building automation controller devices, allowing easy and quick access to a KNX bus. This can be done by the use of a BAOS device, which serves as a middle man between our controller and the target KNX bus, and by the use of this SDK, which provides a communication means with the BAOS device.</p>
+<h3><a class="anchor" id="autotoc_md2"></a>
 Focus points and the minimalistic approach of the project</h3>
 <p>Given the minimalistic nature of the project, while other connection types are possible, this SDK provides a solution exclusively for the intended FT1.2 serial connection, using Windows APIs. This project has been built entirely in pure C++. During the development, it was an important focus of the project to avoid any kind of significant dependency, and promote portability. To achieve this objective, it was attempted to minimize the use of both external and internal libraries, and stick to standard features. This means features available in C++ standards not more recent than C++11, and those available in most common C++ compilers. To further improve portability and reduce dependency on anything, be it libraries or developer environments, the linking of source files and headers to each other has been done using relative paths. Avoiding the use of a build system, such as Makefile or CMake, was also a deliberate choice. While these tools provide an excellent way to develop multiplatform projects, they are also prone to become the source of headaches when the project is imported into an environment, which is not meant to be used which such build systems. Instead, using the SDK should be as easy as cloning the project, and including the header files of the services, which we wish to use in our new project.</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Examples</h2>
 <p>Below can be found some basic examples, presenting how the communication can be built with a BAOS device, how telegrams can be created to use certain supported BAOS subservices, and how these telegrams can be eventually sent to the ObjectServer via serial connection.</p>
-<h3><a class="anchor" id="autotoc_md5"></a>
+<h3><a class="anchor" id="autotoc_md4"></a>
 Serial Connection</h3>
 <p>Before everything else, a <a class="el" href="class_serial_connection.html">SerialConnection</a> object should be created, which serves as a means to send data to, and recieve data from the connected BAOS device. </p><pre class="fragment">// Simply create a SerialConnection object, with a string
 // of the name of the serial interface passed as a parameter
 
 SerialConnection serialConnection("COM3");
-</pre><h3><a class="anchor" id="autotoc_md6"></a>
+</pre><h3><a class="anchor" id="autotoc_md5"></a>
 GetServerItem</h3>
-<p><a class="el" href="class_get_server_item.html" title="A BAOS service, allowing the retrieval of various data about the connected BAOS device.">GetServerItem</a> is a BAOS subservice, which allows the retrieval of various data about the connected BAOS device. </p><pre class="fragment">// First, create a GetServerItem object, with a pointer to the SerialConnection
-// object passed to the constructor function as a parameter.
+<p><a class="el" href="class_get_server_item.html" title="A BAOS service, allowing the retrieval of various data about the connected BAOS device.">GetServerItem</a> is a BAOS subservice, which allows the retrieval of various data about the connected BAOS device. Refer to Appendix A in the BAOS documentation to find out more about the available server items. Not all server items are accessible in this implementation.</p>
+<p>First, create a <a class="el" href="class_get_server_item.html" title="A BAOS service, allowing the retrieval of various data about the connected BAOS device.">GetServerItem</a> object with a pointer to the <a class="el" href="class_serial_connection.html">SerialConnection</a> object passed to the constructor function as a parameter. </p><pre class="fragment">GetServerItem getServerItem(&amp;serialConnection);
+</pre><p>Then, use the available member functions of the created <a class="el" href="class_get_server_item.html" title="A BAOS service, allowing the retrieval of various data about the connected BAOS device.">GetServerItem</a> object to communicate with the ObjectServer in the desired way. </p><pre class="fragment">BaosVersion hardwareVersion = { 0 };
+hardwareVersion             = getServerItem.getHardwareVersion();
 
-GetServerItem getServerItem(&amp;serialConnection);
+BaosSerialNumber baosSerialNumber   = { 0 };
+baosSerialNumber                    = getServerItem.getSerialNumber();
 
-// Then, use the available member functions of the created GetServerItem
-// object to communicate with the ObjectServer in the desired way.
-
-BaosVersion hardwareVersion = { 0 };
-hardwareVersion = getServerItem.getHardwareVersion();
-
-BaosSerialNumber baosSerialNumber = { 0 };
-baosSerialNumber = getServerItem.getSerialNumber();
-
-bool isProgrammingModeEnabled = false;
-isProgrammingModeEnabled = getServerItem.getProgrammingMode();
-
-// A quick and easy way to print certain information about the
-// BAOS device in the standard output stream is also provided.
-// For this, use the printServerItems() member function.
-// When calling the function, pass the first server item
-// to be retrieved, and then the number of server items requested.
-
-getServerItem.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 7);
-</pre><h3><a class="anchor" id="autotoc_md7"></a>
+bool isProgrammingModeEnabled   = false;
+isProgrammingModeEnabled        = getServerItem.getProgrammingMode();
+</pre><p>A quick and easy way to print out certain information about the BAOS device in the standard output stream is also provided. For this, use the printServerItems() member function. When calling the function, pass the first server item to be retrieved, and then the number of server items requested as parameters. </p><pre class="fragment">getServerItem.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 7);
+</pre><h3><a class="anchor" id="autotoc_md6"></a>
 SetServerItem</h3>
-<p><a class="el" href="class_set_server_item.html" title="A BAOS service, allowing the setting of values of certain server items of the connected BAOS device.">SetServerItem</a> is a BAOS subservice, which allows the setting of values of certain server items of the connected BAOS device. </p><pre class="fragment">// First, create a SetServerItem object, with a pointer to the SerialConnection
-// object passed to the constructor function as a parameter.
-
-SetServerItem setServerItem(&amp;serialConnection);
-
-// Then, use the available member functions of the created SetServerItem
-// object to communicate with the ObjectServer in the desired way.
-
-setServerItem.setProgrammingMode(true);
-
-// The member functions also accept an optional decode parameter, which allows the ObjectServer's 
-// response to be printed in the standard output stream. It is set to false by default.
+<p><a class="el" href="class_set_server_item.html" title="A BAOS service, allowing the setting of values of certain server items of the connected BAOS device.">SetServerItem</a> is a BAOS subservice, which allows the setting of values of certain server items of the connected BAOS device. Refer to Appendix A in the BAOS documentation to find out more about the available server items. Not all server items are accessible in this implementation.</p>
+<p>First, create a <a class="el" href="class_set_server_item.html" title="A BAOS service, allowing the setting of values of certain server items of the connected BAOS device.">SetServerItem</a> object with a pointer to the <a class="el" href="class_serial_connection.html">SerialConnection</a> object passed to the constructor function as a parameter. </p><pre class="fragment">SetServerItem setServerItem(&amp;serialConnection);
+</pre><p>Then, use the available member functions of the created <a class="el" href="class_set_server_item.html" title="A BAOS service, allowing the setting of values of certain server items of the connected BAOS device.">SetServerItem</a> object to communicate with the ObjectServer in the desired way. The function returns a boolean value, indicating whether the communication was successful. </p><pre class="fragment">bool objectServerResponse   = false;
+objectServerResponse        = setServerItem.setProgrammingMode(true);
+</pre><p>The member functions also accept an optional decode boolean parameter, which allows the ObjectServer's response to be printed out in the standard output stream. It is set to false by default. </p><pre class="fragment">// Will print out ObjectServer response
 
 setServerItem.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
+</pre><h3><a class="anchor" id="autotoc_md7"></a>
+GetDatapointDescription</h3>
+<p><a class="el" href="class_get_datapoint_description.html" title="A BAOS service, allowing the retrieval of various data about configured datapoints in the ObjectServe...">GetDatapointDescription</a> is a BAOS subservice, which allows the retrieval of various data about configured datapoints in the ObjectServer.</p>
+<p>First, create a <a class="el" href="class_get_datapoint_description.html" title="A BAOS service, allowing the retrieval of various data about configured datapoints in the ObjectServe...">GetDatapointDescription</a> object with the ID of the datapoint, whose description we want to fetch from the ObjectServer, and with a pointer to the <a class="el" href="class_serial_connection.html">SerialConnection</a> object, passed to the constructor function as parameters. </p><pre class="fragment">GetDatapointDescription getDatapointDescription(5, &amp;serialConnection);
+</pre><p>Then, use the available member functions of the created <a class="el" href="class_get_datapoint_description.html" title="A BAOS service, allowing the retrieval of various data about configured datapoints in the ObjectServe...">GetDatapointDescription</a> object to get the desired data. </p><pre class="fragment">DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType = getDatapointDescription.getDpValueType();
+
+ConfigFlags configFlags     = getDatapointDescription.getDpConfigFlags();
+bool updateOnResponseFlag   = configFlags.updateOnResponse;
+bool readOnInitFlag         = configFlags.readOnInit;
+</pre><p>A quick and easy way to print out certain information about the datapoint in the standard output stream is also provided. For this, use the printDpDescription() member function. To print out the datapoint type, the datapoint value type, and the datapoint configuration flags, the respective flags need to be set by passing the function boolean parameters accordingly. </p><pre class="fragment">// The datapoint type and the datapoint configuration flags
+// will be output, the datapoint value type not.
+
+getDatapointDescription.printDpDescription(true, false, true);
+</pre><h3><a class="anchor" id="autotoc_md8"></a>
+GetDatapointValue</h3>
+<p><a class="el" href="class_get_datapoint_value.html" title="A BAOS service, allowing the retrieval of values of datapoints configured in the ObjectServer.">GetDatapointValue</a> is a BAOS subservice, which allows the retrieval of datapoint values of configured datapoints in the ObjectServer. Refer to Appendix D in the BAOS documentation to find out more about the available datapoint types. Not all datapoint types are accessible in this implementation.</p>
+<p>First, create a <a class="el" href="class_get_datapoint_value.html" title="A BAOS service, allowing the retrieval of values of datapoints configured in the ObjectServer.">GetDatapointValue</a> object with the ID of the datapoint, whose value we want to fetch from the ObjectServer, with the datatype of the datapoint, and with a pointer to the <a class="el" href="class_serial_connection.html">SerialConnection</a> object, passed to the constructor function as parameters. </p><pre class="fragment">GetDatapointValue getBoolValue(7, DatapointTypes::BOOLEAN, &amp;serialConnection);
+
+GetDatapointValue getSigned2ByteValue(9, DatapointTypes::SIGNED_VALUE_2BYTE, &amp;serialConnection);
+</pre><p>Then, use the available member functions of the created <a class="el" href="class_get_datapoint_value.html" title="A BAOS service, allowing the retrieval of values of datapoints configured in the ObjectServer.">GetDatapointValue</a> object to get the desired data. </p><pre class="fragment">bool boolValue  = false;
+boolValue       = getBoolValue.getBooleanValue();
+
+short shortValue    = 0;
+shortValue          = getSigned2ByteValue.getSignedValue2Byte();
+</pre><h3><a class="anchor" id="autotoc_md9"></a>
+SetDatapointValue</h3>
+<p><a class="el" href="class_set_datapoint_value.html" title="A BAOS service, allowing the setting of value of datapoints configured in the ObjectServer.">SetDatapointValue</a> is a BAOS subservice, which allows the setting of datapoint values of configured datapoints in the ObjectServer. Refer to Appendix D in the BAOS documentation to find out more about the available datapoint types. Not all datapoint types are accessible in this implementation.</p>
+<p>First, create a <a class="el" href="class_set_datapoint_value.html" title="A BAOS service, allowing the setting of value of datapoints configured in the ObjectServer.">SetDatapointValue</a> object with the ID of the datapoint, whose value we want to set, and with a pointer to the <a class="el" href="class_serial_connection.html">SerialConnection</a> object, passed to the constructor function as parameters. </p><pre class="fragment">SetDatapointValue setDatapointValue17(17, &amp;serialConnection);
+
+SetDatapointValue setDatapointValue39(39, &amp;serialConnection);
+</pre><p>Then, use the available member functions of the created <a class="el" href="class_set_datapoint_value.html" title="A BAOS service, allowing the setting of value of datapoints configured in the ObjectServer.">SetDatapointValue</a> object to communicate with the ObjectServer in the desired way. When calling the function, pass the value, which the datapoint should be set to, and a command byte, which allows further configuration, what the telegram will be used for, as parameters. </p><pre class="fragment">setDatapointValue17.setBoolean(true, CommandByte::SetNewValueAndSendOnBus);
+</pre><p>The member functions also accept an optional decode boolean parameter, which allows the ObjectServer's response to be printed out in the standard output stream. It is set to false by default. </p><pre class="fragment">// Will print out ObjectServer response
+
+setDatapointValue39.setFloatValue2Byte(-49.17f, CommandByte::SetNewValueAndSendOnBus, true);
 </pre> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

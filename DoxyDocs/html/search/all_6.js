@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['generally_20about_20the_20project_0',['Generally about the project',['../index.html#autotoc_md2',1,'']]],
+  ['generally_20about_20the_20project_0',['Generally about the project',['../index.html#autotoc_md1',1,'']]],
   ['getanswer_1',['getAnswer',['../class_baos_telegram.html#a2651d4bf98b415973bf0ca382478d63a',1,'BaosTelegram']]],
   ['getapplicationid_2',['getApplicationId',['../class_get_server_item.html#a9cdf9fbbd0b0e78ff466042cb801361d',1,'GetServerItem']]],
   ['getapplicationversion_3',['getApplicationVersion',['../class_get_server_item.html#a452ce7fb800e01caacb9435150dde9e6',1,'GetServerItem']]],
@@ -9,8 +9,8 @@ var searchData=
   ['getbusconnectionstate_6',['getBusConnectionState',['../class_get_server_item.html#ac53bf1c1be61879bd7ef71acff562c40',1,'GetServerItem']]],
   ['getbyte_7',['getByte',['../class_get_parameter_byte.html#a09c1c8c286b1a51f6edead1588978532',1,'GetParameterByte']]],
   ['getcurrentbuffersize_8',['getCurrentBufferSize',['../class_get_server_item.html#a0761c3c4604bb7716ad8e75c57465ebe',1,'GetServerItem']]],
-  ['getdatapointdescription_9',['GetDatapointDescription',['../class_get_datapoint_description.html',1,'GetDatapointDescription'],['../class_get_datapoint_description.html#aa8a66d1c44437e2e25b9bc64f7c8f6cc',1,'GetDatapointDescription::GetDatapointDescription()']]],
-  ['getdatapointvalue_10',['GetDatapointValue',['../class_get_datapoint_value.html',1,'GetDatapointValue'],['../class_get_datapoint_value.html#adc4189fda81b734b35dec9f5f93c096d',1,'GetDatapointValue::GetDatapointValue()']]],
+  ['getdatapointdescription_9',['GetDatapointDescription',['../class_get_datapoint_description.html',1,'GetDatapointDescription'],['../class_get_datapoint_description.html#aa8a66d1c44437e2e25b9bc64f7c8f6cc',1,'GetDatapointDescription::GetDatapointDescription()'],['../index.html#autotoc_md7',1,'GetDatapointDescription']]],
+  ['getdatapointvalue_10',['GetDatapointValue',['../class_get_datapoint_value.html',1,'GetDatapointValue'],['../class_get_datapoint_value.html#adc4189fda81b734b35dec9f5f93c096d',1,'GetDatapointValue::GetDatapointValue()'],['../index.html#autotoc_md8',1,'GetDatapointValue']]],
   ['getdpconfigflags_11',['getDpConfigFlags',['../class_get_datapoint_description.html#ac589d037fd931d672eccbdd47b4e0295',1,'GetDatapointDescription']]],
   ['getdpdpt_12',['getDpDpt',['../class_get_datapoint_description.html#a605a608def1387ff34d059ce999359ec',1,'GetDatapointDescription']]],
   ['getdpvaluetype_13',['getDpValueType',['../class_get_datapoint_description.html#aa6fed681fe60a6bf00870d9018f07044',1,'GetDatapointDescription']]],
@@ -31,7 +31,7 @@ var searchData=
   ['getprotocolversionrest_28',['getProtocolVersionRest',['../class_get_server_item.html#ab6aaa3cbec80e48523c7a99f20af5d8a',1,'GetServerItem']]],
   ['getprotocolversionweb_29',['getProtocolVersionWeb',['../class_get_server_item.html#a519bf183a1dc443c1f949fe3e58c017d',1,'GetServerItem']]],
   ['getserialnumber_30',['getSerialNumber',['../class_get_server_item.html#a3f1a0234da1a51fdbcb13cfcee0d5391',1,'GetServerItem']]],
-  ['getserveritem_31',['GetServerItem',['../class_get_server_item.html',1,'GetServerItem'],['../class_get_server_item.html#a8d6d090695490400614aafa2a62056ac',1,'GetServerItem::GetServerItem()'],['../index.html#autotoc_md6',1,'GetServerItem']]],
+  ['getserveritem_31',['GetServerItem',['../class_get_server_item.html',1,'GetServerItem'],['../class_get_server_item.html#a8d6d090695490400614aafa2a62056ac',1,'GetServerItem::GetServerItem()'],['../index.html#autotoc_md5',1,'GetServerItem']]],
   ['getsignedvalue1byte_32',['getSignedValue1Byte',['../class_get_datapoint_value.html#a0684e7f1817170f024b6f752aae53e4f',1,'GetDatapointValue']]],
   ['getsignedvalue2byte_33',['getSignedValue2Byte',['../class_get_datapoint_value.html#a158fc0b1b50be9b6926cb6620d6c3ce3',1,'GetDatapointValue']]],
   ['getsignedvalue4byte_34',['getSignedValue4Byte',['../class_get_datapoint_value.html#afbaea0f22d38d1f9c11f042819deebae',1,'GetDatapointValue']]],
