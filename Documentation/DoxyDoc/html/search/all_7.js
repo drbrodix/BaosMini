@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['indicationlistener_0',['IndicationListener',['../class_indication_listener.html',1,'']]],
-  ['introduction_1',['Introduction',['../index.html#autotoc_md0',1,'']]]
+  ['hasvalidresponse_0',['hasValidResponse',['../class_baos_telegram.html#ac413f93380943f8e812f01f64fa445d5',1,'BaosTelegram']]]
 ];

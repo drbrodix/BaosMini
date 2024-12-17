@@ -1,3 +1,5 @@
+/// \mainpage BaosMini Overview
+
 # BaosMini Overview
 
 ## Introduction

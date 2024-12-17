@@ -141,21 +141,22 @@ int main(int argc, char* argv[])
     
     // gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
 
-    //GetDatapointDescription gdd1(1, &serialConnection);
-    //GetDatapointDescription gdd2(2, &serialConnection);
-    //GetDatapointDescription gdd3(3, &serialConnection);
-    //GetDatapointDescription gdd4(4, &serialConnection);
-    //GetDatapointDescription gdd5(5, &serialConnection);
-    //GetDatapointDescription gdd9(9, &serialConnection);
-    //
-    //printConfigFlags(1, gdd1.getDpConfigFlags());
-    //printConfigFlags(2, gdd2.getDpConfigFlags());
-    //printConfigFlags(3, gdd3.getDpConfigFlags());
-    //printConfigFlags(4, gdd4.getDpConfigFlags());
-    //printConfigFlags(5, gdd5.getDpConfigFlags());
-    //printConfigFlags(9, gdd9.getDpConfigFlags());
+    GetDatapointDescription gdd1(1, &serialConnection);
+    GetDatapointDescription gdd2(2, &serialConnection);
+    GetDatapointDescription gdd3(3, &serialConnection);
+    GetDatapointDescription gdd4(4, &serialConnection);
+    GetDatapointDescription gdd5(5, &serialConnection);
+    GetDatapointDescription gdd9(9, &serialConnection);
+    
+    DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType = gdd1.getDpValueType();
+    printConfigFlags(1, gdd1.getDpConfigFlags());
+    printConfigFlags(2, gdd2.getDpConfigFlags());
+    printConfigFlags(3, gdd3.getDpConfigFlags());
+    printConfigFlags(4, gdd4.getDpConfigFlags());
+    printConfigFlags(5, gdd5.getDpConfigFlags());
+    printConfigFlags(9, gdd9.getDpConfigFlags());
 
-    /*GetDatapointDescription gdd1(1, &serialConnection);
+    GetDatapointDescription gdd1(1, &serialConnection);
     gdd1.printDpDescription(true, false, true);
     GetDatapointDescription gdd2(19, &serialConnection);
     gdd2.printDpDescription(true, true, true);
@@ -166,7 +167,7 @@ int main(int argc, char* argv[])
     GetDatapointDescription gdd5(5, &serialConnection);
     gdd5.printDpDescription(true, true, true);
     GetDatapointDescription gdd9(9, &serialConnection);
-    gdd9.printDpDescription(true, true, true);*/
+    gdd9.printDpDescription(true, true, true);
 
     //SetServerItem ssi(&serialConnection);
     //ssi.setProgrammingMode(true, true);
