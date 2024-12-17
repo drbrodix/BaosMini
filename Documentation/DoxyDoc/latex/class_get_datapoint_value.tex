@@ -1,0 +1,91 @@
+\doxysection{Get\+Datapoint\+Value Class Reference}
+\hypertarget{class_get_datapoint_value}{}\label{class_get_datapoint_value}\index{GetDatapointValue@{GetDatapointValue}}
+
+
+A BAOS service, allowing the retrieval of values of datapoints configured in the Object\+Server.  
+
+
+
+
+{\ttfamily \#include $<$Get\+Datapoint\+Value.\+hpp$>$}
+
+Inheritance diagram for Get\+Datapoint\+Value\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_get_datapoint_value}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d}\label{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d} 
+{\bfseries Get\+Datapoint\+Value} (unsigned short datapoint\+Id, Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES dpt, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. The specification of the datapoint type is needed for error avoidance when decoding the retrieved datapoint values. An error check will be done, and the result stored for further use. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a1301a589139b282934c1bc8ef37121b7}\label{class_get_datapoint_value_a1301a589139b282934c1bc8ef37121b7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Datapoint\+Value} ()
+\begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672}\label{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672} 
+bool {\bfseries get\+Boolean\+Value} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved boolean value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6}\label{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6} 
+unsigned char {\bfseries get\+Unsigned\+Value1\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 1byte unsigned value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f}\label{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f} 
+signed char {\bfseries get\+Signed\+Value1\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 1byte signed value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362}\label{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362} 
+unsigned short {\bfseries get\+Unsigned\+Value2\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 2byte unsigned value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3}\label{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3} 
+signed short {\bfseries get\+Signed\+Value2\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 2byte signed value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e}\label{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e} 
+float {\bfseries get\+Float\+Value2\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 2byte float value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e}\label{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e} 
+unsigned int {\bfseries get\+Unsigned\+Value4\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 4byte unsigned value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae}\label{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae} 
+signed int {\bfseries get\+Signed\+Value4\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 4byte signed value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484}\label{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484} 
+float {\bfseries get\+Float\+Value4\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved 4byte float value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
+{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+unsigned int {\bfseries get\+Answer} ()
+\begin{DoxyCompactList}\small\item\em Initiates reading the Object\+Server\textquotesingle{}s response. Returns response telegram length, or 0 if error has occured. \end{DoxyCompactList}\item 
+void {\bfseries clear\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em Clear the data part of the telegram, that is the bytes after the BAOS mainservice and subservice codes, so that no conflict occurs in case of differring telegram lengths. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries response\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram recieved from Object\+Server. \end{DoxyCompactList}\item 
+unsigned char {\bfseries telegram\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries baos\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries response\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of Object\+Server response telegram . \end{DoxyCompactList}\item 
+bool {\bfseries has\+Valid\+Response}
+\begin{DoxyCompactList}\small\item\em Keeps track if Object\+Server response telegram is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*} {\bfseries serial\+Connection}
+\begin{DoxyCompactList}\small\item\em The passed pointer to the serial connection object will be stored to allow communication with the connected BAOS device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A BAOS service, allowing the retrieval of values of datapoints configured in the Object\+Server. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/include/\+Services/Get\+Datapoint\+Value.\+hpp\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/src/\+Services/Get\+Datapoint\+Value.\+cpp\end{DoxyCompactItemize}

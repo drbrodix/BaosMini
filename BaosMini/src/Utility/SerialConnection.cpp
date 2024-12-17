@@ -74,7 +74,7 @@ bool SerialConnection::configureConnect()
 bool SerialConnection::configureTimeout()
 {
     timeout.ReadIntervalTimeout         = 100; // specifies the time that must pass between receiving characters before timing out (in milliseconds).
-    timeout.ReadTotalTimeoutConstant    = MAXDWORD; // provides the amount of time to wait before returning (in milliseconds).
+    timeout.ReadTotalTimeoutConstant    = 100; // provides the amount of time to wait before returning (in milliseconds).
     timeout.ReadTotalTimeoutMultiplier  = 0; // specifies the length of time to wait before responding for each byte requested in the read operation (in milliseconds).
     timeout.WriteTotalTimeoutConstant   = MAXDWORD; // same as in case of reading, but for writing
     timeout.WriteTotalTimeoutMultiplier = 0; // same as in case of reading, but for writing
@@ -246,10 +246,10 @@ bool SerialConnection::readData(unsigned char* buffer) const
 // I know it's terrible... I'm just an intern, don't judge me...
 unsigned int SerialConnection::recieveTelegram(unsigned char* telegramCharArray)
 {
-    //const unsigned short MAX_TRIES_COUNT        = 30;       // Caps number of tries looking for FT1.2 start byte
-    //unsigned int readTries                      = 0;        // Keeps count of number of tries looking for FT1.2 start byte
-    unsigned int telegramLength = 0;        // Variable to save BAOS telegram length after reading FT1.2 header
-    unsigned char ft12Header[FT12_HEADER_SIZE] = { 0 };    // { (0) 0x68 , (1) Length, (2) Length, (3) 0x68, (4) ControlByte }
+    //const unsigned short MAX_TRIES_COUNT        = 30; // Caps number of tries looking for FT1.2 start byte
+    //unsigned int readTries                      = 0;  // Keeps count of number of tries looking for FT1.2 start byte
+    unsigned int telegramLength = 0;                    // Variable to store BAOS telegram length after reading FT1.2 header
+    unsigned char ft12Header[FT12_HEADER_SIZE] = { 0 }; // { (0) 0x68 , (1) Length, (2) Length, (3) 0x68, (4) ControlByte }
     unsigned char checksum = 0;
     unsigned char endByte = 0;
 

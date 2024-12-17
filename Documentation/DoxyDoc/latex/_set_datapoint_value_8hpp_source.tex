@@ -1,0 +1,85 @@
+\doxysection{Set\+Datapoint\+Value.\+hpp}
+\hypertarget{_set_datapoint_value_8hpp_source}{}\label{_set_datapoint_value_8hpp_source}\index{C:/Users/regely/source/repos/BaosMini/BaosMini/include/Services/SetDatapointValue.hpp@{C:/Users/regely/source/repos/BaosMini/BaosMini/include/Services/SetDatapointValue.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SET\_DATAPOINT\_VALUE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SET\_DATAPOINT\_VALUE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_RES\_DP\_ID\_OFFSET\ 2}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_START\_DP\_ID\_OFFSET\ BAOS\_DATA\_FIRST\_INDEX}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_NR\_OF\_DPS\_OFFSET\ (BAOS\_DATA\_FIRST\_INDEX\ +\ 2)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_FIRST\_DP\_ID\_OFFSET\ (BAOS\_DATA\_FIRST\_INDEX\ +\ 4)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_COMMAND\_BYTE\_OFFSET\ (BAOS\_DATA\_FIRST\_INDEX\ +\ 6)}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_DP\_VALUE\_SIZE\_OFFSET\ (BAOS\_DATA\_FIRST\_INDEX\ +\ 7)}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ SET\_DP\_VALUE\_DP\_VALUE\_OFFSET\ (BAOS\_DATA\_FIRST\_INDEX\ +\ 8)}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}BaosTelegram.hpp"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}../Utility/FloatConverter.hpp"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}../Utility/DatapointTypes.hpp"{}}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{enum}\ CommandByte}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ NoCommand\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x00,\ \textcolor{comment}{//\ No\ Command}}
+\DoxyCodeLine{00060\ \ \ \ \ SetNewValue\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x01,\ \textcolor{comment}{//\ Set\ new\ value}}
+\DoxyCodeLine{00061\ \ \ \ \ SendValueOnBus\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x02,\ \textcolor{comment}{//\ Send\ value\ on\ bus}}
+\DoxyCodeLine{00062\ \ \ \ \ SetNewValueAndSendOnBus\ \ \ \ \ \ \ \ \ =\ 0x03,\ \textcolor{comment}{//\ Set\ new\ value\ and\ send\ on\ bus}}
+\DoxyCodeLine{00063\ \ \ \ \ ReadNewValueViaBus\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x04,\ \textcolor{comment}{//\ Read\ new\ value\ via\ bus}}
+\DoxyCodeLine{00064\ \ \ \ \ ClearDatapointTransmissionState\ =\ 0x05\ \ \textcolor{comment}{//\ Clear\ datapoint\ transmission\ state}}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_set_datapoint_value}{SetDatapointValue}}\ :\ \mbox{\hyperlink{class_baos_telegram}{BaosTelegram}}}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{class_set_datapoint_value_a19fa3a70335e0f5f1fb3f8140bce02b1}{SetDatapointValue}}(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ dpId,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_serial_connection}{SerialConnection}}*\ \mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serialConnection}}}
+\DoxyCodeLine{00084\ \ \ \ \ );}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_set_datapoint_value_a1f559017fe6e25632b0d58c1ffb7fbd7}{\string~SetDatapointValue}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Generic\ structure\ of\ BAOS\ Datapoint}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ \ ID\ of\ DP\ \ \ \ \ \ \ \ \ \ Command\ byte\ of\ DP\ \ \ \ Length\ byte\ of\ DP\ \ \ \ \ \ \ \ \ Value\ of\ DP}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ \ 0x00\ 0x00\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ 0x00\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ 0x00\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ 0x00\ ...}}
+\DoxyCodeLine{00098\ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a2732214629d99c61e4ebc9a7c5320544}{setBoolean}}(\textcolor{keywordtype}{bool}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00107\ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_acf6107d6229311513105b1a81150ad4d}{setUnsignedValue1Byte}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00116\ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a1a0c25748f38442643ab58f5edf6737b}{setSignedValue1Byte}}(\textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00125\ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a2f23cf94025a31dd855576ab623b85c1}{setUnsignedValue2Byte}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a286260c44a8b9002ead4560ab835fb62}{setSignedValue2Byte}}(\textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{short}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00143\ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a19e109748dae79a5fed4b004a3bdbbdc}{setFloatValue2Byte}}(\textcolor{keywordtype}{float}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00152\ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_af079135d6ae20ccba9ca2dff69f4ab3f}{setUnsignedValue4Byte}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00161\ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a0b49d6fae510bf6862b8b7a3defaf990}{setSignedValue4Byte}}(\textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{int}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00170\ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_set_datapoint_value_a55e70f8999c9713647037c47dd514037}{setFloatValue4Byte}}(\textcolor{keywordtype}{float}\ dpValue,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ dpId;}
+\DoxyCodeLine{00185\ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ initTelegram();}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkForError();}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{bool}\ setValue(T\ dpValue,\ DatapointTypes::DATAPOINT\_TYPES\ dpt,\ CommandByte\ commandByte,\ \textcolor{keywordtype}{bool}\ decode);}
+\DoxyCodeLine{00206\ \};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SET\_DATAPOINT\_VALUE\_HPP}}
+
+\end{DoxyCode}

@@ -4,13 +4,17 @@ IndicationListener::IndicationListener(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
+	std::thread listenerThread(startListening, responseTelegram, &responseLength, serialConnection);
+	listenerThread.detach();
+	printf("Press [Enter] to stop listening...\n");
+	getchar();
 }
 
 IndicationListener::~IndicationListener()
 {
 }
 
-void IndicationListener::startListening()
+void IndicationListener::startListening(unsigned char* responseTelegram, unsigned int* responseLength, SerialConnection* serialConnection)
 {
     printf("Listening for incoming telegram...\n");
 
@@ -19,9 +23,19 @@ void IndicationListener::startListening()
 
     while (true)
     {
-        getAnswer();
+		if (responseTelegram != nullptr)
+		{
+			memset(responseTelegram, 0, RESPONSE_ARR_SIZE);
 
-		switch ((SUBSERVICES) *(responseTelegram + 1))
+			*responseLength = serialConnection->recieveTelegram(responseTelegram);
+
+			if (*responseLength > 0)
+			{
+				serialConnection->sendAck();
+			}
+		}
+
+		switch ((SUBSERVICES)*(responseTelegram + 1))
 		{
 		case SUBSERVICES::DatapointValueind:
 			// Extract ID of indication datapoint
@@ -30,11 +44,11 @@ void IndicationListener::startListening()
 			//// Fetch info about the datapoint
 			gdd = new GetDatapointDescription(dpId, serialConnection);
 
-			decodeDatapointIndication((DatapointTypes::DATAPOINT_TYPES)gdd->getDpDpt());
+			decodeDatapointIndication(responseTelegram, gdd->getDpDpt());
 			break;
 		
 		case SUBSERVICES::ServerItemInd:
-			decodeServerItemRes(responseTelegram, responseLength);
+			decodeServerItemRes(responseTelegram, *responseLength);
 			break;
 
 		default:
@@ -55,13 +69,13 @@ float IndicationListener::decode4ByteFloat(unsigned char* pValueStartAddress)
 	return dpValueSwapped;
 }
 
-bool IndicationListener::decodeDatapointIndication(DatapointTypes::DATAPOINT_TYPES dpt)
+bool IndicationListener::decodeDatapointIndication(unsigned char* responseTelegram, DatapointTypes::DATAPOINT_TYPES dpt)
 {
-	unsigned short nrOfDps = swap2(*(unsigned short*)(responseTelegram + NR_OF_DPS_OFFSET_FROM_MAINSERVICE));
+	unsigned short nrOfDps = swap2(*(unsigned short*)(responseTelegram + GET_DP_DESC_RES_NR_OF_DPS_OFFSET));
 	// Error route
 	if (!nrOfDps)
 	{
-		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
+		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET));
 		return false;
 	}
 	// Successful datapoint value fetch
@@ -69,7 +83,7 @@ bool IndicationListener::decodeDatapointIndication(DatapointTypes::DATAPOINT_TYP
 	{
 		unsigned char dpValueLength = DatapointTypes::getDatapointSize(dpt);
 		unsigned char dpValueSize = *(responseTelegram + DP_LENGTH_OFFSET_FROM_MAINSERVICE);
-		unsigned short dpId = swap2(*(unsigned short*)(responseTelegram + DP_ID_OFFSET_FROM_MAINSERVICE));
+		unsigned short dpId = swap2(*(unsigned short*)(responseTelegram + GET_DP_DESC_RES_DP_ID_OFFSET));
 		unsigned char* pValueStartAddress = (responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
 
 		if (dpValueLength != dpValueSize)

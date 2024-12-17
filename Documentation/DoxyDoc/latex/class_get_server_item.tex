@@ -1,0 +1,127 @@
+\doxysection{Get\+Server\+Item Class Reference}
+\hypertarget{class_get_server_item}{}\label{class_get_server_item}\index{GetServerItem@{GetServerItem}}
+
+
+A BAOS service, allowing the retrieval of various data about the connected BAOS device.  
+
+
+
+
+{\ttfamily \#include $<$Get\+Server\+Item.\+hpp$>$}
+
+Inheritance diagram for Get\+Server\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_get_server_item}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_get_server_item_a8d6d090695490400614aafa2a62056ac}\label{class_get_server_item_a8d6d090695490400614aafa2a62056ac} 
+{\bfseries Get\+Server\+Item} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function calls the base class \doxylink{class_baos_telegram}{Baos\+Telegram} constructor function, thus initializing the basic data members, and sets the BAOS subservice code. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a96af18381e97f1ff5de06d544f310037}\label{class_get_server_item_a96af18381e97f1ff5de06d544f310037} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Server\+Item} ()
+\begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a801550636fbd8ee09727819559704d8c}\label{class_get_server_item_a801550636fbd8ee09727819559704d8c} 
+bool {\bfseries print\+Server\+Items} (SERVER\+\_\+\+ITEMS first\+Item\+Id, unsigned short nr\+Of\+Items)
+\begin{DoxyCompactList}\small\item\em Requests the server items specified in the parameters, prints the retrieved data in a formatted way in the terminal if the recieved telegram contains no error code, and returns true. Decodes and prints the recieved error code in the terminal, and returns false otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_ac74e7a6d86d74d98a39847aade743322}\label{class_get_server_item_ac74e7a6d86d74d98a39847aade743322} 
+\mbox{\hyperlink{struct_baos_hardware_type}{Baos\+Hardware\+Type}} {\bfseries get\+Hardware\+Type} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the hardware type of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a8943ffba3704489ce702e850e1fd2a15}\label{class_get_server_item_a8943ffba3704489ce702e850e1fd2a15} 
+\mbox{\hyperlink{struct_baos_version}{Baos\+Version}} {\bfseries get\+Hardware\+Version} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the hardware version of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_aebff520ccb47d978f78f0de39569f81a}\label{class_get_server_item_aebff520ccb47d978f78f0de39569f81a} 
+\mbox{\hyperlink{struct_baos_version}{Baos\+Version}} {\bfseries get\+Firmware\+Version} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the firmware version of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a8ca9412e4a93ab3f41446e9d5f785bae}\label{class_get_server_item_a8ca9412e4a93ab3f41446e9d5f785bae} 
+unsigned short {\bfseries get\+Knx\+Device\+Manufacturer\+Code} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the KNX manufacturer code of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a9985f8335b7ccf42929204450711274e}\label{class_get_server_item_a9985f8335b7ccf42929204450711274e} 
+unsigned short {\bfseries get\+Knx\+App\+Manufacturer\+Code} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the KNX manufacturer code loaded by ETS, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a9cdf9fbbd0b0e78ff466042cb801361d}\label{class_get_server_item_a9cdf9fbbd0b0e78ff466042cb801361d} 
+unsigned short {\bfseries get\+Application\+Id} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the ID of the application loaded by ETS, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a452ce7fb800e01caacb9435150dde9e6}\label{class_get_server_item_a452ce7fb800e01caacb9435150dde9e6} 
+\mbox{\hyperlink{struct_baos_version}{Baos\+Version}} {\bfseries get\+Application\+Version} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the version of the application loaded by ETS, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a3f1a0234da1a51fdbcb13cfcee0d5391}\label{class_get_server_item_a3f1a0234da1a51fdbcb13cfcee0d5391} 
+\mbox{\hyperlink{struct_baos_hardware_type}{Baos\+Serial\+Number}} {\bfseries get\+Serial\+Number} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the serial number of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a37617fb3a797e28178ef488cde4380c5}\label{class_get_server_item_a37617fb3a797e28178ef488cde4380c5} 
+\mbox{\hyperlink{struct_baos_time}{Baos\+Time}} {\bfseries get\+Time\+Since\+Reset} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the time passed since the last time the connected BAOS device was reset, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_ac53bf1c1be61879bd7ef71acff562c40}\label{class_get_server_item_ac53bf1c1be61879bd7ef71acff562c40} 
+bool {\bfseries get\+Bus\+Connection\+State} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns bus connection state of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a508c13a6507abc303caf1902a924810d}\label{class_get_server_item_a508c13a6507abc303caf1902a924810d} 
+unsigned short {\bfseries get\+Max\+Buffer\+Size} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns maximum buffer size of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_af85418ef131fabad2fd1749a85804d3d}\label{class_get_server_item_af85418ef131fabad2fd1749a85804d3d} 
+unsigned short {\bfseries get\+Length\+Of\+Desc\+String} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns length of description string of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a6e0ef1aecc6c61527350c58c43630126}\label{class_get_server_item_a6e0ef1aecc6c61527350c58c43630126} 
+BAUDRATES {\bfseries get\+Baudrate} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns baudrate of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a0761c3c4604bb7716ad8e75c57465ebe}\label{class_get_server_item_a0761c3c4604bb7716ad8e75c57465ebe} 
+unsigned short {\bfseries get\+Current\+Buffer\+Size} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns currently set buffer size of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a7fb0bf1dca564fad7f467b44767c4467}\label{class_get_server_item_a7fb0bf1dca564fad7f467b44767c4467} 
+bool {\bfseries get\+Programming\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns current state of programming mode of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_aabb247ab99d1f62136977170472c062b}\label{class_get_server_item_aabb247ab99d1f62136977170472c062b} 
+\mbox{\hyperlink{struct_baos_version}{Baos\+Version}} {\bfseries get\+Protocol\+Version\+Binary} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the version of the Object\+Server binary protocol, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a17ecbe8285a67716db893458aad2fd09}\label{class_get_server_item_a17ecbe8285a67716db893458aad2fd09} 
+bool {\bfseries get\+Indication\+Sending} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns current state of indication sending of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_a519bf183a1dc443c1f949fe3e58c017d}\label{class_get_server_item_a519bf183a1dc443c1f949fe3e58c017d} 
+\mbox{\hyperlink{struct_baos_version}{Baos\+Version}} {\bfseries get\+Protocol\+Version\+Web} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the version of the Object\+Server protocol via web services, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_ab6aaa3cbec80e48523c7a99f20af5d8a}\label{class_get_server_item_ab6aaa3cbec80e48523c7a99f20af5d8a} 
+\mbox{\hyperlink{struct_baos_version}{Baos\+Version}} {\bfseries get\+Protocol\+Version\+Rest} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the version of the Object\+Server protocol via rest services, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_server_item_aeb519efb782e8beb7c63425a7358daf6}\label{class_get_server_item_aeb519efb782e8beb7c63425a7358daf6} 
+\mbox{\hyperlink{struct_knx_device_address}{Knx\+Device\+Address}} {\bfseries get\+Knx\+Individual\+Address} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and returns the individual KNX address of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
+{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+unsigned int {\bfseries get\+Answer} ()
+\begin{DoxyCompactList}\small\item\em Initiates reading the Object\+Server\textquotesingle{}s response. Returns response telegram length, or 0 if error has occured. \end{DoxyCompactList}\item 
+void {\bfseries clear\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em Clear the data part of the telegram, that is the bytes after the BAOS mainservice and subservice codes, so that no conflict occurs in case of differring telegram lengths. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries response\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram recieved from Object\+Server. \end{DoxyCompactList}\item 
+unsigned char {\bfseries telegram\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries baos\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries response\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of Object\+Server response telegram . \end{DoxyCompactList}\item 
+bool {\bfseries has\+Valid\+Response}
+\begin{DoxyCompactList}\small\item\em Keeps track if Object\+Server response telegram is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*} {\bfseries serial\+Connection}
+\begin{DoxyCompactList}\small\item\em The passed pointer to the serial connection object will be stored to allow communication with the connected BAOS device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A BAOS service, allowing the retrieval of various data about the connected BAOS device. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/include/\+Services/Get\+Server\+Item.\+hpp\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/src/\+Services/Get\+Server\+Item.\+cpp\end{DoxyCompactItemize}

@@ -4,114 +4,94 @@ SetServerItem::SetServerItem(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = SetServerItemReq;
-
-	// Number of items hard set to 1, since the concurrent
-	// setting of multiple server items will not be supported
-	*(unsigned short*)(baosTelegram + (NR_OF_ITEMS_OFFSET_FROM_MAINSERVICE)) = swap2((unsigned short)0x01);
-	
+	*(baosTelegram + BAOS_SUBSERVICE_CODE_INDEX) = SetServerItemReq;
 }
 
 SetServerItem::~SetServerItem()
 {
 }
 
-// Set decode to "true" to print ObjectServer answer in terminal
-void SetServerItem::setBaudrate(BAUDRATE baudrate, bool decode)
+bool SetServerItem::checkForError()
 {
-	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::BAUDRATE);
-	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))	= swap2((unsigned short)SERVER_ITEMS::BAUDRATE);
-	*(baosTelegram + (FIRST_ITEM_LENGTH_OFFSET_FROM_MAINSERVICE))				= 0x01;
-	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))					= baudrate;
-	telegramLength = 10;
-	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	getAnswer();
-	if (decode)
-	{
-		decodeSetServerItemRes();
-	}
-}
+	bool hasNoError = true;
+	const unsigned char ERROR_CODE = *(responseTelegram + ERROR_CODE_OFFSET);
 
-// Set decode to "true" to print ObjectServer answer in terminal
-void SetServerItem::setCurrentBufferSize(unsigned short bufferSize, bool decode)
-{
-	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE))			= swap2((unsigned short)SERVER_ITEMS::CURRENT_BUFFER_SIZE);
-	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE))		= swap2((unsigned short)SERVER_ITEMS::CURRENT_BUFFER_SIZE);
-	*(baosTelegram + (FIRST_ITEM_LENGTH_OFFSET_FROM_MAINSERVICE))					= 0x02;
-	*(unsigned short*)(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE))	= swap2(bufferSize);
-	telegramLength = 11;
-	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	getAnswer();
-	if (decode)
-	{
-		decodeSetServerItemRes();
-	}
-}
-
-void SetServerItem::setBool(bool enable, bool decode, SERVER_ITEMS serverItem)
-{
-	*(unsigned short*)(baosTelegram + (START_ITEM_OFFSET_FROM_MAINSERVICE)) = swap2((unsigned short)serverItem);
-	*(unsigned short*)(baosTelegram + (FIRST_ITEM_ID_OFFSET_FROM_MAINSERVICE)) = swap2((unsigned short)serverItem);
-	*(baosTelegram + (FIRST_ITEM_LENGTH_OFFSET_FROM_MAINSERVICE)) = 0x01;
-	*(baosTelegram + (FIRST_ITEM_DATA_OFFSET_FROM_MAINSERVICE)) = enable;
-	telegramLength = 10;
-	serialConnection->sendTelegram(baosTelegram, telegramLength);
-	getAnswer();
-	if (decode)
-	{
-		decodeSetServerItemRes();
-	}
-}
-
-// Set decode to "true" to print ObjectServer answer in terminal
-void SetServerItem::setProgrammingMode(bool enable, bool decode)
-{
-	setBool(enable, decode, SERVER_ITEMS::PROGRAMMING_MODE);
-}
-
-// Set decode to "true" to print ObjectServer answer in terminal
-void SetServerItem::setIndicationSending(bool enable, bool decode)
-{
-	setBool(enable, decode, SERVER_ITEMS::INDICATION_SENDING);
-}
-
-bool SetServerItem::decodeSetServerItemRes()
-{
-	const unsigned char ERROR_CODE = *(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE);
-
-	if (ERROR_CODE == 0x00)
-	{
-		unsigned short serverItemID = swap2(*(unsigned short*)(responseTelegram + 2));
-
-		switch ((SERVER_ITEMS)serverItemID)
-		{
-		case SERVER_ITEMS::BAUDRATE:
-			printf("Baudrate has been successfully set\n");
-			return true;
-			break;
-		case SERVER_ITEMS::CURRENT_BUFFER_SIZE:
-			printf("Current buffer size has been successfully set\n");
-			return true;
-			break;
-		case SERVER_ITEMS::PROGRAMMING_MODE:
-			printf("Programming mode has been successfully set\n");
-			return true;
-			break;
-		case SERVER_ITEMS::INDICATION_SENDING:
-			printf("Indication sending has been successfully set\n");
-			return true;
-			break;
-		default:
-			printf("Unknown server item has been set\n");
-			return false;
-			break;
-		}
-	}
 	// Error route
-	else
+	if (ERROR_CODE)
 	{
 		getErrorDescription(ERROR_CODE);
+		hasNoError = false;
+	}
 
-		return false;
+	return hasNoError;
+}
+
+template <typename T>
+bool SetServerItem::setValue(T itemValue, SERVER_ITEMS serverItem, unsigned char itemLength, bool decode)
+{
+	clearTelegram();
+	*(unsigned short*)(baosTelegram + SET_SERVER_ITEM_START_ITEM_ID_OFFSET)	= swap2((unsigned short)serverItem);
+	// Number of items hard set to 1, since the concurrent
+	// setting of multiple server items will not be supported
+	*(unsigned short*)(baosTelegram + SET_SERVER_ITEM_NR_OF_ITEMS_OFFSET)	= swap2((unsigned short)0x01);
+	*(unsigned short*)(baosTelegram + SET_SERVER_ITEM_FIRST_ITEM_ID_OFFSET)	= swap2((unsigned short)serverItem);
+	*(baosTelegram + SET_SERVER_ITEM_FIRST_ITEM_LENGTH_OFFSET)				= itemLength;
+	*(T*)(baosTelegram + SET_SERVER_ITEM_FIRST_ITEM_DATA_OFFSET)			= itemValue;
+	// Member variable set to BAOS telegram length (header + data).
+	// It is calculated by adding the length of the fixed parts, and the 
+	// dynamic length of the server items together, passed as a parameter.
+	telegramLength = 9 + itemLength;
+
+	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	getAnswer();
+	hasValidResponse = checkForError();
+	if (hasValidResponse && decode)
+	{
+		decodeSetServerItemRes();
+	}
+	return hasValidResponse;
+}
+
+bool SetServerItem::setBaudrate(BAUDRATES baudrate, bool decode)
+{
+	return setValue<unsigned char>(baudrate, BAUDRATE, 1, decode);
+}
+
+bool SetServerItem::setCurrentBufferSize(unsigned short bufferSize, bool decode)
+{
+	return setValue<unsigned short>(swap2(bufferSize), CURRENT_BUFFER_SIZE, 2, decode);
+}
+
+bool SetServerItem::setProgrammingMode(bool enable, bool decode)
+{
+	return setValue<unsigned char>(enable, PROGRAMMING_MODE, 1, decode);
+}
+
+bool SetServerItem::setIndicationSending(bool enable, bool decode)
+{
+	return setValue<unsigned char>(enable, INDICATION_SENDING, 1, decode);
+}
+
+void SetServerItem::decodeSetServerItemRes()
+{
+	unsigned short serverItemID = swap2(*(unsigned short*)(responseTelegram + SET_SERVER_ITEM_RES_ITEM_ID_OFFSET));
+
+	switch ((SERVER_ITEMS)serverItemID)
+	{
+	case SERVER_ITEMS::BAUDRATE:
+		printf("Baudrate has been successfully set\n");
+		break;
+	case SERVER_ITEMS::CURRENT_BUFFER_SIZE:
+		printf("Current buffer size has been successfully set\n");
+		break;
+	case SERVER_ITEMS::PROGRAMMING_MODE:
+		printf("Programming mode has been successfully set\n");
+		break;
+	case SERVER_ITEMS::INDICATION_SENDING:
+		printf("Indication sending has been successfully set\n");
+		break;
+	default:
+		printf("Unknown server item has been set\n");
+		break;
 	}
 }

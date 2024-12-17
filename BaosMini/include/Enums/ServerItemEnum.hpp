@@ -1,6 +1,12 @@
 #ifndef SERVER_ITEM_ENUM_HPP
 #define SERVER_ITEM_ENUM_HPP
 
+enum BAUDRATES
+{
+	BAUDRATE_19200 = 1,
+	BAUDRATE_115200 = 2,
+};
+
 // Appendix A in BAOS Doc
 enum SERVER_ITEMS
 {

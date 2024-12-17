@@ -3,12 +3,21 @@
 BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
     : BaosTelegram()
 {
-    // Allocate TELEGRAM_ARR_SIZE (30 bytes) for the BAOS telegram,
-    // set the value of all the elements to 0,
-    // and set the first element to the BAOS main service.
-    BaosTelegram::serialConnection  = serialConnection;
-    baosTelegram                    = new unsigned char[TELEGRAM_ARR_SIZE];
-    responseTelegram                = new unsigned char[RESPONSE_ARR_SIZE];
+    BaosTelegram::serialConnection = serialConnection;
+
+    baosTelegram        = new unsigned char[TELEGRAM_ARR_SIZE];
+    responseTelegram    = new unsigned char[RESPONSE_ARR_SIZE];
+
+    if (baosTelegram != nullptr)
+    {
+        memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
+        baosTelegram[BAOS_HEADER_FIRST_INDEX] = BAOS_MAIN_SERVICE;
+    }
+    else
+    {
+        printf("Error: BAOS telegram array is null.");
+    }
+
     if (responseTelegram != nullptr)
     {
         memset(responseTelegram, 0, RESPONSE_ARR_SIZE);
@@ -17,24 +26,14 @@ BaosTelegram::BaosTelegram(SerialConnection* serialConnection)
     {
         printf("Error: response array is null.");
     }
-
-    if (baosTelegram != nullptr)
-    {
-        memset(baosTelegram, 0, TELEGRAM_ARR_SIZE);
-        baosTelegram[BAOS_HEADER_FIRST_INDEX] = BaosTelegram::BAOS_MAIN_SERVICE;
-    }
-    else
-    {
-        printf("Error: BAOS telegram array is null.");
-    }
 }
 
 BaosTelegram::BaosTelegram()
     : serialConnection(nullptr)
     , baosTelegram(nullptr)
     , responseTelegram(nullptr)
-    , telegramLength(0)
-    , responseLength(0)
+    , telegramLength(NULL)
+    , responseLength(NULL)
     , hasValidResponse(false)
 {
 }
@@ -69,4 +68,9 @@ unsigned int BaosTelegram::getAnswer()
         printf("Response telegram buffer has not been initialized\n");
         return 0;
     }
+}
+
+void BaosTelegram::clearTelegram()
+{
+    memset((baosTelegram + BAOS_DATA_FIRST_INDEX), 0, BAOS_BYTES_IN_ARR);
 }

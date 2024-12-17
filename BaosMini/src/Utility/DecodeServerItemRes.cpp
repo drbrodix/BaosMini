@@ -23,19 +23,16 @@ namespace
 
     inline void formatServerItemBaudrate(unsigned char* pDataStartAddress)
     {
-        switch (*pDataStartAddress)
+        switch ((BAUDRATES)*pDataStartAddress)
         {
-        case 0:
-            printf("Baudrate: unknown \n");
-            break;
-        case 1:
+        case BAUDRATE_19200:
             printf("Baudrate: 19200 Baud \n");
             break;
-        case 2:
+        case BAUDRATE_115200:
             printf("Baudrate: 115200 Baud \n");
             break;
         default:
-            printf("Invalid Baudrate value \n");
+            printf("Baudrate: unknown \n");
             break;
         }
     }
@@ -59,9 +56,9 @@ namespace
     inline void formatServerItemTime(unsigned char* pDataStartAddress, unsigned char itemLength)
     {
         unsigned int    timeMs  = swap4(*((int*)(pDataStartAddress)));
-        unsigned int    timeSec = timeMs / 1000;
-        unsigned int    timeHr  = timeSec / 3600;
-        unsigned int    timeMin = (timeSec % 3600) / 60;
+        unsigned char    timeSec = timeMs / 1000;
+        unsigned char    timeHr  = timeSec / 3600;
+        unsigned char    timeMin = (timeSec % 3600) / 60;
                         timeSec = timeSec % 60;
         printf("Time since reset: %dHr %dMin %dSec\n", timeHr, timeMin, timeSec);
     }
@@ -142,7 +139,7 @@ namespace
         case LENGTH_OF_DESC_STRING:
             itemLength = 2;
             printf("Length of description string: ");
-            formatServerItemHex(pDataStartAddress, itemLength);
+            formatServerItemSize(pDataStartAddress);
             return currentIndex + itemLength + SERVER_ITEM_OFFSET_FROM_ID;
             break;
         case BAUDRATE:

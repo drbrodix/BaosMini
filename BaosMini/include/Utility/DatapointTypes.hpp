@@ -53,7 +53,7 @@ namespace DatapointTypes
 		SIZE_8_BYTE		= 0x0C,
 		SIZE_10_BYTE	= 0x0D,
 		SIZE_14_BYTE	= 0x0E,
-
+		INVALID_SIZE	= 0x0F	// ONLY FOR INTERNAL USAGE
 	};
 
 	unsigned char getDatapointSize(DATAPOINT_TYPES dpt);

@@ -1,21 +1,22 @@
 #include "../../include/Services/GetParameterByte.hpp"
 
 GetParameterByte::GetParameterByte(
-	unsigned short indexOfFirstByte,
+	unsigned short parameterByteId,
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	*(baosTelegram + (BAOS_HEADER_FIRST_INDEX + 1)) = GetParameterByteReq;
+	*(baosTelegram + BAOS_SUBSERVICE_CODE_INDEX) = GetParameterByteReq;
 	
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX))		= swap2(indexOfFirstByte);
-	
-	*(unsigned short*)(baosTelegram + (BAOS_DATA_FIRST_INDEX + 2))	= swap2(0x01);
+	*(unsigned short*)(baosTelegram + GET_PARAM_BYTE_PARAM_BYTE_ID_OFFSET)	= swap2(parameterByteId);
+	// Number of parameter bytes hard set to 1, since the concurrent
+	// fetching of multiple parameter bytes will not be supported
+	*(unsigned short*)(baosTelegram + GET_PARAM_BYTE_NR_OF_BYTES_OFFSET)	= swap2(0x01);
 
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
 	getAnswer();
-	checkForError();
+	hasValidResponse = checkForError();
 }
 
 GetParameterByte::~GetParameterByte()
@@ -24,18 +25,25 @@ GetParameterByte::~GetParameterByte()
 
 unsigned char GetParameterByte::getByte()
 {
-	return *(responseTelegram + FIRST_BYTE_OFFSET_FROM_MAIN_SERVICE);
+	if (hasValidResponse)
+	{
+		return *(responseTelegram + GET_PARAM_BYTE_RES_FIRST_BYTE_OFFSET);
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 bool GetParameterByte::checkForError()
 {
 	bool hasNoError = true;
-	unsigned short nrOfBytes = swap2(*((unsigned short*)(responseTelegram + NR_OF_BYTES_OFFSET_FROM_MAIN_SERVICE)));
+	unsigned short nrOfBytes = swap2(*((unsigned short*)(responseTelegram + GET_PARAM_BYTE_RES_NR_OF_BYTES_OFFSET)));
 	
 	// Error route
 	if (!nrOfBytes)
 	{
-		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET_FROM_MAINSERVICE));
+		getErrorDescription(*(responseTelegram + ERROR_CODE_OFFSET));
 		hasNoError = false;
 	}
 

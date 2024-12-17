@@ -1,0 +1,33 @@
+\doxysection{Checksum\+Calculator.\+hpp}
+\hypertarget{_checksum_calculator_8hpp_source}{}\label{_checksum_calculator_8hpp_source}\index{C:/Users/regely/source/repos/BaosMini/BaosMini/include/Utility/ChecksumCalculator.hpp@{C:/Users/regely/source/repos/BaosMini/BaosMini/include/Utility/ChecksumCalculator.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CHECKSUM\_CALCULATOR\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CHECKSUM\_CALCULATOR\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ BAOS\_HEADER\_FIRST\_INDEX}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ BAOS\_HEADER\_FIRST\_INDEX\ 5}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !BAOS\_HEADER\_FIRST\_INDEX}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ BAOS\_DATA\_FIRST\_INDEX}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ BAOS\_DATA\_FIRST\_INDEX\ BAOS\_HEADER\_FIRST\_INDEX\ +\ 2}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !BAOS\_DATA\_FIRST\_INDEX}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }ChecksumCalculator}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ calculateChecksumSent(}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ telegramData,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ telegramLength,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ controlByte}
+\DoxyCodeLine{00018\ \ \ \ \ );}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ calculateChecksumRecieved(}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ telegramData,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ telegramLength,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ controlByte}
+\DoxyCodeLine{00024\ \ \ \ \ );}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CHECKSUM\_CALCULATOR\_HPP}}
+
+\end{DoxyCode}

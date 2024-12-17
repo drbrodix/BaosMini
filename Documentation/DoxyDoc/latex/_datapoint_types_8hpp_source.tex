@@ -1,0 +1,68 @@
+\doxysection{Datapoint\+Types.\+hpp}
+\hypertarget{_datapoint_types_8hpp_source}{}\label{_datapoint_types_8hpp_source}\index{C:/Users/regely/source/repos/BaosMini/BaosMini/include/Utility/DatapointTypes.hpp@{C:/Users/regely/source/repos/BaosMini/BaosMini/include/Utility/DatapointTypes.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DATAPOINT\_TYPES\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DATAPOINT\_TYPES\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }DatapointTypes}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{comment}{//\ Appendix\ D\ in\ BAOS\ Doc}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{enum}\ DATAPOINT\_TYPES}
+\DoxyCodeLine{00008\ \ \ \ \ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Datapoint\ Type\ (DPT)\ \ \ \ \ \ \ \ \ //\ DPT\ Code,\ DPT\ Size}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ NO\_DATAPOINT\_TYPE\ \ \ \ \ \ \ =\ 0x00,\ \textcolor{comment}{//\ ONLY\ FOR\ INTERNAL\ USAGE}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ BOOLEAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x01,\ \textcolor{comment}{//\ DPT\ 1,\ \ \ 1\ Bit}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//CONTROL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x02,\ //\ DPT\ 2,\ \ \ 2\ Bits}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//DIMMING\_BLINDS\ \ \ \ \ \ \ \ =\ 0x03,\ //\ DPT\ 3,\ \ \ 4\ Bits}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//CHARACTERSET\ \ \ \ \ \ \ \ \ \ =\ 0x04,\ //\ DPT\ 4,\ \ \ 8\ Bits}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ UNSIGNED\_VALUE\_1BYTE\ \ \ \ =\ 0x05,\ \textcolor{comment}{//\ DPT\ 5,\ \ \ 8\ Bits}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ SIGNED\_VALUE\_1BYTE\ \ \ \ \ \ =\ 0x06,\ \textcolor{comment}{//\ DPT\ 6,\ \ \ 8\ Bits}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ UNSIGNED\_VALUE\_2BYTE\ \ \ \ =\ 0x07,\ \textcolor{comment}{//\ DPT\ 7,\ \ \ 2\ Bytes}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ SIGNED\_VALUE\_2BYTE\ \ \ \ \ \ =\ 0x08,\ \textcolor{comment}{//\ DPT\ 8,\ \ \ 2\ Bytes}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ FLOAT\_VALUE\_2BYTE\ \ \ \ \ \ \ =\ 0x09,\ \textcolor{comment}{//\ DPT\ 9,\ \ \ 2\ Bytes}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//TIME\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x0A,\ //\ DPT\ 10,\ \ 3\ Bytes}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//DATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x0B,\ //\ DPT\ 11,\ \ 3\ Bytes}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ UNSIGNED\_VALUE\_4BYTE\ \ \ \ =\ 0x0C,\ \textcolor{comment}{//\ DPT\ 12,\ \ 4\ Bytes}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ SIGNED\_VALUE\_4BYTE\ \ \ \ \ \ =\ 0x0D,\ \textcolor{comment}{//\ DPT\ 13,\ \ 4\ Bytes}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ FLOAT\_VALUE\_4BYTE\ \ \ \ \ \ \ =\ 0x0E,\ \textcolor{comment}{//\ DPT\ 14,\ \ 4\ Bytes}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ACCESS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x0F,\ //\ DPT\ 15,\ \ 4\ Bytes}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//STRING\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x10,\ //\ DPT\ 16,\ \ 14\ Bytes}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{comment}{//SCENE\_NUMBER\ \ \ \ \ \ \ \ \ \ =\ 0x11,\ //\ DPT\ 17,\ \ 1\ Byte}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//SCENE\_CONTROL\ \ \ \ \ \ \ \ \ =\ 0x12,\ //\ DPT\ 18,\ \ 1\ Byte}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//DATE\_TIME\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x13,\ //\ DPT\ 19,\ \ 8\ Bytes}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//HVAC\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x14,\ //\ DPT\ 20,\ \ 1\ Byte}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//COLOR\_RGB\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0xE8,\ //\ DPT\ 232,\ 3\ Bytes}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//COLOR\_RGBW\ \ \ \ \ \ \ \ \ \ \ \ =\ 0xFB\ \ //\ DPT\ 251,\ 6\ Bytes}}
+\DoxyCodeLine{00034\ \ \ \ \ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Appendix\ C\ in\ BAOS\ Doc}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{enum}\ DATAPOINT\_VALUE\_TYPES}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Value\ size\ \ \ Type\ code}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ SIZE\_1\_BIT\ \ \ \ \ \ =\ 0x00,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ SIZE\_2\_BIT\ \ \ \ \ \ =\ 0x01,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ SIZE\_3\_BIT\ \ \ \ \ \ =\ 0x02,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ SIZE\_4\_BIT\ \ \ \ \ \ =\ 0x03,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ SIZE\_5\_BIT\ \ \ \ \ \ =\ 0x04,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ SIZE\_6\_BIT\ \ \ \ \ \ =\ 0x05,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ SIZE\_7\_BIT\ \ \ \ \ \ =\ 0x06,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ SIZE\_1\_BYTE\ \ \ \ \ =\ 0x07,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ SIZE\_2\_BYTE\ \ \ \ \ =\ 0x08,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ SIZE\_3\_BYTE\ \ \ \ \ =\ 0x09,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ SIZE\_4\_BYTE\ \ \ \ \ =\ 0x0A,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ SIZE\_6\_BYTE\ \ \ \ \ =\ 0x0B,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ SIZE\_8\_BYTE\ \ \ \ \ =\ 0x0C,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ SIZE\_10\_BYTE\ \ \ \ =\ 0x0D,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ SIZE\_14\_BYTE\ \ \ \ =\ 0x0E,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ INVALID\_SIZE\ \ \ \ =\ 0x0F\ \ \textcolor{comment}{//\ ONLY\ FOR\ INTERNAL\ USAGE}}
+\DoxyCodeLine{00057\ \ \ \ \ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getDatapointSize(DATAPOINT\_TYPES\ dpt);}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DATAPOINT\_TYPES\_HPP}}
+
+\end{DoxyCode}
