@@ -1,0 +1,72 @@
+\chapter{Baos\+Mini Overview}
+\hypertarget{index}{}\label{index}\index{BaosMini Overview@{BaosMini Overview}}
+\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_autotoc_md0}
+\hypertarget{index_autotoc_md1}{}\doxysubsection{\texorpdfstring{Generally about the project}{Generally about the project}}\label{index_autotoc_md1}
+This is a minimalistic implementation of the BAOS Protocol, aiming to serve as a stripped down tool allowing easy access for embedded building automation controller devices to a KNX bus. ~\newline
+ This can be done by the use of a BAOS device, which serves as a middle man between our controller and the target KNX bus, and by the use of this SDK, which provides a communication means with the BAOS device. ~\newline
+ \hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{Focus points and the minimalistic approach of the project}{Focus points and the minimalistic approach of the project}}\label{index_autotoc_md2}
+Given the minimalistic nature of the project, while other connection types are possible, this SDK provides a solution exclusively for the intended FT1.\+2 serial connection, using Windows APIs. ~\newline
+ This project has been built entirely in pure C++. During the development, it was an important focus of the project to avoid any kind of significant dependency, and promote portability. ~\newline
+ To achieve this objective, it was attempted to minimize the use of both external and internal libraries, and stick to standard features. ~\newline
+ This means features available in C++ standards not more recent than C++11, and those available in most common C++ compilers. ~\newline
+ To further improve portability and reduce dependency on anything, be it libraries or developer environments, the linking of source files and headers to each other ~\newline
+ has been done using relative paths. Avoiding the use of a build system, such as Makefile or CMake, was also a deliberate choice. While these tools provide an excellent way to develop ~\newline
+ multiplatform projects, they are also prone to become the source of headaches when the project is imported into an environment, which is not meant to be used which such build systems. ~\newline
+ Instead, using the SDK should be as easy as cloning the project, and including the header files of the services, which we wish to use in our new project. ~\newline
+ \hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{index_autotoc_md3}
+Below can be found some basic examples, presenting how the communication can be built with a BAOS device, how telegrams can be created ~\newline
+ to use certain supported BAOS subservices, and how these telegrams can be eventually sent to the BAOS device via serial connection. \hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Serial Connection}{Serial Connection}}\label{index_autotoc_md4}
+Before everything else, a \doxylink{class_serial_connection}{Serial\+Connection} object should be created, which serves as a means to send data to, and recieve data from the connected BAOS device. 
+
+\begin{DoxyVerb}// Simply create a SerialConnection object, with a string
+// of the name of the serial interface passed as a parameter
+
+SerialConnection serialConnection("COM3");
+\end{DoxyVerb}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Get\+Server\+Item}{Get\+Server\+Item}}\label{index_autotoc_md5}
+\doxylink{class_get_server_item}{Get\+Server\+Item} is a BAOS subservice, which allows the retrieval of various data about the connected BAOS device. 
+
+\begin{DoxyVerb}// First, create a GetServerItem object, with a pointer to the SerialConnection
+// object passed to the constructor function as a parameter.
+
+GetServerItem getServerItem(&serialConnection);
+
+// Then, use the available member functions of the created GetServerItem
+// object to communicate with the ObjectServer in the desired way.
+
+BaosVersion hardwareVersion = { 0 };
+hardwareVersion = getServerItem.getHardwareVersion();
+
+BaosSerialNumber baosSerialNumber = { 0 };
+baosSerialNumber = getServerItem.getSerialNumber();
+
+bool isProgrammingModeEnabled = false;
+isProgrammingModeEnabled = getServerItem.getProgrammingMode();
+
+// A quick and easy way to print certain information about the
+// BAOS device in the standard output stream is also provided.
+// For this, use the printServerItems() member function.
+// When calling the function, pass the first server item
+// to be retrieved, and then the number of server items requested.
+
+getServerItem.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 7);
+\end{DoxyVerb}
+\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Set\+Server\+Item}{Set\+Server\+Item}}\label{index_autotoc_md6}
+\doxylink{class_set_server_item}{Set\+Server\+Item} is a BAOS subservice, which allows the setting of values of certain server items of the connected BAOS device. 
+
+\begin{DoxyVerb}// First, create a SetServerItem object, with a pointer to the SerialConnection
+// object passed to the constructor function as a parameter.
+
+SetServerItem setServerItem(&serialConnection);
+
+// Then, use the available member functions of the created SetServerItem
+// object to communicate with the ObjectServer in the desired way.
+
+setServerItem.setProgrammingMode(true);
+
+// The member functions also accept an optional *decode* parameter, which allows the ObjectServer's 
+// response to be printed in the standard output stream. It is set to false by default.
+
+setServerItem.setBaudrate(BAUDRATES::BAUDRATE_19200, true); 
+\end{DoxyVerb}
+ 

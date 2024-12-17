@@ -68,8 +68,8 @@ class BaosTelegram
 {
 protected:
     /// <summary>
-    /// The default constructor initiates all data members
-    /// to NULL and nullptr accordingly.
+    /// The default constructor initiates all data
+    /// members to NULL and nullptr accordingly.
     /// </summary>
     BaosTelegram();
     /// <summary>
@@ -87,14 +87,15 @@ protected:
     ~BaosTelegram();
 
     /// <summary>
+    /// Initiates reading the ObjectServer's response.
     /// Returns response telegram length, or 0 if error has occured.
     /// </summary>
     unsigned int getAnswer();
 
     /// <summary>
     /// Clear the data part of the telegram, that is the bytes
-    /// after the BAOS mainservice and subservice codes,
-    /// so that no conflict occurs in case of differring telegram lengths.
+    /// after the BAOS mainservice and subservice codes, so that
+    /// no conflict occurs in case of differring telegram lengths.
     /// </summary>
     void clearTelegram();
     

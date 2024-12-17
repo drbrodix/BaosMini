@@ -1,0 +1,62 @@
+\doxysection{Set\+Datapoint\+Value Class Reference}
+\hypertarget{class_set_datapoint_value}{}\label{class_set_datapoint_value}\index{SetDatapointValue@{SetDatapointValue}}
+
+
+A BAOS service, allowing the setting of value of datapoints configured in the Object\+Server.  
+
+
+
+
+{\ttfamily \#include $<$Set\+Datapoint\+Value.\+hpp$>$}
+
+Inheritance diagram for Set\+Datapoint\+Value\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_set_datapoint_value}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_set_datapoint_value_a19fa3a70335e0f5f1fb3f8140bce02b1}\label{class_set_datapoint_value_a19fa3a70335e0f5f1fb3f8140bce02b1} 
+{\bfseries Set\+Datapoint\+Value} (unsigned short dp\+Id, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function calls the base class \doxylink{class_baos_telegram}{Baos\+Telegram} constructor function, thus initializing the basic data members. Parts of the telegram used in all cases will be also initalized at this stage. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a1f559017fe6e25632b0d58c1ffb7fbd7}\label{class_set_datapoint_value_a1f559017fe6e25632b0d58c1ffb7fbd7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Set\+Datapoint\+Value} ()
+\begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a2732214629d99c61e4ebc9a7c5320544}\label{class_set_datapoint_value_a2732214629d99c61e4ebc9a7c5320544} 
+bool {\bfseries set\+Boolean} (bool dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_acf6107d6229311513105b1a81150ad4d}\label{class_set_datapoint_value_acf6107d6229311513105b1a81150ad4d} 
+bool {\bfseries set\+Unsigned\+Value1\+Byte} (unsigned char dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a1a0c25748f38442643ab58f5edf6737b}\label{class_set_datapoint_value_a1a0c25748f38442643ab58f5edf6737b} 
+bool {\bfseries set\+Signed\+Value1\+Byte} (signed char dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a2f23cf94025a31dd855576ab623b85c1}\label{class_set_datapoint_value_a2f23cf94025a31dd855576ab623b85c1} 
+bool {\bfseries set\+Unsigned\+Value2\+Byte} (unsigned short dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a286260c44a8b9002ead4560ab835fb62}\label{class_set_datapoint_value_a286260c44a8b9002ead4560ab835fb62} 
+bool {\bfseries set\+Signed\+Value2\+Byte} (signed short dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a19e109748dae79a5fed4b004a3bdbbdc}\label{class_set_datapoint_value_a19e109748dae79a5fed4b004a3bdbbdc} 
+bool {\bfseries set\+Float\+Value2\+Byte} (float dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_af079135d6ae20ccba9ca2dff69f4ab3f}\label{class_set_datapoint_value_af079135d6ae20ccba9ca2dff69f4ab3f} 
+bool {\bfseries set\+Unsigned\+Value4\+Byte} (unsigned int dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a0b49d6fae510bf6862b8b7a3defaf990}\label{class_set_datapoint_value_a0b49d6fae510bf6862b8b7a3defaf990} 
+bool {\bfseries set\+Signed\+Value4\+Byte} (signed int dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_datapoint_value_a55e70f8999c9713647037c47dd514037}\label{class_set_datapoint_value_a55e70f8999c9713647037c47dd514037} 
+bool {\bfseries set\+Float\+Value4\+Byte} (float dp\+Value, Command\+Byte command\+Byte, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A BAOS service, allowing the setting of value of datapoints configured in the Object\+Server. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/include/\+Services/Set\+Datapoint\+Value.\+hpp\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/src/\+Services/Set\+Datapoint\+Value.\+cpp\end{DoxyCompactItemize}

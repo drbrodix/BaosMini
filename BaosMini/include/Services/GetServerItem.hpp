@@ -2,15 +2,14 @@
 #define GET_SERVER_ITEM_HPP
 
 /// <summary>
-/// Index of the number of server items requested, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the ID of the server item, whose value is to be fetched,
+/// offset from the BAOS main service code in the baosTelegram array.
 /// </summary>
 #define  GET_SERVER_ITEM_SERVER_ITEM_ID_OFFSET BAOS_DATA_FIRST_INDEX
 
 /// <summary>
-/// Index of the first byte of the data related to the
-/// server item requested, offset from the BAOS main
-/// service code in the ObjectsServer's response telegram array.
+/// Index of the number of server items to be fetched, offset
+/// from the BAOS main service code in the baosTelegram array.
 /// </summary>
 #define GET_SERVER_ITEM_NR_OF_ITEMS_OFFSET (BAOS_DATA_FIRST_INDEX + 2)
 

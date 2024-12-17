@@ -42,8 +42,8 @@
 #include "../Utility/Macros.hpp"
 
 /// <summary>
-/// A BAOS service, allowing the setting of value
-/// of server items of the connected BAOS device.
+/// A BAOS service, allowing the setting of values of
+/// certain server items of the connected BAOS device.
 /// </summary>
 class SetServerItem : public BaosTelegram
 {
@@ -69,7 +69,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setBaudrate(BAUDRATES baudrate, bool decode = false);
 	
@@ -78,7 +78,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setCurrentBufferSize(unsigned short bufferSize, bool decode = false);
 
@@ -87,7 +87,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setProgrammingMode(bool enable, bool decode = false);
 
@@ -96,7 +96,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setIndicationSending(bool enable, bool decode = false);
 
@@ -104,7 +104,8 @@ private:
 
 	/// <summary>
 	/// A generic template function called by the public set functions with datatype 
-	/// specifications. Sets the server item value specified in the parameters.
+	/// specifications. Builds the telegram based on the parameters, initiates communication
+	/// with the ObjectServer, stores its answer, executes error check and returns its result.
 	/// </summary>
 	template <typename T> bool setValue(T itemValue, SERVER_ITEMS serverItem, unsigned char itemLength, bool decode);
 	

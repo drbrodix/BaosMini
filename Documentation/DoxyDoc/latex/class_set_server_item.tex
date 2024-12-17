@@ -1,0 +1,76 @@
+\doxysection{Set\+Server\+Item Class Reference}
+\hypertarget{class_set_server_item}{}\label{class_set_server_item}\index{SetServerItem@{SetServerItem}}
+
+
+A BAOS service, allowing the setting of values of certain server items of the connected BAOS device.  
+
+
+
+
+{\ttfamily \#include $<$Set\+Server\+Item.\+hpp$>$}
+
+Inheritance diagram for Set\+Server\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_set_server_item}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_set_server_item_a15872d26124dcbc93c4b72a7ea3d0fc4}\label{class_set_server_item_a15872d26124dcbc93c4b72a7ea3d0fc4} 
+{\bfseries Set\+Server\+Item} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function calls the base class \doxylink{class_baos_telegram}{Baos\+Telegram} constructor function, thus initializing the basic data members. The BAOS subservice code will be also initalized at this stage. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_server_item_a648f747eb4976c1be04784f4b4bf6087}\label{class_set_server_item_a648f747eb4976c1be04784f4b4bf6087} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Set\+Server\+Item} ()
+\begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_server_item_a05262204dd98ffe597816b1820da81e6}\label{class_set_server_item_a05262204dd98ffe597816b1820da81e6} 
+bool {\bfseries set\+Baudrate} (BAUDRATES baudrate, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed value, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_server_item_af8295739d101093944df7dea7e6053a0}\label{class_set_server_item_af8295739d101093944df7dea7e6053a0} 
+bool {\bfseries set\+Current\+Buffer\+Size} (unsigned short buffer\+Size, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed value, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_server_item_a2a7db93463346c3b95ba221bb8ae9c33}\label{class_set_server_item_a2a7db93463346c3b95ba221bb8ae9c33} 
+bool {\bfseries set\+Programming\+Mode} (bool enable, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed value, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\item 
+\Hypertarget{class_set_server_item_a7f6fe8f7936b4514f172435a1e292982}\label{class_set_server_item_a7f6fe8f7936b4514f172435a1e292982} 
+bool {\bfseries set\+Indication\+Sending} (bool enable, bool decode=false)
+\begin{DoxyCompactList}\small\item\em Sends telegram to the Object\+Server with the passed value, then retrieves and stores the answer. Returns false if the Object\+Server\textquotesingle{}s answer indicates an error, true otherwise. Depending on the state of the decode flag, a message will be printed in the terminal, whether the execution was successful. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
+{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+unsigned int {\bfseries get\+Answer} ()
+\begin{DoxyCompactList}\small\item\em Initiates reading the Object\+Server\textquotesingle{}s response. Returns response telegram length, or 0 if error has occured. \end{DoxyCompactList}\item 
+void {\bfseries clear\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em Clear the data part of the telegram, that is the bytes after the BAOS mainservice and subservice codes, so that no conflict occurs in case of differring telegram lengths. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries response\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram recieved from Object\+Server. \end{DoxyCompactList}\item 
+unsigned char {\bfseries telegram\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries baos\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries response\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of Object\+Server response telegram . \end{DoxyCompactList}\item 
+bool {\bfseries has\+Valid\+Response}
+\begin{DoxyCompactList}\small\item\em Keeps track if Object\+Server response telegram is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*} {\bfseries serial\+Connection}
+\begin{DoxyCompactList}\small\item\em The passed pointer to the serial connection object will be stored to allow communication with the connected BAOS device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A BAOS service, allowing the setting of values of certain server items of the connected BAOS device. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/include/\+Services/Set\+Server\+Item.\+hpp\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/src/\+Services/Set\+Server\+Item.\+cpp\end{DoxyCompactItemize}

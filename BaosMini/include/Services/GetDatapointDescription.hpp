@@ -3,26 +3,26 @@
 
 /// <summary>
 /// Index of the ID of the datapoint, whose description
-/// should be fetched, offset from the BAOS main service
-/// code in the ObjectsServer's response telegram array.
+/// should be fetched, offset from the BAOS 
+/// main service code in the baosTelegram array.
 /// </summary>
 #define GET_DP_DESC_DP_ID_OFFSET BAOS_DATA_FIRST_INDEX
 
 /// <summary>
-/// Index of the datapoint configuration flags, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the datapoint configuration flags, offset from
+/// the BAOS main service code in the baosTelegram array.
 /// </summary>
 #define GET_DP_DESC_NR_OF_DPS_OFFSET (BAOS_DATA_FIRST_INDEX + 2)
 
 /// <summary>
-/// Index of the datapoint value type, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the datapoint value type, offset from the
+/// BAOS main service code in the baosTelegram array.
 /// </summary>
 #define GET_DP_DESC_DP_VALUE_TYPE_OFFSET 8
 
 /// <summary>
-/// Index of the datapoint configuration flags, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the datapoint configuration flags, offset from
+/// the BAOS main service code in the baosTelegram array.
 /// </summary>
 #define GET_DP_DESC_DP_CONFIG_FLAGS_OFFSET 9
 
@@ -33,14 +33,14 @@
 #define GET_DP_DESC_RES_NR_OF_DPS_OFFSET 4
 
 /// <summary>
-/// Index of the datapoint ID, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the datapoint ID, offset from the BAOS main service
+/// code in the ObjectsServer's response telegram array.
 /// </summary>
 #define GET_DP_DESC_RES_DP_ID_OFFSET 6
 
 /// <summary>
-/// Index of the datapoint type, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the datapoint type, offset from the BAOS main service 
+/// code in the ObjectsServer's response telegram array.
 /// </summary>
 #define GET_DP_DESC_RES_DP_DPT_OFFSET 10
 
@@ -71,7 +71,7 @@ public:
     /// The constructor function executes the entire communication process between
     /// the client and the ObjectServer. It sets up and sends the telegram to the
     /// ObjectServer with the passed parameters, then retrieves and stores the answer.
-    /// An error check will be done, and the result stored for further use.
+    /// An error check will be executed, and the result stored for further use.
     /// </summary>
     GetDatapointDescription(
         unsigned short datapointId,
@@ -125,20 +125,20 @@ private:
     bool checkForError();
 
     /// <summary>
-    /// Decodes the datapoint type of the datapoint specified in the constructor.
-    /// Prints the result in the terminal.
+    /// Decodes the datapoint type of the datapoint specified
+    /// in the constructor. Prints the result in the terminal.
     /// </summary>
     void decodeDpDpt(DatapointTypes::DATAPOINT_TYPES dpt);
 
     /// <summary>
-    /// Decodes the configuration flags of the datapoint specified in the constructor.
-    /// Prints the result in the terminal.
+    /// Decodes the configuration flags of the datapoint specified
+    /// in the constructor. Prints the result in the terminal.
     /// </summary>
     void decodeDpConfigFlags(ConfigFlags configFlagByte);
 
     /// <summary>
-    /// Decodes the datapoint value type of the datapoint specified in the constructor.
-    /// Prints the result in the terminal.
+    /// Decodes the datapoint value type of the datapoint specified
+    /// in the constructor. Prints the result in the terminal.
     /// </summary>
     void decodeDpValueType(DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType);
 };

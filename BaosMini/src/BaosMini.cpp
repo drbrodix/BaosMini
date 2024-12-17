@@ -52,8 +52,9 @@ int main(int argc, char* argv[])
     //GetParameterByte gpb(9, &serialConnection);
     //printf("Param #9: %hhu", gpb.getByte());
 
-    //SetServerItem ssi(&serialConnection);
-    //ssi.setProgrammingMode(true, true);
+    SetServerItem ssi(&serialConnection);
+    ssi.setProgrammingMode(true);
+    ssi.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
 
     //GetServerItem gsi(&serialConnection);
     //BaosHardwareType baosHardwareType = gsi.getHardwareType();
@@ -138,7 +139,7 @@ int main(int argc, char* argv[])
     //    knxDeviceAddress.device);
     //printf("\n");
     
-    //gsi.printServerItems(HARDWARE_TYPE, 20);
+    // gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
 
     //GetDatapointDescription gdd1(1, &serialConnection);
     //GetDatapointDescription gdd2(2, &serialConnection);

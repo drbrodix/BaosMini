@@ -2,14 +2,14 @@
 #define GET_PARAMETER_BYTE_HPP
 
 /// <summary>
-/// Index of the number of parameter bytes requested, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the ID of the parameter byte to be fetched, offset
+/// from the BAOS main service code in the baosTelegram array.
 /// </summary>
 #define GET_PARAM_BYTE_PARAM_BYTE_ID_OFFSET BAOS_DATA_FIRST_INDEX
 
 /// <summary>
-/// Index of the first parameter byte requested, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the number of parameter bytes to be fetched, offset
+/// from the BAOS main service code in the baosTelegram array.
 /// </summary>
 #define GET_PARAM_BYTE_NR_OF_BYTES_OFFSET (BAOS_DATA_FIRST_INDEX + 2)
 
@@ -53,7 +53,7 @@ public:
 
     /// <summary>
     /// Returns the retrieved parameter byte from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// or 0 if no valid value has been fetched from the ObjectServer.
     /// </summary>
     unsigned char getByte();
 

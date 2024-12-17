@@ -90,18 +90,18 @@ public:
 	/// </summary>
 	~SetDatapointValue();
 
-	//                         Generic structure of BAOS Datapoint
+	//						Generic structure of BAOS Datapoint
 	// 
-	//          ID of DP          Command byte of DP    Length byte of DP         Value of DP
+	//	ID of DP          Command byte of DP    Length byte of DP         Value of DP
 	// 
-	//         0x00 0x00        |        0x00        |        0x00        |         0x00 ...
+	//	0x00 0x00        |        0x00        |        0x00        |         0x00 ...
 	
 	/// <summary>
 	/// Sends telegram to the ObjectServer with the passed parameters,
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setBoolean(bool dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -110,7 +110,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setUnsignedValue1Byte(unsigned char dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -119,7 +119,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setSignedValue1Byte(signed char dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -128,7 +128,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setUnsignedValue2Byte(unsigned short dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -137,7 +137,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setSignedValue2Byte(signed short dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -146,7 +146,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setFloatValue2Byte(float dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -155,7 +155,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setUnsignedValue4Byte(unsigned int dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -164,7 +164,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setSignedValue4Byte(signed int dpValue, CommandByte commandByte, bool decode = false);
 	
@@ -173,7 +173,7 @@ public:
 	/// then retrieves and stores the answer. Returns false if the
 	/// ObjectServer's answer indicates an error, true otherwise.
 	/// Depending on the state of the decode flag, a message will be
-	/// printed in the terminal, whether the execuation was successful.
+	/// printed in the terminal, whether the execution was successful.
 	/// </summary>
 	bool setFloatValue4Byte(float dpValue, CommandByte commandByte, bool decode = false);
 
@@ -198,7 +198,9 @@ private:
 
 	/// <summary>
 	/// A generic template function called by the public set functions with
-	/// datatype specifications. Sets the datapoint value with the specified datatype.
+	/// datatype specifications. Builds the telegram based on the parameters,
+	/// initiates communication with the ObjectServer, stores its answer,
+	/// executes error check and returns its result.
 	/// </summary>
 	template <typename T> bool setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt, CommandByte commandByte, bool decode);
 };

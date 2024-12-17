@@ -1,0 +1,67 @@
+\doxysection{Get\+Parameter\+Byte Class Reference}
+\hypertarget{class_get_parameter_byte}{}\label{class_get_parameter_byte}\index{GetParameterByte@{GetParameterByte}}
+
+
+A BAOS service, allowing the retrieval of parameter bytes configured in the Object\+Server.  
+
+
+
+
+{\ttfamily \#include $<$Get\+Parameter\+Byte.\+hpp$>$}
+
+Inheritance diagram for Get\+Parameter\+Byte\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_get_parameter_byte}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b}\label{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b} 
+{\bfseries Get\+Parameter\+Byte} (unsigned short parameter\+Byte\+Id, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. An error check will be done, and the result stored for further use. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_parameter_byte_ab69fe6d30d243369bc3161e52828eeba}\label{class_get_parameter_byte_ab69fe6d30d243369bc3161e52828eeba} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Parameter\+Byte} ()
+\begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+\Hypertarget{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532}\label{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532} 
+unsigned char {\bfseries get\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Returns the retrieved parameter byte from the Object\+Server, or 0 if no valid value has been fetched from the Object\+Server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
+{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
+unsigned int {\bfseries get\+Answer} ()
+\begin{DoxyCompactList}\small\item\em Initiates reading the Object\+Server\textquotesingle{}s response. Returns response telegram length, or 0 if error has occured. \end{DoxyCompactList}\item 
+void {\bfseries clear\+Telegram} ()
+\begin{DoxyCompactList}\small\item\em Clear the data part of the telegram, that is the bytes after the BAOS mainservice and subservice codes, so that no conflict occurs in case of differring telegram lengths. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries response\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram recieved from Object\+Server. \end{DoxyCompactList}\item 
+unsigned char {\bfseries telegram\+Length}
+\begin{DoxyCompactList}\small\item\em Length of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries baos\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of telegram to be sent to Object\+Server. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries response\+Telegram}
+\begin{DoxyCompactList}\small\item\em Unsigned char array of Object\+Server response telegram . \end{DoxyCompactList}\item 
+bool {\bfseries has\+Valid\+Response}
+\begin{DoxyCompactList}\small\item\em Keeps track if Object\+Server response telegram is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*} {\bfseries serial\+Connection}
+\begin{DoxyCompactList}\small\item\em The passed pointer to the serial connection object will be stored to allow communication with the connected BAOS device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A BAOS service, allowing the retrieval of parameter bytes configured in the Object\+Server. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/include/\+Services/Get\+Parameter\+Byte.\+hpp\item 
+C\+:/\+Users/regely/source/repos/\+Baos\+Mini/\+Baos\+Mini/src/\+Services/Get\+Parameter\+Byte.\+cpp\end{DoxyCompactItemize}

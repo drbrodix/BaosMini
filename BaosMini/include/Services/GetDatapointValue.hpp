@@ -32,8 +32,8 @@
 #define GET_DP_VALUE_RES_DP_LENGTH_OFFSET 9
 
 /// <summary>
-/// Index of the datapoint value, offset from the BAOS
-/// main service code in the ObjectsServer's response telegram array.
+/// Index of the datapoint value, offset from the BAOS main
+/// service code in the ObjectsServer's response telegram array.
 /// </summary>
 #define GET_DP_VALUE_RES_DP_VALUE_OFFSET 10
 
@@ -44,7 +44,7 @@
 
 /// <summary>
 /// Enumration of filter codes, allowing further configuration
-/// of the way, what datapoint values should be retrieved.
+/// of the way, which datapoint values should be fetched.
 /// </summary>
 enum FILTER_CODES
 {
@@ -81,56 +81,56 @@ public:
 	~GetDatapointValue();
 
     /// <summary>
-    /// Returns the retrieved boolean value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved boolean value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     bool getBooleanValue();
 
     /// <summary>
-    /// Returns the retrieved 1byte unsigned value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 1byte unsigned value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     unsigned char getUnsignedValue1Byte();
     
     /// <summary>
-    /// Returns the retrieved 1byte signed value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 1byte signed value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     signed char getSignedValue1Byte();
     
     /// <summary>
-    /// Returns the retrieved 2byte unsigned value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 2byte unsigned value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     unsigned short getUnsignedValue2Byte();
     
     /// <summary>
-    /// Returns the retrieved 2byte signed value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 2byte signed value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     signed short getSignedValue2Byte();
 
     /// <summary>
-    /// Returns the retrieved 2byte float value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 2byte float value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     float getFloatValue2Byte();
     
     /// <summary>
-    /// Returns the retrieved 4byte unsigned value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 4byte unsigned value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     unsigned int getUnsignedValue4Byte();
     
     /// <summary>
-    /// Returns the retrieved 4byte signed value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 4byte signed value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     signed int getSignedValue4Byte();
 
     /// <summary>
-    /// Returns the retrieved 4byte float value from the ObjectServer,
-    /// or 0 if no valid value has been fetched from ObjectServer.
+    /// Returns the retrieved 4byte float value from the
+    /// ObjectServer, or 0 if no valid value has been fetched.
     /// </summary>
     float getFloatValue4Byte();
 
@@ -146,7 +146,7 @@ private:
     /// a respective error message printed in the terminal.
     /// Also checks if the length of the retrieved datapoint value doesn't
     /// match the length of the datapoint type specified in the constructor.
-    /// In this case false will be returned, and an error message
+    /// In this case false will be returned, and a respective error message
     /// printed in terminal. Returns true if no issues have been detected.
     /// </summary>
     bool checkForError(unsigned short datapointId);
