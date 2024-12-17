@@ -8,3 +8,7 @@ riderModule.iml
 /.vs
 /BaosMini/x64/Debug
 /x64/Debug
+.DS_Store
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
