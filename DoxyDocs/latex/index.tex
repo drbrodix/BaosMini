@@ -98,4 +98,13 @@ The member functions also accept an optional decode boolean parameter, which all
 
 setDatapointValue39.setFloatValue2Byte(-49.17f, CommandByte::SetNewValueAndSendOnBus, true);
 \end{DoxyVerb}
+\hypertarget{index_autotoc_md10}{}\doxysubsubsection{\texorpdfstring{Get\+Parameter\+Byte}{Get\+Parameter\+Byte}}\label{index_autotoc_md10}
+\doxylink{class_get_parameter_byte}{Get\+Parameter\+Byte} is a BAOS subservice, which allows the retrieval of parameter bytes configured in the Object\+Server.
+
+First, create a \doxylink{class_get_parameter_byte}{Get\+Parameter\+Byte} object with the ID of the parameter byte, whose value we want to fetch from the Object\+Server, and with a pointer to the \doxylink{class_serial_connection}{Serial\+Connection} object, passed to the constructor function as parameters. \begin{DoxyVerb}GetParameterByte getParameterByte(24, &serialConnection);
+\end{DoxyVerb}
+
+
+Then, simply call the member function get\+Byte(), which returns the fetched value. \begin{DoxyVerb}getParameterByte.getByte();
+\end{DoxyVerb}
  

@@ -160,6 +160,11 @@ SetDatapointValue setDatapointValue39(39, &amp;serialConnection);
 </pre><p>The member functions also accept an optional decode boolean parameter, which allows the ObjectServer's response to be printed out in the standard output stream. It is set to false by default. </p><pre class="fragment">// Will print out ObjectServer response
 
 setDatapointValue39.setFloatValue2Byte(-49.17f, CommandByte::SetNewValueAndSendOnBus, true);
+</pre><h3><a class="anchor" id="autotoc_md10"></a>
+GetParameterByte</h3>
+<p><a class="el" href="class_get_parameter_byte.html" title="A BAOS service, allowing the retrieval of parameter bytes configured in the ObjectServer.">GetParameterByte</a> is a BAOS subservice, which allows the retrieval of parameter bytes configured in the ObjectServer.</p>
+<p>First, create a <a class="el" href="class_get_parameter_byte.html" title="A BAOS service, allowing the retrieval of parameter bytes configured in the ObjectServer.">GetParameterByte</a> object with the ID of the parameter byte, whose value we want to fetch from the ObjectServer, and with a pointer to the <a class="el" href="class_serial_connection.html">SerialConnection</a> object, passed to the constructor function as parameters. </p><pre class="fragment">GetParameterByte getParameterByte(24, &amp;serialConnection);
+</pre><p>Then, simply call the member function getByte(), which returns the fetched value. </p><pre class="fragment">getParameterByte.getByte();
 </pre> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

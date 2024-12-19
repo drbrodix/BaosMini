@@ -25,7 +25,7 @@ var searchData=
   ['getknxindividualaddress_22',['getKnxIndividualAddress',['../class_get_server_item.html#aeb519efb782e8beb7c63425a7358daf6',1,'GetServerItem']]],
   ['getlengthofdescstring_23',['getLengthOfDescString',['../class_get_server_item.html#af85418ef131fabad2fd1749a85804d3d',1,'GetServerItem']]],
   ['getmaxbuffersize_24',['getMaxBufferSize',['../class_get_server_item.html#a508c13a6507abc303caf1902a924810d',1,'GetServerItem']]],
-  ['getparameterbyte_25',['GetParameterByte',['../class_get_parameter_byte.html',1,'GetParameterByte'],['../class_get_parameter_byte.html#a401747af2d2deaeb2b7cd65f3f3cf55b',1,'GetParameterByte::GetParameterByte()']]],
+  ['getparameterbyte_25',['GetParameterByte',['../class_get_parameter_byte.html',1,'GetParameterByte'],['../class_get_parameter_byte.html#a401747af2d2deaeb2b7cd65f3f3cf55b',1,'GetParameterByte::GetParameterByte()'],['../index.html#autotoc_md10',1,'GetParameterByte']]],
   ['getprogrammingmode_26',['getProgrammingMode',['../class_get_server_item.html#a7fb0bf1dca564fad7f467b44767c4467',1,'GetServerItem']]],
   ['getprotocolversionbinary_27',['getProtocolVersionBinary',['../class_get_server_item.html#aabb247ab99d1f62136977170472c062b',1,'GetServerItem']]],
   ['getprotocolversionrest_28',['getProtocolVersionRest',['../class_get_server_item.html#ab6aaa3cbec80e48523c7a99f20af5d8a',1,'GetServerItem']]],

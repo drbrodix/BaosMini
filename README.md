@@ -173,3 +173,17 @@ ObjectServer's response to be printed out in the standard output stream. It is s
     // Will print out ObjectServer response
 
     setDatapointValue39.setFloatValue2Byte(-49.17f, CommandByte::SetNewValueAndSendOnBus, true);
+
+### GetParameterByte
+GetParameterByte is a BAOS subservice, which allows the
+retrieval of parameter bytes configured in the ObjectServer.
+
+First, create a GetParameterByte object with the ID of the parameter byte,
+whose value we want to fetch from the ObjectServer, and with a pointer to
+the SerialConnection object, passed to the constructor function as parameters.
+
+    GetParameterByte getParameterByte(24, &serialConnection);
+
+Then, simply call the member function getByte(), which returns the fetched value.
+
+    getParameterByte.getByte();
