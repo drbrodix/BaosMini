@@ -137,8 +137,8 @@
     <ClInclude Include="include\Utility\DecodeServerItemRes.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="include\Utility\Definitions.hpp">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doxyReadme.md" />
   </ItemGroup>
 </Project>

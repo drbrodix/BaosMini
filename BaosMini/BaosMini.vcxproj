@@ -261,7 +261,6 @@
     <ClInclude Include="include\utility\ChecksumCalculator.hpp" />
     <ClInclude Include="include\Utility\DatapointTypes.hpp" />
     <ClInclude Include="include\Utility\DecodeServerItemRes.hpp" />
-    <ClInclude Include="include\Utility\Definitions.hpp" />
     <ClInclude Include="include\Utility\FloatConverter.hpp" />
     <ClInclude Include="include\Utility\FrameFormatter.hpp" />
     <ClInclude Include="include\Utility\GetErrorDescription.hpp" />

@@ -3,7 +3,12 @@
 
 namespace DatapointTypes
 {
-	// Appendix D in BAOS Doc
+	/// <summary>
+	/// Enumeration of datapoint types, allowing an easy, and 
+	/// streamlined access to datapoint types defined in the BAOS
+	/// protocol. Refer to Appendix D in the BAOS documentation to
+	/// find out more about the available datapoint types.
+	/// </summary>
 	enum DATAPOINT_TYPES
 	{
 		// Datapoint Type (DPT)			// DPT Code, DPT Size
@@ -33,7 +38,12 @@ namespace DatapointTypes
 		//COLOR_RGBW			= 0xFB  // DPT 251, 6 Bytes
 	};
 
-	// Appendix C in BAOS Doc
+	/// <summary>
+	/// Enumeration of datapoint value types, allowing an easy, and
+	/// streamlined access to datapoint value types defined in the
+	/// BAOS protocol. Refer to Appendix C in the BAOS documentation
+	/// to find out more about the available datapoint value types.
+	/// </summary>
 	enum DATAPOINT_VALUE_TYPES
 	{
 		// Value size	Type code
@@ -56,6 +66,13 @@ namespace DatapointTypes
 		INVALID_SIZE	= 0x0F	// ONLY FOR INTERNAL USAGE
 	};
 
+	/// <summary>
+	/// A function to get the size of various datapoint types in bytes.
+	/// Datatypes supported are some of the ones defined in the BAOS protocol.
+	/// Refer to Appendix D in the BAOS documentation to find out 
+	/// more about the available datapoint types. Not all datapoint
+	/// types are accessible in this implementation.
+	/// </summary>
 	unsigned char getDatapointSize(DATAPOINT_TYPES dpt);
 }
 

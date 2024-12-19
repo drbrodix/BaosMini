@@ -63,8 +63,8 @@ namespace
         printf("Time since reset: %dHr %dMin %dSec\n", timeHr, timeMin, timeSec);
     }
 
-    // Decode server item according to passed server item ID,
-    // and return index of next item
+    // Decode server item according to passed
+    // server item ID and return index of next item
     unsigned short decodeServerItem(unsigned char* telegramCharArray, unsigned short currentIndex, unsigned short itemId)
     {
         unsigned char itemLength = 0;
@@ -201,14 +201,16 @@ bool decodeServerItemRes(unsigned char* telegramCharArray, unsigned int telegram
     unsigned short numberOfItems =  swap2(*((unsigned short*)(telegramCharArray + 4)));
 
     // Error route
-    if (numberOfItems == 0)
+    if (!numberOfItems)
     {
-        getErrorDescription(*(telegramCharArray + 6)); // telegramCharArray[6] == Error code
+        getErrorDescription(*(telegramCharArray + ERROR_CODE_OFFSET)); // telegramCharArray[6] == Error code
 
         return false;
     }
     else
     {
+        // ID of first server item starts at
+        // index 6 in the response telegram
         unsigned short index = 6;
 
         while (index < telegramLength)
