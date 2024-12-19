@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
     //GetParameterByte gpb(9, &serialConnection);
     //printf("Param #9: %hhu", gpb.getByte());
 
-    SetServerItem ssi(&serialConnection);
+    //SetServerItem ssi(&serialConnection);
     //ssi.setProgrammingMode(true);
     //ssi.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
 
@@ -186,14 +186,14 @@ int main(int argc, char* argv[])
     //GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
     //printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());
 
-    SetDatapointValue dp1(1, &serialConnection);
-    dp1.setBoolean(true, SetNewValueAndSendOnBus, true);
-    SetDatapointValue dp2(2, &serialConnection);
-    dp2.setBoolean(true, SetNewValueAndSendOnBus, true);
-    SetDatapointValue dp3(3, &serialConnection);
-    dp3.setBoolean(true, SetNewValueAndSendOnBus, true);
-    SetDatapointValue dp4(4, &serialConnection);
-    dp4.setBoolean(true, SetNewValueAndSendOnBus, true);
+    //SetDatapointValue dp1(1, &serialConnection);
+    //dp1.setBoolean(true, SetNewValueAndSendOnBus, true);
+    //SetDatapointValue dp2(2, &serialConnection);
+    //dp2.setBoolean(true, SetNewValueAndSendOnBus, true);
+    //SetDatapointValue dp3(3, &serialConnection);
+    //dp3.setBoolean(true, SetNewValueAndSendOnBus, true);
+    //SetDatapointValue dp4(4, &serialConnection);
+    //dp4.setBoolean(true, SetNewValueAndSendOnBus, true);
 
     //const auto RUN_SPEED = 500ms;
     //

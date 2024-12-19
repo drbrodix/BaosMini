@@ -2,11 +2,11 @@
   
 ### Generally about the project
   
-This is a minimalistic implementation of the BAOS Protocol created by
-[Weinzierl Engineering GmbH](http://weinzierl.de/), aiming to serve as a
+This is a minimalistic implementation of the BAOS Protocol, which was created by
+[Weinzierl Engineering GmbH](http://weinzierl.de/). This project aims to serve as a
 stripped down tool for embedded building automation controller devices, allowing
 easy and quick access to a KNX bus. This can be done by the use of a BAOS device,
-which serves as a middle man between our controller and the target KNX bus, and
+which serves as a middleman between our controller and the target KNX bus, and
 by the use of this SDK, which provides a communication means with the BAOS device.
 
 ### Focus points and the minimalistic approach of the project
@@ -21,15 +21,15 @@ in C++ standards not more recent than C++11, and those available in most common 
 To further improve portability and reduce dependency on anything, be it libraries
 or developer environments, the linking of source files and headers to each other
 has been done using relative paths. Avoiding the use of a build system, such as Makefile
-or CMake, was also a deliberate choice. While these tools provide an excellent way to develop
+or CMake, was a deliberate choice as well. While these tools provide an excellent way to develop
 multiplatform projects, they are also prone to become the source of headaches when the project
 is imported into an environment, which is not meant to be used which such build systems.
 Instead, using the SDK should be as easy as cloning the project, and including
 the header files of the services, which we wish to use in our new project.
 
 ## Examples
-Below can be found some basic examples, presenting how the communication can be built with
-a BAOS device, how telegrams can be created
+Below can be found some basic examples, presenting how the communication with a BAOS device
+can be built, how telegrams can be created
 to use certain supported BAOS subservices, and how these telegrams can be eventually sent
 to the ObjectServer via serial connection.
 
@@ -187,3 +187,20 @@ the SerialConnection object, passed to the constructor function as parameters.
 Then, simply call the member function getByte(), which returns the fetched value.
 
     getParameterByte.getByte();
+
+### IndicationListener
+Finally, an IndicationListener is also available in this SDK, which
+is constantly listening to any data sent from the connected BAOS device
+on the serial connection. In case a datapoint or a server item indication
+is sent to the client, the IndicationListener prints the content of the
+indication in the standard output stream.
+To start the listening subservice, just create an IndicationListener object with a
+pointer to the SerialConnection object passed to the constructor function as parameter.
+
+    IndicationListener indicationListener(&serialConnection);
+
+While this subservice is listening, other parts of the program will be waiting!
+
+## Further documentation
+Further documentation of the project is available in the DoxyDocs subfolder, generated
+by the Doxygen documentation generator tool.
