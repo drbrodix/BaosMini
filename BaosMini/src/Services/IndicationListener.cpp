@@ -62,10 +62,10 @@ void IndicationListener::startListening(unsigned char* responseTelegram, unsigne
 float IndicationListener::decode4ByteFloat(unsigned char* pValueStartAddress)
 {
 	float dpValueSwapped = 0.0f;
-	*((char*)&dpValueSwapped) = *((char*)pValueStartAddress + 3);
-	*((char*)&dpValueSwapped + 1) = *((char*)pValueStartAddress + 2);
-	*((char*)&dpValueSwapped + 2) = *((char*)pValueStartAddress + 1);
-	*((char*)&dpValueSwapped + 3) = *((char*)pValueStartAddress);
+	*((char*)&dpValueSwapped)		= *((char*)pValueStartAddress + 3);
+	*((char*)&dpValueSwapped + 1)	= *((char*)pValueStartAddress + 2);
+	*((char*)&dpValueSwapped + 2)	= *((char*)pValueStartAddress + 1);
+	*((char*)&dpValueSwapped + 3)	= *((char*)pValueStartAddress);
 	return dpValueSwapped;
 }
 
@@ -82,9 +82,9 @@ bool IndicationListener::decodeDatapointIndication(unsigned char* responseTelegr
 	else
 	{
 		unsigned char dpValueLength = DatapointTypes::getDatapointSize(dpt);
-		unsigned char dpValueSize = *(responseTelegram + DP_LENGTH_OFFSET_FROM_MAINSERVICE);
+		unsigned char dpValueSize = *(responseTelegram + IND_LISTEN_DP_LENGTH_OFFSET);
 		unsigned short dpId = swap2(*(unsigned short*)(responseTelegram + GET_DP_DESC_RES_DP_ID_OFFSET));
-		unsigned char* pValueStartAddress = (responseTelegram + DP_VALUE_OFFSET_FROM_MAINSERVICE);
+		unsigned char* pValueStartAddress = (responseTelegram + IND_LISTEN_DP_VALUE_OFFSET);
 
 		if (dpValueLength != dpValueSize)
 		{

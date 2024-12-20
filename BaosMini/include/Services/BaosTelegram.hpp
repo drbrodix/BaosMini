@@ -79,6 +79,7 @@ protected:
     /// The constructor function allocates RESPONSE_ARR_SIZE (250 bytes)
     /// to the response telegram, and initializes all the elements to 0.
     /// </summary>
+    /// <param name="serialConnection">A pointer to the SerialConnection object.</param>
     BaosTelegram(SerialConnection *serialConnection);
     /// <summary>
     /// The default destructor frees up the dynamically allocated

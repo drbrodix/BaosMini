@@ -90,6 +90,11 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">IndicationListener Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A service, which allows the monitoring of the connection with the BAOS device. The ObjectServer sends an indication if values of configured datapoints and / or server items are changed, to which the <a class="el" href="class_indication_listener.html" title="A service, which allows the monitoring of the connection with the BAOS device. The ObjectServer sends...">IndicationListener</a> reacts by alerting the user in the standard output stream.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_indication_listener_8hpp_source.html">IndicationListener.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IndicationListener:</div>
 <div class="dyncontent">
@@ -102,9 +107,13 @@ Inheritance diagram for IndicationListener:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a467f5c4096c47611d0857a3cf1feb1f6" id="r_a467f5c4096c47611d0857a3cf1feb1f6"><td class="memItemLeft" align="right" valign="top"><a id="a467f5c4096c47611d0857a3cf1feb1f6" name="a467f5c4096c47611d0857a3cf1feb1f6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IndicationListener</b> (<a class="el" href="class_serial_connection.html">SerialConnection</a> *<a class="el" href="class_baos_telegram.html#addca2d215c001c1d74348ca865897638">serialConnection</a>)</td></tr>
+<tr class="memitem:a467f5c4096c47611d0857a3cf1feb1f6" id="r_a467f5c4096c47611d0857a3cf1feb1f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a467f5c4096c47611d0857a3cf1feb1f6">IndicationListener</a> (<a class="el" href="class_serial_connection.html">SerialConnection</a> *<a class="el" href="class_baos_telegram.html#addca2d215c001c1d74348ca865897638">serialConnection</a>)</td></tr>
+<tr class="memdesc:a467f5c4096c47611d0857a3cf1feb1f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor function calls the base class <a class="el" href="class_baos_telegram.html" title="A base class for all the BAOS service telegrams. It provides basic data members, member functions and...">BaosTelegram</a> constructor function, thus initializing the basic data members. A new thread will be started, in which the <a class="el" href="class_indication_listener.html" title="A service, which allows the monitoring of the connection with the BAOS device. The ObjectServer sends...">IndicationListener</a> will be constantly reading the data sent by the ObjectServer.  <br /></td></tr>
 <tr class="separator:a467f5c4096c47611d0857a3cf1feb1f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac121e4b71785981eb217db72b506aa60" id="r_ac121e4b71785981eb217db72b506aa60"><td class="memItemLeft" align="right" valign="top"><a id="ac121e4b71785981eb217db72b506aa60" name="ac121e4b71785981eb217db72b506aa60"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~IndicationListener</b> ()</td></tr>
+<tr class="memdesc:ac121e4b71785981eb217db72b506aa60"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default destructor calls the parent function, which frees up the dynamically allocated memory of the baosTelegram and responseTelegram arrays. <br /></td></tr>
+<tr class="separator:ac121e4b71785981eb217db72b506aa60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -155,6 +164,34 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasValidResponse</b><
 <tr class="memdesc:addca2d215c001c1d74348ca865897638 inherit pro_attribs_class_baos_telegram"><td class="mdescLeft">&#160;</td><td class="mdescRight">The passed pointer to the serial connection object will be stored to allow communication with the connected BAOS device. <br /></td></tr>
 <tr class="separator:addca2d215c001c1d74348ca865897638 inherit pro_attribs_class_baos_telegram"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A service, which allows the monitoring of the connection with the BAOS device. The ObjectServer sends an indication if values of configured datapoints and / or server items are changed, to which the <a class="el" href="class_indication_listener.html" title="A service, which allows the monitoring of the connection with the BAOS device. The ObjectServer sends...">IndicationListener</a> reacts by alerting the user in the standard output stream. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a467f5c4096c47611d0857a3cf1feb1f6" name="a467f5c4096c47611d0857a3cf1feb1f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a467f5c4096c47611d0857a3cf1feb1f6">&#9670;&#160;</a></span>IndicationListener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IndicationListener::IndicationListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_serial_connection.html">SerialConnection</a> *</td>          <td class="paramname"><span class="paramname"><em>serialConnection</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor function calls the base class <a class="el" href="class_baos_telegram.html" title="A base class for all the BAOS service telegrams. It provides basic data members, member functions and...">BaosTelegram</a> constructor function, thus initializing the basic data members. A new thread will be started, in which the <a class="el" href="class_indication_listener.html" title="A service, which allows the monitoring of the connection with the BAOS device. The ObjectServer sends...">IndicationListener</a> will be constantly reading the data sent by the ObjectServer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serialConnection</td><td>A pointer to the <a class="el" href="class_serial_connection.html" title="This class takes care of the serial connection between the client and the BAOS device.">SerialConnection</a> object.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/include/Services/<a class="el" href="_indication_listener_8hpp_source.html">IndicationListener.hpp</a></li>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/src/Services/<b>IndicationListener.cpp</b></li>

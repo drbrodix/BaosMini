@@ -5,35 +5,33 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INDICATION\_LISTENER\_HPP}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INDICATION\_LISTENER\_HPP}}
 \DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ DP\_LENGTH\_OFFSET\_FROM\_MAINSERVICE}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ DP\_LENGTH\_OFFSET\_FROM\_MAINSERVICE\ 9}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !DP\_LENGTH\_OFFSET\_FROM\_MAINSERVICE}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ IND\_LISTEN\_DP\_LENGTH\_OFFSET\ 9}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ IND\_LISTEN\_DP\_VALUE\_OFFSET\ 10}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ DP\_VALUE\_OFFSET\_FROM\_MAINSERVICE}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DP\_VALUE\_OFFSET\_FROM\_MAINSERVICE\ 10}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !DP\_VALUE\_OFFSET\_FROM\_MAINSERVICE}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}BaosTelegram.hpp"{}}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../Utility/FloatConverter.hpp"{}}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../Utility/DatapointTypes.hpp"{}}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}../Utility/DecodeServerItemRes.hpp"{}}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}../Services/GetDatapointDescription.hpp"{}}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <functional>}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <thread>}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_indication_listener}{IndicationListener}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_baos_telegram}{BaosTelegram}}}
-\DoxyCodeLine{00021\ \{}
-\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_indication_listener}{IndicationListener}}(}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_serial_connection}{SerialConnection}}*\ \mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serialConnection}});}
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_indication_listener}{\string~IndicationListener}}();}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ startListening(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_baos_telegram_a3c01649accdcb9066ce57774141822bb}{responseTelegram}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_baos_telegram_a0726e6babb32005a936e0583edb8f15f}{responseLength}},\ \mbox{\hyperlink{class_serial_connection}{SerialConnection}}*\ \mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serialConnection}});}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ decode4ByteFloat(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ pValueStartAddress);}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ decodeDatapointIndication(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_baos_telegram_a3c01649accdcb9066ce57774141822bb}{responseTelegram}},\ \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{DatapointTypes::DATAPOINT\_TYPES}}\ dpt);}
-\DoxyCodeLine{00031\ \};}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INDICATION\_LISTENER\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}BaosTelegram.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../Utility/FloatConverter.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../Utility/DatapointTypes.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Utility/DecodeServerItemRes.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../Services/GetDatapointDescription.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_indication_listener}{IndicationListener}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_baos_telegram}{BaosTelegram}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_indication_listener_a467f5c4096c47611d0857a3cf1feb1f6}{IndicationListener}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_serial_connection}{SerialConnection}}*\ \mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serialConnection}});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_indication_listener_ac121e4b71785981eb217db72b506aa60}{\string~IndicationListener}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ startListening(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_baos_telegram_a3c01649accdcb9066ce57774141822bb}{responseTelegram}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_baos_telegram_a0726e6babb32005a936e0583edb8f15f}{responseLength}},\ \mbox{\hyperlink{class_serial_connection}{SerialConnection}}*\ \mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serialConnection}});}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ decode4ByteFloat(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ pValueStartAddress);}
+\DoxyCodeLine{00070\ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ decodeDatapointIndication(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_baos_telegram_a3c01649accdcb9066ce57774141822bb}{responseTelegram}},\ \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{DatapointTypes::DATAPOINT\_TYPES}}\ dpt);}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INDICATION\_LISTENER\_HPP}}
 
 \end{DoxyCode}

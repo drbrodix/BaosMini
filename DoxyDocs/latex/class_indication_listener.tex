@@ -1,5 +1,14 @@
 \doxysection{Indication\+Listener Class Reference}
 \hypertarget{class_indication_listener}{}\label{class_indication_listener}\index{IndicationListener@{IndicationListener}}
+
+
+A service, which allows the monitoring of the connection with the BAOS device. The Object\+Server sends an indication if values of configured datapoints and / or server items are changed, to which the \doxylink{class_indication_listener}{Indication\+Listener} reacts by alerting the user in the standard output stream.  
+
+
+
+
+{\ttfamily \#include $<$Indication\+Listener.\+hpp$>$}
+
 Inheritance diagram for Indication\+Listener\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,9 +18,11 @@ Inheritance diagram for Indication\+Listener\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_indication_listener_a467f5c4096c47611d0857a3cf1feb1f6}\label{class_indication_listener_a467f5c4096c47611d0857a3cf1feb1f6} 
-{\bfseries Indication\+Listener} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_indication_listener_a467f5c4096c47611d0857a3cf1feb1f6}{Indication\+Listener}} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\begin{DoxyCompactList}\small\item\em The constructor function calls the base class \doxylink{class_baos_telegram}{Baos\+Telegram} constructor function, thus initializing the basic data members. A new thread will be started, in which the \doxylink{class_indication_listener}{Indication\+Listener} will be constantly reading the data sent by the Object\+Server. \end{DoxyCompactList}\item 
+\Hypertarget{class_indication_listener_ac121e4b71785981eb217db72b506aa60}\label{class_indication_listener_ac121e4b71785981eb217db72b506aa60} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Indication\+Listener} ()
+\begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
 \begin{DoxyCompactItemize}
@@ -41,6 +52,27 @@ bool {\bfseries has\+Valid\+Response}
 \begin{DoxyCompactList}\small\item\em Keeps track if Object\+Server response telegram is valid. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*} {\bfseries serial\+Connection}
 \begin{DoxyCompactList}\small\item\em The passed pointer to the serial connection object will be stored to allow communication with the connected BAOS device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A service, which allows the monitoring of the connection with the BAOS device. The Object\+Server sends an indication if values of configured datapoints and / or server items are changed, to which the \doxylink{class_indication_listener}{Indication\+Listener} reacts by alerting the user in the standard output stream. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_indication_listener_a467f5c4096c47611d0857a3cf1feb1f6}\index{IndicationListener@{IndicationListener}!IndicationListener@{IndicationListener}}
+\index{IndicationListener@{IndicationListener}!IndicationListener@{IndicationListener}}
+\doxysubsubsection{\texorpdfstring{IndicationListener()}{IndicationListener()}}
+{\footnotesize\ttfamily \label{class_indication_listener_a467f5c4096c47611d0857a3cf1feb1f6} 
+Indication\+Listener\+::\+Indication\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}}]{serial\+Connection}{}\end{DoxyParamCaption})}
+
+
+
+The constructor function calls the base class \doxylink{class_baos_telegram}{Baos\+Telegram} constructor function, thus initializing the basic data members. A new thread will be started, in which the \doxylink{class_indication_listener}{Indication\+Listener} will be constantly reading the data sent by the Object\+Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+Connection} & A pointer to the \doxylink{class_serial_connection}{Serial\+Connection} object.\\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
