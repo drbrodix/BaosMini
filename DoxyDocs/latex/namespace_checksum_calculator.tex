@@ -1,0 +1,20 @@
+\doxysection{Checksum\+Calculator Namespace Reference}
+\hypertarget{namespace_checksum_calculator}{}\label{namespace_checksum_calculator}\index{ChecksumCalculator@{ChecksumCalculator}}
+
+
+In the \doxylink{namespace_checksum_calculator}{Checksum\+Calculator} two separate public functions are available. One to calculate the checksum of the telegram to be sent, and one to calculate the checksum of the recieved telegram. They both call a central private function, but with different arguments.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespace_checksum_calculator_a4e572c08c746a0a38ffdef2ea42d4d4f}\label{namespace_checksum_calculator_a4e572c08c746a0a38ffdef2ea42d4d4f} 
+unsigned char {\bfseries calculate\+Checksum\+Sent} (unsigned char \texorpdfstring{$\ast$}{*}telegram\+Data, unsigned char telegram\+Length, unsigned char control\+Byte)
+\begin{DoxyCompactList}\small\item\em Function to calculate the checksum of outbound telegrams. It calls a central private function with the passed arguments and preset configuration for outbound telegrams. \end{DoxyCompactList}\item 
+\Hypertarget{namespace_checksum_calculator_a70c381dbab3a9fb5bc67e4b0720e5d46}\label{namespace_checksum_calculator_a70c381dbab3a9fb5bc67e4b0720e5d46} 
+unsigned char {\bfseries calculate\+Checksum\+Recieved} (unsigned char \texorpdfstring{$\ast$}{*}telegram\+Data, unsigned char telegram\+Length, unsigned char control\+Byte)
+\begin{DoxyCompactList}\small\item\em Function to calculate the checksum of inbound telegrams. It calls a central private function with the passed arguments and preset configuration for inbound telegrams. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+In the \doxylink{namespace_checksum_calculator}{Checksum\+Calculator} two separate public functions are available. One to calculate the checksum of the telegram to be sent, and one to calculate the checksum of the recieved telegram. They both call a central private function, but with different arguments. 

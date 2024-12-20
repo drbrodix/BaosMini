@@ -1,0 +1,20 @@
+\doxysection{float\+Converter Namespace Reference}
+\hypertarget{namespacefloat_converter}{}\label{namespacefloat_converter}\index{floatConverter@{floatConverter}}
+
+
+Functions for encoding and decoding 2byte floats.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacefloat_converter_a4dac30a0c1f025e749e15983f7ade16d}\label{namespacefloat_converter_a4dac30a0c1f025e749e15983f7ade16d} 
+bool {\bfseries encode2byte\+Float} (float f, unsigned char \texorpdfstring{$\ast$}{*}result\+Array)
+\begin{DoxyCompactList}\small\item\em An entry point to a line of 2byte float encoding functions. A regular 4byte float will be passed as a parameter, which will be converted into a 2byte float. A pointer to an unsigned char array will be passed as a second parameter, in which the resulting 2 bytes of the conversion will be stored. \end{DoxyCompactList}\item 
+\Hypertarget{namespacefloat_converter_a0fbd62503ec88de3f84f4badc09d870b}\label{namespacefloat_converter_a0fbd62503ec88de3f84f4badc09d870b} 
+float {\bfseries decode2byte\+Float} (unsigned char first\+Byte, unsigned char second\+Byte)
+\begin{DoxyCompactList}\small\item\em An entry point to a line of 2byte float decoding functions. The two bytes of the float will be passed as two separate parameters, which will be converted into a 4byte float, which will then be returned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for encoding and decoding 2byte floats. 

@@ -1,12 +1,18 @@
 #ifndef GET_ERROR_DESCRIPTION_HPP
 #define GET_ERROR_DESCRIPTION_HPP
 
-#ifndef ERROR_STRING_SIZE
+/// <summary>
+/// A constant representing the size of the error string.
+/// </summary>
 #define ERROR_STRING_SIZE 30
-#endif // !ERROR_STRING_SIZE
 
 #include <string>
 
+/// <summary>
+/// Takes an error code defined in the BAOS protocol,
+/// and decodes it. A respective string will be formatted,
+/// and printed out in the standard output stream.
+/// </summary>
 bool getErrorDescription(unsigned char errorCode);
 
 #endif // !GET_ERROR_DESCRIPTION_HPP

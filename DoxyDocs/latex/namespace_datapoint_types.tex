@@ -1,0 +1,59 @@
+\doxysection{Datapoint\+Types Namespace Reference}
+\hypertarget{namespace_datapoint_types}{}\label{namespace_datapoint_types}\index{DatapointTypes@{DatapointTypes}}
+
+
+A collection of datapoint-\/type-\/related enumerations and function.  
+
+
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}\label{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418} 
+enum \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{DATAPOINT\+\_\+\+TYPES}} \{ \newline
+{\bfseries NO\+\_\+\+DATAPOINT\+\_\+\+TYPE} = 0x00
+, {\bfseries BOOLEAN} = 0x01
+, {\bfseries UNSIGNED\+\_\+\+VALUE\+\_\+1\+BYTE} = 0x05
+, {\bfseries SIGNED\+\_\+\+VALUE\+\_\+1\+BYTE} = 0x06
+, \newline
+{\bfseries UNSIGNED\+\_\+\+VALUE\+\_\+2\+BYTE} = 0x07
+, {\bfseries SIGNED\+\_\+\+VALUE\+\_\+2\+BYTE} = 0x08
+, {\bfseries FLOAT\+\_\+\+VALUE\+\_\+2\+BYTE} = 0x09
+, {\bfseries UNSIGNED\+\_\+\+VALUE\+\_\+4\+BYTE} = 0x0C
+, \newline
+{\bfseries SIGNED\+\_\+\+VALUE\+\_\+4\+BYTE} = 0x0D
+, {\bfseries FLOAT\+\_\+\+VALUE\+\_\+4\+BYTE} = 0x0E
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of datapoint types, allowing an easy, and streamlined access to datapoint types defined in the BAOS protocol. Refer to Appendix D in the BAOS documentation to find out more about the available datapoint types. \end{DoxyCompactList}\item 
+\Hypertarget{namespace_datapoint_types_a5e777e86cd37d3bda7d8bb28d8685033}\label{namespace_datapoint_types_a5e777e86cd37d3bda7d8bb28d8685033} 
+enum \mbox{\hyperlink{namespace_datapoint_types_a5e777e86cd37d3bda7d8bb28d8685033}{DATAPOINT\+\_\+\+VALUE\+\_\+\+TYPES}} \{ \newline
+{\bfseries SIZE\+\_\+1\+\_\+\+BIT} = 0x00
+, {\bfseries SIZE\+\_\+2\+\_\+\+BIT} = 0x01
+, {\bfseries SIZE\+\_\+3\+\_\+\+BIT} = 0x02
+, {\bfseries SIZE\+\_\+4\+\_\+\+BIT} = 0x03
+, \newline
+{\bfseries SIZE\+\_\+5\+\_\+\+BIT} = 0x04
+, {\bfseries SIZE\+\_\+6\+\_\+\+BIT} = 0x05
+, {\bfseries SIZE\+\_\+7\+\_\+\+BIT} = 0x06
+, {\bfseries SIZE\+\_\+1\+\_\+\+BYTE} = 0x07
+, \newline
+{\bfseries SIZE\+\_\+2\+\_\+\+BYTE} = 0x08
+, {\bfseries SIZE\+\_\+3\+\_\+\+BYTE} = 0x09
+, {\bfseries SIZE\+\_\+4\+\_\+\+BYTE} = 0x0A
+, {\bfseries SIZE\+\_\+6\+\_\+\+BYTE} = 0x0B
+, \newline
+{\bfseries SIZE\+\_\+8\+\_\+\+BYTE} = 0x0C
+, {\bfseries SIZE\+\_\+10\+\_\+\+BYTE} = 0x0D
+, {\bfseries SIZE\+\_\+14\+\_\+\+BYTE} = 0x0E
+, {\bfseries INVALID\+\_\+\+SIZE} = 0x0F
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of datapoint value types, allowing an easy, and streamlined access to datapoint value types defined in the BAOS protocol. Refer to Appendix C in the BAOS documentation to find out more about the available datapoint value types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespace_datapoint_types_a195155c4df235f05ae24680778c27bae}\label{namespace_datapoint_types_a195155c4df235f05ae24680778c27bae} 
+unsigned char {\bfseries get\+Datapoint\+Size} (\mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{DATAPOINT\+\_\+\+TYPES}} dpt)
+\begin{DoxyCompactList}\small\item\em A function to get the size of various datapoint types in bytes. Datatypes supported are some of the ones defined in the BAOS protocol. Refer to Appendix D in the BAOS documentation to find out more about the available datapoint types. Not all datapoint types are accessible in this implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A collection of datapoint-\/type-\/related enumerations and function. 

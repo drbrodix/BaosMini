@@ -6,18 +6,17 @@ SerialConnection::SerialConnection(std::string connectString)
     , dcbSerialParam{0}
     , timeout{0}
     , isOddFrame(true)
-    , isFirstTelegram(true)
 {
 	serialHandle = createSerialHandle();
     if (serialHandle == INVALID_HANDLE_VALUE)
     {
         if (GetLastError() == ERROR_FILE_NOT_FOUND)
         {
-            std::cerr << "COM3 not found" << '\n';
+            printf("COM3 not found\n");
         }
         else
         {
-            std::cerr << "Error opening serial port." << '\n';
+            printf("Error opening serial port.\n");
         }
     }
 
@@ -31,7 +30,7 @@ SerialConnection::~SerialConnection()
     // Close port
     if (!CloseHandle(serialHandle))
     {
-        std::cerr << "Error while closing COM port." << '\n';
+        printf("Error while closing COM port.\n");
     }
 }
 
@@ -55,7 +54,7 @@ bool SerialConnection::configureConnect()
     dcbSerialParam.DCBlength = sizeof(dcbSerialParam);
     if (!GetCommState(serialHandle, &dcbSerialParam))
     {
-        std::cerr << "Error while fetching COM properties." << '\n';
+        printf("Error while fetching COM properties.\n");
     }
 
     dcbSerialParam.BaudRate = CBR_19200;
@@ -65,7 +64,7 @@ bool SerialConnection::configureConnect()
 
     if (!SetCommState(serialHandle, &dcbSerialParam))
     {
-        std::cerr << "Error while setting serial port properties." << '\n';
+        printf("Error while setting serial port properties.\n");
     }
     
     return true;
@@ -98,10 +97,9 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
     const unsigned char checksum = ChecksumCalculator::calculateChecksumSent(baosTelegram, telegramLength, controlByte);
-    // const bool isReadAnswerReq = checkIsReadAnswerReq(subServiceCode);
 
     // Format the final FT1.2 frame
-    unsigned short bytesToWrite = FrameFormatter::formatFt12Frame(
+    unsigned short bytesToWrite = formatFt12Frame(
         baosTelegram,
         telegramLength,
         controlByte,
@@ -117,7 +115,7 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
         &dwBytesWritten,
         nullptr
     )) {
-        std::cerr << "Error while writing to COM port." << '\n';
+        printf("Error while writing to COM port.\n");
         return false;
     }
     return true;
@@ -157,24 +155,19 @@ bool SerialConnection::sendResetRequest() const
 
     // Write reset request
     DWORD dwBytesWrittenRR = 0;
-    if (!WriteFile(
-        serialHandle,
-        RESET_REQUEST,
-        sizeof(RESET_REQUEST),
-        &dwBytesWrittenRR,
-        nullptr
-    )) {
-        std::cerr << "Error while writing to COM port." << '\n';
-    }
-
-    return true;
+    return (!WriteFile(
+            serialHandle,
+            RESET_REQUEST,
+            sizeof(RESET_REQUEST),
+            &dwBytesWrittenRR,
+            nullptr
+    ));
 }
 
 //                                  //
 //  Reader Functions Section Below  //
 //                                  //
 
-// Return true if parameter char is found
 bool SerialConnection::isCharFound(unsigned char charToFind) const
 {
     unsigned char c = 0;
@@ -195,7 +188,6 @@ bool SerialConnection::isCharFound(unsigned char charToFind) const
     return c == charToFind;
 }
 
-// Return telegram length, or 0 if reading failed
 unsigned int SerialConnection::readHeader(unsigned char* ft12Header) const
 {
     // Reading FT1.2 header
@@ -229,21 +221,15 @@ unsigned int SerialConnection::readHeader(unsigned char* ft12Header) const
 bool SerialConnection::readData(unsigned char* buffer) const
 {
     DWORD bytesRead = 0;
-    if (!ReadFile(
-        serialHandle,
-        buffer,
-        1,
-        &bytesRead,
-        nullptr
-    ))
-    {
-        return false;
-    }
-    return true;
+    return (!ReadFile(
+            serialHandle,
+            buffer,
+            1,
+            &bytesRead,
+            nullptr
+    ));
 }
 
-// Recieve Telegram
-// I know it's terrible... I'm just an intern, don't judge me...
 unsigned int SerialConnection::recieveTelegram(unsigned char* telegramCharArray)
 {
     //const unsigned short MAX_TRIES_COUNT        = 30; // Caps number of tries looking for FT1.2 start byte
@@ -257,6 +243,7 @@ unsigned int SerialConnection::recieveTelegram(unsigned char* telegramCharArray)
 
     telegramLength = readHeader(ft12Header);
 
+    // Reading the BAOS telegram payload
     for (unsigned int i = 0; i < telegramLength; i++)
     {
         readData(telegramCharArray + i);

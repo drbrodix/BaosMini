@@ -5,62 +5,66 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SERIAL\_CONNECTION\_HPP}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SERIAL\_CONNECTION\_HPP}}
 \DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ FT12\_HEADER\_SIZE\ 5\ \ }\textcolor{comment}{//\ Fixed\ size\ of\ FT1.2\ header;\ unless\ the\ protocol\ changes,\ this\ constant\ shouldn't\ be\ touched}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ FT12\_START\_BYTE\ 0x68}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Windows.h>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../Utility/ChecksumCalculator.hpp"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../Utility/FrameFormatter.hpp"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Utility/DatapointTypes.hpp"{}}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_serial_connection}{SerialConnection}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_serial_connection}{SerialConnection}}(std::string\ connectionName);}
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_serial_connection}{\string~SerialConnection}}();}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ sendTelegram(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ baosTelegram,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ telegramLength,\ DatapointTypes::DATAPOINT\_TYPES\ dpt\ =\ DatapointTypes::NO\_DATAPOINT\_TYPE);}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ recieveTelegram(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ telegramCharArray);}
-\DoxyCodeLine{00021\ \ \ \ \ HANDLE\ getHandle()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00022\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ serialHandle;}
-\DoxyCodeLine{00024\ \ \ \ \ \}}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ sendAck()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00026\ \ \ \ \ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Value\ to\ keep\ track\ of\ control\ byte\ state}}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOddFrame;}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ isFirstTelegram;}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Const\ to\ avoid\ magic\ numbers}}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ CONTROL\_BYTE[2]\ =}
-\DoxyCodeLine{00034\ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ 0x53,\ \ \ \textcolor{comment}{//\ EVEN\ <-\/\ ARRAY\ INDEX\ 0}}
-\DoxyCodeLine{00036\ \ \ \ \ 0x73\ \ \ \ \textcolor{comment}{//\ ODD\ \ <-\/\ ARRAY\ INDEX\ 1}}
-\DoxyCodeLine{00037\ \ \ \ \ \};}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Data\ members\ for\ connection}}
-\DoxyCodeLine{00040\ \ \ \ \ std::string\ connectionName;}
-\DoxyCodeLine{00041\ \ \ \ \ HANDLE\ serialHandle;}
-\DoxyCodeLine{00042\ \ \ \ \ DCB\ dcbSerialParam;}
-\DoxyCodeLine{00043\ \ \ \ \ COMMTIMEOUTS\ timeout;}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ HANDLE\ createSerialHandle()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ configureConnect();}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ configureTimeout();}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCharFound(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ charToFind)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ readHeader(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ ft12Header)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ readData(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ buffer)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ sendResetRequest()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Returns\ control\ byte\ depending\ on\ the}}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ current\ state\ of\ the\ isOddFrame\ data\ member}}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getControlByte();}
-\DoxyCodeLine{00058\ \};}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SERIAL\_CONNECTION\_HPP}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ FT12\_HEADER\_SIZE\ 5}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Windows.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Utility/ChecksumCalculator.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../Utility/FrameFormatter.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../Utility/DatapointTypes.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_serial_connection}{SerialConnection}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_serial_connection_af270a935217d542e318272a8d6a4ee6d}{SerialConnection}}(std::string\ connectionName);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_serial_connection_ae73749bb08c2f53f467809cb6c0a3fc8}{\string~SerialConnection}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_serial_connection_a06f7b96d9b8166a552a32f7335d7dfb8}{sendTelegram}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ baosTelegram,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ telegramLength,\ \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{DatapointTypes::DATAPOINT\_TYPES}}\ dpt\ =\ DatapointTypes::NO\_DATAPOINT\_TYPE);}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_serial_connection_adc1ccfd717c2dc318dbc0701fe5f8ace}{recieveTelegram}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ telegramCharArray);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ HANDLE\ \mbox{\hyperlink{class_serial_connection_a7933ebcee796edf921bb80e352cf66a1}{getHandle}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ serialHandle;}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ sendAck()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ \ \ \ \ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOddFrame;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ CONTROL\_BYTE[2]\ =}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ 0x53,}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ 0x73}
+\DoxyCodeLine{00081\ \ \ \ \ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::string\ connectionName;}
+\DoxyCodeLine{00087\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ HANDLE\ serialHandle;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00096\ \ \ \ \ DCB\ dcbSerialParam;}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ COMMTIMEOUTS\ timeout;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \ \ HANDLE\ createSerialHandle()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ configureConnect();}
+\DoxyCodeLine{00115\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ configureTimeout();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCharFound(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ charToFind)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ readHeader(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ ft12Header)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ readData(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ buffer)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{bool}\ sendResetRequest()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getControlByte();}
+\DoxyCodeLine{00155\ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SERIAL\_CONNECTION\_HPP}}
 
 \end{DoxyCode}

@@ -19,7 +19,7 @@ Inheritance diagram for Get\+Datapoint\+Value\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d}\label{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d} 
-{\bfseries Get\+Datapoint\+Value} (unsigned short datapoint\+Id, Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES dpt, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+{\bfseries Get\+Datapoint\+Value} (unsigned short datapoint\+Id, \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}} dpt, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. The specification of the datapoint type is needed for error avoidance when decoding the retrieved datapoint values. An error check will be done, and the result stored for further use. \end{DoxyCompactList}\item 
 \Hypertarget{class_get_datapoint_value_a1301a589139b282934c1bc8ef37121b7}\label{class_get_datapoint_value_a1301a589139b282934c1bc8ef37121b7} 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Datapoint\+Value} ()

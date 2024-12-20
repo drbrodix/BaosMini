@@ -90,26 +90,41 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">SerialConnection Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class takes care of the serial connection between the client and the BAOS device.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_serial_connection_8hpp_source.html">SerialConnection.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af270a935217d542e318272a8d6a4ee6d" id="r_af270a935217d542e318272a8d6a4ee6d"><td class="memItemLeft" align="right" valign="top"><a id="af270a935217d542e318272a8d6a4ee6d" name="af270a935217d542e318272a8d6a4ee6d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SerialConnection</b> (std::string connectionName)</td></tr>
+<tr class="memdesc:af270a935217d542e318272a8d6a4ee6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The construction of the serial connection will be taken care of in the constructor function by calling the responsible functions. The user gets warned if the opening of the connection is unsuccessful. <br /></td></tr>
 <tr class="separator:af270a935217d542e318272a8d6a4ee6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae73749bb08c2f53f467809cb6c0a3fc8" id="r_ae73749bb08c2f53f467809cb6c0a3fc8"><td class="memItemLeft" align="right" valign="top"><a id="ae73749bb08c2f53f467809cb6c0a3fc8" name="ae73749bb08c2f53f467809cb6c0a3fc8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~SerialConnection</b> ()</td></tr>
+<tr class="memdesc:ae73749bb08c2f53f467809cb6c0a3fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The serial connection handle will be closed when the <a class="el" href="class_serial_connection.html" title="This class takes care of the serial connection between the client and the BAOS device.">SerialConnection</a> object is destroyed. The user gets warned if the closing of the handle is unsuccessful. <br /></td></tr>
+<tr class="separator:ae73749bb08c2f53f467809cb6c0a3fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06f7b96d9b8166a552a32f7335d7dfb8" id="r_a06f7b96d9b8166a552a32f7335d7dfb8"><td class="memItemLeft" align="right" valign="top"><a id="a06f7b96d9b8166a552a32f7335d7dfb8" name="a06f7b96d9b8166a552a32f7335d7dfb8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendTelegram</b> (unsigned char *baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt=DatapointTypes::NO_DATAPOINT_TYPE)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendTelegram</b> (unsigned char *baosTelegram, unsigned char telegramLength, <a class="el" href="namespace_datapoint_types.html#a63ac77a6c424836c51b61165f1798418">DatapointTypes::DATAPOINT_TYPES</a> dpt=DatapointTypes::NO_DATAPOINT_TYPE)</td></tr>
+<tr class="memdesc:a06f7b96d9b8166a552a32f7335d7dfb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a raw BAOS telegram, wraps it in an FT1.2 frame, and sends it to the connected BAOS device. Returns true if the sending process was successful, false otherwise. <br /></td></tr>
 <tr class="separator:a06f7b96d9b8166a552a32f7335d7dfb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc1ccfd717c2dc318dbc0701fe5f8ace" id="r_adc1ccfd717c2dc318dbc0701fe5f8ace"><td class="memItemLeft" align="right" valign="top"><a id="adc1ccfd717c2dc318dbc0701fe5f8ace" name="adc1ccfd717c2dc318dbc0701fe5f8ace"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>recieveTelegram</b> (unsigned char *telegramCharArray)</td></tr>
+<tr class="memdesc:adc1ccfd717c2dc318dbc0701fe5f8ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data sent by the ObjectServer, and stores the recieved telegram in the passed unsigned char array. The checksum of the recieved telegram will be checked. The length of the recieved telegram will be returned, or 0 if any error is detected. <br /></td></tr>
 <tr class="separator:adc1ccfd717c2dc318dbc0701fe5f8ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7933ebcee796edf921bb80e352cf66a1" id="r_a7933ebcee796edf921bb80e352cf66a1"><td class="memItemLeft" align="right" valign="top"><a id="a7933ebcee796edf921bb80e352cf66a1" name="a7933ebcee796edf921bb80e352cf66a1"></a>
 HANDLE&#160;</td><td class="memItemRight" valign="bottom"><b>getHandle</b> () const</td></tr>
+<tr class="memdesc:a7933ebcee796edf921bb80e352cf66a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A getter function for the serial connection handle object. <br /></td></tr>
 <tr class="separator:a7933ebcee796edf921bb80e352cf66a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a596b300915b88d398572526eabce54a2" id="r_a596b300915b88d398572526eabce54a2"><td class="memItemLeft" align="right" valign="top"><a id="a596b300915b88d398572526eabce54a2" name="a596b300915b88d398572526eabce54a2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendAck</b> () const</td></tr>
 <tr class="separator:a596b300915b88d398572526eabce54a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class takes care of the serial connection between the client and the BAOS device. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/include/Utility/<a class="el" href="_serial_connection_8hpp_source.html">SerialConnection.hpp</a></li>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/src/Utility/<b>SerialConnection.cpp</b></li>
 </ul>

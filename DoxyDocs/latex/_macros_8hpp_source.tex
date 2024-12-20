@@ -5,15 +5,10 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MACROS\_HPP}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MACROS\_HPP}}
 \DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{comment}{//\ Byte\ swapper\ macros\ for\ endianness}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ swap2}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ swap2(x)\ (((x\ <<\ 8)\ \&\ 0xFF00)\ |\ ((x\ >>\ 8)\ \&\ 0x00FF))}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !swap2}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ swap4}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ swap4(x)\ (((x\ <<\ 24)\ \&\ 0xFF000000)\ |\ ((x\ <<\ 8)\ \&\ 0x00FF0000)\ |\ ((x\ >>\ 8)\ \&\ 0x0000FF00)\ |\ ((x\ >>\ 24)\ \&\ 0x000000FF))}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !swap4}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !MACROS\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ swap2(x)\ (((x\ <<\ 8)\ \&\ 0xFF00)\ |\ ((x\ >>\ 8)\ \&\ 0x00FF))}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ swap4(x)\ (((x\ <<\ 24)\ \&\ 0xFF000000)\ |\ ((x\ <<\ 8)\ \&\ 0x00FF0000)\ |\ ((x\ >>\ 8)\ \&\ 0x0000FF00)\ |\ ((x\ >>\ 24)\ \&\ 0x000000FF))}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !MACROS\_HPP}}
 
 \end{DoxyCode}

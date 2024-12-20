@@ -1,6 +1,9 @@
 #ifndef DATAPOINT_TYPES_HPP
 #define DATAPOINT_TYPES_HPP
 
+/// <summary>
+/// A collection of datapoint-type-related enumerations and function.
+/// </summary>
 namespace DatapointTypes
 {
 	/// <summary>

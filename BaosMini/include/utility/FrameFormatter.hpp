@@ -1,21 +1,35 @@
-#ifndef BASE_FRAME_FORMATTER_HPP
-#define BASE_FRAME_FORMATTER_HPP
+#ifndef FRAME_FORMATTER_HPP
+#define FRAME_FORMATTER_HPP
 
-#define START_BYTE		0x68	// FT1.2 start byte is fixed value
-#define END_BYTE		0x16	// FT1.2 end byte is fixed value
-#define FRAME_BYTES_NR	7		// Number of FT1.2 header bytes + end byte + checksum should never change
+/// <summary>
+/// FT1.2 start byte constant
+/// </summary>
+#define FT12_START_BYTE		0x68
+
+/// <summary>
+/// FT1.2 end byte constant
+/// </summary>
+#define FT12_END_BYTE		0x16
+
+/// <summary>
+/// Fixed number of bytes of the FT1.2 frame:
+/// header bytes + checksum + end byte
+/// </summary>
+#define FRAME_BYTES_NR	7
 
 #include <exception>
 #include <cstdio>
 
-namespace FrameFormatter
-{
-	unsigned short formatFt12Frame(
-		unsigned char* baosTelegram,
-		unsigned char telegramLength,
-		unsigned char controlByte,
-		unsigned char checksum
-	);
-}
+/// <summary>
+/// Wraps the passed baosTelegram array in an FT1.2 frame. 
+/// The function deals only with the formatting. The control byte
+/// and checksum need to be calculated and passed as parameters.
+/// </summary>
+unsigned short formatFt12Frame(
+	unsigned char* baosTelegram,
+	unsigned char telegramLength,
+	unsigned char controlByte,
+	unsigned char checksum
+);
 
-#endif // BASE_FRAME_FORMATTER_HPP
+#endif // FRAME_FORMATTER_HPP
