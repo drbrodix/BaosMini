@@ -68,6 +68,11 @@ public:
     /// when decoding the retrieved datapoint values.
     /// An error check will be done, and the result stored for further use.
     /// </summary>
+	/// <param name="datapointId">The ID of the datapoint,
+    /// whose value should be fetched.</param>
+	/// <param name="dpt">The datapoint type of the datapoint,
+    /// whose value should be fetched.</param>
+    /// <param name="serialConnection">A pointer to the SerialConnection object.</param>
 	GetDatapointValue(
         unsigned short datapointId,
         DatapointTypes::DATAPOINT_TYPES dpt,
@@ -81,57 +86,66 @@ public:
 	~GetDatapointValue();
 
     /// <summary>
-    /// Returns the retrieved boolean value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the boolean value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the boolean value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     bool getBooleanValue();
 
     /// <summary>
-    /// Returns the retrieved 1byte unsigned value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 1byte unsigned value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 1byte unsigned value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     unsigned char getUnsignedValue1Byte();
     
     /// <summary>
-    /// Returns the retrieved 1byte signed value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 1byte signed value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 1byte signed value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     signed char getSignedValue1Byte();
     
     /// <summary>
-    /// Returns the retrieved 2byte unsigned value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 2byte unsigned value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 2byte unsigned value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     unsigned short getUnsignedValue2Byte();
     
     /// <summary>
-    /// Returns the retrieved 2byte signed value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 2byte signed value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 2byte signed value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     signed short getSignedValue2Byte();
 
     /// <summary>
-    /// Returns the retrieved 2byte float value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 2byte float value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 2byte float value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     float getFloatValue2Byte();
     
     /// <summary>
-    /// Returns the retrieved 4byte unsigned value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 4byte unsigned value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 4byte unsigned value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     unsigned int getUnsignedValue4Byte();
     
     /// <summary>
-    /// Returns the retrieved 4byte signed value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 4byte signed value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 4byte signed value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     signed int getSignedValue4Byte();
 
     /// <summary>
-    /// Returns the retrieved 4byte float value from the
-    /// ObjectServer, or 0 if no valid value has been fetched.
+    /// Gets the 4byte float value of the datapoint specified in the constructor.
     /// </summary>
+    /// <returns>Returns the 4byte float value of the datapoint specified
+    /// in the constructor, or 0 if fetched telegram values are invalid.</returns>
     float getFloatValue4Byte();
 
 private:
@@ -146,16 +160,24 @@ private:
     /// a respective error message printed in the terminal.
     /// Also checks if the length of the retrieved datapoint value doesn't
     /// match the length of the datapoint type specified in the constructor.
-    /// In this case false will be returned, and a respective error message
-    /// printed in terminal. Returns true if no issues have been detected.
     /// </summary>
+    /// <param name="datapointId">The ID of the datapoint,
+    /// whose value should be fetched.</param>
+    /// <returns>If an error is detected, false will be returned, and a
+    /// respective error message printed out in the standard output stream.
+    /// Returns true if no issues have been detected.</returns>
     bool checkForError(unsigned short datapointId);
-
+    
     /// <summary>
-    /// A generic template function called by the public get functions
-    /// with datatype specifications. Returns the datapoint value retrieved
-    /// from the ObjectServer in the specified datapoint type.
+    /// A generic template function called by the public get functions with datatype specifications.
     /// </summary>
+    /// <typeparam name="T">Datatype of the datapoint value, which is returned.</typeparam>
+    /// <param name="expectedDpt">Expected datapoint type of the datapoint,
+    /// whose value will be returned.</param>
+    /// <param name="dptString">Datapoint type of the datapoint, whose value
+    /// will be returned, as a string.</param>
+    /// <returns>Returns the datapoint value fetched from 
+    /// the ObjectServer, in the specified datatype.</returns>
     template <typename T> T getValue(DatapointTypes::DATAPOINT_TYPES expectedDpt, const char* dptString);
 };
 

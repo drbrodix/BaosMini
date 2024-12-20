@@ -21,8 +21,7 @@ Inheritance diagram for Baos\+Telegram\+:\begin{figure}[H]
 \Hypertarget{class_baos_telegram_aac33d10d55cdc98dbf890e279a604b87}\label{class_baos_telegram_aac33d10d55cdc98dbf890e279a604b87} 
 {\bfseries Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
-\Hypertarget{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578}\label{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578} 
-{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578}{Baos\+Telegram}} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
 \Hypertarget{class_baos_telegram_a8817e51041de9738d8d9c89a1a7d903f}\label{class_baos_telegram_a8817e51041de9738d8d9c89a1a7d903f} 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
@@ -58,6 +57,24 @@ bool {\bfseries has\+Valid\+Response}
 
 \doxysubsection{Detailed Description}
 A base class for all the BAOS service telegrams. It provides basic data members, member functions and various definitions to its children classes. Cannot be instantiated on its own. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578}\index{BaosTelegram@{BaosTelegram}!BaosTelegram@{BaosTelegram}}
+\index{BaosTelegram@{BaosTelegram}!BaosTelegram@{BaosTelegram}}
+\doxysubsubsection{\texorpdfstring{BaosTelegram()}{BaosTelegram()}}
+{\footnotesize\ttfamily \label{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578} 
+Baos\+Telegram\+::\+Baos\+Telegram (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}}]{serial\+Connection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+Connection} & A pointer to the \doxylink{class_serial_connection}{Serial\+Connection} object.\\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

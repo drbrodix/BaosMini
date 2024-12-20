@@ -42,7 +42,7 @@ bool {\bfseries set\+Indication\+Sending} (bool enable, bool decode=false)
 \item 
 {\bfseries Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
-{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578}{Baos\+Telegram}} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 

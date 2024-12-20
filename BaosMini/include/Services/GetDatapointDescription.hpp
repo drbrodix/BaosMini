@@ -85,6 +85,7 @@ public:
     /// memory of the baosTelegram and responseTelegram arrays.
     /// </summary>
 	~GetDatapointDescription();
+
     /// <summary>
     /// Prints out data, specified in the parameters,
     /// about the datapoint in the standard output stream.
@@ -133,29 +134,30 @@ private:
     /// <summary>
     /// Checks if ObjectServer response is an error telegram.
     /// </summary>
-    /// <returns>Returns false if an error code has been detected, which then
-    /// will be decoded and a respective error message printed in the terminal.
-    /// Returns true if the ObjectServer response contains no error code.</returns>
+    /// <returns>Returns false if an error code has been detected,
+    /// which then will be decoded and a respective error message
+    /// printed out in the standard output stream. Returns true,
+    /// if the ObjectServer response contains no error code.</returns>
     bool checkForError();
 
     /// <summary>
-    /// Decodes the datapoint type of the datapoint specified
-    /// in the constructor. Prints the result in the terminal.
+    /// Decodes the datapoint type of the datapoint specified in the
+    /// constructor. Prints the result in the standard output stream.
     /// </summary>
     /// <param name="dpt">The datapoint type to be decoded</param>
     void decodeDpDpt(DatapointTypes::DATAPOINT_TYPES dpt);
 
     /// <summary>
-    /// Decodes the configuration flags of the datapoint specified
-    /// in the constructor. Prints the result in the terminal.
+    /// Decodes the configuration flags of the datapoint specified in
+    /// the constructor. Prints the result in the standard output stream.
     /// </summary>
     /// <param name="configFlagByte">The datapoint configuration
     /// flag byte to be decoded.</param>
     void decodeDpConfigFlags(ConfigFlags configFlagByte);
 
     /// <summary>
-    /// Decodes the datapoint value type of the datapoint specified
-    /// in the constructor. Prints the result in the terminal.
+    /// Decodes the datapoint value type of the datapoint specified in
+    /// the constructor. Prints the result in the standard output stream.
     /// </summary>
     /// <param name="configFlagByte">The datapoint configuration
     /// flag byte to be decoded.</param>

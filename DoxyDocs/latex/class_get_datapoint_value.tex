@@ -18,46 +18,36 @@ Inheritance diagram for Get\+Datapoint\+Value\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d}\label{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d} 
-{\bfseries Get\+Datapoint\+Value} (unsigned short datapoint\+Id, \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}} dpt, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d}{Get\+Datapoint\+Value}} (unsigned short datapoint\+Id, \mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}} dpt, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. The specification of the datapoint type is needed for error avoidance when decoding the retrieved datapoint values. An error check will be done, and the result stored for further use. \end{DoxyCompactList}\item 
 \Hypertarget{class_get_datapoint_value_a1301a589139b282934c1bc8ef37121b7}\label{class_get_datapoint_value_a1301a589139b282934c1bc8ef37121b7} 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Datapoint\+Value} ()
 \begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672}\label{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672} 
-bool {\bfseries get\+Boolean\+Value} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved boolean value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6}\label{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6} 
-unsigned char {\bfseries get\+Unsigned\+Value1\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 1byte unsigned value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f}\label{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f} 
-signed char {\bfseries get\+Signed\+Value1\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 1byte signed value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362}\label{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362} 
-unsigned short {\bfseries get\+Unsigned\+Value2\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 2byte unsigned value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3}\label{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3} 
-signed short {\bfseries get\+Signed\+Value2\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 2byte signed value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e}\label{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e} 
-float {\bfseries get\+Float\+Value2\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 2byte float value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e}\label{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e} 
-unsigned int {\bfseries get\+Unsigned\+Value4\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 4byte unsigned value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae}\label{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae} 
-signed int {\bfseries get\+Signed\+Value4\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 4byte signed value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484}\label{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484} 
-float {\bfseries get\+Float\+Value4\+Byte} ()
-\begin{DoxyCompactList}\small\item\em Returns the retrieved 4byte float value from the Object\+Server, or 0 if no valid value has been fetched. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672}{get\+Boolean\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Gets the boolean value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6}{get\+Unsigned\+Value1\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 1byte unsigned value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+signed char \mbox{\hyperlink{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f}{get\+Signed\+Value1\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 1byte signed value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+unsigned short \mbox{\hyperlink{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362}{get\+Unsigned\+Value2\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 2byte unsigned value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+signed short \mbox{\hyperlink{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3}{get\+Signed\+Value2\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 2byte signed value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e}{get\+Float\+Value2\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 2byte float value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e}{get\+Unsigned\+Value4\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 4byte unsigned value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+signed int \mbox{\hyperlink{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae}{get\+Signed\+Value4\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 4byte signed value of the datapoint specified in the constructor. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484}{get\+Float\+Value4\+Byte}} ()
+\begin{DoxyCompactList}\small\item\em Gets the 4byte float value of the datapoint specified in the constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
 \begin{DoxyCompactItemize}
 \item 
 {\bfseries Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
-{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578}{Baos\+Telegram}} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
@@ -84,6 +74,148 @@ bool {\bfseries has\+Valid\+Response}
 
 \doxysubsection{Detailed Description}
 A BAOS service, allowing the retrieval of values of datapoints configured in the Object\+Server. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d}\index{GetDatapointValue@{GetDatapointValue}!GetDatapointValue@{GetDatapointValue}}
+\index{GetDatapointValue@{GetDatapointValue}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{GetDatapointValue()}{GetDatapointValue()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_adc4189fda81b734b35dec9f5f93c096d} 
+Get\+Datapoint\+Value\+::\+Get\+Datapoint\+Value (\begin{DoxyParamCaption}\item[{unsigned short}]{datapoint\+Id}{, }\item[{\mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}}}]{dpt}{, }\item[{\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}}]{serial\+Connection}{}\end{DoxyParamCaption})}
+
+
+
+The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. The specification of the datapoint type is needed for error avoidance when decoding the retrieved datapoint values. An error check will be done, and the result stored for further use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em datapoint\+Id} & The ID of the datapoint, whose value should be fetched.\\
+\hline
+{\em dpt} & The datapoint type of the datapoint, whose value should be fetched.\\
+\hline
+{\em serial\+Connection} & A pointer to the \doxylink{class_serial_connection}{Serial\+Connection} object.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672}\index{GetDatapointValue@{GetDatapointValue}!getBooleanValue@{getBooleanValue}}
+\index{getBooleanValue@{getBooleanValue}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getBooleanValue()}{getBooleanValue()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a7ff30e18fc9b4a606eef3ccb546e8672} 
+bool Get\+Datapoint\+Value\+::get\+Boolean\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the boolean value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the boolean value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e}\index{GetDatapointValue@{GetDatapointValue}!getFloatValue2Byte@{getFloatValue2Byte}}
+\index{getFloatValue2Byte@{getFloatValue2Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getFloatValue2Byte()}{getFloatValue2Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a4d559544fbf0980227c262d6c1011e7e} 
+float Get\+Datapoint\+Value\+::get\+Float\+Value2\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 2byte float value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 2byte float value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484}\index{GetDatapointValue@{GetDatapointValue}!getFloatValue4Byte@{getFloatValue4Byte}}
+\index{getFloatValue4Byte@{getFloatValue4Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getFloatValue4Byte()}{getFloatValue4Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_ade227c8b04e88d9aad1e9ad7470ff484} 
+float Get\+Datapoint\+Value\+::get\+Float\+Value4\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 4byte float value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 4byte float value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f}\index{GetDatapointValue@{GetDatapointValue}!getSignedValue1Byte@{getSignedValue1Byte}}
+\index{getSignedValue1Byte@{getSignedValue1Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getSignedValue1Byte()}{getSignedValue1Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a0684e7f1817170f024b6f752aae53e4f} 
+signed char Get\+Datapoint\+Value\+::get\+Signed\+Value1\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 1byte signed value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 1byte signed value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3}\index{GetDatapointValue@{GetDatapointValue}!getSignedValue2Byte@{getSignedValue2Byte}}
+\index{getSignedValue2Byte@{getSignedValue2Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getSignedValue2Byte()}{getSignedValue2Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a158fc0b1b50be9b6926cb6620d6c3ce3} 
+signed short Get\+Datapoint\+Value\+::get\+Signed\+Value2\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 2byte signed value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 2byte signed value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae}\index{GetDatapointValue@{GetDatapointValue}!getSignedValue4Byte@{getSignedValue4Byte}}
+\index{getSignedValue4Byte@{getSignedValue4Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getSignedValue4Byte()}{getSignedValue4Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_afbaea0f22d38d1f9c11f042819deebae} 
+signed int Get\+Datapoint\+Value\+::get\+Signed\+Value4\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 4byte signed value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 4byte signed value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6}\index{GetDatapointValue@{GetDatapointValue}!getUnsignedValue1Byte@{getUnsignedValue1Byte}}
+\index{getUnsignedValue1Byte@{getUnsignedValue1Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getUnsignedValue1Byte()}{getUnsignedValue1Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a0797730f9e43dc4f24d6571ce22dcdc6} 
+unsigned char Get\+Datapoint\+Value\+::get\+Unsigned\+Value1\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 1byte unsigned value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 1byte unsigned value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362}\index{GetDatapointValue@{GetDatapointValue}!getUnsignedValue2Byte@{getUnsignedValue2Byte}}
+\index{getUnsignedValue2Byte@{getUnsignedValue2Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getUnsignedValue2Byte()}{getUnsignedValue2Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a81b4307a512de6ed77bcf875c9e8f362} 
+unsigned short Get\+Datapoint\+Value\+::get\+Unsigned\+Value2\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 2byte unsigned value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 2byte unsigned value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e}\index{GetDatapointValue@{GetDatapointValue}!getUnsignedValue4Byte@{getUnsignedValue4Byte}}
+\index{getUnsignedValue4Byte@{getUnsignedValue4Byte}!GetDatapointValue@{GetDatapointValue}}
+\doxysubsubsection{\texorpdfstring{getUnsignedValue4Byte()}{getUnsignedValue4Byte()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_value_a85eb94ebc47b9c892c2d90f00dbe8c5e} 
+unsigned int Get\+Datapoint\+Value\+::get\+Unsigned\+Value4\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the 4byte unsigned value of the datapoint specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+Returns the 4byte unsigned value of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

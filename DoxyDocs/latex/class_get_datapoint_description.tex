@@ -18,31 +18,26 @@ Inheritance diagram for Get\+Datapoint\+Description\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_get_datapoint_description_aa8a66d1c44437e2e25b9bc64f7c8f6cc}\label{class_get_datapoint_description_aa8a66d1c44437e2e25b9bc64f7c8f6cc} 
-{\bfseries Get\+Datapoint\+Description} (unsigned short datapoint\+Id, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_get_datapoint_description_aa8a66d1c44437e2e25b9bc64f7c8f6cc}{Get\+Datapoint\+Description}} (unsigned short datapoint\+Id, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. An error check will be executed, and the result stored for further use. \end{DoxyCompactList}\item 
 \Hypertarget{class_get_datapoint_description_ae3ff5c2287d2a1e2e435062aa571a223}\label{class_get_datapoint_description_ae3ff5c2287d2a1e2e435062aa571a223} 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Datapoint\+Description} ()
 \begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_description_af32c1898758a8147d4ddd7f66cc18344}\label{class_get_datapoint_description_af32c1898758a8147d4ddd7f66cc18344} 
-bool {\bfseries print\+Dp\+Description} (bool datapoint\+Dpt, bool datapoint\+Value\+Type, bool datapoint\+Config\+Flag)
-\begin{DoxyCompactList}\small\item\em Prints data, specified in the parameters, about the datapoint in terminal. Returns true if fetched telegram values are valid, false if invalid. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_description_a605a608def1387ff34d059ce999359ec}\label{class_get_datapoint_description_a605a608def1387ff34d059ce999359ec} 
-\mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}} {\bfseries get\+Dp\+Dpt} ()
-\begin{DoxyCompactList}\small\item\em Returns the datapoint type of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid. For types explanation refer to BAOS Protocol Documentation, Appendix D. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_description_aa6fed681fe60a6bf00870d9018f07044}\label{class_get_datapoint_description_aa6fed681fe60a6bf00870d9018f07044} 
-\mbox{\hyperlink{namespace_datapoint_types_a5e777e86cd37d3bda7d8bb28d8685033}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+VALUE\+\_\+\+TYPES}} {\bfseries get\+Dp\+Value\+Type} ()
-\begin{DoxyCompactList}\small\item\em Returns the datapoint value type of the datapoint specified in the constructor, or 0x0F if fetched telegram values are invalid. For value types explanation refer to BAOS Protocol Documentation, Appendix C. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_datapoint_description_ac589d037fd931d672eccbdd47b4e0295}\label{class_get_datapoint_description_ac589d037fd931d672eccbdd47b4e0295} 
-\mbox{\hyperlink{struct_config_flags}{Config\+Flags}} {\bfseries get\+Dp\+Config\+Flags} ()
-\begin{DoxyCompactList}\small\item\em Returns \doxylink{struct_config_flags}{Config\+Flags} structure, either with configuration flags of the datapoint specified in the constructor, or filled with zeros if fetched telegram values are invalid. For information about existing configuration flags refer to BAOS Protocol Documentation, chapter 3.\+7. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_get_datapoint_description_af32c1898758a8147d4ddd7f66cc18344}{print\+Dp\+Description}} (bool datapoint\+Dpt, bool datapoint\+Value\+Type, bool datapoint\+Config\+Flag)
+\begin{DoxyCompactList}\small\item\em Prints out data, specified in the parameters, about the datapoint in the standard output stream. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}} \mbox{\hyperlink{class_get_datapoint_description_a605a608def1387ff34d059ce999359ec}{get\+Dp\+Dpt}} ()
+\begin{DoxyCompactList}\small\item\em For datapoint types explanation refer to BAOS Protocol Documentation, Appendix D. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_datapoint_types_a5e777e86cd37d3bda7d8bb28d8685033}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+VALUE\+\_\+\+TYPES}} \mbox{\hyperlink{class_get_datapoint_description_aa6fed681fe60a6bf00870d9018f07044}{get\+Dp\+Value\+Type}} ()
+\begin{DoxyCompactList}\small\item\em For value types explanation refer to BAOS Protocol Documentation, Appendix C. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_config_flags}{Config\+Flags}} \mbox{\hyperlink{class_get_datapoint_description_ac589d037fd931d672eccbdd47b4e0295}{get\+Dp\+Config\+Flags}} ()
+\begin{DoxyCompactList}\small\item\em For information about existing configuration flags refer to BAOS Protocol Documentation, chapter 3.\+7. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
 \begin{DoxyCompactItemize}
 \item 
 {\bfseries Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default constructor initiates all data members to NULL and nullptr accordingly. \end{DoxyCompactList}\item 
-{\bfseries Baos\+Telegram} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_baos_telegram_a0d73a79a9e274daadbc2919d5583a578}{Baos\+Telegram}} (\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function allocates TELEGRAM\+\_\+\+ARR\+\_\+\+SIZE (30 bytes) to the BAOS telegram, initializes all the elements to 0, and sets the first element to the BAOS main service code (0x\+F0). The constructor function allocates RESPONSE\+\_\+\+ARR\+\_\+\+SIZE (250 bytes) to the response telegram, and initializes all the elements to 0. \end{DoxyCompactList}\item 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Baos\+Telegram} ()
 \begin{DoxyCompactList}\small\item\em The default destructor frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
@@ -69,6 +64,102 @@ bool {\bfseries has\+Valid\+Response}
 
 \doxysubsection{Detailed Description}
 A BAOS service, allowing the retrieval of various data about configured datapoints in the Object\+Server. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_get_datapoint_description_aa8a66d1c44437e2e25b9bc64f7c8f6cc}\index{GetDatapointDescription@{GetDatapointDescription}!GetDatapointDescription@{GetDatapointDescription}}
+\index{GetDatapointDescription@{GetDatapointDescription}!GetDatapointDescription@{GetDatapointDescription}}
+\doxysubsubsection{\texorpdfstring{GetDatapointDescription()}{GetDatapointDescription()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_description_aa8a66d1c44437e2e25b9bc64f7c8f6cc} 
+Get\+Datapoint\+Description\+::\+Get\+Datapoint\+Description (\begin{DoxyParamCaption}\item[{unsigned short}]{datapoint\+Id}{, }\item[{\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}}]{serial\+Connection}{}\end{DoxyParamCaption})}
+
+
+
+The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. An error check will be executed, and the result stored for further use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em datapoint\+Id} & The ID of the datapoint, whose description should be fetched.\\
+\hline
+{\em serial\+Connection} & A pointer to the \doxylink{class_serial_connection}{Serial\+Connection} object.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_get_datapoint_description_ac589d037fd931d672eccbdd47b4e0295}\index{GetDatapointDescription@{GetDatapointDescription}!getDpConfigFlags@{getDpConfigFlags}}
+\index{getDpConfigFlags@{getDpConfigFlags}!GetDatapointDescription@{GetDatapointDescription}}
+\doxysubsubsection{\texorpdfstring{getDpConfigFlags()}{getDpConfigFlags()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_description_ac589d037fd931d672eccbdd47b4e0295} 
+\mbox{\hyperlink{struct_config_flags}{Config\+Flags}} Get\+Datapoint\+Description\+::get\+Dp\+Config\+Flags (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+For information about existing configuration flags refer to BAOS Protocol Documentation, chapter 3.\+7. 
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{struct_config_flags}{Config\+Flags} structure, either with configuration flags of the datapoint specified in the constructor, or filled with zeros if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_description_a605a608def1387ff34d059ce999359ec}\index{GetDatapointDescription@{GetDatapointDescription}!getDpDpt@{getDpDpt}}
+\index{getDpDpt@{getDpDpt}!GetDatapointDescription@{GetDatapointDescription}}
+\doxysubsubsection{\texorpdfstring{getDpDpt()}{getDpDpt()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_description_a605a608def1387ff34d059ce999359ec} 
+\mbox{\hyperlink{namespace_datapoint_types_a63ac77a6c424836c51b61165f1798418}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+TYPES}} Get\+Datapoint\+Description\+::get\+Dp\+Dpt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+For datapoint types explanation refer to BAOS Protocol Documentation, Appendix D. 
+
+\begin{DoxyReturn}{Returns}
+Returns the datapoint type of the datapoint specified in the constructor, or 0 if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_description_aa6fed681fe60a6bf00870d9018f07044}\index{GetDatapointDescription@{GetDatapointDescription}!getDpValueType@{getDpValueType}}
+\index{getDpValueType@{getDpValueType}!GetDatapointDescription@{GetDatapointDescription}}
+\doxysubsubsection{\texorpdfstring{getDpValueType()}{getDpValueType()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_description_aa6fed681fe60a6bf00870d9018f07044} 
+\mbox{\hyperlink{namespace_datapoint_types_a5e777e86cd37d3bda7d8bb28d8685033}{Datapoint\+Types\+::\+DATAPOINT\+\_\+\+VALUE\+\_\+\+TYPES}} Get\+Datapoint\+Description\+::get\+Dp\+Value\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+For value types explanation refer to BAOS Protocol Documentation, Appendix C. 
+
+\begin{DoxyReturn}{Returns}
+Returns the datapoint value type of the datapoint specified in the constructor, or 0x0F if fetched telegram values are invalid.
+\end{DoxyReturn}
+\Hypertarget{class_get_datapoint_description_af32c1898758a8147d4ddd7f66cc18344}\index{GetDatapointDescription@{GetDatapointDescription}!printDpDescription@{printDpDescription}}
+\index{printDpDescription@{printDpDescription}!GetDatapointDescription@{GetDatapointDescription}}
+\doxysubsubsection{\texorpdfstring{printDpDescription()}{printDpDescription()}}
+{\footnotesize\ttfamily \label{class_get_datapoint_description_af32c1898758a8147d4ddd7f66cc18344} 
+bool Get\+Datapoint\+Description\+::print\+Dp\+Description (\begin{DoxyParamCaption}\item[{bool}]{datapoint\+Dpt}{, }\item[{bool}]{datapoint\+Value\+Type}{, }\item[{bool}]{datapoint\+Config\+Flag}{}\end{DoxyParamCaption})}
+
+
+
+Prints out data, specified in the parameters, about the datapoint in the standard output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em datapoint\+Dpt} & Set to true to print out datapoint type of the datapoint in the standard output stream.\\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em datapoint\+Value\+Type} & Set to true to print out datapoint value type of the datapoint in the standard output stream.\\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em datapoint\+Config\+Flag} & Set to true to print out information about the configuration flags of the datapoint in the standard output stream.\\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Returns true if fetched telegram values are valid, false if invalid.
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
