@@ -202,5 +202,5 @@ pointer to the SerialConnection object passed to the constructor function as par
 While this subservice is listening, other parts of the program will be waiting!
 
 ## Further documentation
-Further documentation of the project is available in the DoxyDocs subfolder, generated
-by the Doxygen documentation generator tool.
+Further documentation of the project is available as a Doxygen documentation.
+Use the GitHub Pages link to check it out.
