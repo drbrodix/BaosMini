@@ -94,6 +94,7 @@ public:
 	/// BaosTelegram constructor function, thus initializing
 	/// the basic data members, and sets the BAOS subservice code.
 	/// </summary>
+	/// <param name="serialConnection">A pointer to the SerialConnection object.</param>
 	GetServerItem(SerialConnection* serialConnection);
 
 	/// <summary>
@@ -105,152 +106,199 @@ public:
 
 	/// <summary>
 	/// Requests the server items specified in the parameters,
-	/// prints the retrieved data in a formatted way in the
-	/// terminal if the recieved telegram contains no error code,
-	/// and returns true. Decodes and prints the recieved error code
-	/// in the terminal, and returns false otherwise.
+	/// and prints the retrieved data in a formatted way in the
+	/// standard output stream if the recieved telegram contains
+	/// no error code. Decodes and prints the recieved error code
+	/// in the standard output stream otherwise.
 	/// </summary>
+	/// <param name="firstItemId">ID of the first server item that should be fetched.</param>
+	/// 
+	/// <param name="nrOfItems">Number of the server items that should be fetched.</param>
+	/// 
+	/// <returns>Returns true if fetched telegram contains no error code, false otherwise.</returns>
 	bool printServerItems(SERVER_ITEMS firstItemId, unsigned short nrOfItems);
 
 	/// <summary>
-	/// Retrieves and returns the hardware type of the
-	/// connected BAOS device, if result of error check
-	/// is positive. Returns 0 otherwise.
+	/// Retrieves the hardware type of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the hardware type of the connected BAOS device, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosHardwareType getHardwareType();
 
 	/// <summary>
-	/// Retrieves and returns the hardware version of the
-	/// connected BAOS device, if result of error check
-	/// is positive. Returns 0 otherwise.
+	/// Retrieves the hardware version of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the hardware version of the connected BAOS device, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosVersion getHardwareVersion();
 
 	/// <summary>
-	/// Retrieves and returns the firmware version of the
-	/// connected BAOS device, if result of error check
-	/// is positive. Returns 0 otherwise.
+	/// Retrieves the firmware version of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the firmware version of the connected BAOS device, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosVersion getFirmwareVersion();
 
 	/// <summary>
-	/// Retrieves and returns the KNX manufacturer code
-	/// of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the KNX manufacturer code of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the KNX manufacturer code of the connected BAOS device, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	unsigned short getKnxDeviceManufacturerCode();
 
 	/// <summary>
-	/// Retrieves and returns the KNX manufacturer
-	/// code loaded by ETS, if result of error check 
-	/// is positive. Returns 0 otherwise.
+	/// Retrieves the KNX manufacturer code loaded by ETS.
 	/// </summary>
+	/// <returns>
+	/// Returns the KNX manufacturer code loaded by ETS, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	unsigned short getKnxAppManufacturerCode();
 
 	/// <summary>
-	/// Retrieves and returns the ID of the application
-	/// loaded by ETS, if result of error check 
-	/// is positive. Returns 0 otherwise.
+	/// Retrieves the ID of the application loaded by ETS.
 	/// </summary>
+	/// <returns>
+	/// Returns the ID of the application loaded by ETS, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	unsigned short getApplicationId();
 
 	/// <summary>
-	/// Retrieves and returns the version of the
-	/// application loaded by ETS, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the version of the application loaded by ETS.
 	/// </summary>
+	/// <returns>
+	/// Returns the version of the application loaded by ETS, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosVersion getApplicationVersion();
 
 	/// <summary>
-	/// Retrieves and returns the serial number of the
-	/// connected BAOS device, if result of error check 
-	/// is positive. Returns 0 otherwise.
+	/// Retrieves the serial number of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the serial number of the connected BAOS device, 
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosSerialNumber getSerialNumber();
 
 	/// <summary>
-	/// Retrieves and returns the time passed since the
-	/// last time the connected BAOS device was reset, 
-	/// if result of error check is positive.
-	/// Returns 0 otherwise.
+	/// Retrieves the time passed since the last
+	/// time the connected BAOS device was reset.
 	/// </summary>
+	/// <returns>
+	/// Returns the time passed since the last time the connected BAOS device 
+	/// was reset, if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosTime getTimeSinceReset();
 
 	/// <summary>
-	/// Retrieves and returns bus connection state
-	/// of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the bus connection state of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the bus connection state of the connected BAOS device,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	bool getBusConnectionState();
 
 	/// <summary>
-	/// Retrieves and returns maximum buffer size
-	/// of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the maximum buffer size of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the maximum buffer size of the connected BAOS device,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	unsigned short getMaxBufferSize();
 
 	/// <summary>
-	/// Retrieves and returns length of description
-	/// string of the connected BAOS device, if result
-	/// of error check is positive. Returns 0 otherwise.
+	/// Retrieves the length of description string of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the length of description string of the connected BAOS device,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	unsigned short getLengthOfDescString();
 
 	/// <summary>
-	/// Retrieves and returns baudrate of the connected
-	/// BAOS device, if result of error check is positive.
-	/// Returns 0 otherwise.
+	/// Retrieves the baudrate of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the baudrate of the connected BAOS device,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BAUDRATES getBaudrate();
 
 	/// <summary>
-	/// Retrieves and returns currently set buffer
-	/// size of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the currently set buffer size of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the currently set buffer size of the connected BAOS device,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	unsigned short getCurrentBufferSize();
 
 	/// <summary>
-	/// Retrieves and returns current state of programming
-	/// mode of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the current state of programming
+	/// mode of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the current state of programming mode of the connected
+	/// BAOS device, if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	bool getProgrammingMode();
 
 	/// <summary>
-	/// Retrieves and returns the version of the
-	/// ObjectServer binary protocol, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the version of the ObjectServer binary protocol.
 	/// </summary>
+	/// <returns>
+	/// Returns the version of the ObjectServer binary protocol,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosVersion getProtocolVersionBinary();
 
 	/// <summary>
-	/// Retrieves and returns current state of indication
-	/// sending of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the current state of indication
+	/// sending of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the current state of indication sending of the connected
+	/// BAOS device, if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	bool getIndicationSending();
 
 	/// <summary>
-	/// Retrieves and returns the version of the
-	/// ObjectServer protocol via web services, if result
-	/// of error check is positive. Returns 0 otherwise.
+	/// Retrieves the version of the ObjectServer protocol via web services.
 	/// </summary>
+	/// <returns>
+	/// Returns the version of the ObjectServer protocol via web services,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosVersion getProtocolVersionWeb();
 
 	/// <summary>
-	/// Retrieves and returns the version of the
-	/// ObjectServer protocol via rest services, if result
-	/// of error check is positive. Returns 0 otherwise.
+	/// Retrieves the version of the ObjectServer protocol via rest services.
 	/// </summary>
+	/// <returns>
+	/// Returns the version of the ObjectServer protocol via rest services,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	BaosVersion getProtocolVersionRest();
 
 	/// <summary>
-	/// Retrieves and returns the individual KNX address
-	/// of the connected BAOS device, if result of
-	/// error check is positive. Returns 0 otherwise.
+	/// Retrieves the individual KNX address of the connected BAOS device.
 	/// </summary>
+	/// <returns>
+	/// Returns the individual KNX address of the connected BAOS device,
+	/// if result of error check is positive. Returns 0 otherwise.
+	/// </returns>
 	KnxDeviceAddress getKnxIndividualAddress();
 
 private:

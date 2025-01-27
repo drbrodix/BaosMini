@@ -40,6 +40,9 @@ public:
     /// ObjectServer with the passed parameters, then retrieves and stores the answer.
     /// An error check will be done, and the result stored for further use.
     /// </summary>
+    /// <param name="parameterByteId">The ID of the parameter byte,
+    /// whose value should be fetched.</param>
+    /// <param name="serialConnection">A pointer to the SerialConnection object.</param>
     GetParameterByte(
         unsigned short parameterByteId,
         SerialConnection* serialConnection);
@@ -55,15 +58,16 @@ public:
     /// Returns the retrieved parameter byte from the ObjectServer,
     /// or 0 if no valid value has been fetched from the ObjectServer.
     /// </summary>
+    /// <returns>Returns the value of the parameter byte fetched from the ObjectServer.</returns>
     unsigned char getByte();
 
 private:
     /// <summary>
-    /// Checks if ObjectServer response is an error telegram. Returns false
-    /// if an error code has been detected, which then will be decoded and
-    /// a respective error message printed in the terminal.
-    /// Returns true if the ObjectServer response contains no error code.
+    /// Checks if ObjectServer response is an error telegram.
     /// </summary>
+    /// <returns>If an error is detected, false will be returned, and a
+    /// respective error message printed out in the standard output stream.
+    /// Returns true if no issues have been detected.</returns>
     bool checkForError();
 };
 

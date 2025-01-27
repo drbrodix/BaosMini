@@ -47,13 +47,19 @@ int main(int argc, char* argv[])
     using namespace std::chrono_literals;
     SerialConnection serialConnection("COM3");
     
-    IndicationListener il(&serialConnection);
+    //IndicationListener il(&serialConnection);
 
-    //GetParameterByte gpb(9, &serialConnection);
-    //printf("Param #9: %hhu", gpb.getByte());
+    //GetParameterByte gpb1(1, &serialConnection);
+    //printf("Param #1: %hhu", gpb1.getByte());
+    //GetParameterByte gpb2(2, &serialConnection);
+    //printf("Param #2: %hhu", gpb2.getByte());
+    //GetParameterByte gpb3(3, &serialConnection);
+    //printf("Param #3: %hhu", gpb3.getByte());
+    //GetParameterByte gpb4(4, &serialConnection);
+    //printf("Param #4: %hhu", gpb4.getByte());
 
     //SetServerItem ssi(&serialConnection);
-    //ssi.setProgrammingMode(true);
+    //ssi.setProgrammingMode(false);
     //ssi.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
 
     //GetServerItem gsi(&serialConnection);
@@ -139,15 +145,15 @@ int main(int argc, char* argv[])
     //    knxDeviceAddress.device);
     //printf("\n");
     
-    // gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
+    //gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
 
-    //GetDatapointDescription gdd1(1, &serialConnection);
-    //GetDatapointDescription gdd2(2, &serialConnection);
-    //GetDatapointDescription gdd3(3, &serialConnection);
-    //GetDatapointDescription gdd4(4, &serialConnection);
-    //GetDatapointDescription gdd5(5, &serialConnection);
-    //GetDatapointDescription gdd9(9, &serialConnection);
-    //
+    GetDatapointDescription gdd1(1, &serialConnection);
+    GetDatapointDescription gdd2(2, &serialConnection);
+    GetDatapointDescription gdd3(3, &serialConnection);
+    GetDatapointDescription gdd4(4, &serialConnection);
+    GetDatapointDescription gdd5(5, &serialConnection);
+    GetDatapointDescription gdd9(9, &serialConnection);
+    
     //DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType = gdd1.getDpValueType();
     //printConfigFlags(1, gdd1.getDpConfigFlags());
     //printConfigFlags(2, gdd2.getDpConfigFlags());
@@ -175,16 +181,16 @@ int main(int argc, char* argv[])
     //SetDatapointValue dp9(9, &serialConnection);
     //dp9.setFloatValue2Byte(-49.17f, SetNewValueAndSendOnBus, true);
     //
-    //GetDatapointValue dpv1(1, DatapointTypes::BOOLEAN, &serialConnection);
-    //printf("Datapoint 1: %hhu\n", dpv1.getBooleanValue());
-    //GetDatapointValue dpv2(1300, DatapointTypes::BOOLEAN, &serialConnection);
-    //printf("Datapoint 1300: %hhu\n", dpv2.getBooleanValue());
-    //GetDatapointValue dpv3(3, DatapointTypes::BOOLEAN, &serialConnection);
-    //printf("Datapoint 3: %hhu\n", dpv3.getBooleanValue());
-    //GetDatapointValue dpv4(4, DatapointTypes::BOOLEAN, &serialConnection);
-    //printf("Datapoint 4: %hhu\n", dpv4.getBooleanValue());
-    //GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
-    //printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());
+    /*GetDatapointValue dpv1(1, DatapointTypes::BOOLEAN, &serialConnection);
+    printf("Datapoint 1: %hhu\n", dpv1.getBooleanValue());
+    GetDatapointValue dpv2(1300, DatapointTypes::BOOLEAN, &serialConnection);
+    printf("Datapoint 1300: %hhu\n", dpv2.getBooleanValue());
+    GetDatapointValue dpv3(3, DatapointTypes::BOOLEAN, &serialConnection);
+    printf("Datapoint 3: %hhu\n", dpv3.getBooleanValue());
+    GetDatapointValue dpv4(4, DatapointTypes::BOOLEAN, &serialConnection);
+    printf("Datapoint 4: %hhu\n", dpv4.getBooleanValue());
+    GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
+    printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());*/
 
     //SetDatapointValue dp1(1, &serialConnection);
     //dp1.setBoolean(true, SetNewValueAndSendOnBus, true);

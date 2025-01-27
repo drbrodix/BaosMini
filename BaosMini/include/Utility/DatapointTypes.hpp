@@ -36,9 +36,9 @@ namespace DatapointTypes
 		//SCENE_NUMBER			= 0x11, // DPT 17,	1 Byte
 		//SCENE_CONTROL			= 0x12, // DPT 18,	1 Byte
 		//DATE_TIME				= 0x13, // DPT 19,	8 Bytes
-		//HVAC_MODE				= 0x14, // DPT 20,	1 Byte
-		//COLOR_RGB				= 0xE8, // DPT 232, 3 Bytes
-		//COLOR_RGBW			= 0xFB  // DPT 251, 6 Bytes
+		//HVAC_MODE				= 0x20, // DPT 20,	1 Byte
+		//COLOR_RGB				= 0x21, // DPT 232, 3 Bytes
+		//COLOR_RGBW			= 0x22  // DPT 251, 6 Bytes
 	};
 
 	/// <summary>

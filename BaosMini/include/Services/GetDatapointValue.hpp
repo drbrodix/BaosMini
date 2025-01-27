@@ -155,9 +155,7 @@ private:
     DatapointTypes::DATAPOINT_TYPES dpt;
 
     /// <summary>
-    /// Checks if ObjectServer response is an error telegram. Returns false
-    /// if an error code has been detected, which then will be decoded and
-    /// a respective error message printed in the terminal.
+    /// Checks if ObjectServer response is an error telegram.
     /// Also checks if the length of the retrieved datapoint value doesn't
     /// match the length of the datapoint type specified in the constructor.
     /// </summary>
