@@ -18,14 +18,12 @@ Inheritance diagram for Get\+Parameter\+Byte\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b}\label{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b} 
-{\bfseries Get\+Parameter\+Byte} (unsigned short parameter\+Byte\+Id, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
+\mbox{\hyperlink{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b}{Get\+Parameter\+Byte}} (unsigned short parameter\+Byte\+Id, \mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_baos_telegram_addca2d215c001c1d74348ca865897638}{serial\+Connection}})
 \begin{DoxyCompactList}\small\item\em The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. An error check will be done, and the result stored for further use. \end{DoxyCompactList}\item 
 \Hypertarget{class_get_parameter_byte_ab69fe6d30d243369bc3161e52828eeba}\label{class_get_parameter_byte_ab69fe6d30d243369bc3161e52828eeba} 
 {\bfseries \texorpdfstring{$\sim$}{\string~}\+Get\+Parameter\+Byte} ()
 \begin{DoxyCompactList}\small\item\em The default destructor calls the parent function, which frees up the dynamically allocated memory of the baos\+Telegram and response\+Telegram arrays. \end{DoxyCompactList}\item 
-\Hypertarget{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532}\label{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532} 
-unsigned char {\bfseries get\+Byte} ()
+unsigned char \mbox{\hyperlink{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532}{get\+Byte}} ()
 \begin{DoxyCompactList}\small\item\em Returns the retrieved parameter byte from the Object\+Server, or 0 if no valid value has been fetched from the Object\+Server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_baos_telegram}{Baos\+Telegram}}}
@@ -60,6 +58,42 @@ bool {\bfseries has\+Valid\+Response}
 
 \doxysubsection{Detailed Description}
 A BAOS service, allowing the retrieval of parameter bytes configured in the Object\+Server. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b}\index{GetParameterByte@{GetParameterByte}!GetParameterByte@{GetParameterByte}}
+\index{GetParameterByte@{GetParameterByte}!GetParameterByte@{GetParameterByte}}
+\doxysubsubsection{\texorpdfstring{GetParameterByte()}{GetParameterByte()}}
+{\footnotesize\ttfamily \label{class_get_parameter_byte_a401747af2d2deaeb2b7cd65f3f3cf55b} 
+Get\+Parameter\+Byte\+::\+Get\+Parameter\+Byte (\begin{DoxyParamCaption}\item[{unsigned short}]{parameter\+Byte\+Id}{, }\item[{\mbox{\hyperlink{class_serial_connection}{Serial\+Connection}} \texorpdfstring{$\ast$}{*}}]{serial\+Connection}{}\end{DoxyParamCaption})}
+
+
+
+The constructor function executes the entire communication process between the client and the Object\+Server. It sets up and sends the telegram to the Object\+Server with the passed parameters, then retrieves and stores the answer. An error check will be done, and the result stored for further use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter\+Byte\+Id} & The ID of the parameter byte, whose value should be fetched.\\
+\hline
+{\em serial\+Connection} & A pointer to the \doxylink{class_serial_connection}{Serial\+Connection} object.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532}\index{GetParameterByte@{GetParameterByte}!getByte@{getByte}}
+\index{getByte@{getByte}!GetParameterByte@{GetParameterByte}}
+\doxysubsubsection{\texorpdfstring{getByte()}{getByte()}}
+{\footnotesize\ttfamily \label{class_get_parameter_byte_a09c1c8c286b1a51f6edead1588978532} 
+unsigned char Get\+Parameter\+Byte\+::get\+Byte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the retrieved parameter byte from the Object\+Server, or 0 if no valid value has been fetched from the Object\+Server. 
+
+\begin{DoxyReturn}{Returns}
+Returns the value of the parameter byte fetched from the Object\+Server.
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

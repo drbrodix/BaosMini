@@ -1,53 +1,63 @@
 #include "../include/BaosMini.hpp"
 
-static void printConfigFlags(unsigned short dpId, ConfigFlags configFlagByte)
-{
-    printf("Datapoint %hu:\n", dpId);
-    printf("\tTransmit priority: ");
-    switch (configFlagByte.transmitPriority)
-    {
-    case 0b00:
-        printf("System priority\n");
-        break;
-    case 0b01:
-        printf("High priority\n");
-        break;
-    case 0b10:
-        printf("Alarm priority\n");
-        break;
-    case 0b11:
-        printf("Low priority\n");
-        break;
-    default:
-        printf("unknown\n");
-        break;
-    }
-
-    printf("\tDatapoint communication: %s\n",
-        configFlagByte.datapointCommunication ? "Enabled" : "Disabled");
-
-    printf("\tRead from bus: %s\n",
-        configFlagByte.readFromBus ? "Enabled" : "Disabled");
-
-    printf("\tWrite from bus: %s\n",
-        configFlagByte.writeFromBus ? "Enabled" : "Disabled");
-
-    printf("\tRead on init: %s\n",
-        configFlagByte.readOnInit ? "Enabled" : "Disabled");
-
-    printf("\tTransmit to bus: %s\n",
-        configFlagByte.transmitToBus ? "Enabled" : "Disabled");
-
-    printf("\tUpdate on response: %s\n",
-        configFlagByte.updateOnResponse ? "Enabled" : "Disabled");
-}
+//static void printConfigFlags(unsigned short dpId, ConfigFlags configFlagByte)
+//{
+//    printf("Datapoint %hu:\n", dpId);
+//    printf("\tTransmit priority: ");
+//    switch (configFlagByte.transmitPriority)
+//    {
+//    case 0b00:
+//        printf("System priority\n");
+//        break;
+//    case 0b01:
+//        printf("High priority\n");
+//        break;
+//    case 0b10:
+//        printf("Alarm priority\n");
+//        break;
+//    case 0b11:
+//        printf("Low priority\n");
+//        break;
+//    default:
+//        printf("unknown\n");
+//        break;
+//    }
+//
+//    printf("\tDatapoint communication: %s\n",
+//        configFlagByte.datapointCommunication ? "Enabled" : "Disabled");
+//
+//    printf("\tRead from bus: %s\n",
+//        configFlagByte.readFromBus ? "Enabled" : "Disabled");
+//
+//    printf("\tWrite from bus: %s\n",
+//        configFlagByte.writeFromBus ? "Enabled" : "Disabled");
+//
+//    printf("\tRead on init: %s\n",
+//        configFlagByte.readOnInit ? "Enabled" : "Disabled");
+//
+//    printf("\tTransmit to bus: %s\n",
+//        configFlagByte.transmitToBus ? "Enabled" : "Disabled");
+//
+//    printf("\tUpdate on response: %s\n",
+//        configFlagByte.updateOnResponse ? "Enabled" : "Disabled");
+//}
 
 int main(int argc, char* argv[])
 {
     using namespace std::chrono_literals;
     SerialConnection serialConnection("COM3");
     
-    //IndicationListener il(&serialConnection);
+    IndicationListener il(&serialConnection);
+
+    BaosTester baosTester(&serialConnection);
+    baosTester.startTestingProcess(
+        true,   // GetServerItem
+        true,   // SetServerItem
+        true,   // GetDatapointDescription
+        true,   // GetDatapointValue
+        true,   // SetDatapointValue
+        true    // GetParameterByte
+    );
 
     //GetParameterByte gpb1(1, &serialConnection);
     //printf("Param #1: %hhu", gpb1.getByte());
@@ -147,12 +157,12 @@ int main(int argc, char* argv[])
     
     //gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
 
-    GetDatapointDescription gdd1(1, &serialConnection);
-    GetDatapointDescription gdd2(2, &serialConnection);
-    GetDatapointDescription gdd3(3, &serialConnection);
-    GetDatapointDescription gdd4(4, &serialConnection);
-    GetDatapointDescription gdd5(5, &serialConnection);
-    GetDatapointDescription gdd9(9, &serialConnection);
+    //GetDatapointDescription gdd1(1, &serialConnection);
+    //GetDatapointDescription gdd2(2, &serialConnection);
+    //GetDatapointDescription gdd3(3, &serialConnection);
+    //GetDatapointDescription gdd4(4, &serialConnection);
+    //GetDatapointDescription gdd5(5, &serialConnection);
+    //GetDatapointDescription gdd9(9, &serialConnection);
     
     //DatapointTypes::DATAPOINT_VALUE_TYPES dpValueType = gdd1.getDpValueType();
     //printConfigFlags(1, gdd1.getDpConfigFlags());
@@ -181,16 +191,6 @@ int main(int argc, char* argv[])
     //SetDatapointValue dp9(9, &serialConnection);
     //dp9.setFloatValue2Byte(-49.17f, SetNewValueAndSendOnBus, true);
     //
-    /*GetDatapointValue dpv1(1, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 1: %hhu\n", dpv1.getBooleanValue());
-    GetDatapointValue dpv2(1300, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 1300: %hhu\n", dpv2.getBooleanValue());
-    GetDatapointValue dpv3(3, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 3: %hhu\n", dpv3.getBooleanValue());
-    GetDatapointValue dpv4(4, DatapointTypes::BOOLEAN, &serialConnection);
-    printf("Datapoint 4: %hhu\n", dpv4.getBooleanValue());
-    GetDatapointValue dpv5(9, DatapointTypes::FLOAT_VALUE_2BYTE, &serialConnection);
-    printf("Datapoint 9: %.2f\n", dpv5.getFloatValue2Byte());*/
 
     //SetDatapointValue dp1(1, &serialConnection);
     //dp1.setBoolean(true, SetNewValueAndSendOnBus, true);
@@ -201,25 +201,185 @@ int main(int argc, char* argv[])
     //SetDatapointValue dp4(4, &serialConnection);
     //dp4.setBoolean(true, SetNewValueAndSendOnBus, true);
 
-    //const auto RUN_SPEED = 500ms;
-    //
-    //SetDatapointValue dp1(1, &serialConnection);
-    //SetDatapointValue dp2(2, &serialConnection);
-    //SetDatapointValue dp3(3, &serialConnection);
-    //SetDatapointValue dp4(4, &serialConnection);
-    //
-    //dp1.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);
-    //std::this_thread::sleep_for(RUN_SPEED);
-    //dp1.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
-    //dp2.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);  
-    //std::this_thread::sleep_for(RUN_SPEED);
-    //dp2.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
-    //dp3.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);
-    //std::this_thread::sleep_for(RUN_SPEED);
-    //dp3.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
-    //dp4.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);
-    //std::this_thread::sleep_for(RUN_SPEED);
-    //dp4.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
+    /*const auto RUN_SPEED = 500ms;
+    
+    SetDatapointValue dp1(1, &serialConnection);
+    SetDatapointValue dp2(2, &serialConnection);
+    SetDatapointValue dp3(3, &serialConnection);
+    SetDatapointValue dp4(4, &serialConnection);
+    
+    dp1.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);
+    std::this_thread::sleep_for(RUN_SPEED);
+
+    printf(
+        "Datapoint 1: %hhu\n",
+        GetDatapointValue(
+            1,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 2: %hhu\n",
+        GetDatapointValue(
+            2,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 3: %hhu\n",
+        GetDatapointValue(
+            3,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 4: %hhu\n",
+        GetDatapointValue(
+            4,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+    printf(
+        "Datapoint 9: %hhu\n",
+        GetDatapointValue(
+            9,
+            DatapointTypes::FLOAT_VALUE_2BYTE,
+            &serialConnection
+        ).getFloatValue2Byte());
+
+    dp1.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
+    dp2.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);  
+    std::this_thread::sleep_for(RUN_SPEED);
+
+    printf(
+        "Datapoint 1: %hhu\n",
+        GetDatapointValue(
+            1,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 2: %hhu\n",
+        GetDatapointValue(
+            2,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 3: %hhu\n",
+        GetDatapointValue(
+            3,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 4: %hhu\n",
+        GetDatapointValue(
+            4,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+    printf(
+        "Datapoint 9: %hhu\n",
+        GetDatapointValue(
+            9,
+            DatapointTypes::FLOAT_VALUE_2BYTE,
+            &serialConnection
+        ).getFloatValue2Byte());
+
+    dp2.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
+    dp3.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);
+    std::this_thread::sleep_for(RUN_SPEED);
+
+    printf(
+        "Datapoint 1: %hhu\n",
+        GetDatapointValue(
+            1,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 2: %hhu\n",
+        GetDatapointValue(
+            2,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 3: %hhu\n",
+        GetDatapointValue(
+            3,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 4: %hhu\n",
+        GetDatapointValue(
+            4,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+    printf(
+        "Datapoint 9: %hhu\n",
+        GetDatapointValue(
+            9,
+            DatapointTypes::FLOAT_VALUE_2BYTE,
+            &serialConnection
+        ).getFloatValue2Byte());
+
+    dp3.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);
+    dp4.setBoolean(true, CommandByte::SetNewValueAndSendOnBus, true);
+    std::this_thread::sleep_for(RUN_SPEED);
+
+    printf(
+        "Datapoint 1: %hhu\n",
+        GetDatapointValue(
+            1,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 2: %hhu\n",
+        GetDatapointValue(
+            2,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 3: %hhu\n",
+        GetDatapointValue(
+            3,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+
+    printf(
+        "Datapoint 4: %hhu\n",
+        GetDatapointValue(
+            4,
+            DatapointTypes::BOOLEAN,
+            &serialConnection
+        ).getBooleanValue());
+    printf(
+        "Datapoint 9: %hhu\n",
+        GetDatapointValue(
+            9,
+            DatapointTypes::FLOAT_VALUE_2BYTE,
+            &serialConnection
+        ).getFloatValue2Byte());
+
+    dp4.setBoolean(false, CommandByte::SetNewValueAndSendOnBus, true);*/
 
     return EXIT_SUCCESS;
 }

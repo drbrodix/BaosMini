@@ -78,6 +78,9 @@
     <ClCompile Include="src\Utility\DecodeServerItemRes.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utility\BaosTester.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -135,6 +138,9 @@
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\DecodeServerItemRes.hpp">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\BaosTester.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>

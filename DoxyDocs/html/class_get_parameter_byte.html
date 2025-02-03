@@ -107,17 +107,15 @@ Inheritance diagram for GetParameterByte:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a401747af2d2deaeb2b7cd65f3f3cf55b" id="r_a401747af2d2deaeb2b7cd65f3f3cf55b"><td class="memItemLeft" align="right" valign="top"><a id="a401747af2d2deaeb2b7cd65f3f3cf55b" name="a401747af2d2deaeb2b7cd65f3f3cf55b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GetParameterByte</b> (unsigned short parameterByteId, <a class="el" href="class_serial_connection.html">SerialConnection</a> *<a class="el" href="class_baos_telegram.html#addca2d215c001c1d74348ca865897638">serialConnection</a>)</td></tr>
-<tr class="memdesc:a401747af2d2deaeb2b7cd65f3f3cf55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor function executes the entire communication process between the client and the ObjectServer. It sets up and sends the telegram to the ObjectServer with the passed parameters, then retrieves and stores the answer. An error check will be done, and the result stored for further use. <br /></td></tr>
+<tr class="memitem:a401747af2d2deaeb2b7cd65f3f3cf55b" id="r_a401747af2d2deaeb2b7cd65f3f3cf55b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a401747af2d2deaeb2b7cd65f3f3cf55b">GetParameterByte</a> (unsigned short parameterByteId, <a class="el" href="class_serial_connection.html">SerialConnection</a> *<a class="el" href="class_baos_telegram.html#addca2d215c001c1d74348ca865897638">serialConnection</a>)</td></tr>
+<tr class="memdesc:a401747af2d2deaeb2b7cd65f3f3cf55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor function executes the entire communication process between the client and the ObjectServer. It sets up and sends the telegram to the ObjectServer with the passed parameters, then retrieves and stores the answer. An error check will be done, and the result stored for further use.  <br /></td></tr>
 <tr class="separator:a401747af2d2deaeb2b7cd65f3f3cf55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab69fe6d30d243369bc3161e52828eeba" id="r_ab69fe6d30d243369bc3161e52828eeba"><td class="memItemLeft" align="right" valign="top"><a id="ab69fe6d30d243369bc3161e52828eeba" name="ab69fe6d30d243369bc3161e52828eeba"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~GetParameterByte</b> ()</td></tr>
 <tr class="memdesc:ab69fe6d30d243369bc3161e52828eeba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default destructor calls the parent function, which frees up the dynamically allocated memory of the baosTelegram and responseTelegram arrays. <br /></td></tr>
 <tr class="separator:ab69fe6d30d243369bc3161e52828eeba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c1c8c286b1a51f6edead1588978532" id="r_a09c1c8c286b1a51f6edead1588978532"><td class="memItemLeft" align="right" valign="top"><a id="a09c1c8c286b1a51f6edead1588978532" name="a09c1c8c286b1a51f6edead1588978532"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>getByte</b> ()</td></tr>
-<tr class="memdesc:a09c1c8c286b1a51f6edead1588978532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the retrieved parameter byte from the ObjectServer, or 0 if no valid value has been fetched from the ObjectServer. <br /></td></tr>
+<tr class="memitem:a09c1c8c286b1a51f6edead1588978532" id="r_a09c1c8c286b1a51f6edead1588978532"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09c1c8c286b1a51f6edead1588978532">getByte</a> ()</td></tr>
+<tr class="memdesc:a09c1c8c286b1a51f6edead1588978532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the retrieved parameter byte from the ObjectServer, or 0 if no valid value has been fetched from the ObjectServer.  <br /></td></tr>
 <tr class="separator:a09c1c8c286b1a51f6edead1588978532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -170,7 +168,59 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasValidResponse</b><
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A BAOS service, allowing the retrieval of parameter bytes configured in the ObjectServer. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a401747af2d2deaeb2b7cd65f3f3cf55b" name="a401747af2d2deaeb2b7cd65f3f3cf55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a401747af2d2deaeb2b7cd65f3f3cf55b">&#9670;&#160;</a></span>GetParameterByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetParameterByte::GetParameterByte </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>parameterByteId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_serial_connection.html">SerialConnection</a> *</td>          <td class="paramname"><span class="paramname"><em>serialConnection</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor function executes the entire communication process between the client and the ObjectServer. It sets up and sends the telegram to the ObjectServer with the passed parameters, then retrieves and stores the answer. An error check will be done, and the result stored for further use. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameterByteId</td><td>The ID of the parameter byte, whose value should be fetched.</td></tr>
+    <tr><td class="paramname">serialConnection</td><td>A pointer to the <a class="el" href="class_serial_connection.html" title="This class takes care of the serial connection between the client and the BAOS device.">SerialConnection</a> object.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a09c1c8c286b1a51f6edead1588978532" name="a09c1c8c286b1a51f6edead1588978532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09c1c8c286b1a51f6edead1588978532">&#9670;&#160;</a></span>getByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char GetParameterByte::getByte </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the retrieved parameter byte from the ObjectServer, or 0 if no valid value has been fetched from the ObjectServer. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the value of the parameter byte fetched from the ObjectServer.</dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/include/Services/<a class="el" href="_get_parameter_byte_8hpp_source.html">GetParameterByte.hpp</a></li>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/src/Services/<b>GetParameterByte.cpp</b></li>
 </ul>

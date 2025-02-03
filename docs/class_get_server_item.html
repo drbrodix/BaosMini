@@ -107,97 +107,75 @@ Inheritance diagram for GetServerItem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8d6d090695490400614aafa2a62056ac" id="r_a8d6d090695490400614aafa2a62056ac"><td class="memItemLeft" align="right" valign="top"><a id="a8d6d090695490400614aafa2a62056ac" name="a8d6d090695490400614aafa2a62056ac"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GetServerItem</b> (<a class="el" href="class_serial_connection.html">SerialConnection</a> *<a class="el" href="class_baos_telegram.html#addca2d215c001c1d74348ca865897638">serialConnection</a>)</td></tr>
-<tr class="memdesc:a8d6d090695490400614aafa2a62056ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor function calls the base class <a class="el" href="class_baos_telegram.html" title="A base class for all the BAOS service telegrams. It provides basic data members, member functions and...">BaosTelegram</a> constructor function, thus initializing the basic data members, and sets the BAOS subservice code. <br /></td></tr>
+<tr class="memitem:a8d6d090695490400614aafa2a62056ac" id="r_a8d6d090695490400614aafa2a62056ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d6d090695490400614aafa2a62056ac">GetServerItem</a> (<a class="el" href="class_serial_connection.html">SerialConnection</a> *<a class="el" href="class_baos_telegram.html#addca2d215c001c1d74348ca865897638">serialConnection</a>)</td></tr>
+<tr class="memdesc:a8d6d090695490400614aafa2a62056ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor function calls the base class <a class="el" href="class_baos_telegram.html" title="A base class for all the BAOS service telegrams. It provides basic data members, member functions and...">BaosTelegram</a> constructor function, thus initializing the basic data members, and sets the BAOS subservice code.  <br /></td></tr>
 <tr class="separator:a8d6d090695490400614aafa2a62056ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96af18381e97f1ff5de06d544f310037" id="r_a96af18381e97f1ff5de06d544f310037"><td class="memItemLeft" align="right" valign="top"><a id="a96af18381e97f1ff5de06d544f310037" name="a96af18381e97f1ff5de06d544f310037"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~GetServerItem</b> ()</td></tr>
 <tr class="memdesc:a96af18381e97f1ff5de06d544f310037"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default destructor calls the parent function, which frees up the dynamically allocated memory of the baosTelegram and responseTelegram arrays. <br /></td></tr>
 <tr class="separator:a96af18381e97f1ff5de06d544f310037"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a801550636fbd8ee09727819559704d8c" id="r_a801550636fbd8ee09727819559704d8c"><td class="memItemLeft" align="right" valign="top"><a id="a801550636fbd8ee09727819559704d8c" name="a801550636fbd8ee09727819559704d8c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>printServerItems</b> (SERVER_ITEMS firstItemId, unsigned short nrOfItems)</td></tr>
-<tr class="memdesc:a801550636fbd8ee09727819559704d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests the server items specified in the parameters, prints the retrieved data in a formatted way in the terminal if the recieved telegram contains no error code, and returns true. Decodes and prints the recieved error code in the terminal, and returns false otherwise. <br /></td></tr>
+<tr class="memitem:a801550636fbd8ee09727819559704d8c" id="r_a801550636fbd8ee09727819559704d8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a801550636fbd8ee09727819559704d8c">printServerItems</a> (SERVER_ITEMS firstItemId, unsigned short nrOfItems)</td></tr>
+<tr class="memdesc:a801550636fbd8ee09727819559704d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests the server items specified in the parameters, and prints the retrieved data in a formatted way in the standard output stream if the recieved telegram contains no error code. Decodes and prints the recieved error code in the standard output stream otherwise.  <br /></td></tr>
 <tr class="separator:a801550636fbd8ee09727819559704d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac74e7a6d86d74d98a39847aade743322" id="r_ac74e7a6d86d74d98a39847aade743322"><td class="memItemLeft" align="right" valign="top"><a id="ac74e7a6d86d74d98a39847aade743322" name="ac74e7a6d86d74d98a39847aade743322"></a>
-<a class="el" href="struct_baos_hardware_type.html">BaosHardwareType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getHardwareType</b> ()</td></tr>
-<tr class="memdesc:ac74e7a6d86d74d98a39847aade743322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the hardware type of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:ac74e7a6d86d74d98a39847aade743322" id="r_ac74e7a6d86d74d98a39847aade743322"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_hardware_type.html">BaosHardwareType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac74e7a6d86d74d98a39847aade743322">getHardwareType</a> ()</td></tr>
+<tr class="memdesc:ac74e7a6d86d74d98a39847aade743322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the hardware type of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:ac74e7a6d86d74d98a39847aade743322"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8943ffba3704489ce702e850e1fd2a15" id="r_a8943ffba3704489ce702e850e1fd2a15"><td class="memItemLeft" align="right" valign="top"><a id="a8943ffba3704489ce702e850e1fd2a15" name="a8943ffba3704489ce702e850e1fd2a15"></a>
-<a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getHardwareVersion</b> ()</td></tr>
-<tr class="memdesc:a8943ffba3704489ce702e850e1fd2a15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the hardware version of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a8943ffba3704489ce702e850e1fd2a15" id="r_a8943ffba3704489ce702e850e1fd2a15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8943ffba3704489ce702e850e1fd2a15">getHardwareVersion</a> ()</td></tr>
+<tr class="memdesc:a8943ffba3704489ce702e850e1fd2a15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the hardware version of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a8943ffba3704489ce702e850e1fd2a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebff520ccb47d978f78f0de39569f81a" id="r_aebff520ccb47d978f78f0de39569f81a"><td class="memItemLeft" align="right" valign="top"><a id="aebff520ccb47d978f78f0de39569f81a" name="aebff520ccb47d978f78f0de39569f81a"></a>
-<a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFirmwareVersion</b> ()</td></tr>
-<tr class="memdesc:aebff520ccb47d978f78f0de39569f81a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the firmware version of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:aebff520ccb47d978f78f0de39569f81a" id="r_aebff520ccb47d978f78f0de39569f81a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebff520ccb47d978f78f0de39569f81a">getFirmwareVersion</a> ()</td></tr>
+<tr class="memdesc:aebff520ccb47d978f78f0de39569f81a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the firmware version of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:aebff520ccb47d978f78f0de39569f81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ca9412e4a93ab3f41446e9d5f785bae" id="r_a8ca9412e4a93ab3f41446e9d5f785bae"><td class="memItemLeft" align="right" valign="top"><a id="a8ca9412e4a93ab3f41446e9d5f785bae" name="a8ca9412e4a93ab3f41446e9d5f785bae"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getKnxDeviceManufacturerCode</b> ()</td></tr>
-<tr class="memdesc:a8ca9412e4a93ab3f41446e9d5f785bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the KNX manufacturer code of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a8ca9412e4a93ab3f41446e9d5f785bae" id="r_a8ca9412e4a93ab3f41446e9d5f785bae"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ca9412e4a93ab3f41446e9d5f785bae">getKnxDeviceManufacturerCode</a> ()</td></tr>
+<tr class="memdesc:a8ca9412e4a93ab3f41446e9d5f785bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the KNX manufacturer code of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a8ca9412e4a93ab3f41446e9d5f785bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9985f8335b7ccf42929204450711274e" id="r_a9985f8335b7ccf42929204450711274e"><td class="memItemLeft" align="right" valign="top"><a id="a9985f8335b7ccf42929204450711274e" name="a9985f8335b7ccf42929204450711274e"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getKnxAppManufacturerCode</b> ()</td></tr>
-<tr class="memdesc:a9985f8335b7ccf42929204450711274e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the KNX manufacturer code loaded by ETS, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a9985f8335b7ccf42929204450711274e" id="r_a9985f8335b7ccf42929204450711274e"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9985f8335b7ccf42929204450711274e">getKnxAppManufacturerCode</a> ()</td></tr>
+<tr class="memdesc:a9985f8335b7ccf42929204450711274e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the KNX manufacturer code loaded by ETS.  <br /></td></tr>
 <tr class="separator:a9985f8335b7ccf42929204450711274e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cdf9fbbd0b0e78ff466042cb801361d" id="r_a9cdf9fbbd0b0e78ff466042cb801361d"><td class="memItemLeft" align="right" valign="top"><a id="a9cdf9fbbd0b0e78ff466042cb801361d" name="a9cdf9fbbd0b0e78ff466042cb801361d"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getApplicationId</b> ()</td></tr>
-<tr class="memdesc:a9cdf9fbbd0b0e78ff466042cb801361d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the ID of the application loaded by ETS, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a9cdf9fbbd0b0e78ff466042cb801361d" id="r_a9cdf9fbbd0b0e78ff466042cb801361d"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cdf9fbbd0b0e78ff466042cb801361d">getApplicationId</a> ()</td></tr>
+<tr class="memdesc:a9cdf9fbbd0b0e78ff466042cb801361d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the ID of the application loaded by ETS.  <br /></td></tr>
 <tr class="separator:a9cdf9fbbd0b0e78ff466042cb801361d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a452ce7fb800e01caacb9435150dde9e6" id="r_a452ce7fb800e01caacb9435150dde9e6"><td class="memItemLeft" align="right" valign="top"><a id="a452ce7fb800e01caacb9435150dde9e6" name="a452ce7fb800e01caacb9435150dde9e6"></a>
-<a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getApplicationVersion</b> ()</td></tr>
-<tr class="memdesc:a452ce7fb800e01caacb9435150dde9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the version of the application loaded by ETS, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a452ce7fb800e01caacb9435150dde9e6" id="r_a452ce7fb800e01caacb9435150dde9e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a452ce7fb800e01caacb9435150dde9e6">getApplicationVersion</a> ()</td></tr>
+<tr class="memdesc:a452ce7fb800e01caacb9435150dde9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the version of the application loaded by ETS.  <br /></td></tr>
 <tr class="separator:a452ce7fb800e01caacb9435150dde9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f1a0234da1a51fdbcb13cfcee0d5391" id="r_a3f1a0234da1a51fdbcb13cfcee0d5391"><td class="memItemLeft" align="right" valign="top"><a id="a3f1a0234da1a51fdbcb13cfcee0d5391" name="a3f1a0234da1a51fdbcb13cfcee0d5391"></a>
-<a class="el" href="struct_baos_hardware_type.html">BaosSerialNumber</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSerialNumber</b> ()</td></tr>
-<tr class="memdesc:a3f1a0234da1a51fdbcb13cfcee0d5391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the serial number of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a3f1a0234da1a51fdbcb13cfcee0d5391" id="r_a3f1a0234da1a51fdbcb13cfcee0d5391"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_hardware_type.html">BaosSerialNumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f1a0234da1a51fdbcb13cfcee0d5391">getSerialNumber</a> ()</td></tr>
+<tr class="memdesc:a3f1a0234da1a51fdbcb13cfcee0d5391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the serial number of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a3f1a0234da1a51fdbcb13cfcee0d5391"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37617fb3a797e28178ef488cde4380c5" id="r_a37617fb3a797e28178ef488cde4380c5"><td class="memItemLeft" align="right" valign="top"><a id="a37617fb3a797e28178ef488cde4380c5" name="a37617fb3a797e28178ef488cde4380c5"></a>
-<a class="el" href="struct_baos_time.html">BaosTime</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTimeSinceReset</b> ()</td></tr>
-<tr class="memdesc:a37617fb3a797e28178ef488cde4380c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the time passed since the last time the connected BAOS device was reset, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a37617fb3a797e28178ef488cde4380c5" id="r_a37617fb3a797e28178ef488cde4380c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_time.html">BaosTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37617fb3a797e28178ef488cde4380c5">getTimeSinceReset</a> ()</td></tr>
+<tr class="memdesc:a37617fb3a797e28178ef488cde4380c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the time passed since the last time the connected BAOS device was reset.  <br /></td></tr>
 <tr class="separator:a37617fb3a797e28178ef488cde4380c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac53bf1c1be61879bd7ef71acff562c40" id="r_ac53bf1c1be61879bd7ef71acff562c40"><td class="memItemLeft" align="right" valign="top"><a id="ac53bf1c1be61879bd7ef71acff562c40" name="ac53bf1c1be61879bd7ef71acff562c40"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getBusConnectionState</b> ()</td></tr>
-<tr class="memdesc:ac53bf1c1be61879bd7ef71acff562c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns bus connection state of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:ac53bf1c1be61879bd7ef71acff562c40" id="r_ac53bf1c1be61879bd7ef71acff562c40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac53bf1c1be61879bd7ef71acff562c40">getBusConnectionState</a> ()</td></tr>
+<tr class="memdesc:ac53bf1c1be61879bd7ef71acff562c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the bus connection state of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:ac53bf1c1be61879bd7ef71acff562c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a508c13a6507abc303caf1902a924810d" id="r_a508c13a6507abc303caf1902a924810d"><td class="memItemLeft" align="right" valign="top"><a id="a508c13a6507abc303caf1902a924810d" name="a508c13a6507abc303caf1902a924810d"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxBufferSize</b> ()</td></tr>
-<tr class="memdesc:a508c13a6507abc303caf1902a924810d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns maximum buffer size of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a508c13a6507abc303caf1902a924810d" id="r_a508c13a6507abc303caf1902a924810d"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a508c13a6507abc303caf1902a924810d">getMaxBufferSize</a> ()</td></tr>
+<tr class="memdesc:a508c13a6507abc303caf1902a924810d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the maximum buffer size of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a508c13a6507abc303caf1902a924810d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af85418ef131fabad2fd1749a85804d3d" id="r_af85418ef131fabad2fd1749a85804d3d"><td class="memItemLeft" align="right" valign="top"><a id="af85418ef131fabad2fd1749a85804d3d" name="af85418ef131fabad2fd1749a85804d3d"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getLengthOfDescString</b> ()</td></tr>
-<tr class="memdesc:af85418ef131fabad2fd1749a85804d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns length of description string of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:af85418ef131fabad2fd1749a85804d3d" id="r_af85418ef131fabad2fd1749a85804d3d"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af85418ef131fabad2fd1749a85804d3d">getLengthOfDescString</a> ()</td></tr>
+<tr class="memdesc:af85418ef131fabad2fd1749a85804d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the length of description string of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:af85418ef131fabad2fd1749a85804d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e0ef1aecc6c61527350c58c43630126" id="r_a6e0ef1aecc6c61527350c58c43630126"><td class="memItemLeft" align="right" valign="top"><a id="a6e0ef1aecc6c61527350c58c43630126" name="a6e0ef1aecc6c61527350c58c43630126"></a>
-BAUDRATES&#160;</td><td class="memItemRight" valign="bottom"><b>getBaudrate</b> ()</td></tr>
-<tr class="memdesc:a6e0ef1aecc6c61527350c58c43630126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns baudrate of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a6e0ef1aecc6c61527350c58c43630126" id="r_a6e0ef1aecc6c61527350c58c43630126"><td class="memItemLeft" align="right" valign="top">BAUDRATES&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e0ef1aecc6c61527350c58c43630126">getBaudrate</a> ()</td></tr>
+<tr class="memdesc:a6e0ef1aecc6c61527350c58c43630126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the baudrate of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a6e0ef1aecc6c61527350c58c43630126"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0761c3c4604bb7716ad8e75c57465ebe" id="r_a0761c3c4604bb7716ad8e75c57465ebe"><td class="memItemLeft" align="right" valign="top"><a id="a0761c3c4604bb7716ad8e75c57465ebe" name="a0761c3c4604bb7716ad8e75c57465ebe"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentBufferSize</b> ()</td></tr>
-<tr class="memdesc:a0761c3c4604bb7716ad8e75c57465ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns currently set buffer size of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a0761c3c4604bb7716ad8e75c57465ebe" id="r_a0761c3c4604bb7716ad8e75c57465ebe"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0761c3c4604bb7716ad8e75c57465ebe">getCurrentBufferSize</a> ()</td></tr>
+<tr class="memdesc:a0761c3c4604bb7716ad8e75c57465ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the currently set buffer size of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a0761c3c4604bb7716ad8e75c57465ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fb0bf1dca564fad7f467b44767c4467" id="r_a7fb0bf1dca564fad7f467b44767c4467"><td class="memItemLeft" align="right" valign="top"><a id="a7fb0bf1dca564fad7f467b44767c4467" name="a7fb0bf1dca564fad7f467b44767c4467"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getProgrammingMode</b> ()</td></tr>
-<tr class="memdesc:a7fb0bf1dca564fad7f467b44767c4467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns current state of programming mode of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a7fb0bf1dca564fad7f467b44767c4467" id="r_a7fb0bf1dca564fad7f467b44767c4467"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fb0bf1dca564fad7f467b44767c4467">getProgrammingMode</a> ()</td></tr>
+<tr class="memdesc:a7fb0bf1dca564fad7f467b44767c4467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current state of programming mode of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a7fb0bf1dca564fad7f467b44767c4467"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabb247ab99d1f62136977170472c062b" id="r_aabb247ab99d1f62136977170472c062b"><td class="memItemLeft" align="right" valign="top"><a id="aabb247ab99d1f62136977170472c062b" name="aabb247ab99d1f62136977170472c062b"></a>
-<a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getProtocolVersionBinary</b> ()</td></tr>
-<tr class="memdesc:aabb247ab99d1f62136977170472c062b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the version of the ObjectServer binary protocol, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:aabb247ab99d1f62136977170472c062b" id="r_aabb247ab99d1f62136977170472c062b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabb247ab99d1f62136977170472c062b">getProtocolVersionBinary</a> ()</td></tr>
+<tr class="memdesc:aabb247ab99d1f62136977170472c062b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the version of the ObjectServer binary protocol.  <br /></td></tr>
 <tr class="separator:aabb247ab99d1f62136977170472c062b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17ecbe8285a67716db893458aad2fd09" id="r_a17ecbe8285a67716db893458aad2fd09"><td class="memItemLeft" align="right" valign="top"><a id="a17ecbe8285a67716db893458aad2fd09" name="a17ecbe8285a67716db893458aad2fd09"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIndicationSending</b> ()</td></tr>
-<tr class="memdesc:a17ecbe8285a67716db893458aad2fd09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns current state of indication sending of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a17ecbe8285a67716db893458aad2fd09" id="r_a17ecbe8285a67716db893458aad2fd09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17ecbe8285a67716db893458aad2fd09">getIndicationSending</a> ()</td></tr>
+<tr class="memdesc:a17ecbe8285a67716db893458aad2fd09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current state of indication sending of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:a17ecbe8285a67716db893458aad2fd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a519bf183a1dc443c1f949fe3e58c017d" id="r_a519bf183a1dc443c1f949fe3e58c017d"><td class="memItemLeft" align="right" valign="top"><a id="a519bf183a1dc443c1f949fe3e58c017d" name="a519bf183a1dc443c1f949fe3e58c017d"></a>
-<a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getProtocolVersionWeb</b> ()</td></tr>
-<tr class="memdesc:a519bf183a1dc443c1f949fe3e58c017d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the version of the ObjectServer protocol via web services, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:a519bf183a1dc443c1f949fe3e58c017d" id="r_a519bf183a1dc443c1f949fe3e58c017d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a519bf183a1dc443c1f949fe3e58c017d">getProtocolVersionWeb</a> ()</td></tr>
+<tr class="memdesc:a519bf183a1dc443c1f949fe3e58c017d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the version of the ObjectServer protocol via web services.  <br /></td></tr>
 <tr class="separator:a519bf183a1dc443c1f949fe3e58c017d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6aaa3cbec80e48523c7a99f20af5d8a" id="r_ab6aaa3cbec80e48523c7a99f20af5d8a"><td class="memItemLeft" align="right" valign="top"><a id="ab6aaa3cbec80e48523c7a99f20af5d8a" name="ab6aaa3cbec80e48523c7a99f20af5d8a"></a>
-<a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getProtocolVersionRest</b> ()</td></tr>
-<tr class="memdesc:ab6aaa3cbec80e48523c7a99f20af5d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the version of the ObjectServer protocol via rest services, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:ab6aaa3cbec80e48523c7a99f20af5d8a" id="r_ab6aaa3cbec80e48523c7a99f20af5d8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_baos_version.html">BaosVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6aaa3cbec80e48523c7a99f20af5d8a">getProtocolVersionRest</a> ()</td></tr>
+<tr class="memdesc:ab6aaa3cbec80e48523c7a99f20af5d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the version of the ObjectServer protocol via rest services.  <br /></td></tr>
 <tr class="separator:ab6aaa3cbec80e48523c7a99f20af5d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb519efb782e8beb7c63425a7358daf6" id="r_aeb519efb782e8beb7c63425a7358daf6"><td class="memItemLeft" align="right" valign="top"><a id="aeb519efb782e8beb7c63425a7358daf6" name="aeb519efb782e8beb7c63425a7358daf6"></a>
-<a class="el" href="struct_knx_device_address.html">KnxDeviceAddress</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getKnxIndividualAddress</b> ()</td></tr>
-<tr class="memdesc:aeb519efb782e8beb7c63425a7358daf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and returns the individual KNX address of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. <br /></td></tr>
+<tr class="memitem:aeb519efb782e8beb7c63425a7358daf6" id="r_aeb519efb782e8beb7c63425a7358daf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_knx_device_address.html">KnxDeviceAddress</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb519efb782e8beb7c63425a7358daf6">getKnxIndividualAddress</a> ()</td></tr>
+<tr class="memdesc:aeb519efb782e8beb7c63425a7358daf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the individual KNX address of the connected BAOS device.  <br /></td></tr>
 <tr class="separator:aeb519efb782e8beb7c63425a7358daf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -250,7 +228,470 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasValidResponse</b><
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A BAOS service, allowing the retrieval of various data about the connected BAOS device. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8d6d090695490400614aafa2a62056ac" name="a8d6d090695490400614aafa2a62056ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d6d090695490400614aafa2a62056ac">&#9670;&#160;</a></span>GetServerItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetServerItem::GetServerItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_serial_connection.html">SerialConnection</a> *</td>          <td class="paramname"><span class="paramname"><em>serialConnection</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor function calls the base class <a class="el" href="class_baos_telegram.html" title="A base class for all the BAOS service telegrams. It provides basic data members, member functions and...">BaosTelegram</a> constructor function, thus initializing the basic data members, and sets the BAOS subservice code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serialConnection</td><td>A pointer to the <a class="el" href="class_serial_connection.html" title="This class takes care of the serial connection between the client and the BAOS device.">SerialConnection</a> object.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9cdf9fbbd0b0e78ff466042cb801361d" name="a9cdf9fbbd0b0e78ff466042cb801361d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cdf9fbbd0b0e78ff466042cb801361d">&#9670;&#160;</a></span>getApplicationId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GetServerItem::getApplicationId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the ID of the application loaded by ETS. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the ID of the application loaded by ETS, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a452ce7fb800e01caacb9435150dde9e6" name="a452ce7fb800e01caacb9435150dde9e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a452ce7fb800e01caacb9435150dde9e6">&#9670;&#160;</a></span>getApplicationVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_version.html">BaosVersion</a> GetServerItem::getApplicationVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the version of the application loaded by ETS. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the version of the application loaded by ETS, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6e0ef1aecc6c61527350c58c43630126" name="a6e0ef1aecc6c61527350c58c43630126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0ef1aecc6c61527350c58c43630126">&#9670;&#160;</a></span>getBaudrate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BAUDRATES GetServerItem::getBaudrate </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the baudrate of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the baudrate of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ac53bf1c1be61879bd7ef71acff562c40" name="ac53bf1c1be61879bd7ef71acff562c40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac53bf1c1be61879bd7ef71acff562c40">&#9670;&#160;</a></span>getBusConnectionState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GetServerItem::getBusConnectionState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the bus connection state of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the bus connection state of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a0761c3c4604bb7716ad8e75c57465ebe" name="a0761c3c4604bb7716ad8e75c57465ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0761c3c4604bb7716ad8e75c57465ebe">&#9670;&#160;</a></span>getCurrentBufferSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GetServerItem::getCurrentBufferSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the currently set buffer size of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the currently set buffer size of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aebff520ccb47d978f78f0de39569f81a" name="aebff520ccb47d978f78f0de39569f81a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebff520ccb47d978f78f0de39569f81a">&#9670;&#160;</a></span>getFirmwareVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_version.html">BaosVersion</a> GetServerItem::getFirmwareVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the firmware version of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the firmware version of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ac74e7a6d86d74d98a39847aade743322" name="ac74e7a6d86d74d98a39847aade743322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac74e7a6d86d74d98a39847aade743322">&#9670;&#160;</a></span>getHardwareType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_hardware_type.html">BaosHardwareType</a> GetServerItem::getHardwareType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the hardware type of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the hardware type of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a8943ffba3704489ce702e850e1fd2a15" name="a8943ffba3704489ce702e850e1fd2a15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8943ffba3704489ce702e850e1fd2a15">&#9670;&#160;</a></span>getHardwareVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_version.html">BaosVersion</a> GetServerItem::getHardwareVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the hardware version of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the hardware version of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a17ecbe8285a67716db893458aad2fd09" name="a17ecbe8285a67716db893458aad2fd09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17ecbe8285a67716db893458aad2fd09">&#9670;&#160;</a></span>getIndicationSending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GetServerItem::getIndicationSending </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the current state of indication sending of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the current state of indication sending of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a9985f8335b7ccf42929204450711274e" name="a9985f8335b7ccf42929204450711274e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9985f8335b7ccf42929204450711274e">&#9670;&#160;</a></span>getKnxAppManufacturerCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GetServerItem::getKnxAppManufacturerCode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the KNX manufacturer code loaded by ETS. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the KNX manufacturer code loaded by ETS, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a8ca9412e4a93ab3f41446e9d5f785bae" name="a8ca9412e4a93ab3f41446e9d5f785bae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ca9412e4a93ab3f41446e9d5f785bae">&#9670;&#160;</a></span>getKnxDeviceManufacturerCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GetServerItem::getKnxDeviceManufacturerCode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the KNX manufacturer code of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the KNX manufacturer code of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aeb519efb782e8beb7c63425a7358daf6" name="aeb519efb782e8beb7c63425a7358daf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb519efb782e8beb7c63425a7358daf6">&#9670;&#160;</a></span>getKnxIndividualAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_knx_device_address.html">KnxDeviceAddress</a> GetServerItem::getKnxIndividualAddress </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the individual KNX address of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the individual KNX address of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="af85418ef131fabad2fd1749a85804d3d" name="af85418ef131fabad2fd1749a85804d3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af85418ef131fabad2fd1749a85804d3d">&#9670;&#160;</a></span>getLengthOfDescString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GetServerItem::getLengthOfDescString </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the length of description string of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the length of description string of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a508c13a6507abc303caf1902a924810d" name="a508c13a6507abc303caf1902a924810d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508c13a6507abc303caf1902a924810d">&#9670;&#160;</a></span>getMaxBufferSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GetServerItem::getMaxBufferSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the maximum buffer size of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the maximum buffer size of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7fb0bf1dca564fad7f467b44767c4467" name="a7fb0bf1dca564fad7f467b44767c4467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fb0bf1dca564fad7f467b44767c4467">&#9670;&#160;</a></span>getProgrammingMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GetServerItem::getProgrammingMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the current state of programming mode of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the current state of programming mode of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aabb247ab99d1f62136977170472c062b" name="aabb247ab99d1f62136977170472c062b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb247ab99d1f62136977170472c062b">&#9670;&#160;</a></span>getProtocolVersionBinary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_version.html">BaosVersion</a> GetServerItem::getProtocolVersionBinary </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the version of the ObjectServer binary protocol. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the version of the ObjectServer binary protocol, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab6aaa3cbec80e48523c7a99f20af5d8a" name="ab6aaa3cbec80e48523c7a99f20af5d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6aaa3cbec80e48523c7a99f20af5d8a">&#9670;&#160;</a></span>getProtocolVersionRest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_version.html">BaosVersion</a> GetServerItem::getProtocolVersionRest </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the version of the ObjectServer protocol via rest services. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the version of the ObjectServer protocol via rest services, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a519bf183a1dc443c1f949fe3e58c017d" name="a519bf183a1dc443c1f949fe3e58c017d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a519bf183a1dc443c1f949fe3e58c017d">&#9670;&#160;</a></span>getProtocolVersionWeb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_version.html">BaosVersion</a> GetServerItem::getProtocolVersionWeb </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the version of the ObjectServer protocol via web services. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the version of the ObjectServer protocol via web services, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a3f1a0234da1a51fdbcb13cfcee0d5391" name="a3f1a0234da1a51fdbcb13cfcee0d5391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f1a0234da1a51fdbcb13cfcee0d5391">&#9670;&#160;</a></span>getSerialNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_hardware_type.html">BaosSerialNumber</a> GetServerItem::getSerialNumber </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the serial number of the connected BAOS device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the serial number of the connected BAOS device, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a37617fb3a797e28178ef488cde4380c5" name="a37617fb3a797e28178ef488cde4380c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37617fb3a797e28178ef488cde4380c5">&#9670;&#160;</a></span>getTimeSinceReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_baos_time.html">BaosTime</a> GetServerItem::getTimeSinceReset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the time passed since the last time the connected BAOS device was reset. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the time passed since the last time the connected BAOS device was reset, if result of error check is positive. Returns 0 otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a801550636fbd8ee09727819559704d8c" name="a801550636fbd8ee09727819559704d8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801550636fbd8ee09727819559704d8c">&#9670;&#160;</a></span>printServerItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GetServerItem::printServerItems </td>
+          <td>(</td>
+          <td class="paramtype">SERVER_ITEMS</td>          <td class="paramname"><span class="paramname"><em>firstItemId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>nrOfItems</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Requests the server items specified in the parameters, and prints the retrieved data in a formatted way in the standard output stream if the recieved telegram contains no error code. Decodes and prints the recieved error code in the standard output stream otherwise. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">firstItemId</td><td>ID of the first server item that should be fetched.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nrOfItems</td><td>Number of the server items that should be fetched.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if fetched telegram contains no error code, false otherwise.</dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/include/Services/<a class="el" href="_get_server_item_8hpp_source.html">GetServerItem.hpp</a></li>
 <li>C:/Users/regely/source/repos/BaosMini/BaosMini/src/Services/<b>GetServerItem.cpp</b></li>
 </ul>

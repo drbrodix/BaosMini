@@ -10,5 +10,6 @@
 #include "Services/GetDatapointDescription.hpp"
 #include "Services/GetParameterByte.hpp"
 #include "Services/IndicationListener.hpp"
+#include "Utility/BaosTester.hpp"
 
 #endif //BAOS_MINI_HPP

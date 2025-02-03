@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BaosMini: C:/Users/regely/source/repos/BaosMini/BaosMini/include/BaosMini.hpp Source File</title>
+<title>BaosMini: BaosTester Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,32 +81,30 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_67de86d95234dfabe9b53fddf10a5c71.html">BaosMini</a></li><li class="navelem"><a class="el" href="dir_02da6783992272a29b218785e65aa06e.html">include</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
-  <div class="headertitle"><div class="title">BaosMini.hpp</div></div>
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_baos_tester-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">BaosTester Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BAOS_MINI_HPP</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BAOS_MINI_HPP</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Services/SetDatapointValue.hpp&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Services/GetDatapointValue.hpp&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Services/GetServerItem.hpp&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Services/SetServerItem.hpp&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Services/GetDatapointDescription.hpp&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;Services/GetParameterByte.hpp&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;Services/IndicationListener.hpp&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;Utility/BaosTester.hpp&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#endif </span><span class="comment">//BAOS_MINI_HPP</span></div>
-</div><!-- fragment --></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a43dfacb28396e5337f50cd2aa67f1a3f" id="r_a43dfacb28396e5337f50cd2aa67f1a3f"><td class="memItemLeft" align="right" valign="top"><a id="a43dfacb28396e5337f50cd2aa67f1a3f" name="a43dfacb28396e5337f50cd2aa67f1a3f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaosTester</b> (<a class="el" href="class_serial_connection.html">SerialConnection</a> *serialConnection)</td></tr>
+<tr class="separator:a43dfacb28396e5337f50cd2aa67f1a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec56695dc1f45a9b72684455973b635" id="r_a9ec56695dc1f45a9b72684455973b635"><td class="memItemLeft" align="right" valign="top"><a id="a9ec56695dc1f45a9b72684455973b635" name="a9ec56695dc1f45a9b72684455973b635"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>startTestingProcess</b> (bool runGetServerItemTest=true, bool runSetServerItemTest=true, bool runGetDatapointDescriptionTest=true, bool runGetDatapointValueTest=true, bool runSetDatapointValueTest=true, bool runGetParameterByteTest=true)</td></tr>
+<tr class="separator:a9ec56695dc1f45a9b72684455973b635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>C:/Users/regely/source/repos/BaosMini/BaosMini/include/Utility/<a class="el" href="_baos_tester_8hpp_source.html">BaosTester.hpp</a></li>
+<li>C:/Users/regely/source/repos/BaosMini/BaosMini/src/Utility/<b>BaosTester.cpp</b></li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
