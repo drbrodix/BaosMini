@@ -201,6 +201,33 @@ pointer to the SerialConnection object passed to the constructor function as par
 
 While this subservice is listening, other parts of the program will be waiting!
 
+### BaosTester
+One more handy tool is the BaosTester. It is a class, which allows the quick testing
+of all the available BAOS subservices. By default, the functions in this class
+are filled with some basic requests in order to test the system. These functions
+are quite easy and straightforward to edit in the source code.
+To start testing the connection and the subservices, just create a BaosTester object with a
+pointer to the SerialConnection object passed to the constructor function as parameter.
+
+    BaosTester baosTester(&serialConnection);
+
+Then call the startTestingProcess member function of this new object.
+
+    baosTester.startTestingProcess();
+
+It is possible to configure the testing process and use only certain BAOS subservices
+by setting the corresponding boolean parameters. By default, all these parameters
+are set to true.
+
+    baosTester.startTestingProcess(
+            true,   // GetServerItem
+            true,   // SetServerItem
+            true,   // GetDatapointDescription
+            true,   // GetDatapointValue
+            true,   // SetDatapointValue
+            true    // GetParameterByte
+        );
+
 ## Further documentation
 Further documentation of the project is available as a Doxygen documentation.
 Use the GitHub Pages link to check it out.
