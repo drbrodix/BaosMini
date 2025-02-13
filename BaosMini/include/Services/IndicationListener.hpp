@@ -41,14 +41,14 @@ public:
 private:
 	/// <summary>
 	/// The function passed to the listener thread. It is constantly
-	/// reading data recieved through the serial connection. If a
-	/// datapoint or server item indication is recieved from the
+	/// reading data received through the serial connection. If a
+	/// datapoint or server item indication is received from the
 	/// ObjectServer, the content of the telegram will be decoded,
 	/// and a respective message printed out in the standard output stream.
 	/// </summary>
 	/// 
 	/// <param name="responseTelegram">A pointer to the buffer, in which the
-	/// recieved indication telegram will be stored.</param>
+	/// received indication telegram will be stored.</param>
 	/// 
 	/// <param name="responseLength">A pointer to the intiger, in which the
 	/// length of the indication telegram buffer will be stored.</param>
@@ -63,19 +63,19 @@ private:
 	/// </summary>
 	/// 
 	/// <param name="pValueStartAddress">Address of the float
-	/// value in the recieved telegram.</param>
+	/// value in the received telegram.</param>
 	/// 
 	/// <returns>Returns the float value in reversed byte order.</returns>
 	static float decode4ByteFloat(unsigned char* pValueStartAddress);
 	
 	/// <summary>
-	/// Called if the IndicationListener recieves a datapoint
-	/// indication. It decodes the recieved telegram, and prints
+	/// Called if the IndicationListener receives a datapoint
+	/// indication. It decodes the received telegram, and prints
 	/// out the content in the standard output stream.
 	/// </summary>
 	/// 
 	/// <param name="responseTelegram">An array containing the indication
-	/// telegram recieved from the ObjectServer.</param>
+	/// telegram received from the ObjectServer.</param>
 	/// 
 	/// <param name="dpt">The datapoint type of the datapoint,
 	/// to which the indication was sent.</param>

@@ -101,7 +101,7 @@ protected:
     void clearTelegram();
     
     /// <summary>
-    /// Length of telegram recieved from ObjectServer.
+    /// Length of telegram received from ObjectServer.
     /// </summary>
     unsigned int responseLength;
 

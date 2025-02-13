@@ -107,8 +107,8 @@ public:
 	/// <summary>
 	/// Requests the server items specified in the parameters,
 	/// and prints the retrieved data in a formatted way in the
-	/// standard output stream if the recieved telegram contains
-	/// no error code. Decodes and prints the recieved error code
+	/// standard output stream if the received telegram contains
+	/// no error code. Decodes and prints the received error code
 	/// in the standard output stream otherwise.
 	/// </summary>
 	/// <param name="firstItemId">ID of the first server item that should be fetched.</param>

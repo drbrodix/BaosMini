@@ -238,6 +238,7 @@
     <ClCompile Include="src\Services\IndicationListener.cpp" />
     <ClCompile Include="src\Services\SetDatapointValue.cpp" />
     <ClCompile Include="src\Services\SetServerItem.cpp" />
+    <ClCompile Include="src\Services\TestBaosComm.cpp" />
     <ClCompile Include="src\Utility\BaosTester.cpp" />
     <ClCompile Include="src\utility\ChecksumCalculator.cpp" />
     <ClCompile Include="src\Utility\DatapointTypes.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="include\Services\IndicationListener.hpp" />
     <ClInclude Include="include\Services\SetDatapointValue.hpp" />
     <ClInclude Include="include\Services\SetServerItem.hpp" />
+    <ClInclude Include="include\Services\TestBaosComm.hpp" />
     <ClInclude Include="include\Utility\BaosTester.hpp" />
     <ClInclude Include="include\utility\ChecksumCalculator.hpp" />
     <ClInclude Include="include\Utility\DatapointTypes.hpp" />

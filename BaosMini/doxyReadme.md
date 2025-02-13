@@ -37,7 +37,7 @@ to the ObjectServer via serial connection.
 
 ### Serial Connection
 Before everything else, a SerialConnection object should be created, which serves as a means
-to send data to, and recieve data from the connected BAOS device.
+to send data to, and receive data from the connected BAOS device.
 
     // Simply create a SerialConnection object, with a string
     // of the name of the serial interface passed as a parameter

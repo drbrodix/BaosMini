@@ -34,7 +34,7 @@ unsigned char ChecksumCalculator::calculateChecksumSent(
     );
 }
 
-unsigned char ChecksumCalculator::calculateChecksumRecieved(
+unsigned char ChecksumCalculator::calculateChecksumReceived(
     unsigned char* telegramData,
     unsigned char telegramLength,
     unsigned char controlByte

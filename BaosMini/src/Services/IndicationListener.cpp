@@ -27,7 +27,7 @@ void IndicationListener::startListening(unsigned char* responseTelegram, unsigne
 		{
 			memset(responseTelegram, 0, RESPONSE_ARR_SIZE);
 
-			*responseLength = serialConnection->recieveTelegram(responseTelegram);
+			*responseLength = serialConnection->receiveTelegram(responseTelegram);
 
 			if (*responseLength > 0)
 			{

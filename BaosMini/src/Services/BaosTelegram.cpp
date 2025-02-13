@@ -50,11 +50,11 @@ unsigned int BaosTelegram::getAnswer()
     {
         memset(responseTelegram, 0, RESPONSE_ARR_SIZE);
 
-        responseLength = serialConnection->recieveTelegram(responseTelegram);
+        responseLength = serialConnection->receiveTelegram(responseTelegram);
 
         if (responseLength > 0)
         {
-            serialConnection->sendAck();
+            //serialConnection->sendAck();
             return responseLength;
         }
         else

@@ -12,6 +12,39 @@
 #include "../Utility/FrameFormatter.hpp"
 #include "../Utility/DatapointTypes.hpp"
 
+#define READ_TIMEOUT        500
+#define INPUT_ARRAY_LENGTH  250
+#define FT12_ARRAY_LENGTH   250
+#define FT12_START_BYTE     0x68
+#define FT12_END_BYTE       0x16
+#define FIND_FT12_END_BYTE(START_BYTE_INDEX, PAYLOAD_LENGTH) (START_BYTE_INDEX + 5 + PAYLOAD_LENGTH)
+#define GET_FT12_LENGTH(START_BYTE_INDEX, END_BYTE_INDEX) ((END_BYTE_INDEX - START_BYTE_INDEX) + 1)
+#define GET_PAYLOAD_END_INDEX(PAYLOAD_LENGTH) (PAYLOAD_LENGTH + 3)
+
+typedef enum {
+	SEARCHING_START_BYTE = 0,
+	CHECKING_FIRST_LENGTH = 1,
+	CHECKING_SECOND_LENGTH = 2,
+	CHECKING_SECOND_START_BYTE = 3,
+	CHECKING_CONTROL_BYTE = 4,
+	CHECKING_BAOS_PAYLOAD = 5,
+	CHECKING_CHECKSUM = 6,
+	CHECKING_END_BYTE = 7,
+	RECEPTION_COMPLETE = 8,
+} STATES;
+
+typedef struct {
+	STATES currentState;
+	DWORD currentInputIndex;
+	DWORD currentOutputIndex;
+	DWORD payloadLength;
+	int checksumSum;
+	bool doStartBytesMatch;
+	bool doLengthBytesMatch;
+	bool doesChecksumMatch;
+	bool isEndByteFound;
+} ReaderInfo;
+
 /// <summary>
 /// This class takes care of the serial connection between the client and the BAOS device.
 /// </summary>
@@ -24,7 +57,7 @@ public:
 	/// the responsible functions. The user gets warned
 	/// if the opening of the connection is unsuccessful.
 	/// </summary>
-	SerialConnection(std::string connectionName);
+	SerialConnection(LPCWSTR connectionName);
 
 	/// <summary>
 	/// The serial connection handle will be closed when the
@@ -41,12 +74,12 @@ public:
 	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt = DatapointTypes::NO_DATAPOINT_TYPE);
 	
 	/// <summary>
-	/// Reads data sent by the ObjectServer, and stores the recieved
+	/// Reads data sent by the ObjectServer, and stores the received
 	/// telegram in the passed unsigned char array. The checksum of
-	/// the recieved telegram will be checked. The length of the
-	/// recieved telegram will be returned, or 0 if any error is detected.
+	/// the received telegram will be checked. The length of the
+	/// received telegram will be returned, or 0 if any error is detected.
 	/// </summary>
-	unsigned int recieveTelegram(unsigned char* telegramCharArray);
+	unsigned int receiveTelegram(unsigned char* telegramCharArray);
 
 	/// <summary>
 	/// A getter function for the serial connection handle object.
@@ -58,6 +91,10 @@ public:
 	bool sendAck() const;
 	
 private:
+	DWORD readBuffer(unsigned char* pBuff, const DWORD bytesRead, unsigned char* destBuff, ReaderInfo* ri);
+	STATES readFrame(unsigned char* pBuff, const DWORD bytesRead, unsigned char* destBuff, ReaderInfo* ri);
+	void parseTelegram(unsigned char* ft12Buff, DWORD telegramLength, unsigned char* telegramCharArray);
+
 	/// <summary>
 	/// Value to keep track of the control byte state,
 	/// which gets switched after every telegram sent.
@@ -83,7 +120,7 @@ private:
 	/// <summary>
 	/// String containing the name of the client serial interface.
 	/// </summary>
-	std::string connectionName;
+	LPCWSTR connectionName;
 	
 	/// <summary>
 	/// Handle object of the serial connection.
@@ -121,27 +158,6 @@ private:
 	bool configureTimeout();
 
 	/// <summary>
-	/// Reads incoming data and looks for the character passed as
-	/// parameter. After reading a byte, it returns true if the read
-	/// byte and passed value match, false otherwise. Will be used
-	/// to detect the start byte of FT1.2 frames sent by the ObjectServer.
-	/// </summary>
-	bool isCharFound(unsigned char charToFind) const;
-	
-	/// <summary>
-	/// Reads the header of the detected FT1.2 frame. Returns the
-	/// length of the payload telegram, or 0 if an error occurs.
-	/// </summary>
-	unsigned int readHeader(unsigned char* ft12Header) const;
-
-	/// <summary>
-	/// Reads one byte sent from the ObjectServer and
-	/// stores it in the passed buffer. Returns true if
-	/// the reading process was successful, false otherwise.
-	/// </summary>
-	bool readData(unsigned char* buffer) const;
-
-	/// <summary>
 	/// Sends a reset request to the connected BAOS device. Returns
 	/// true if the sending process was successful, false otherwise.
 	/// </summary>
@@ -152,6 +168,8 @@ private:
 	/// current state of the isOddFrame data member.
 	/// </summary>
 	unsigned char getControlByte();
+
+	bool writeToSerial(LPCVOID buffToWrite, DWORD bytesToWrite) const;
 };
 
 #endif // SERIAL_CONNECTION_HPP

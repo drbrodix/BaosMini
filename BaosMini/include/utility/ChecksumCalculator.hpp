@@ -18,7 +18,7 @@
 /// <summary>
 /// In the ChecksumCalculator two separate public functions are available.
 /// One to calculate the checksum of the telegram to be sent, and one to
-/// calculate the checksum of the recieved telegram. They both call a
+/// calculate the checksum of the received telegram. They both call a
 /// central private function, but with different arguments.
 /// </summary>
 namespace ChecksumCalculator
@@ -38,7 +38,7 @@ namespace ChecksumCalculator
 	/// It calls a central private function with the passed
 	/// arguments and preset configuration for inbound telegrams.
 	/// </summary>
-	unsigned char calculateChecksumRecieved(
+	unsigned char calculateChecksumReceived(
 		unsigned char* telegramData,
 		unsigned char telegramLength,
 		unsigned char controlByte
