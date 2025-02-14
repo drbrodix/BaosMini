@@ -15,6 +15,7 @@
 #define READ_TIMEOUT        500
 #define INPUT_ARRAY_LENGTH  250
 #define FT12_ARRAY_LENGTH   250
+#define BAOS_ACK_BYTE		0xE5
 #define FT12_START_BYTE     0x68
 #define FT12_END_BYTE       0x16
 #define FIND_FT12_END_BYTE(START_BYTE_INDEX, PAYLOAD_LENGTH) (START_BYTE_INDEX + 5 + PAYLOAD_LENGTH)
@@ -81,6 +82,8 @@ public:
 	/// </summary>
 	unsigned int receiveTelegram(unsigned char* telegramCharArray);
 
+	unsigned int listenForTelegrams(unsigned char* telegramCharArray, HANDLE inputThreadHandle);
+
 	/// <summary>
 	/// A getter function for the serial connection handle object.
 	/// </summary>
@@ -88,7 +91,18 @@ public:
 	{
 		return serialHandle;
 	}
+
+	/// <summary>
+	/// Returns control byte depending on the
+	/// current state of the isOddFrame data member.
+	/// </summary>
+	unsigned char getControlByte();
+
+	bool switchControlByteState();
+
 	bool sendAck() const;
+
+	bool readAck() const;
 	
 private:
 	DWORD readBuffer(unsigned char* pBuff, const DWORD bytesRead, unsigned char* destBuff, ReaderInfo* ri);
@@ -162,12 +176,6 @@ private:
 	/// true if the sending process was successful, false otherwise.
 	/// </summary>
 	bool sendResetRequest() const;
-
-	/// <summary>
-	/// Returns control byte depending on the
-	/// current state of the isOddFrame data member.
-	/// </summary>
-	unsigned char getControlByte();
 
 	bool writeToSerial(LPCVOID buffToWrite, DWORD bytesToWrite) const;
 };

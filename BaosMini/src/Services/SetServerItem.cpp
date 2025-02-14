@@ -43,12 +43,25 @@ bool SetServerItem::setValue(T itemValue, SERVER_ITEMS serverItem, unsigned char
 	telegramLength = 9 + itemLength;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+
+	//for (unsigned char i = 0; i < 4; i++)
+	//{
+	//	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	//	if (serialConnection->readAck())
+	//		break;
+	//}
+
+	serialConnection->switchControlByteState();
+
 	getAnswer();
+
 	hasValidResponse = checkForError();
+
 	if (hasValidResponse && decode)
 	{
 		decodeSetServerItemRes();
 	}
+
 	return hasValidResponse;
 }
 

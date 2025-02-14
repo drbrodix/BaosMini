@@ -38,7 +38,6 @@ public:
 	/// </summary>
 	~IndicationListener();
 
-private:
 	/// <summary>
 	/// The function passed to the listener thread. It is constantly
 	/// reading data received through the serial connection. If a
@@ -54,8 +53,11 @@ private:
 	/// length of the indication telegram buffer will be stored.</param>
 	/// 
 	/// <param name="serialConnection">A pointer to the SerialConnection object.</param>
-	static void startListening(unsigned char* responseTelegram, unsigned int* responseLength, SerialConnection* serialConnection);
-	
+	bool startListening();
+
+private:
+	static DWORD WINAPI InputThread(LPVOID lpParameter);
+
 	/// <summary>
 	/// It is responsible for reversing the byte order of
 	/// a 4byte float value, effectively converting it

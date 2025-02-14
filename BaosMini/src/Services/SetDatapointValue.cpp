@@ -51,15 +51,28 @@ bool SetDatapointValue::setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt,
 	*(baosTelegram + SET_DP_VALUE_COMMAND_BYTE_OFFSET)	= commandByte;
 	*(baosTelegram + SET_DP_VALUE_DP_VALUE_SIZE_OFFSET)	= dptSize;
 	*(T*)(baosTelegram + SET_DP_VALUE_DP_VALUE_OFFSET)	= dpValue;
-	
+
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+
+	//for (unsigned char i = 0; i < 4; i++)
+	//{
+	//	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	//	if (serialConnection->readAck())
+	//		break;
+	//}
+
+	serialConnection->switchControlByteState();
+
 	getAnswer();
+
 	hasValidResponse = checkForError();
+
 	if (decode && hasValidResponse)
 	{
 		unsigned short datapointID = swap2(*(unsigned short*)(responseTelegram + SET_DP_VALUE_RES_DP_ID_OFFSET));
 		printf("Datapoint %hu has been successfully set\n", datapointID);
 	}
+
 	return hasValidResponse;
 }
 

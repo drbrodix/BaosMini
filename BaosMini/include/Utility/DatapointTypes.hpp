@@ -16,7 +16,7 @@ namespace DatapointTypes
 	{
 		// Datapoint Type (DPT)			// DPT Code, DPT Size
 
-		NO_DATAPOINT_TYPE		= 0x00, // ONLY FOR INTERNAL USAGE
+		NO_DATAPOINT_TYPE		= 0x00,
 		BOOLEAN					= 0x01, // DPT 1,	1 Bit
 		//CONTROL				= 0x02, // DPT 2,	2 Bits
 		//DIMMING_BLINDS		= 0x03, // DPT 3,	4 Bits

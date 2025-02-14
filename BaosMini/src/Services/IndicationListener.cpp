@@ -4,18 +4,31 @@ IndicationListener::IndicationListener(
 	SerialConnection* serialConnection)
 	: BaosTelegram(serialConnection)
 {
-	std::thread listenerThread(startListening, responseTelegram, &responseLength, serialConnection);
-	listenerThread.detach();
-	printf("Press [Enter] to stop listening...\n");
-	getchar();
 }
 
 IndicationListener::~IndicationListener()
 {
 }
 
-void IndicationListener::startListening(unsigned char* responseTelegram, unsigned int* responseLength, SerialConnection* serialConnection)
+// Thread function to handle user input.
+DWORD WINAPI IndicationListener::InputThread(LPVOID lpParameter) {
+	getchar();
+	return 0;
+}
+
+bool IndicationListener::startListening()
 {
+	// Create a thread to handle user input.
+	DWORD threadId;
+	HANDLE hThread = CreateThread(
+		NULL, 0, InputThread, NULL, 0, &threadId
+	);
+	if (hThread == NULL) {
+		fprintf(stderr, "Error creating input thread\n");
+		CloseHandle(serialConnection);
+		return false;
+	}
+
     printf("Listening for incoming telegram...\n");
 
 	unsigned short dpId = 0x00;
@@ -27,34 +40,33 @@ void IndicationListener::startListening(unsigned char* responseTelegram, unsigne
 		{
 			memset(responseTelegram, 0, RESPONSE_ARR_SIZE);
 
-			*responseLength = serialConnection->receiveTelegram(responseTelegram);
+			responseLength = serialConnection->listenForTelegrams(responseTelegram, hThread);
+		}
 
-			if (*responseLength > 0)
+		if (responseTelegram)
+		{
+			switch ((SUBSERVICES) * (responseTelegram + 1))
 			{
-				serialConnection->sendAck();
+			case SUBSERVICES::DatapointValueind:
+				// Extract ID of indication datapoint
+				dpId = swap2(*(unsigned short*)(responseTelegram + 2));
+
+				//// Fetch info about the datapoint
+				gdd = new GetDatapointDescription(dpId, serialConnection);
+
+				decodeDatapointIndication(responseTelegram, gdd->getDpDpt());
+				break;
+
+			case SUBSERVICES::ServerItemInd:
+				decodeServerItemRes(responseTelegram, responseLength);
+				break;
+
+			default:
+				break;
 			}
 		}
-
-		switch ((SUBSERVICES)*(responseTelegram + 1))
-		{
-		case SUBSERVICES::DatapointValueind:
-			// Extract ID of indication datapoint
-			dpId = swap2(*(unsigned short*)(responseTelegram + 2));
-
-			//// Fetch info about the datapoint
-			gdd = new GetDatapointDescription(dpId, serialConnection);
-
-			decodeDatapointIndication(responseTelegram, gdd->getDpDpt());
-			break;
-		
-		case SUBSERVICES::ServerItemInd:
-			decodeServerItemRes(responseTelegram, *responseLength);
-			break;
-
-		default:
-			break;
-		}
     }
+	CloseHandle(hThread);
 
 	delete gdd;
 }

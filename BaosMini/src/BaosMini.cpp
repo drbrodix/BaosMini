@@ -46,28 +46,19 @@ int main(int argc, char* argv[])
 {
     using namespace std::chrono_literals;
     SerialConnection serialConnection(L"COM3");
-
-    //TestBaosComm tbc1(1, &serialConnection);
-    //tbc1.setBoolean(1, CommandByte::SetNewValueAndSendOnBus, true);
-    //TestBaosComm tbc2(2, &serialConnection);
-    //tbc2.setBoolean(1, CommandByte::SetNewValueAndSendOnBus, true);
-    //TestBaosComm tbc3(3, &serialConnection);
-    //tbc3.setBoolean(1, CommandByte::SetNewValueAndSendOnBus, true);
-    //TestBaosComm tbc4(4, &serialConnection);
-    //tbc4.setBoolean(1, CommandByte::SetNewValueAndSendOnBus, true);
-
     
     //IndicationListener il(&serialConnection);
+    //il.startListening();
 
-    //BaosTester baosTester(&serialConnection);
-    //baosTester.startTestingProcess(
-    //    true,   // GetServerItem
-    //    true,   // SetServerItem
-    //    true,   // GetDatapointDescription
-    //    true,   // GetDatapointValue
-    //    true,   // SetDatapointValue
-    //    true    // GetParameterByte
-    //);
+    BaosTester baosTester(&serialConnection);
+    baosTester.startTestingProcess(
+        true,   // GetServerItem
+        true,   // SetServerItem
+        true,   // GetDatapointDescription
+        true,   // GetDatapointValue
+        true,   // SetDatapointValue
+        true    // GetParameterByte
+    );
 
     //GetParameterByte gpb1(1, &serialConnection);
     //printf("Param #1: %hhu\n", gpb1.getByte());
@@ -82,88 +73,88 @@ int main(int argc, char* argv[])
     //ssi.setProgrammingMode(true);
     //ssi.setBaudrate(BAUDRATES::BAUDRATE_19200, true);
 
-    GetServerItem gsi(&serialConnection);
-    BaosHardwareType baosHardwareType = gsi.getHardwareType();
-    printf("Hardware Type single request: %02X %02X %02X %02X %02X %02X\n",
-        baosHardwareType.byte1,
-        baosHardwareType.byte2,
-        baosHardwareType.byte3,
-        baosHardwareType.byte4,
-        baosHardwareType.byte5,
-        baosHardwareType.byte6);
-    BaosVersion hardwareVersion = gsi.getHardwareVersion();
-    printf("Hardware Version single request: %d.%d\n",
-        hardwareVersion.mainVersion,
-        hardwareVersion.minorVersion);
-    BaosVersion firmwareVersion = gsi.getFirmwareVersion();
-    printf("Firmware Version single request: %d.%d\n",
-        firmwareVersion.mainVersion,
-        firmwareVersion.minorVersion);
-    printf("KNX Device Manufacturer Code single request: %04X\n",
-        gsi.getKnxDeviceManufacturerCode());
-    printf("KNX App Manufacturer Code single request: %04X\n",
-        gsi.getKnxAppManufacturerCode());
-    printf("Application ID single request: %04X\n",
-        gsi.getApplicationId());
-    BaosVersion applicationVersion = gsi.getApplicationVersion();
-    printf("Application Version single request: %d.%d\n",
-        applicationVersion.mainVersion,
-        applicationVersion.minorVersion);
-    BaosSerialNumber baosSerialNumber = gsi.getSerialNumber();
-    printf("Serial Number single request: %02X %02X %02X %02X %02X %02X\n",
-        baosSerialNumber.byte1,
-        baosSerialNumber.byte2,
-        baosSerialNumber.byte3,
-        baosSerialNumber.byte4,
-        baosSerialNumber.byte5,
-        baosSerialNumber.byte6);
-    BaosTime timeSinceReset = gsi.getTimeSinceReset();
-    printf("Time since reset single request: %02d:%02d:%02d\n",
-        timeSinceReset.hours,
-        timeSinceReset.minutes,
-        timeSinceReset.seconds);
-    printf("Bus connection state single request: %s\n",
-        gsi.getBusConnectionState() ? "true" : "false");
-    printf("Maximum buffer size single request: %hu\n",
-        gsi.getMaxBufferSize());
-    printf("Length of description string single request: %hu\n",
-        gsi.getLengthOfDescString());
-    switch (gsi.getBaudrate())
-    {
-    case BAUDRATE_115200:
-        printf("Baudrate single request: 115200 Baud\n");
-        break;
-    case BAUDRATE_19200:
-        printf("Baudrate single request: 19200 Baud\n");
-        break;
-    default:
-        printf("Baudrate single request: unknown\n");
-        break;
-    }
-    printf("Current buffer size single request: %hu\n",
-        gsi.getCurrentBufferSize());
-    printf("Programming mode enabled single request: %s\n",
-        gsi.getProgrammingMode() ? "true" : "false");
-    BaosVersion protocolVersionBinary = gsi.getProtocolVersionBinary();
-    printf("Binary protocol version single request: %d.%d\n",
-        protocolVersionBinary.mainVersion,
-        protocolVersionBinary.minorVersion);
-    printf("Indication sending enabled single request: %s\n",
-        gsi.getIndicationSending() ? "true" : "false");
-    BaosVersion protocolVersionWeb = gsi.getProtocolVersionWeb();
-    printf("WebService version single request: %d.%d\n",
-        protocolVersionWeb.mainVersion,
-        protocolVersionWeb.minorVersion);
-    BaosVersion protocolVersionRest = gsi.getProtocolVersionRest();
-    printf("RestService version single request: %d.%d\n",
-        protocolVersionRest.mainVersion,
-        protocolVersionRest.minorVersion);
-    KnxDeviceAddress knxDeviceAddress = gsi.getKnxIndividualAddress();
-    printf("Individual KNX Address single request: area: %hu line: %hu device: %hu\n",
-        knxDeviceAddress.area,
-        knxDeviceAddress.line,
-        knxDeviceAddress.device);
-    printf("\n");
+    //GetServerItem gsi(&serialConnection);
+    //BaosHardwareType baosHardwareType = gsi.getHardwareType();
+    //printf("Hardware Type single request: %02X %02X %02X %02X %02X %02X\n",
+    //    baosHardwareType.byte1,
+    //    baosHardwareType.byte2,
+    //    baosHardwareType.byte3,
+    //    baosHardwareType.byte4,
+    //    baosHardwareType.byte5,
+    //    baosHardwareType.byte6);
+    //BaosVersion hardwareVersion = gsi.getHardwareVersion();
+    //printf("Hardware Version single request: %d.%d\n",
+    //    hardwareVersion.mainVersion,
+    //    hardwareVersion.minorVersion);
+    //BaosVersion firmwareVersion = gsi.getFirmwareVersion();
+    //printf("Firmware Version single request: %d.%d\n",
+    //    firmwareVersion.mainVersion,
+    //    firmwareVersion.minorVersion);
+    //printf("KNX Device Manufacturer Code single request: %04X\n",
+    //    gsi.getKnxDeviceManufacturerCode());
+    //printf("KNX App Manufacturer Code single request: %04X\n",
+    //    gsi.getKnxAppManufacturerCode());
+    //printf("Application ID single request: %04X\n",
+    //    gsi.getApplicationId());
+    //BaosVersion applicationVersion = gsi.getApplicationVersion();
+    //printf("Application Version single request: %d.%d\n",
+    //    applicationVersion.mainVersion,
+    //    applicationVersion.minorVersion);
+    //BaosSerialNumber baosSerialNumber = gsi.getSerialNumber();
+    //printf("Serial Number single request: %02X %02X %02X %02X %02X %02X\n",
+    //    baosSerialNumber.byte1,
+    //    baosSerialNumber.byte2,
+    //    baosSerialNumber.byte3,
+    //    baosSerialNumber.byte4,
+    //    baosSerialNumber.byte5,
+    //    baosSerialNumber.byte6);
+    //BaosTime timeSinceReset = gsi.getTimeSinceReset();
+    //printf("Time since reset single request: %02d:%02d:%02d\n",
+    //    timeSinceReset.hours,
+    //    timeSinceReset.minutes,
+    //    timeSinceReset.seconds);
+    //printf("Bus connection state single request: %s\n",
+    //    gsi.getBusConnectionState() ? "true" : "false");
+    //printf("Maximum buffer size single request: %hu\n",
+    //    gsi.getMaxBufferSize());
+    //printf("Length of description string single request: %hu\n",
+    //    gsi.getLengthOfDescString());
+    //switch (gsi.getBaudrate())
+    //{
+    //case BAUDRATE_115200:
+    //    printf("Baudrate single request: 115200 Baud\n");
+    //    break;
+    //case BAUDRATE_19200:
+    //    printf("Baudrate single request: 19200 Baud\n");
+    //    break;
+    //default:
+    //    printf("Baudrate single request: unknown\n");
+    //    break;
+    //}
+    //printf("Current buffer size single request: %hu\n",
+    //    gsi.getCurrentBufferSize());
+    //printf("Programming mode enabled single request: %s\n",
+    //    gsi.getProgrammingMode() ? "true" : "false");
+    //BaosVersion protocolVersionBinary = gsi.getProtocolVersionBinary();
+    //printf("Binary protocol version single request: %d.%d\n",
+    //    protocolVersionBinary.mainVersion,
+    //    protocolVersionBinary.minorVersion);
+    //printf("Indication sending enabled single request: %s\n",
+    //    gsi.getIndicationSending() ? "true" : "false");
+    //BaosVersion protocolVersionWeb = gsi.getProtocolVersionWeb();
+    //printf("WebService version single request: %d.%d\n",
+    //    protocolVersionWeb.mainVersion,
+    //    protocolVersionWeb.minorVersion);
+    //BaosVersion protocolVersionRest = gsi.getProtocolVersionRest();
+    //printf("RestService version single request: %d.%d\n",
+    //    protocolVersionRest.mainVersion,
+    //    protocolVersionRest.minorVersion);
+    //KnxDeviceAddress knxDeviceAddress = gsi.getKnxIndividualAddress();
+    //printf("Individual KNX Address single request: area: %hu line: %hu device: %hu\n",
+    //    knxDeviceAddress.area,
+    //    knxDeviceAddress.line,
+    //    knxDeviceAddress.device);
+    //printf("\n");
     
     //gsi.printServerItems(SERVER_ITEMS::SERIAL_NUMBER, 20);
 

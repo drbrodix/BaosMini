@@ -37,12 +37,25 @@ bool GetServerItem::getItem(SERVER_ITEMS firstItemId, unsigned short nrOfItems, 
 	telegramLength = 6;
 
 	serialConnection->sendTelegram(baosTelegram, telegramLength);
+
+	//for (unsigned char i = 0; i < 4; i++)
+	//{
+	//	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	//	if (serialConnection->readAck())
+	//		break;
+	//}
+
+	serialConnection->switchControlByteState();
+	
 	getAnswer();
+
 	hasValidResponse = checkForError();
+
 	if (hasValidResponse && decode)
 	{
 		decodeServerItemRes(responseTelegram, responseLength);
 	}
+
 	return hasValidResponse;
 }
 

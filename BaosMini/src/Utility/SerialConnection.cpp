@@ -85,9 +85,13 @@ bool SerialConnection::configureTimeout()
 
 unsigned char SerialConnection::getControlByte()
 {
-    const unsigned char currentControlByte = CONTROL_BYTE[isOddFrame];
+    return CONTROL_BYTE[isOddFrame];
+}
+
+bool SerialConnection::switchControlByteState()
+{
     isOddFrame = !isOddFrame;
-    return currentControlByte;
+    return isOddFrame;
 }
 
 bool SerialConnection::writeToSerial(LPCVOID buffToWrite, DWORD nrOfBytesToWrite) const
@@ -155,7 +159,7 @@ bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char t
 
 bool SerialConnection::sendAck() const
 {
-    const unsigned char ACK_BYTE[1] = { 0xe5 };
+    const unsigned char ACK_BYTE[1] = { BAOS_ACK_BYTE };
 
     return writeToSerial(ACK_BYTE, sizeof(ACK_BYTE));
 }
@@ -311,6 +315,65 @@ void SerialConnection::parseTelegram(unsigned char* ft12Buff, DWORD telegramLeng
     }
 }
 
+bool SerialConnection::readAck() const
+{
+    unsigned char buff[1] = { 0 };
+    DWORD bytesRead = 0;
+    bool isAckFound = false;
+
+    OVERLAPPED osRead = { 0 };
+    osRead.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+    if (osRead.hEvent == NULL) {
+        fprintf(stderr, "Error creating event for read\n");
+        CloseHandle(serialHandle);
+        return 0;
+    }
+
+    while (true) {
+        // Initiate an asynchronous read.
+        BOOL readResult = ReadFile(
+            serialHandle,
+            buff,
+            1,
+            &bytesRead,
+            &osRead
+        );
+        // If the read routine doesn't complete immediately...
+        if (!readResult) {
+            // The reading is being completed asynchronously...
+            if (GetLastError() == ERROR_IO_PENDING) {
+                // Wait for the read routine to signal completion...
+                // The I/O handle is configured to return as soon as
+                // ANYTHING has been read into the buffer.
+                // This means, the read function should normally
+                // return with 1 byte in buffer.
+                DWORD waitRes = WaitForSingleObject(osRead.hEvent, INFINITE);
+
+                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE)) {
+                    fprintf(stderr, "Error in GetOverlappedResult for read\n");
+                    break;
+                }
+            }
+            else {
+                fprintf(stderr, "Error in ReadFile\n");
+                break;
+            }
+        }
+
+        // If actual data has been received
+        if (bytesRead > 0)
+        {
+            isAckFound = buff[0] == BAOS_ACK_BYTE;
+            //fprintf(stdout, "%s\n", buff[0] == BAOS_ACK_BYTE ? "ACK FOUND" : "ACK NOT FOUND");
+            break;
+        }
+        // Reset the event for the next read.
+        ResetEvent(osRead.hEvent);
+    }
+    CloseHandle(osRead.hEvent);
+    return isAckFound;
+}
+
 unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
 {
     DWORD telegramLength = 0;
@@ -375,6 +438,90 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
                 // Send acknowledgement as soon as a complete frame has been read!
                 // Important so that the BAOS device shuts up.
                 sendAck();
+
+                if (!ri.doesChecksumMatch)
+                    fprintf(stderr, "Checksum mismatch!\n");
+
+                parseTelegram(ft12Buff, telegramLength, telegramCharArray);
+                CloseHandle(osRead.hEvent);
+                return telegramLength;
+            }
+        }
+        // Reset the event for the next read.
+        ResetEvent(osRead.hEvent);
+    }
+    CloseHandle(osRead.hEvent);
+    return telegramLength;
+}
+
+unsigned int SerialConnection::listenForTelegrams(unsigned char* telegramCharArray, HANDLE inputThreadHandle)
+{
+    DWORD telegramLength = 0;
+    DWORD bytesRead = 0;
+    unsigned char buff[INPUT_ARRAY_LENGTH] = { 0 };
+    unsigned char ft12Buff[FT12_ARRAY_LENGTH] = { 0 };
+
+    OVERLAPPED osRead = { 0 };
+    osRead.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+    if (osRead.hEvent == NULL) {
+        fprintf(stderr, "Error creating event for read\n");
+        CloseHandle(serialHandle);
+        return 0;
+    }
+
+    // Structure containing relevant infos to reading through buffer.
+    // Will be initialised with all 0's
+    ReaderInfo ri = { SEARCHING_START_BYTE };
+
+    while (true) {
+        // Initiate an asynchronous read.
+        BOOL readResult = ReadFile(
+            serialHandle,
+            buff,
+            INPUT_ARRAY_LENGTH,
+            &bytesRead,
+            &osRead
+        );
+        // If the read routine doesn't complete immediately...
+        if (!readResult) {
+            // The reading is being completed asynchronously...
+            if (GetLastError() == ERROR_IO_PENDING) {
+                // Wait for the read routine to signal completion...
+                // The I/O handle is configured to return as soon as
+                // ANYTHING has been read into the buffer.
+                // This means, the read function should normally
+                // return with 1 byte in buffer.
+                DWORD waitRes = WaitForSingleObject(osRead.hEvent, 100);
+                if (waitRes == WAIT_TIMEOUT) {
+                    // Check if the input thread is still active.
+                    if (WaitForSingleObject(inputThreadHandle, 0) == WAIT_OBJECT_0) {
+                        // Input thread ended (e.g., user closed stdin); exit the loop.
+                        break;
+                    }
+                    continue;
+                }
+                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE)) {
+                    fprintf(stderr, "Error in GetOverlappedResult for read\n");
+
+                }
+            }
+            else {
+                fprintf(stderr, "Error in ReadFile\n");
+                break;
+            }
+        }
+
+        // If actual data has been received
+        if (bytesRead > 0)
+        {
+            telegramLength = readBuffer(buff, bytesRead, ft12Buff, &ri);
+
+            // The telegram length will only be returned,
+            // once "Reception Complete" state has been reached.
+            // This occurs if a complete FT 1.2 frame,
+            // including the end byte has been read.
+            if (telegramLength > 0)
+            {
 
                 if (!ri.doesChecksumMatch)
                     fprintf(stderr, "Checksum mismatch!\n");

@@ -18,12 +18,20 @@ GetDatapointValue::GetDatapointValue(
 
 	telegramLength = 7;
 
-	serialConnection->sendTelegram(baosTelegram, telegramLength, dpt);
+	serialConnection->sendTelegram(baosTelegram, telegramLength);
+
+	//for (unsigned char i = 0; i < 4; i++)
+	//{
+	//	serialConnection->sendTelegram(baosTelegram, telegramLength);
+	//	if (serialConnection->readAck())
+	//		break;
+	//}
+
+	serialConnection->switchControlByteState();
 
 	getAnswer();
 
 	hasValidResponse = checkForError(datapointId);
-
 }
 
 GetDatapointValue::~GetDatapointValue()
