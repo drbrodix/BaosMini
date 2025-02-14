@@ -121,10 +121,6 @@ bool SerialConnection::writeToSerial(LPCVOID buffToWrite, DWORD nrOfBytesToWrite
                 {
                     fprintf(stderr, "Error in GetOverlappedResult for write\n");
                 }
-                else
-                {
-                    printf("Write completed, %d bytes written.\n", dwBytesWritten);
-                }
             }
             else
             {
@@ -173,7 +169,6 @@ bool SerialConnection::sendResetRequest() const
 
 STATES SerialConnection::readFrame(unsigned char* pBuff, const DWORD bytesRead, unsigned char* destBuff, ReaderInfo* ri)
 {
-
     // typedef enum {
     //     SEARCHING_START_BYTE        = 0,
     //     CHECKING_FIRST_LENGTH       = 1,
@@ -308,9 +303,9 @@ DWORD SerialConnection::readBuffer(unsigned char* pBuff, const DWORD bytesRead, 
     return 0;
 }
 
-void SerialConnection::parseTelegram(unsigned char* ft12Buff, DWORD telegramLength, unsigned char* telegramCharArray) {
-
-    for (int i = 0; i < telegramLength - 1; i++)
+void SerialConnection::parseTelegram(unsigned char* ft12Buff, DWORD telegramLength, unsigned char* telegramCharArray)
+{
+    for (DWORD i = 0; i < telegramLength - 1; i++)
     {
         telegramCharArray[i] = ft12Buff[i + 5];
     }
@@ -318,7 +313,6 @@ void SerialConnection::parseTelegram(unsigned char* ft12Buff, DWORD telegramLeng
 
 unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
 {
-
     DWORD telegramLength = 0;
     DWORD bytesRead = 0;
     unsigned char buff[INPUT_ARRAY_LENGTH] = { 0 };
@@ -329,7 +323,7 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
     if (osRead.hEvent == NULL) {
         fprintf(stderr, "Error creating event for read\n");
         CloseHandle(serialHandle);
-        return EXIT_FAILURE;
+        return 0;
     }
 
     // Structure containing relevant infos to reading through buffer.
@@ -358,7 +352,7 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
 
                 if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE)) {
                     fprintf(stderr, "Error in GetOverlappedResult for read\n");
-                    
+                    break;
                 }
             }
             else {
@@ -368,18 +362,24 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
         }
 
         // If actual data has been received
-        if (bytesRead > 0) {
-            // While the buffer has not been completely read
-            
-
+        if (bytesRead > 0)
+        {
             telegramLength = readBuffer(buff, bytesRead, ft12Buff, &ri);
 
-
+            // The telegram length will only be returned,
+            // once "Reception Complete" state has been reached.
+            // This occurs if a complete FT 1.2 frame,
+            // including the end byte has been read.
             if (telegramLength > 0)
             {
+                // Send acknowledgement as soon as a complete frame has been read!
+                // Important so that the BAOS device shuts up.
                 sendAck();
+
+                if (!ri.doesChecksumMatch)
+                    fprintf(stderr, "Checksum mismatch!\n");
+
                 parseTelegram(ft12Buff, telegramLength, telegramCharArray);
-                ResetEvent(osRead.hEvent);
                 CloseHandle(osRead.hEvent);
                 return telegramLength;
             }
@@ -388,36 +388,5 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
         ResetEvent(osRead.hEvent);
     }
     CloseHandle(osRead.hEvent);
-
-    //if (!ReadFile(
-    //    serialHandle,
-    //    buff,
-    //    INPUT_ARRAY_LENGTH,
-    //    &bytesRead,
-    //    nullptr
-    //))
-    //{
-    //    printf("Error while reading from serial connection...");
-    //}
-
-    //while (!isCharFound(FT12_START_BYTE));
-
-    //telegramLength = readHeader(ft12Header);
-
-    //// Reading the BAOS telegram payload
-    //for (unsigned int i = 0; i < telegramLength; i++)
-    //{
-    //    readData(telegramCharArray + i);
-    //}
-
-    //readData(&checksum);
-
-    //readData(&endByte);
-
-    //if (checksum !=
-        //ChecksumCalculator::calculateChecksumReceived(telegramCharArray, telegramLength, ft12Header[4]))
-    //{
-    //    printf("Checksum error\n");
-    //    return 0;
-    //}
+    return telegramLength;
 }

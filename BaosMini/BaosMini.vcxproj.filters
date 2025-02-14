@@ -81,9 +81,6 @@
     <ClCompile Include="src\Utility\BaosTester.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\Services\TestBaosComm.cpp">
-      <Filter>Source Files\Services</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaosMini.hpp">
@@ -145,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="include\Utility\BaosTester.hpp">
       <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Services\TestBaosComm.hpp">
-      <Filter>Header Files\Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
