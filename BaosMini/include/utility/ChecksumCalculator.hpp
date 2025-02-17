@@ -1,5 +1,6 @@
 #ifndef CHECKSUM_CALCULATOR_HPP
 #define CHECKSUM_CALCULATOR_HPP
+#include <wtypes.h>
 
 /// <summary>
 /// Index of the first byte in the baosTelegram array
@@ -30,7 +31,7 @@ namespace ChecksumCalculator
 	/// </summary>
 	unsigned char calculateChecksumSent(
 		unsigned char* telegramData,
-		unsigned char telegramLength,
+		DWORD telegramLength,
 		unsigned char controlByte
 	);
 	/// <summary>
@@ -40,7 +41,7 @@ namespace ChecksumCalculator
 	/// </summary>
 	unsigned char calculateChecksumReceived(
 		unsigned char* telegramData,
-		unsigned char telegramLength,
+		DWORD telegramLength,
 		unsigned char controlByte
 	);
 }

@@ -19,6 +19,8 @@
 
 #include <exception>
 #include <cstdio>
+#include <wtypes.h>
+
 
 /// <summary>
 /// Wraps the passed baosTelegram array in an FT1.2 frame. 
@@ -27,7 +29,7 @@
 /// </summary>
 unsigned short formatFt12Frame(
 	unsigned char* baosTelegram,
-	unsigned char telegramLength,
+	DWORD telegramLength,
 	unsigned char controlByte,
 	unsigned char checksum
 );

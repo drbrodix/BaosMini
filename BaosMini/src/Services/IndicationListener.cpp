@@ -10,7 +10,6 @@ IndicationListener::~IndicationListener()
 {
 }
 
-// Thread function to handle user input.
 DWORD WINAPI IndicationListener::InputThread(LPVOID lpParameter) {
 	getchar();
 	return 0;
@@ -20,16 +19,15 @@ bool IndicationListener::startListening()
 {
 	// Create a thread to handle user input.
 	DWORD threadId;
-	HANDLE hThread = CreateThread(
-		NULL, 0, InputThread, NULL, 0, &threadId
-	);
+	HANDLE hThread = CreateThread(NULL, 0, InputThread, NULL, 0, &threadId);
 	if (hThread == NULL) {
 		fprintf(stderr, "Error creating input thread\n");
 		CloseHandle(serialConnection);
 		return false;
 	}
 
-    printf("Listening for incoming telegram...\n");
+    fprintf(stdout, "Listening for incoming telegram...\n");
+	fprintf(stdout, "Press [Enter] to stop listening...\n");
 
 	unsigned short dpId = 0x00;
 	GetDatapointDescription* gdd = nullptr;
@@ -40,8 +38,11 @@ bool IndicationListener::startListening()
 		{
 			memset(responseTelegram, 0, RESPONSE_ARR_SIZE);
 
-			responseLength = serialConnection->listenForTelegrams(responseTelegram, hThread);
+			responseLength = serialConnection->receiveTelegram(responseTelegram, hThread);
 		}
+
+		if (responseLength == -1)
+			break;
 
 		if (responseTelegram)
 		{

@@ -103,12 +103,12 @@ protected:
     /// <summary>
     /// Length of telegram received from ObjectServer.
     /// </summary>
-    unsigned int responseLength;
+    DWORD responseLength;
 
     /// <summary>
     /// Length of telegram to be sent to ObjectServer.
     /// </summary>
-    unsigned char telegramLength;
+    DWORD telegramLength;
 
     /// <summary>
     /// Unsigned char array of telegram to be sent to ObjectServer.

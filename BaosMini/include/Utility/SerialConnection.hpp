@@ -72,7 +72,7 @@ public:
 	/// and sends it to the connected BAOS device. Returns true 
 	/// if the sending process was successful, false otherwise.
 	/// </summary>
-	bool sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt = DatapointTypes::NO_DATAPOINT_TYPE);
+	bool sendTelegram(unsigned char* baosTelegram, DWORD telegramLength, DatapointTypes::DATAPOINT_TYPES dpt = DatapointTypes::NO_DATAPOINT_TYPE);
 	
 	/// <summary>
 	/// Reads data sent by the ObjectServer, and stores the received
@@ -80,9 +80,7 @@ public:
 	/// the received telegram will be checked. The length of the
 	/// received telegram will be returned, or 0 if any error is detected.
 	/// </summary>
-	unsigned int receiveTelegram(unsigned char* telegramCharArray);
-
-	unsigned int listenForTelegrams(unsigned char* telegramCharArray, HANDLE inputThreadHandle);
+	unsigned int receiveTelegram(unsigned char* telegramCharArray, HANDLE inputThreadHandle = nullptr);
 
 	/// <summary>
 	/// A getter function for the serial connection handle object.

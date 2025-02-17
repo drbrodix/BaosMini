@@ -2,7 +2,7 @@
 
 unsigned short formatFt12Frame(
 	unsigned char* baosTelegram,
-	unsigned char telegramLength,
+	DWORD telegramLength,
 	unsigned char controlByte,
 	unsigned char checksum
 )

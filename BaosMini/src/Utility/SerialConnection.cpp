@@ -37,14 +37,14 @@ SerialConnection::~SerialConnection()
 HANDLE SerialConnection::createSerialHandle() const
 {
 	return CreateFile(
-        connectionName,
-        GENERIC_READ | GENERIC_WRITE,
-        0,
-        nullptr,
-        OPEN_EXISTING,
-        FILE_FLAG_OVERLAPPED,
-        nullptr
-    );
+                        connectionName,
+                        GENERIC_READ | GENERIC_WRITE,
+                        0,
+                        nullptr,
+                        OPEN_EXISTING,
+                        FILE_FLAG_OVERLAPPED,
+                        nullptr
+                     );
 }
 
 bool SerialConnection::configureConnect()
@@ -71,7 +71,7 @@ bool SerialConnection::configureConnect()
 bool SerialConnection::configureTimeout()
 {
     timeout.ReadIntervalTimeout         = MAXDWORD; // specifies the time that must pass between receiving characters before timing out (in milliseconds).
-    timeout.ReadTotalTimeoutConstant    = 500;      // provides the amount of time to wait before returning (in milliseconds).
+    timeout.ReadTotalTimeoutConstant    = 50;       // provides the amount of time to wait before returning (in milliseconds).
     timeout.ReadTotalTimeoutMultiplier  = MAXDWORD; // specifies the length of time to wait before responding for each byte requested in the read operation (in milliseconds).
     timeout.WriteTotalTimeoutConstant   = 0;        // same as in case of reading, but for writing
     timeout.WriteTotalTimeoutMultiplier = 0;        // same as in case of reading, but for writing
@@ -109,12 +109,12 @@ bool SerialConnection::writeToSerial(LPCVOID buffToWrite, DWORD nrOfBytesToWrite
     // Write data
     DWORD dwBytesWritten = 0;
     if (!WriteFile(
-        serialHandle,
-        buffToWrite,
-        nrOfBytesToWrite,
-        &dwBytesWritten,
-        &osWrite
-    ))
+                    serialHandle,
+                    buffToWrite,
+                    nrOfBytesToWrite,
+                    &dwBytesWritten,
+                    &osWrite
+                  ))
     {
         if (GetLastError() == ERROR_IO_PENDING)
         {
@@ -140,7 +140,7 @@ bool SerialConnection::writeToSerial(LPCVOID buffToWrite, DWORD nrOfBytesToWrite
     return true;
 }
 
-bool SerialConnection::sendTelegram(unsigned char* baosTelegram, unsigned char telegramLength, DatapointTypes::DATAPOINT_TYPES dpt)
+bool SerialConnection::sendTelegram(unsigned char* baosTelegram, DWORD telegramLength, DatapointTypes::DATAPOINT_TYPES dpt)
 {
     // Initialize some variables for readability
     const unsigned char controlByte = getControlByte();
@@ -196,92 +196,92 @@ STATES SerialConnection::readFrame(unsigned char* pBuff, const DWORD bytesRead, 
     //     bool isEndByteFound;
     // } ReaderInfo;
 
-    while (ri->currentInputIndex < bytesRead) {
-        switch (ri->currentState) {
-
-        case SEARCHING_START_BYTE:
-            while (ri->currentInputIndex < bytesRead) {
-                if (pBuff[ri->currentInputIndex] == FT12_START_BYTE) {
-                    destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-                    ri->currentState = CHECKING_FIRST_LENGTH;
+    while (ri->currentInputIndex < bytesRead)
+    {
+        switch (ri->currentState)
+        {
+            case SEARCHING_START_BYTE:
+                while (ri->currentInputIndex < bytesRead) {
+                    if (pBuff[ri->currentInputIndex] == FT12_START_BYTE) {
+                        destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                        ri->currentState = CHECKING_FIRST_LENGTH;
+                        ri->currentInputIndex++;
+                        ri->currentOutputIndex++;
+                        break;
+                    }
                     ri->currentInputIndex++;
-                    ri->currentOutputIndex++;
-                    break;
                 }
-                ri->currentInputIndex++;
-            }
-            break;
+                break;
 
-        case CHECKING_FIRST_LENGTH:
-            destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-            ri->payloadLength = pBuff[ri->currentInputIndex];
-            ri->currentState = CHECKING_SECOND_LENGTH;
-            ri->currentInputIndex++;
-            ri->currentOutputIndex++;
-            break;
-
-        case CHECKING_SECOND_LENGTH:
-            destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-            ri->doLengthBytesMatch = destBuff[ri->currentOutputIndex] == destBuff[ri->currentOutputIndex - 1];
-            ri->currentState = CHECKING_SECOND_START_BYTE;
-            ri->currentInputIndex++;
-            ri->currentOutputIndex++;
-            break;
-
-        case CHECKING_SECOND_START_BYTE:
-            destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-            ri->doStartBytesMatch = destBuff[ri->currentOutputIndex] == destBuff[ri->currentOutputIndex - 3];
-            ri->currentState = CHECKING_CONTROL_BYTE;
-            ri->currentInputIndex++;
-            ri->currentOutputIndex++;
-            break;
-
-        case CHECKING_CONTROL_BYTE:
-            destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-            ri->checksumSum = destBuff[ri->currentOutputIndex];
-            ri->currentState = CHECKING_BAOS_PAYLOAD;
-            ri->currentInputIndex++;
-            ri->currentOutputIndex++;
-            break;
-
-        case CHECKING_BAOS_PAYLOAD:
-            // It must be checked, that we don't try to access empty elements in the array,
-            // and it is also necessary to ensure that we only access the payload part of the frame.
-            while ((ri->currentInputIndex < bytesRead) &&
-                (ri->currentOutputIndex <= GET_PAYLOAD_END_INDEX(ri->payloadLength))) {
-
+            case CHECKING_FIRST_LENGTH:
                 destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-                ri->checksumSum += destBuff[ri->currentOutputIndex];
+                ri->payloadLength = pBuff[ri->currentInputIndex];
+                ri->currentState = CHECKING_SECOND_LENGTH;
                 ri->currentInputIndex++;
                 ri->currentOutputIndex++;
-            }
+                break;
 
-            if (ri->currentOutputIndex > GET_PAYLOAD_END_INDEX(ri->payloadLength))
-                ri->currentState = CHECKING_CHECKSUM;
-            break;
+            case CHECKING_SECOND_LENGTH:
+                destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                ri->doLengthBytesMatch = destBuff[ri->currentOutputIndex] == destBuff[ri->currentOutputIndex - 1];
+                ri->currentState = CHECKING_SECOND_START_BYTE;
+                ri->currentInputIndex++;
+                ri->currentOutputIndex++;
+                break;
 
-        case CHECKING_CHECKSUM:
-            destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-            ri->doesChecksumMatch = (ri->checksumSum % 256) == destBuff[ri->currentOutputIndex];
-            ri->currentState = CHECKING_END_BYTE;
-            ri->currentInputIndex++;
-            ri->currentOutputIndex++;
-            break;
+            case CHECKING_SECOND_START_BYTE:
+                destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                ri->doStartBytesMatch = destBuff[ri->currentOutputIndex] == destBuff[ri->currentOutputIndex - 3];
+                ri->currentState = CHECKING_CONTROL_BYTE;
+                ri->currentInputIndex++;
+                ri->currentOutputIndex++;
+                break;
 
-        case CHECKING_END_BYTE:
-            destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
-            ri->isEndByteFound = (destBuff[ri->currentOutputIndex] == FT12_END_BYTE);
-            ri->currentState = RECEPTION_COMPLETE;
-            ri->currentInputIndex++;
-            ri->currentOutputIndex++;
-            return ri->currentState;
-            break;
+            case CHECKING_CONTROL_BYTE:
+                destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                ri->checksumSum = destBuff[ri->currentOutputIndex];
+                ri->currentState = CHECKING_BAOS_PAYLOAD;
+                ri->currentInputIndex++;
+                ri->currentOutputIndex++;
+                break;
 
-        default:
-            break;
+            case CHECKING_BAOS_PAYLOAD:
+                // It must be checked, that we don't try to access empty elements in the array,
+                // and it is also necessary to ensure that we only access the payload part of the frame.
+                while ((ri->currentInputIndex < bytesRead) &&
+                    (ri->currentOutputIndex <= GET_PAYLOAD_END_INDEX(ri->payloadLength))) {
+
+                    destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                    ri->checksumSum += destBuff[ri->currentOutputIndex];
+                    ri->currentInputIndex++;
+                    ri->currentOutputIndex++;
+                }
+
+                if (ri->currentOutputIndex > GET_PAYLOAD_END_INDEX(ri->payloadLength))
+                    ri->currentState = CHECKING_CHECKSUM;
+                break;
+
+            case CHECKING_CHECKSUM:
+                destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                ri->doesChecksumMatch = (ri->checksumSum % 256) == destBuff[ri->currentOutputIndex];
+                ri->currentState = CHECKING_END_BYTE;
+                ri->currentInputIndex++;
+                ri->currentOutputIndex++;
+                break;
+
+            case CHECKING_END_BYTE:
+                destBuff[ri->currentOutputIndex] = pBuff[ri->currentInputIndex];
+                ri->isEndByteFound = (destBuff[ri->currentOutputIndex] == FT12_END_BYTE);
+                ri->currentState = RECEPTION_COMPLETE;
+                ri->currentInputIndex++;
+                ri->currentOutputIndex++;
+                return ri->currentState;
+                break;
+
+            default:
+                break;
         }
     }
-
     return ri->currentState;
 }
 
@@ -323,25 +323,29 @@ bool SerialConnection::readAck() const
 
     OVERLAPPED osRead = { 0 };
     osRead.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-    if (osRead.hEvent == NULL) {
+    if (osRead.hEvent == NULL)
+    {
         fprintf(stderr, "Error creating event for read\n");
         CloseHandle(serialHandle);
         return 0;
     }
 
-    while (true) {
+    while (true)
+    {
         // Initiate an asynchronous read.
         BOOL readResult = ReadFile(
-            serialHandle,
-            buff,
-            1,
-            &bytesRead,
-            &osRead
-        );
+                                    serialHandle,
+                                    buff,
+                                    1,
+                                    &bytesRead,
+                                    &osRead
+                                  );
         // If the read routine doesn't complete immediately...
-        if (!readResult) {
+        if (!readResult)
+        {
             // The reading is being completed asynchronously...
-            if (GetLastError() == ERROR_IO_PENDING) {
+            if (GetLastError() == ERROR_IO_PENDING)
+            {
                 // Wait for the read routine to signal completion...
                 // The I/O handle is configured to return as soon as
                 // ANYTHING has been read into the buffer.
@@ -349,12 +353,14 @@ bool SerialConnection::readAck() const
                 // return with 1 byte in buffer.
                 DWORD waitRes = WaitForSingleObject(osRead.hEvent, INFINITE);
 
-                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE)) {
+                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE))
+                {
                     fprintf(stderr, "Error in GetOverlappedResult for read\n");
                     break;
                 }
             }
-            else {
+            else
+            {
                 fprintf(stderr, "Error in ReadFile\n");
                 break;
             }
@@ -364,7 +370,6 @@ bool SerialConnection::readAck() const
         if (bytesRead > 0)
         {
             isAckFound = buff[0] == BAOS_ACK_BYTE;
-            //fprintf(stdout, "%s\n", buff[0] == BAOS_ACK_BYTE ? "ACK FOUND" : "ACK NOT FOUND");
             break;
         }
         // Reset the event for the next read.
@@ -374,7 +379,7 @@ bool SerialConnection::readAck() const
     return isAckFound;
 }
 
-unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
+unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray, HANDLE inputThreadHandle)
 {
     DWORD telegramLength = 0;
     DWORD bytesRead = 0;
@@ -383,7 +388,8 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
 
     OVERLAPPED osRead = { 0 };
     osRead.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-    if (osRead.hEvent == NULL) {
+    if (osRead.hEvent == NULL)
+    {
         fprintf(stderr, "Error creating event for read\n");
         CloseHandle(serialHandle);
         return 0;
@@ -393,19 +399,32 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
     // Will be initialised with all 0's
     ReaderInfo ri = {SEARCHING_START_BYTE};
 
-    while (true) {
+    while (true)
+    {
+        // This block will be used for the IndicationListener
+        if (inputThreadHandle != nullptr)
+        {
+            // Check if the input thread is still active.
+            if (WaitForSingleObject(inputThreadHandle, 0) == WAIT_OBJECT_0)
+            {
+                // Input thread ended, exit the loop.
+                return -1;
+            }
+        }
         // Initiate an asynchronous read.
         BOOL readResult = ReadFile(
-            serialHandle,
-            buff,
-            INPUT_ARRAY_LENGTH,
-            &bytesRead,
-            &osRead
-        );
+                                    serialHandle,
+                                    buff,
+                                    INPUT_ARRAY_LENGTH,
+                                    &bytesRead,
+                                    &osRead
+                                  );
         // If the read routine doesn't complete immediately...
-        if (!readResult) {
+        if (!readResult)
+        {
             // The reading is being completed asynchronously...
-            if (GetLastError() == ERROR_IO_PENDING) {
+            if (GetLastError() == ERROR_IO_PENDING)
+            {
                 // Wait for the read routine to signal completion...
                 // The I/O handle is configured to return as soon as
                 // ANYTHING has been read into the buffer.
@@ -413,12 +432,14 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
                 // return with 1 byte in buffer.
                 DWORD waitRes = WaitForSingleObject(osRead.hEvent, INFINITE);
 
-                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE)) {
+                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE))
+                {
                     fprintf(stderr, "Error in GetOverlappedResult for read\n");
                     break;
                 }
             }
-            else {
+            else
+            {
                 fprintf(stderr, "Error in ReadFile\n");
                 break;
             }
@@ -438,90 +459,6 @@ unsigned int SerialConnection::receiveTelegram(unsigned char* telegramCharArray)
                 // Send acknowledgement as soon as a complete frame has been read!
                 // Important so that the BAOS device shuts up.
                 sendAck();
-
-                if (!ri.doesChecksumMatch)
-                    fprintf(stderr, "Checksum mismatch!\n");
-
-                parseTelegram(ft12Buff, telegramLength, telegramCharArray);
-                CloseHandle(osRead.hEvent);
-                return telegramLength;
-            }
-        }
-        // Reset the event for the next read.
-        ResetEvent(osRead.hEvent);
-    }
-    CloseHandle(osRead.hEvent);
-    return telegramLength;
-}
-
-unsigned int SerialConnection::listenForTelegrams(unsigned char* telegramCharArray, HANDLE inputThreadHandle)
-{
-    DWORD telegramLength = 0;
-    DWORD bytesRead = 0;
-    unsigned char buff[INPUT_ARRAY_LENGTH] = { 0 };
-    unsigned char ft12Buff[FT12_ARRAY_LENGTH] = { 0 };
-
-    OVERLAPPED osRead = { 0 };
-    osRead.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-    if (osRead.hEvent == NULL) {
-        fprintf(stderr, "Error creating event for read\n");
-        CloseHandle(serialHandle);
-        return 0;
-    }
-
-    // Structure containing relevant infos to reading through buffer.
-    // Will be initialised with all 0's
-    ReaderInfo ri = { SEARCHING_START_BYTE };
-
-    while (true) {
-        // Initiate an asynchronous read.
-        BOOL readResult = ReadFile(
-            serialHandle,
-            buff,
-            INPUT_ARRAY_LENGTH,
-            &bytesRead,
-            &osRead
-        );
-        // If the read routine doesn't complete immediately...
-        if (!readResult) {
-            // The reading is being completed asynchronously...
-            if (GetLastError() == ERROR_IO_PENDING) {
-                // Wait for the read routine to signal completion...
-                // The I/O handle is configured to return as soon as
-                // ANYTHING has been read into the buffer.
-                // This means, the read function should normally
-                // return with 1 byte in buffer.
-                DWORD waitRes = WaitForSingleObject(osRead.hEvent, 100);
-                if (waitRes == WAIT_TIMEOUT) {
-                    // Check if the input thread is still active.
-                    if (WaitForSingleObject(inputThreadHandle, 0) == WAIT_OBJECT_0) {
-                        // Input thread ended (e.g., user closed stdin); exit the loop.
-                        break;
-                    }
-                    continue;
-                }
-                if (!GetOverlappedResult(serialHandle, &osRead, &bytesRead, FALSE)) {
-                    fprintf(stderr, "Error in GetOverlappedResult for read\n");
-
-                }
-            }
-            else {
-                fprintf(stderr, "Error in ReadFile\n");
-                break;
-            }
-        }
-
-        // If actual data has been received
-        if (bytesRead > 0)
-        {
-            telegramLength = readBuffer(buff, bytesRead, ft12Buff, &ri);
-
-            // The telegram length will only be returned,
-            // once "Reception Complete" state has been reached.
-            // This occurs if a complete FT 1.2 frame,
-            // including the end byte has been read.
-            if (telegramLength > 0)
-            {
 
                 if (!ri.doesChecksumMatch)
                     fprintf(stderr, "Checksum mismatch!\n");

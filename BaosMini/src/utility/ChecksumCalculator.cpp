@@ -4,7 +4,7 @@ namespace
 {
     unsigned char calculateChecksum(
         unsigned char* telegramData,
-        unsigned char telegramLength,
+        DWORD telegramLength,
         unsigned char controlByte,
         unsigned char index,
 		unsigned char loopEnd
@@ -21,7 +21,7 @@ namespace
 
 unsigned char ChecksumCalculator::calculateChecksumSent(
     unsigned char* telegramData,
-    unsigned char telegramLength,
+    DWORD telegramLength,
     unsigned char controlByte
 )
 {
@@ -36,7 +36,7 @@ unsigned char ChecksumCalculator::calculateChecksumSent(
 
 unsigned char ChecksumCalculator::calculateChecksumReceived(
     unsigned char* telegramData,
-    unsigned char telegramLength,
+    DWORD telegramLength,
     unsigned char controlByte
 )
 {

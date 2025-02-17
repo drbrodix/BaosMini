@@ -7,7 +7,6 @@ SetDatapointValue::SetDatapointValue(
 	: BaosTelegram(serialConnection)
 	, dpId(dpId)
 {
-	initTelegram();
 }
 
 SetDatapointValue::~SetDatapointValue()
@@ -42,6 +41,8 @@ bool SetDatapointValue::checkForError()
 template <typename T>
 bool SetDatapointValue::setValue(T dpValue, DatapointTypes::DATAPOINT_TYPES dpt, CommandByte commandByte, bool decode)
 {
+	clearTelegram();
+	initTelegram();
 	const unsigned char dptSize = getDatapointSize(dpt);
 	// Member variable set to BAOS telegram length (header + data).
 	// It is calculated by adding the length of the fixed parts, and the 
